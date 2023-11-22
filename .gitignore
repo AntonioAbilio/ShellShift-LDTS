@@ -4,6 +4,7 @@ out/
 .idea/
 .gradle/
 build/
+gradle/
 
 # MacOS
 
