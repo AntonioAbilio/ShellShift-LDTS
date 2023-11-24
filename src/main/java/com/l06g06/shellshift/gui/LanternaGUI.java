@@ -19,11 +19,11 @@ public class LanternaGUI implements Gui{
     protected final Screen screen;
 
     // Constructor for tests
-    LanternaGUI(Screen screen){
+    public LanternaGUI(Screen screen){
         this.screen = screen;
     }
 
-    LanternaGUI(int width, int height) throws IOException{
+    public LanternaGUI(int width, int height) throws IOException{
         TerminalSize terminalSize = new TerminalSize(width, height);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         Terminal terminal = terminalFactory.createTerminal();
