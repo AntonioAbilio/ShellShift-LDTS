@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.game.elements;
 
 public class Chell extends Element {
+    private Gun gun;
     private int lives;
     public Chell(Position position) {
         super(position);
