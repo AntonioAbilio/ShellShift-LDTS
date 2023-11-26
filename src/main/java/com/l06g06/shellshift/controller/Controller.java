@@ -1,5 +1,9 @@
 package com.l06g06.shellshift.controller;
 
+import com.l06g06.shellshift.Game;
+
+import java.io.IOException;
+
 public abstract class Controller<T> {
     private final T model;
 
@@ -11,5 +15,5 @@ public abstract class Controller<T> {
         return model;
     }
 
-    //public abstract void step();
+    //public abstract void step(Game game, GUI.ACTION action, long time) throws IOException;
 }
