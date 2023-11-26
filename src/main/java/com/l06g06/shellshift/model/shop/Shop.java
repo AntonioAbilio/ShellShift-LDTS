@@ -1,15 +1,14 @@
-package com.l06g06.shellshift.model.menus;
+package com.l06g06.shellshift.model.shop;
 
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class Menu {
+public class Shop {
     private final List<String> options;
-
     private int currOption = 0;
 
-    protected Menu(List<String> options) {
-        this.options = options;
+    public Shop() {
+        this.options = Arrays.asList("Rapid Fire......................BUY", "Shotgun.........................BUY", "Increase Bullet Damage..........BUY", "Main Menu");
     }
 
     public void nextOption() {
@@ -32,5 +31,11 @@ public abstract class Menu {
         return this.options.size();
     }
 
-    public int getCurrOption() { return this.currOption; }
+    public List<String> getOptions() {
+        return this.options;
+    }
+
+    public boolean isSelectedMainMenu() {
+        return isSelected(3);
+    }
 }

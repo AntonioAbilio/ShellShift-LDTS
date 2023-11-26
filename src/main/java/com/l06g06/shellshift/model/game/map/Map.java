@@ -1,7 +1,8 @@
 package com.l06g06.shellshift.model.game.map;
 
 import com.l06g06.shellshift.model.game.elements.*;
-import com.l06g06.shellshift.model.game.elements.gun.Gun;
+import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.gun.Gun;
 
 import java.util.List;
 
@@ -73,6 +74,7 @@ public class Map {
     public List<PowerUp> getPowerups(){
         return powerups;
     }
+
     public void setPowerups(List<PowerUp> pups) {
         this.powerups = pups;
     }

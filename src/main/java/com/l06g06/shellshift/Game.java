@@ -1,7 +1,7 @@
 package com.l06g06.shellshift;
 
+import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.gui.LanternaGUI;
-import com.l06g06.shellshift.model.menus.MainMenu;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
 

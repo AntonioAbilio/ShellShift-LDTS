@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.model.menus;
+package com.l06g06.shellshift.model.mainmenu;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,6 +33,10 @@ public class MainMenu {
 
     public int getOptionsSize() {
         return this.options.size();
+    }
+
+    public List<String> getOptions() {
+        return this.options;
     }
     public boolean isSelectedShop() {
         return isSelected(1);
