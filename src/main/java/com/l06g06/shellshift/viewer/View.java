@@ -15,6 +15,10 @@ public abstract class View<T> {
         return model;
     }
 
+    public void drawTest(Gui gui) throws IOException {
+        drawElements(gui);
+    }
+
     public void draw(Gui gui) throws IOException {
         gui.clear();
         drawElements(gui);
