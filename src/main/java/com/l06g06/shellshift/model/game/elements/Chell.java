@@ -1,5 +1,7 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.model.game.elements.gun.Gun;
+
 public class Chell extends Element {
     private Gun gun;
     private int lives;

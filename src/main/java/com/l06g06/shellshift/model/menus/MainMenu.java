@@ -3,11 +3,33 @@ package com.l06g06.shellshift.model.menus;
 import java.util.Arrays;
 import java.util.List;
 
-public class MainMenu extends Menu{
+public class MainMenu {
+    private final List<String> options;
+    private int currOption = 0;
+
     public MainMenu() {
-        super(Arrays.asList("Start", "Shop", "Ranking", "Quit"));
+        this.options = Arrays.asList("Start", "Shop", "Ranking", "Quit");
     }
 
+    public void nextOption() {
+        currOption++;
+        if (currOption > this.options.size() - 1)
+            currOption = 0;
+    }
+
+    public void prevOption() {
+        currOption--;
+        if (currOption < 0)
+            currOption = this.options.size()-1;
+    }
+
+    public boolean isSelected(int i) {
+        return i == currOption;
+    }
+
+    public int getOptionsSize() {
+        return this.options.size();
+    }
     public boolean isSelectedShop() {
         return isSelected(1);
     }
