@@ -18,6 +18,8 @@ public interface Gui {
 
     void drawMonster(Position pos);
 
+    void drawPowerup(Position pos);
+
     void drawText(Position pos, String text, String color);
 
     void clear();

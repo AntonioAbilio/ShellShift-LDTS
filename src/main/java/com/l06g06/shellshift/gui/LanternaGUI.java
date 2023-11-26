@@ -24,10 +24,26 @@ public class LanternaGUI implements Gui{
     }
 
     public LanternaGUI(int width, int height) throws IOException{
-        TerminalSize terminalSize = new TerminalSize(width, height);
+        Terminal terminal = createTerminal(width, height);
+        this.screen = createScreen(terminal);
+    }
+
+    private Terminal createTerminal(int width, int height) throws IOException {
+        TerminalSize terminalSize = new TerminalSize(width, height + 1);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
+        terminalFactory.setForceAWTOverSwing(true);
         Terminal terminal = terminalFactory.createTerminal();
-        this.screen = new TerminalScreen(terminal);
+        return terminal;
+    }
+
+    private Screen createScreen(Terminal terminal) throws IOException {
+        final Screen screen;
+        screen = new TerminalScreen(terminal);
+
+        screen.setCursorPosition(null);
+        screen.startScreen();
+        screen.doResizeIfNecessary();
+        return screen;
     }
 
     private void drawElement(int x, int y, char chr, String color){
@@ -90,6 +106,11 @@ public class LanternaGUI implements Gui{
     @Override
     public void drawMonster(Position pos){
         drawElement(pos.getX(), pos.getY(), 'M', "#FFFF00");
+    }
+
+    @Override
+    public void drawPowerup(Position pos) {
+        drawElement(pos.getX(), pos.getY(), '=', "#FFFF00");
     }
 
     @Override

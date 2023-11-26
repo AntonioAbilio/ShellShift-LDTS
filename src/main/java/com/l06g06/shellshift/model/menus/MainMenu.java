@@ -11,6 +11,10 @@ public class MainMenu {
         this.options = Arrays.asList("Start", "Shop", "Ranking", "Quit");
     }
 
+    public List<String> getOptions(){
+        return options;
+    }
+
     public void nextOption() {
         currOption++;
         if (currOption > this.options.size() - 1)

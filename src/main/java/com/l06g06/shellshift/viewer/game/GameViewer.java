@@ -7,7 +7,7 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
 
-import java.io.IOException;
+import java.util.List;
 
 public class GameViewer extends View<Map> {
     public GameViewer(Map map){
@@ -15,12 +15,15 @@ public class GameViewer extends View<Map> {
     }
 
     @Override
-    public void drawElements(Gui gui) throws IOException {
-        drawElements(gui, getModel().getWalls(), new PlatformViewer());
-        drawElements(gui, getModel().getMonsters(), new MonsterViewer());
-        drawElement(gui, getModel().getHero(), new ChellViewer());
+    public void drawElements(Gui gui) /*throws IOException*/ {
+        drawElements(gui, getModel().getBullets(), new BulletViewer());
+        drawElements(gui, getModel().getCoins(), new CoinViewer());
+        drawElements(gui, getModel().getEnemies(), new EnemyViewer());
+        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
+        drawElements(gui, getModel().getPowerups(), new PowerupViewer());
+        drawElement(gui, getModel().getChell(), new ChellViewer());
 
-        gui.drawText(new Position(0, 0), "Energy: " + getModel().().getEnergy(), "#");
+        gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#");
     }
 
     private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {

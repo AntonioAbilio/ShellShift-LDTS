@@ -2,7 +2,7 @@ package com.l06g06.shellshift.viewer.mainMenu;
 
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.mainMenu.MainMenu;
+import com.l06g06.shellshift.model.menus.MainMenu;
 import com.l06g06.shellshift.viewer.View;
 
 public class MainMenuViewer extends View<MainMenu> {
@@ -13,8 +13,15 @@ public class MainMenuViewer extends View<MainMenu> {
 
     @Override
     public void drawElements(Gui gui){
-        gui.drawText(new Position(10,10), "ShellShift", "#FFFFFF");
+        gui.drawText(new Position(5,0), "ShellShift", "#FFFFFF");
+        System.out.println("AAAAAAA\n");
+        int i = 0;
+        for (String str : this.getModel().getOptions()){
+            gui.drawText(new Position(5,5+i), str, getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
 
-        // No elements present in mainMenu yet...
+
+            i++;
+        }
+        getModel().nextOption();
     }
 }

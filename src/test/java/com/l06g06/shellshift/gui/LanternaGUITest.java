@@ -87,4 +87,12 @@ public class LanternaGUITest {
         Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 0));
         Mockito.verify(graphics, Mockito.times(1)).putString(1, 1, "Tutorial");
     }
+
+    @Test
+    void drawPowerup() {
+        gui.drawPowerup(new Position(1, 2));
+
+        Mockito.verify(graphics, Mockito.times(1)).setForegroundColor(new TextColor.RGB(255, 255, 0));
+        Mockito.verify(graphics, Mockito.times(1)).putString(1, 2, "=");
+    }
 }
