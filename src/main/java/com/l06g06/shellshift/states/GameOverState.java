@@ -1,10 +1,10 @@
 package com.l06g06.shellshift.states;
 
-import com.l06g06.shellshift.model.menus.GameOverMenu;
+import com.l06g06.shellshift.model.gameOver.GameOver;
 
-public class GameOverState extends State<GameOverMenu> {
+public class GameOverState extends State<GameOver> {
 
-    public GameOverState(GameOverMenu model) {
+    public GameOverState(GameOver model) {
         super(model);
     }
 }

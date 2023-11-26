@@ -1,9 +1,9 @@
 package com.l06g06.shellshift.states;
 
-import com.l06g06.shellshift.model.menus.ShopMenu;
+import com.l06g06.shellshift.model.shop.Shop;
 
-public class ShopState extends State<ShopMenu>{
-    public ShopState(ShopMenu model) {
+public class ShopState extends State<Shop>{
+    public ShopState(Shop model) {
         super(model);
     }
 }

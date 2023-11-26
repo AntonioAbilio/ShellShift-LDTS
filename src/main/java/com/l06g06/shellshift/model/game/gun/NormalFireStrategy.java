@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.model.game.elements.gun;
+package com.l06g06.shellshift.model.game.gun;
 
 public class NormalFireStrategy implements FireStrategy{
     @Override

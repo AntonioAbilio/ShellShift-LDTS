@@ -10,4 +10,8 @@ public class Bullet extends Element {
     public void setDamageMultiplier(int damageMultiplier) {
         this.damageMultiplier = damageMultiplier;
     }
+
+    public int getDamageMultiplier() {
+        return damageMultiplier;
+    }
 }
