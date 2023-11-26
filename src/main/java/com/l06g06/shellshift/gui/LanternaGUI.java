@@ -99,5 +99,15 @@ public class LanternaGUI implements Gui{
         textStr.putString(position.getX(), position.getY(), text);
     }
 
+    @Override
+    public void clear(){
+        this.screen.clear();
+    }
+
+    @Override
+    public void refresh() throws IOException {
+        this.screen.refresh();
+    }
+
 
 }

@@ -20,5 +20,9 @@ public interface Gui {
 
     void drawText(Position pos, String text, String color);
 
+    void clear();
+
+    void refresh() throws IOException;
+
     enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};
 }

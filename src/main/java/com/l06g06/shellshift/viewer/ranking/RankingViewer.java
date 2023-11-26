@@ -1,4 +1,22 @@
 package com.l06g06.shellshift.viewer.ranking;
 
-public class RankingViewer {
+import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.model.ranking.Ranking;
+import com.l06g06.shellshift.viewer.View;
+
+public class RankingViewer extends View<Ranking>{
+
+    public RankingViewer(Ranking ranks){
+        super(ranks);
+
+    }
+
+    @Override
+    public void drawElements(Gui gui){
+        gui.drawText(new Position(10,10), "Ranking", "#FFFFF");
+
+        // Still need to figure out elements to add to the rankings ...
+
+    }
 }
