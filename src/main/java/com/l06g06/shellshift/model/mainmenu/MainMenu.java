@@ -35,9 +35,6 @@ public class MainMenu {
         return this.options.size();
     }
 
-    public List<String> getOptions() {
-        return this.options;
-    }
     public boolean isSelectedShop() {
         return isSelected(1);
     }

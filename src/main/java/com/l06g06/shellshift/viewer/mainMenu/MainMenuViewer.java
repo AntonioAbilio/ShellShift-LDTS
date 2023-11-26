@@ -2,7 +2,7 @@ package com.l06g06.shellshift.viewer.mainMenu;
 
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.menus.MainMenu;
+import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.viewer.View;
 
 public class MainMenuViewer extends View<MainMenu> {
