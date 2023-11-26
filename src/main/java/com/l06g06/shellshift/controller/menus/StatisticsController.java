@@ -1,19 +1,22 @@
 package com.l06g06.shellshift.controller.menus;
 
-import com.l06g06.shellshift.model.mainMenu.MainMenu;
 
-/*
-public class StatisticsController {
+import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.controller.Controller;
+import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.statistics.Statistics;
 
-    public StatisticsController(StatisticsController statisticsController) {
-        super(statisticsController);
+import java.io.IOException;
+
+public class StatisticsController extends Controller<Statistics> {
+
+    public StatisticsController(Statistics statistics) {
+        super(statistics);
     }
 
-    */
-/*@Override
-    public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    @Override
+    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
         // ToDo
-    }*//*
+    }
 
 }
-*/

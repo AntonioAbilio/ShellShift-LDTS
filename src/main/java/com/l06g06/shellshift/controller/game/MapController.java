@@ -3,6 +3,7 @@ package com.l06g06.shellshift.controller.game;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.ChellController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
+import com.l06g06.shellshift.gui.Gui;
 
 import java.io.IOException;
 import java.util.Map;
@@ -20,8 +21,8 @@ public class MapController extends GameController{
         //ToDo (more are missing)
     }
 
-    /*public void step(Game game, GUI.ACTION action, long time) throws IOException {
+    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
         // ToDo
-    }*/
+    }
 
 }
