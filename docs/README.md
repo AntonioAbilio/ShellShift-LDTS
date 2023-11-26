@@ -64,7 +64,7 @@ This way Game would only require a single loop ( containing `step` ) and we woul
 Soon in the development process, we decided that having multiple types of enemies/monsters aswell as different types of guns, would make the gameplay more interesting and engaging. 
 
 To achieve this we decided to implement two different Strategy Pattern:
-- **EnemyStrategy**: This interface defines a method `move()`  used by two different moving strategies for enemies, `VerticalEnemyStrategy` blocking movement on the x axis and `HorizontalEnemyStrateggy` blocking movement on the y axis.
+- **EnemyStrategy**: This interface defines a method `move()`  used by two different moving strategies for enemies, `VerticalEnemyStrategy` blocking movement on the x axis and `HorizontalEnemyStrategy` blocking movement on the y axis.
 
 ![](EnemyStrategyUML.png)
 

@@ -14,12 +14,10 @@ public class MainMenuViewer extends View<MainMenu> {
     @Override
     public void drawElements(Gui gui){
         gui.drawText(new Position(5,0), "ShellShift", "#FFFFFF");
-        System.out.println("AAAAAAA\n");
+        //System.out.println("AAAAAAA\n");
         int i = 0;
         for (String str : this.getModel().getOptions()){
             gui.drawText(new Position(5,5+i), str, getModel().isSelected(i) ? "#FFD700" : "#FFFFFF");
-
-
             i++;
         }
         getModel().nextOption();
