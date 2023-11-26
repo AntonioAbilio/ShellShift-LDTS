@@ -48,7 +48,7 @@ public class MainMenu {
     }
 
     public boolean isSelectedQuit() {
-        return isSelected(getOptionsSize());
+        return isSelected(getOptionsSize() - 1);
     }
 
 }
