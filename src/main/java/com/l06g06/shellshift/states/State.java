@@ -4,7 +4,7 @@ import com.l06g06.shellshift.Game;
 
 import java.io.IOException;
 
-public class State<T> {
+public abstract class State<T> {
     private final T model;
     private int i = 0;
 

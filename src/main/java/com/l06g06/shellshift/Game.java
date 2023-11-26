@@ -1,6 +1,6 @@
 package com.l06g06.shellshift;
 
-import com.l06g06.shellshift.model.mainMenu.MainMenu;
+import com.l06g06.shellshift.model.menus.MainMenu;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
 
@@ -15,7 +15,8 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException{
-        Game ola = new Game();
+        Game game = new Game();
+        game.start();
     }
 
     public void setState(State state) {
@@ -23,8 +24,10 @@ public class Game {
     }
 
     private void start() throws IOException {
-        while (true) {
+        int i = 0;
+        while (i <= 5) {
             state.step(this);
+            i++;
         }
     }
 }
