@@ -15,6 +15,15 @@ public class MainMenuController extends Controller<MainMenu> {
 
     @Override
     public void step(Game game, Gui.PressedKey action, long time) throws IOException {
-        // ToDo
+        switch (action) {
+            case UP:
+                getModel().prevOption();
+                break;
+            case DOWN:
+                getModel().nextOption();
+                break;
+            case SELECT:
+                if (getModel().isSelectedQuit()) game.setState(null);
+        }
     }
 }
