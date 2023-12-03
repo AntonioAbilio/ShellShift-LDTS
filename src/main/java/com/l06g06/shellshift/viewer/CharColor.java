@@ -25,9 +25,6 @@ public enum CharColor {
         return c;
     }
 
-    public TextColor getColor() {
-        return color;
-    }
 
     public static CharColor getCharColor(char c){
         for (CharColor color : CharColor.values()){
