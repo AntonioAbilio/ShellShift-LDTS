@@ -28,9 +28,10 @@ public class CoinViewer extends NewElementViewer { // Temporary Change
 
 
     @Override
-    public void draw(String[] drawing, Gui gui){
+    public void draw(){
         int x_pos = coin.getPosition().getX();
         int y_pos = coin.getPosition().getY();
+        String[] drawing = COIN;
         //int x_mid = drawing[0].length()/2;
         //int y_mid = drawing.length/2;
 

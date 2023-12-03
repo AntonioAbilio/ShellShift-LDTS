@@ -14,7 +14,7 @@ public abstract class NewElementViewer { // This class is a substitute for the E
         this.graphics = graphics;
     }
 
-    public void draw(String[] drawing, Gui gui) throws IOException {
+    public void draw() throws IOException {
         //gui.clear();
         //drawElements(gui);
         //gui.refresh();
