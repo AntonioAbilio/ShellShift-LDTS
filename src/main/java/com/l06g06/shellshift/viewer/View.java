@@ -25,5 +25,9 @@ public abstract class View<T> {
         gui.refresh();
     }
 
+    public void drawImage(String[] image, int startPositionX, int startPositionY){
+
+    }
+
     protected abstract void drawElements(Gui gui);
 }
