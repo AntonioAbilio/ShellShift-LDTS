@@ -1,3 +1,6 @@
+// This class was created for refactoring
+
+/*
 package com.l06g06.shellshift.viewer.game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -6,7 +9,6 @@ import com.l06g06.shellshift.gui.Gui;
 
 import java.io.IOException;
 
-// ToDo: Substitute Element Viewer by this class
 public abstract class NewElementViewer { // This class is a substitute for the ElementViewer Class
     TextGraphics graphics;
 
@@ -22,3 +24,4 @@ public abstract class NewElementViewer { // This class is a substitute for the E
 
     //protected abstract void drawElements(Gui gui);
 }
+*/

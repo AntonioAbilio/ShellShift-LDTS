@@ -1,3 +1,6 @@
+// This class was created for refactoring
+
+/*
 package com.l06g06.shellshift.viewer;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -6,7 +9,6 @@ import com.l06g06.shellshift.gui.Gui;
 
 import java.io.IOException;
 
-// ToDo: Substitute View by this class
 public abstract class NewViewer<T> {
     private final T model;
     TextGraphics graphics;
@@ -27,3 +29,4 @@ public abstract class NewViewer<T> {
 
     //protected abstract void drawElements(Gui gui);
 }
+*/

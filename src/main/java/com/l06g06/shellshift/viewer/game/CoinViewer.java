@@ -5,29 +5,26 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
+import com.l06g06.shellshift.model.game.elements.Element;
+import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.viewer.CharColor;
 
 //public class CoinViewer implements ElementViewer<Coin>{
-public class CoinViewer extends NewElementViewer { // Temporary Change
-    private Coin coin;  // Corresponding Model
-
-    public CoinViewer(Coin coin, TextGraphics graphics){
-        super(graphics);
-        this.coin = coin;
-    }
+public class CoinViewer implements ElementViewer<Coin> { // Temporary Change
+    //private Coin coin;  // Corresponding Model
 
     public static final String[] COIN={
-        " AA ",
-        "AAAA",
-        "AAAA",
-        "AAAA",
-        "AAAA",
-        "AAAA",
-        " AA "
+        " QQ ",
+        "QQQQ",
+        "QQQQ",
+        "QQQQ",
+        "QQQQ",
+        "QQQQ",
+        " QQ "
     };
 
 
-    @Override
+    /*@Override
     public void draw(){
         int x_pos = coin.getPosition().getX();
         int y_pos = coin.getPosition().getY();
@@ -46,12 +43,28 @@ public class CoinViewer extends NewElementViewer { // Temporary Change
             }
         }
 
-    }
+    }*/
 
     public void setColor(char color_char){
         CharColor c = CharColor.getCharColor(color_char);
         //if (c!=null)
            // setBackgroundColor(c);
+    }
+
+    @Override
+    public void draw(Coin element, Gui gui) {
+        //gui.drawCoin(element.getPosition());
+
+        int y = element.getPosition().getY();
+        for (String s : COIN){
+            int x = element.getPosition().getX();
+            for (char c : s.toCharArray()){
+                CharColor paint = CharColor.getCharColor(c);
+                gui.drawText(new Position(x, y), String.valueOf(c), paint.getColor());
+                x++;
+            }
+            y++;
+        }
     }
 
 

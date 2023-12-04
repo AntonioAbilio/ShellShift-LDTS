@@ -1,3 +1,6 @@
+// This class was created for refactoring
+
+/*
 package com.l06g06.shellshift.viewer.game;
 
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -7,7 +10,6 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.NewViewer;
 import com.l06g06.shellshift.viewer.View;
 
-// ToDo: Substitute GameViewer by this class
 public class NewGameViewer extends NewViewer<Map> {
     private  CoinViewer[] coinViewers;
     private Map map;
@@ -25,3 +27,4 @@ public class NewGameViewer extends NewViewer<Map> {
         drawElements();
     }
 }
+*/
