@@ -29,10 +29,10 @@ public class ChellViewer implements ElementViewer<Chell>{
 
     @Override
     public void draw(Chell chell, Gui gui){
-        gui.drawChell(chell.getPosition());
+        /*gui.drawChell(chell.getPosition());*/
 
         // Use this to draw the coin in ASCII Art.
-        /*View.ASCII_Drawer(CHELL, chell.getPosition(), gui);*/
+        View.ASCII_Drawer(CHELL, chell.getPosition(), gui);
 
         /*// Move chell ... DEBUG
         chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/

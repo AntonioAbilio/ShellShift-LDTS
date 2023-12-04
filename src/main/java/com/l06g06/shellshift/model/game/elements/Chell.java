@@ -38,6 +38,31 @@ public class Chell extends Element {
         this.lives++;
     }
 
+    public void moveUP(){
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        setPosition(new Position(x,y-1));
+    }
+
+    public void moveDOWN(){
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        setPosition(new Position(x,y+1));
+    }
+
+    public void moveLEFT(){
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        setPosition(new Position(x-1,y));
+    }
+
+    public void moveRIGHT(){
+        int x = getPosition().getX();
+        int y = getPosition().getY();
+        setPosition(new Position(x+1,y));
+    }
+
+
     public Gun getGun() {
         return this.gun;
     }

@@ -20,11 +20,11 @@ public class GameViewer extends View<Map> {
         /*//DEBUG
         System.out.println("Method Call to drawElements of GameViewer\n");*/
 
-        drawElements(gui, getModel().getBullets(), new BulletViewer());
+        /*drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getEnemies(), new EnemyViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-        drawElements(gui, getModel().getPowerups(), new PowerupViewer());
+        drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
         drawElement(gui, getModel().getChell(), new ChellViewer());
 
 

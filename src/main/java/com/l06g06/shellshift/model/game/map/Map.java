@@ -10,10 +10,10 @@ public class Map {
     private final int width;
     private final int height;
 
-    /*// DEBUG
-    private Chell chell = new Chell(new Position(10,10));*/
+    // DEBUG
+    private Chell chell = new Chell(new Position(10,10));
 
-    private Chell chell;
+    /*private Chell chell;*/
     private Gun gun;
     private List<Enemy> enemies;
     private List<Platform> platforms;

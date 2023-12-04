@@ -127,6 +127,7 @@ public class LanternaGUI implements Gui{
     public void drawText(Position position, String text, String color) {
         TextGraphics textStr = screen.newTextGraphics();
         textStr.setForegroundColor(TextColor.Factory.fromString(color));
+        textStr.setBackgroundColor(TextColor.Factory.fromString(color));
         textStr.putString(position.getX(), position.getY(), text);
     }
 
@@ -146,14 +147,14 @@ public class LanternaGUI implements Gui{
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/VT323-Regular.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 40);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 5);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }

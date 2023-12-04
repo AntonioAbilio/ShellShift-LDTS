@@ -1,9 +1,10 @@
 package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.model.game.map.Map;
+
 
 import java.awt.*;
-import java.util.Map;
 
 public class SoftMonsterController extends EnemyController{
     public SoftMonsterController(Map map) {
