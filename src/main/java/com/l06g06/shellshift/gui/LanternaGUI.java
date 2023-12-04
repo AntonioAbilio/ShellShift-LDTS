@@ -11,9 +11,15 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 
 public class LanternaGUI implements Gui{
     protected final Screen screen;
@@ -23,16 +29,20 @@ public class LanternaGUI implements Gui{
         this.screen = screen;
     }
 
-    public LanternaGUI(int width, int height) throws IOException{
-        Terminal terminal = createTerminal(width, height);
+    public LanternaGUI(int width, int height) throws IOException, URISyntaxException, FontFormatException {
+        AWTTerminalFontConfiguration fontConfig = loadFont();
+        Terminal terminal = createTerminal(width, height, fontConfig);
         this.screen = createScreen(terminal);
     }
 
-    private Terminal createTerminal(int width, int height) throws IOException {
+    private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
+
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
+        terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         Terminal terminal = terminalFactory.createTerminal();
+
         return terminal;
     }
 
@@ -55,10 +65,10 @@ public class LanternaGUI implements Gui{
 
     @Override
     public PressedKey getNextAction() throws IOException {
-        // non-blocking version, does not wait for an input alternative -> this.screen.pollInput();
-        KeyStroke key = this.screen.readInput();
+        KeyStroke key = this.screen.pollInput();
 
-        if (key.getKeyType() == KeyType.EOF)  return PressedKey.EXIT;
+        if (key == null)  return PressedKey.NONE;
+
         switch (key.getKeyType()){
             case ArrowUp:
                 return PressedKey.UP;
@@ -130,5 +140,21 @@ public class LanternaGUI implements Gui{
         this.screen.refresh();
     }
 
+    @Override
+    public void close() throws IOException {
+        screen.close();
+    }
 
+    private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
+        URL resource = getClass().getClassLoader().getResource("fonts/VT323-Regular.ttf");
+        File fontFile = new File(resource.toURI());
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+
+        Font loadedFont = font.deriveFont(Font.PLAIN, 40);
+        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
+        return fontConfig;
+    }
 }

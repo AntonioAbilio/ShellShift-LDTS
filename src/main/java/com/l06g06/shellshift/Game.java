@@ -9,23 +9,24 @@ import com.l06g06.shellshift.states.State;
 
 import com.l06g06.shellshift.gui.Gui;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 public class Game {
     private State state;
-    private Gui gui;
+    private LanternaGUI gui;
 
-    public Game() throws IOException {
-        this.gui = new LanternaGUI(80,80);
-        this.state = new MainMenuState(new MainMenu());
-
-        /*// DEBUG
-        this.state = new GameState(new Map(80,80));*/
+    public Game() throws IOException, URISyntaxException, FontFormatException {
+         this.gui = new LanternaGUI(40,20);
+         this.state = new MainMenuState(new MainMenu());
+         /*// DEBUG
+         this.state = new GameState(new Map(80,80));*/
     }
 
-    public static void main(String[] args) throws IOException{
-        Game game = new Game();
-        game.start();
+    public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
+        new Game().start();
+
     }
 
     public void setState(State state) {
@@ -33,9 +34,10 @@ public class Game {
     }
 
     private void start() throws IOException {
-        while (true) {
-            int FPS = 1;
-            int frameTime = 1000 / FPS;
+        int FPS = 60;
+        int frameTime = 1000 / FPS;
+
+        while (this.state != null) {
 
             long startTime = System.currentTimeMillis();
 
@@ -49,5 +51,7 @@ public class Game {
             } catch (InterruptedException e) {
             }
         }
+
+        gui.close();
     }
 }
