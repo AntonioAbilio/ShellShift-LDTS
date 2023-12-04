@@ -1,7 +1,9 @@
 package com.l06g06.shellshift;
 
+import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.gui.LanternaGUI;
+import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
 
@@ -14,8 +16,11 @@ public class Game {
     private Gui gui;
 
     public Game() throws IOException {
-         this.gui = new LanternaGUI(20,20);
-         this.state = new MainMenuState(new MainMenu());
+        this.gui = new LanternaGUI(80,80);
+        this.state = new MainMenuState(new MainMenu());
+
+        /*// DEBUG
+        this.state = new GameState(new Map(80,80));*/
     }
 
     public static void main(String[] args) throws IOException{
@@ -29,7 +34,7 @@ public class Game {
 
     private void start() throws IOException {
         while (true) {
-            int FPS = 10;
+            int FPS = 1;
             int frameTime = 1000 / FPS;
 
             long startTime = System.currentTimeMillis();

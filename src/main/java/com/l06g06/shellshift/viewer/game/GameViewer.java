@@ -16,6 +16,10 @@ public class GameViewer extends View<Map> {
 
     @Override
     public void drawElements(Gui gui) /*throws IOException*/ {
+
+        /*//DEBUG
+        System.out.println("Method Call to drawElements of GameViewer\n");*/
+
         drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getEnemies(), new EnemyViewer());
@@ -23,7 +27,8 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getPowerups(), new PowerupViewer());
         drawElement(gui, getModel().getChell(), new ChellViewer());
 
-        gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#");
+
+        gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#FFFFFF");
     }
 
     private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {
