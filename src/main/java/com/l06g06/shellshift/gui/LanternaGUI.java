@@ -12,6 +12,7 @@ import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
+import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.awt.*;
@@ -35,11 +36,13 @@ public class LanternaGUI implements Gui{
     }
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
+
         TerminalSize terminalSize = new TerminalSize(width, height + 1);
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
         Terminal terminal = terminalFactory.createTerminal();
+
         return terminal;
     }
 
@@ -143,14 +146,14 @@ public class LanternaGUI implements Gui{
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/Monofett-Regular.ttf");
+        URL resource = getClass().getClassLoader().getResource("fonts/VT323-Regular.ttf");
         File fontFile = new File(resource.toURI());
         Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
 
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         ge.registerFont(font);
 
-        Font loadedFont = font.deriveFont(Font.PLAIN, 25);
+        Font loadedFont = font.deriveFont(Font.PLAIN, 40);
         AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
         return fontConfig;
     }

@@ -39,10 +39,10 @@ public class Map {
     }
 
     // Gun
-    public Gun getgun() {
+    public Gun getGun() {
         return this.gun;
     }
-    public void setgun(Gun gun) {
+    public void setGun(Gun gun) {
         this.gun = gun;
     }
 
