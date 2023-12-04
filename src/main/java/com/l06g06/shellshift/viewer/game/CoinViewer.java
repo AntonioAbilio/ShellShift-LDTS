@@ -7,6 +7,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.viewer.CharColor;
 
 //public class CoinViewer implements ElementViewer<Coin>{
@@ -45,11 +46,11 @@ public class CoinViewer implements ElementViewer<Coin> { // Temporary Change
 
     }*/
 
-    public void setColor(char color_char){
+    /*public void setColor(char color_char){
         CharColor c = CharColor.getCharColor(color_char);
         //if (c!=null)
            // setBackgroundColor(c);
-    }
+    }*/
 
     @Override
     public void draw(Coin element, Gui gui) {
@@ -70,5 +71,10 @@ public class CoinViewer implements ElementViewer<Coin> { // Temporary Change
 
 /*    @Override
     public void draw(Coin coin, Gui gui){
-    }*/
+        gui.drawCoin(coin.getPosition());
+
+        // Use this to draw the coin in ASCII Art.
+        /*View.ASCII_Drawer(COIN,coin.getPosition(),gui);*/
+
+    }
 }

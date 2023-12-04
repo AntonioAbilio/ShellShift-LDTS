@@ -1,22 +1,31 @@
 package com.l06g06.shellshift.viewer;
 
 import com.googlecode.lanterna.TextColor;
+import org.w3c.dom.Text;
 
 public enum CharColor {
-    DarkBrown(TextColor.Factory.fromString("#1A1410"), 'A'),
-    Brown(TextColor.Factory.fromString("#30261d"), 'B'),
-    LightBrown(TextColor.Factory.fromString("#544233"), 'C'),
-    VeryLightBrown(TextColor.Factory.fromString("#8A6D55"), 'D'),
-    Blue(TextColor.Factory.fromString("#405A5D"), 'E'),
-    LightBlue(TextColor.Factory.fromString("#8CC5CD"), 'F'),
-    White(TextColor.Factory.fromString("#FFFFFF"), 'G'),
-    Black(TextColor.Factory.fromString("#000000"), 'H');
+    DarkBrown("#1A1410", 'A'),
+    Brown("#30261d", 'B'),
+    LightBrown("#544233", 'C'),
+    VeryLightBrown("#8A6D55", 'D'),
+    Blue("#405A5D", 'E'),
+    LightBlue("#8CC5CD", 'F'),
+    White("#FFFFFF", 'G'),
+    Black("#000000", 'H'),
+    ChellSkin("#F9CDBB", 'I'),
+    BlackNotBlack("#110C01", 'J'),
+    Pink("#AF7174", 'K'),
+    RoseGold("#664243", 'L'),
+    DarkGrey("#202020", 'M'),
+    Grey("#828481", 'N'),
+    LightGrey("#a2a4a1", 'O'),
+    VeryLightGrey("#d1d6d0", 'P'),
+    Orange("#ED7C2B", 'Q');
 
-
-    private final TextColor color;
+    private final String color;
     private final char c;
 
-    CharColor(TextColor color, char c){
+    CharColor(String color, char c){
         this.color = color;
         this.c = c;
     }
@@ -25,6 +34,9 @@ public enum CharColor {
         return c;
     }
 
+    public String getColor(){
+        return color;
+    }
 
     public static CharColor getCharColor(char c){
         for (CharColor color : CharColor.values()){

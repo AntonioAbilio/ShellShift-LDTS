@@ -26,5 +26,7 @@ public interface Gui {
 
     void refresh() throws IOException;
 
+    void close() throws IOException;
+
     enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};
 }

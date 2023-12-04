@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.states;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.viewer.View;
 
@@ -10,11 +11,12 @@ public abstract class State<T> {
     private final T model;
     private int i = 0;
     private View<T> viewer;
-    //private Controller<T> controller;
+    private Controller<T> controller;
 
     public State(T model) {
         this.model = model;
         this.viewer = getViewer();
+        this.controller = getController();
     }
 
     public T getModel() {
@@ -22,10 +24,12 @@ public abstract class State<T> {
     }
 
     public void step(Game game, Gui gui) throws IOException {
-        System.out.println(i);
+        Gui.PressedKey action = gui.getNextAction();
+        controller.step(game, action, 0);
         viewer.draw(gui);
-        i++;
+
     }
 
     protected abstract View<T> getViewer();
+    protected abstract Controller<T> getController();
 }

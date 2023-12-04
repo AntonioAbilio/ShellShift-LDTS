@@ -10,7 +10,10 @@ public class Map {
     private final int width;
     private final int height;
 
-    private Chell chell;
+    // DEBUG
+    private Chell chell = new Chell(new Position(10,10));
+
+    /*private Chell chell;*/
     private Gun gun;
     private List<Enemy> enemies;
     private List<Platform> platforms;
@@ -39,10 +42,10 @@ public class Map {
     }
 
     // Gun
-    public Gun getgun() {
+    public Gun getGun() {
         return this.gun;
     }
-    public void setgun(Gun gun) {
+    public void setGun(Gun gun) {
         this.gun = gun;
     }
 

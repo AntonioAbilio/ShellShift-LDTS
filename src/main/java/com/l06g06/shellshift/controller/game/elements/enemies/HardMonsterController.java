@@ -1,8 +1,8 @@
 package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.model.game.map.Map;
 
-import java.util.Map;
 
 public class HardMonsterController extends EnemyController{
     public HardMonsterController(Map map) {
