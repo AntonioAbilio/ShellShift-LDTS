@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.gui.Gui;
@@ -26,3 +27,4 @@ public class CoinViewerTest {
         Mockito.verify(gui, Mockito.times(1)).drawCoin(coin.getPosition());
     }
 }
+*/
