@@ -3,10 +3,11 @@ package com.l06g06.shellshift.gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface Gui {
 
-    PressedKey getNextAction() throws IOException;
+    List<PressedKey> getNextAction() throws IOException;
 
     void drawCoin(Position pos);
 

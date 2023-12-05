@@ -16,23 +16,28 @@ import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class LanternaGUI implements Gui{
-    protected final Screen screen;
+    protected final TerminalScreen screen;
+    private List<Integer> buttons = new ArrayList<Integer>(0);
 
     // Constructor for tests
-    public LanternaGUI(Screen screen){
+    public LanternaGUI(TerminalScreen screen){
         this.screen = screen;
     }
 
     public LanternaGUI(int width, int height) throws IOException, URISyntaxException, FontFormatException {
         AWTTerminalFontConfiguration fontConfig = loadFont();
         Terminal terminal = createTerminal(width, height, fontConfig);
-        this.screen = createScreen(terminal);
+        this.screen = (TerminalScreen) createScreen(terminal);
     }
 
     private Terminal createTerminal(int width, int height, AWTTerminalFontConfiguration fontConfig) throws IOException {
@@ -62,14 +67,51 @@ public class LanternaGUI implements Gui{
         graphics.putString(x,y, String.valueOf(chr));
     }
 
+    public void addButton(Integer button) {
+        if (!this.buttons.contains(button)) this.buttons.add(button);
+    }
+
+    public void removeButton(Integer button) {
+        this.buttons.remove(button);
+    }
 
     @Override
-    public PressedKey getNextAction() throws IOException {
-        KeyStroke key = this.screen.pollInput();
+    public List<PressedKey> getNextAction() throws IOException {
 
-        if (key == null)  return PressedKey.NONE;
+        List<PressedKey> pressedKeyList = new ArrayList<PressedKey>(0);
 
-        switch (key.getKeyType()){
+        if (this.buttons.isEmpty()) return pressedKeyList;
+
+        for (Integer intg : this.buttons){
+            switch (intg){
+                case 38:
+                    pressedKeyList.add(PressedKey.UP);
+                    break;
+                case 40:
+                    pressedKeyList.add(PressedKey.DOWN);
+                    break;
+                case 37:
+                    pressedKeyList.add(PressedKey.LEFT);
+                    break;
+                case 39:
+                    pressedKeyList.add(PressedKey.RIGHT);
+                    break;
+                case 10:
+                    pressedKeyList.add(PressedKey.SELECT);
+                    break;
+                case 32:
+                    pressedKeyList.add(PressedKey.FIRE);
+                    break;
+                default:
+                    return pressedKeyList;
+            }
+        }
+
+        /*KeyStroke key = this.screen.pollInput();*/
+
+        /*if (key == null)  return PressedKey.NONE;*/
+
+        /*switch (key.getKeyType()){
             case ArrowUp:
                 return PressedKey.UP;
             case ArrowDown:
@@ -90,7 +132,8 @@ public class LanternaGUI implements Gui{
                 }
             default:
                 return PressedKey.NONE;
-        }
+        }*/
+        return pressedKeyList;
     }
 
     @Override
@@ -144,6 +187,18 @@ public class LanternaGUI implements Gui{
     @Override
     public void close() throws IOException {
         screen.close();
+    }
+
+    public TerminalScreen getScreen() {
+        return screen;
+    }
+
+    public void addKeyListenner(KeyListener keyListener){
+        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
+    }
+
+    public void removeKeyListenner(KeyListener keyListener){
+        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {

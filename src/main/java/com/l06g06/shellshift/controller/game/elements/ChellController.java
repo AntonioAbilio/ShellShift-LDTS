@@ -5,6 +5,8 @@ import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
 
+import java.util.List;
+
 
 public class ChellController extends GameController {
 
@@ -13,20 +15,22 @@ public class ChellController extends GameController {
     }
 
     @Override
-    public void step(Game game, Gui.PressedKey action, long time) {
-        switch (action) {
-            case UP:
-                getModel().getChell().moveUP();
-                break;
-            case DOWN:
-                getModel().getChell().moveDOWN();
-                break;
-            case LEFT:
-                getModel().getChell().moveLEFT();
-                break;
-            case RIGHT:
-                getModel().getChell().moveRIGHT();
-                break;
+    public void step(Game game, List<Gui.PressedKey> action, long time) {
+        for (Gui.PressedKey gpk : action) {
+            switch (gpk) {
+                case UP:
+                    getModel().getChell().moveUP();
+                    break;
+                case DOWN:
+                    getModel().getChell().moveDOWN();
+                    break;
+                case LEFT:
+                    getModel().getChell().moveLEFT();
+                    break;
+                case RIGHT:
+                    getModel().getChell().moveRIGHT();
+                    break;
+            }
         }
     }
 }

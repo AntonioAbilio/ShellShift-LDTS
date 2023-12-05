@@ -1,5 +1,6 @@
 package com.l06g06.shellshift;
 
+import com.l06g06.shellshift.gui.ListenForKeys;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.gui.LanternaGUI;
@@ -16,10 +17,12 @@ import java.net.URISyntaxException;
 public class Game {
     private State state;
     private LanternaGUI gui;
+    private ListenForKeys keysListen;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
          this.gui = new LanternaGUI(50,50);
          this.state = new MainMenuState(new MainMenu());
+
          /*// DEBUG
          this.state = new GameState(new Map(80,80));*/
     }
@@ -34,8 +37,9 @@ public class Game {
     }
 
     private void start() throws IOException {
-        int FPS = 60;
+        int FPS = 10;
         int frameTime = 1000 / FPS;
+        this.keysListen = new ListenForKeys(this.gui);
 
         while (this.state != null) {
 

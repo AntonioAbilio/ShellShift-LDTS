@@ -9,6 +9,7 @@ import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.states.GameState;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MainMenuController extends Controller<MainMenu> {
     public MainMenuController(MainMenu mainMenu) {
@@ -16,18 +17,20 @@ public class MainMenuController extends Controller<MainMenu> {
     }
 
     @Override
-    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
-        switch (action) {
-            case UP:
-                getModel().prevOption();
-                break;
-            case DOWN:
-                getModel().nextOption();
-                break;
-            case SELECT:
-                if (getModel().isSelectedQuit()) game.setState(null);
-                if (getModel().isSelectedStart()) game.setState(new GameState(new Map(50, 50)));
-                break;
+    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        for (Gui.PressedKey gpk : action) {
+            switch (gpk) {
+                case UP:
+                    getModel().prevOption();
+                    break;
+                case DOWN:
+                    getModel().nextOption();
+                    break;
+                case SELECT:
+                    if (getModel().isSelectedQuit()) game.setState(null);
+                    if (getModel().isSelectedStart()) game.setState(new GameState(new Map(50, 50)));
+                    break;
+            }
         }
     }
 }

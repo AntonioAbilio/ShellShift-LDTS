@@ -6,6 +6,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.viewer.View;
 
 import java.io.IOException;
+import java.util.List;
 
 public abstract class State<T> {
     private final T model;
@@ -24,7 +25,7 @@ public abstract class State<T> {
     }
 
     public void step(Game game, Gui gui) throws IOException {
-        Gui.PressedKey action = gui.getNextAction();
+        List<Gui.PressedKey> action = gui.getNextAction();
         controller.step(game, action, 0);
         viewer.draw(gui);
 

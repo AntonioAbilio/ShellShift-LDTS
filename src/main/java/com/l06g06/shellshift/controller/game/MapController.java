@@ -9,6 +9,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
+import java.util.List;
 
 public class MapController extends GameController{
 
@@ -27,7 +28,7 @@ public class MapController extends GameController{
     }
 
     // Step should give the recived action to each controller...
-    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
+    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);

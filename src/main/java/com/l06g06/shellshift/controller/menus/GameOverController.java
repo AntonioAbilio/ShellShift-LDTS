@@ -6,6 +6,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 
 import java.io.IOException;
+import java.util.List;
 
 public class GameOverController extends Controller<GameOver> {
 
@@ -14,7 +15,7 @@ public class GameOverController extends Controller<GameOver> {
     }
 
     @Override
-    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
+    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         // ToDo
     }
 
