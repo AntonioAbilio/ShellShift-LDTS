@@ -27,6 +27,8 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
         //drawElements(gui, getModel().getCoins(), new CoinViewer());  // Debug
         drawElement(gui, getModel().getChell(), new ChellViewer());
+        //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
+        //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
 
 
         gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#FFFFFF");
