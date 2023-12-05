@@ -5,6 +5,8 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 public class Chell extends Element {
     private Gun gun;
     private int lives;
+    private float velocity = 200F;
+    private int gravity = 1000;
 
     private final static int height = 15;
     private final static int width = 15;
@@ -17,6 +19,21 @@ public class Chell extends Element {
         return Chell.width;
     }
 
+    public float getVelocity() {
+        return velocity;
+    }
+
+    public void setVelocity(int velocity) {
+        this.velocity = velocity;
+    }
+
+    public int getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(int gravity) {
+        this.gravity = gravity;
+    }
 
     public Chell(Position position) {
         super(position);
@@ -37,31 +54,6 @@ public class Chell extends Element {
     public void increaseLives() {
         this.lives++;
     }
-
-    public void moveUP(){
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        setPosition(new Position(x,y-1));
-    }
-
-    public void moveDOWN(){
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        setPosition(new Position(x,y+1));
-    }
-
-    public void moveLEFT(){
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        setPosition(new Position(x-1,y));
-    }
-
-    public void moveRIGHT(){
-        int x = getPosition().getX();
-        int y = getPosition().getY();
-        setPosition(new Position(x+1,y));
-    }
-
 
     public Gun getGun() {
         return this.gun;
