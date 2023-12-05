@@ -20,7 +20,8 @@ public enum CharColor {
     Grey("#828481", 'N'),
     LightGrey("#a2a4a1", 'O'),
     VeryLightGrey("#d1d6d0", 'P'),
-    Orange("#ED7C2B", 'Q');
+    Orange("#ED7C2B", 'Q'),
+    Yellow("#E3BF35", 'R');
 
     private final String color;
     private final char c;
