@@ -42,7 +42,7 @@ public enum CharColor {
         for (CharColor color : CharColor.values()){
             if (c == color.getChar()) return color;
         }
-        return Black; // If the color isn't in the enum, return Black
+        return null; // If the color isn't in the enum, return Black
     }
 
 }
