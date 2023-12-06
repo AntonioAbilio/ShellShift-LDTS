@@ -4,6 +4,7 @@ import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
@@ -16,15 +17,22 @@ public class Map {
     /*private Chell chell;*/
     private Gun gun;
     private List<Enemy> enemies;
-    private List<Platform> platforms;
+    private List<Platform> platforms = new ArrayList<>();
     private List<Bullet> bullets;
     private List<PowerUp> powerups;
     private List<Coin> coins;
+    private PlatformSpawner platformSpawner;
 
     // Sizes
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
+        // DEBUG
+        /*Platform platform1 = new Platform(new Position(10, 10));
+        Platform platform2 = new Platform(new Position(20, 30));
+        platforms.add(platform1);
+        platforms.add(platform2);*/
+        this.platformSpawner = new PlatformSpawner(platforms);
     }
     public int getWidth() {
         return width;
@@ -90,6 +98,10 @@ public class Map {
         this.coins = coins;
     }
 
-    // TODO
+    public PlatformSpawner getPlatformSpawner() {
+        return platformSpawner;
+    }
+
+// TODO
     // Add enemies, add platforms, add bullets...
 }
