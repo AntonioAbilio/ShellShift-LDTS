@@ -29,14 +29,16 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
 
         //DEBUG
-        List<Platform> platforms = new ArrayList<Platform>();
+        /*List<Platform> platforms = new ArrayList<Platform>();
         platforms.add(new Platform(new Position(10,10)));
         getModel().setPlatforms(platforms);
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
+        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());*/
 
+        /*drawElements(gui, getModel().getCoins(), new CoinViewer());*/
         drawElement(gui, getModel().getChell(), new ChellViewer());
-        //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
-        //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
+        drawElements(gui, getModel().getBullets(), new BulletViewer());
+        /*drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
+        drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug*/
 
 
         gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#FFFFFF");

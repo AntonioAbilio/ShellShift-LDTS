@@ -7,7 +7,7 @@ import java.awt.*;
 public class Chell extends Element {
     private Gun gun;
     private int lives;
-    private float velocity = 200F;
+    private float velocity = 250F;
     private int gravity = 1000;
 
     private final static int height = 15;

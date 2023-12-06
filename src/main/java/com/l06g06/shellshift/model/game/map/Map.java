@@ -2,8 +2,11 @@ package com.l06g06.shellshift.model.game.map;
 
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
+import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
@@ -11,7 +14,7 @@ public class Map {
     private final int height;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(10,10));
+    private Chell chell = new Chell(new Position(80,80));
 
     /*private Chell chell;*/
     private Gun gun;
@@ -25,6 +28,30 @@ public class Map {
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
+        // Debug
+        List<Bullet> bulls = new ArrayList<>();
+        Bullet bull = new Bullet(new Position(10, 10));
+        bulls.add(bull);
+        this.bullets = bulls;
+        /*SoftMonster softMonster1 = new SoftMonster(new Position(1, 1));
+        SoftMonster softMonster2 = new SoftMonster(new Position(10, 10));
+        SoftMonster softMonster3 = new SoftMonster(new Position(80, 80));
+        HardMonster hardMonster1 = new HardMonster(new Position(30, 30));
+        List<Enemy> softMonsters = new ArrayList<>();
+        softMonsters.add(softMonster1);
+        softMonsters.add(softMonster2);
+        softMonsters.add(softMonster3);
+        softMonsters.add(hardMonster1);
+        this.enemies = softMonsters;
+        Coin coin1 = new Coin(new Position(1, 1));
+        Coin coin2 = new Coin(new Position(50, 50));
+        Coin coin3 = new Coin(new Position(4, 3));
+        List<Coin> coins = new ArrayList<>();
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);
+        this.coins = coins;*/
+
     }
     public int getWidth() {
         return width;
