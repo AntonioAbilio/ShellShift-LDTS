@@ -2,6 +2,8 @@ package com.l06g06.shellshift.model.game.elements;
 
 import com.l06g06.shellshift.model.game.gun.Gun;
 
+import java.awt.*;
+
 public class Chell extends Element {
     private Gun gun;
     private int lives;
@@ -37,6 +39,17 @@ public class Chell extends Element {
 
     public Chell(Position position) {
         super(position);
+        Polygon chellHitbox = new Polygon();
+
+        int x = position.getX();
+        int y = position.getY();
+
+        chellHitbox.addPoint(x+1,y+1);
+        chellHitbox.addPoint(x+width-1,y+1);
+        chellHitbox.addPoint(x+1, y+height-1);
+        chellHitbox.addPoint(x+width-1, y+height-1);
+        this.hitbox = chellHitbox;
+
     }
 
     public int getLives() {
