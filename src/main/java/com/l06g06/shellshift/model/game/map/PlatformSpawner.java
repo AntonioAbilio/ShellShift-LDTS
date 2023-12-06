@@ -3,6 +3,7 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.elements.Platform;
+import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class PlatformSpawner {
         this.platformCreator = new PlatformCreator();
     }
 
-    public void spawn(long time_x){
-        //Platform spawned_platform = (Platform) platformCreator.create(time_x);
-        //platforms.add(spawned_platform);
+    public void spawn(Position position){
+        Platform spawned_platform = (Platform) platformCreator.create(position);
+        platforms.add(spawned_platform);
     }
 
     // Not complete

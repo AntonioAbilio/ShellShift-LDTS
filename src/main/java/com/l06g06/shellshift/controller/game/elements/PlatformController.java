@@ -32,6 +32,7 @@ public class PlatformController extends GameController {
         if (elapsedTime >= 0.1F){
             onCooldown = false;
             left_shift();
+            //getModel().getPlatformSpawner().spawn(new Position(150, 50));
         }
 
         /*System.out.print("Elapsed time: ");
@@ -39,7 +40,6 @@ public class PlatformController extends GameController {
 
         System.out.print("time_x: ");
         System.out.printf(String.valueOf(elapsedTime));*/
-        getModel().getPlatformSpawner().spawn((int) elapsedTime);
     }
 
     public void left_shift(){

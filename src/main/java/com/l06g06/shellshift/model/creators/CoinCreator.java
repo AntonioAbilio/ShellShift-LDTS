@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 
 public class CoinCreator extends Creator{
     @Override
-    public Element create() {
+    public Element create(Position position) {
         return new Coin(new Position(0,0));
     }
 }
