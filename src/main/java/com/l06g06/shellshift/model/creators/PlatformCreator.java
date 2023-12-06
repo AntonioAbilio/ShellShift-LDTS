@@ -10,8 +10,8 @@ public class PlatformCreator extends Creator{
 
     public Element create(Position position) {
         Random rn = new Random();
-        int maximum = 100;
-        int minimum = 0;
+        int maximum = 50;
+        int minimum = 30;
         int n = maximum - minimum + 1;
         int i = rn.nextInt() % n;
         int new_y = minimum + i;

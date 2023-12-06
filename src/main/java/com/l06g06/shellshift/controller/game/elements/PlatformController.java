@@ -11,10 +11,10 @@ import java.io.IOException;
 import java.util.List;
 
 public class PlatformController extends GameController {
-    boolean onCooldown = false;
-    double elapsedTime = 0;
-    double cooldownStartTime = 0;
-
+    double spawnCooldown = 3; // Spawn every 3 seconds
+    double shiftCooldown = 0.1; // Shift every 0.1 seconds
+    double lastSpawnTime = 0;
+    double lastShiftTime = 0;
 
     public PlatformController(Map map) {
         super(map);
@@ -23,23 +23,21 @@ public class PlatformController extends GameController {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
 
-        if (!onCooldown){
-            onCooldown = true;
-            cooldownStartTime = time;
-            //System.out.println(onCooldown);
+
+        double currentTime = time / 1000.0; // Convert to seconds
+
+        // Spawn platforms logic
+        if (currentTime - lastSpawnTime >= spawnCooldown){
+            lastSpawnTime = currentTime;
+            getModel().getPlatformSpawner().spawn(new Position(110, 50));
         }
-        elapsedTime = (time - cooldownStartTime) / 1000.0;
-        if (elapsedTime >= 0.1F){
-            onCooldown = false;
+
+        // Shift platforms logic
+        if (currentTime - lastShiftTime >= shiftCooldown){
+            lastShiftTime = currentTime;
             left_shift();
-            //getModel().getPlatformSpawner().spawn(new Position(150, 50));
         }
 
-        /*System.out.print("Elapsed time: ");
-        System.out.println(elapsedTime);
-
-        System.out.print("time_x: ");
-        System.out.printf(String.valueOf(elapsedTime));*/
     }
 
     public void left_shift(){
