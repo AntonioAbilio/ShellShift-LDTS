@@ -18,16 +18,28 @@ public class ShopController extends Controller<Shop> {
     }
 
     @Override
-    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
+    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+
+        for (Gui.PressedKey gpk : action) {
+            switch (gpk) {
+                case UP:
+                    getModel().prevOption();
+                    break;
+                case DOWN:
+                    getModel().nextOption();
+                    break;
+                case SELECT:
+                    if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
+                    break;
+            }
+        }
        /* switch (action) {
             case UP:
-                getModel().prevOption();
-                break;
+
             case DOWN:
-                getModel().nextOption();
-                break;
+
             case SELECT:
-                if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
+
         }*/
     }
 }

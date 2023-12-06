@@ -169,7 +169,8 @@ public class LanternaGUI implements Gui{
     @Override
     public void drawText(Position position, String text, String color) {
         TextGraphics textStr = screen.newTextGraphics();
-        textStr.setBackgroundColor(TextColor.ANSI.DEFAULT);
+        //textStr.setBackgroundColor(TextColor.ANSI.DEFAULT);
+        textStr.setBackgroundColor(TextColor.Factory.fromString(color));
         textStr.setForegroundColor(TextColor.Factory.fromString(color));
         textStr.putString(position.getX(), position.getY(), text);
     }
