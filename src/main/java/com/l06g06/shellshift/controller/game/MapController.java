@@ -1,11 +1,10 @@
 package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.game.elements.BulletController;
-import com.l06g06.shellshift.controller.game.elements.ChellController;
-import com.l06g06.shellshift.controller.game.elements.GunController;
+import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
@@ -17,6 +16,7 @@ public class MapController extends GameController{
     private final EnemyController enemyController;
     private final BulletController bulletController;
     private final GunController gunController;
+    private final PlatformController platformController;
 
     public MapController(Map map){
         super(map);
@@ -24,6 +24,7 @@ public class MapController extends GameController{
         this.enemyController = new EnemyController(map);
         this.bulletController = new BulletController(map);
         this.gunController = new GunController(map);
+        this.platformController = new PlatformController(map);
         //ToDo (more are missing)
     }
 
@@ -33,6 +34,7 @@ public class MapController extends GameController{
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
         gunController.step(game, action, time);
+        platformController.step(game, action, time);
         // ToDo
     }
 

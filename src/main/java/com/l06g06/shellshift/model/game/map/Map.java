@@ -14,44 +14,27 @@ public class Map {
     private final int height;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(80,80));
+    private Chell chell = new Chell(new Position(10,10));
 
     /*private Chell chell;*/
     private Gun gun;
     private List<Enemy> enemies;
-    private List<Platform> platforms;
+    private List<Platform> platforms = new ArrayList<>();
     private List<Bullet> bullets;
     private List<PowerUp> powerups;
     private List<Coin> coins;
+    private PlatformSpawner platformSpawner;
 
     // Sizes
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
-        // Debug
-        /*List<Bullet> bulls = new ArrayList<>();
-        Bullet bull = new Bullet(new Position(10, 10));
-        bulls.add(bull);
-        this.bullets = bulls;*/
-        /*SoftMonster softMonster1 = new SoftMonster(new Position(1, 1));
-        SoftMonster softMonster2 = new SoftMonster(new Position(10, 10));
-        SoftMonster softMonster3 = new SoftMonster(new Position(80, 80));
-        HardMonster hardMonster1 = new HardMonster(new Position(30, 30));
-        List<Enemy> softMonsters = new ArrayList<>();
-        softMonsters.add(softMonster1);
-        softMonsters.add(softMonster2);
-        softMonsters.add(softMonster3);
-        softMonsters.add(hardMonster1);
-        this.enemies = softMonsters;
-        Coin coin1 = new Coin(new Position(1, 1));
-        Coin coin2 = new Coin(new Position(50, 50));
-        Coin coin3 = new Coin(new Position(4, 3));
-        List<Coin> coins = new ArrayList<>();
-        coins.add(coin1);
-        coins.add(coin2);
-        coins.add(coin3);
-        this.coins = coins;*/
-
+        // DEBUG
+        /*Platform platform1 = new Platform(new Position(10, 10));
+        Platform platform2 = new Platform(new Position(20, 30));
+        platforms.add(platform1);
+        platforms.add(platform2);*/
+        this.platformSpawner = new PlatformSpawner(platforms);
     }
     public int getWidth() {
         return width;
@@ -117,6 +100,10 @@ public class Map {
         this.coins = coins;
     }
 
-    // TODO
+    public PlatformSpawner getPlatformSpawner() {
+        return platformSpawner;
+    }
+
+// TODO
     // Add enemies, add platforms, add bullets...
 }
