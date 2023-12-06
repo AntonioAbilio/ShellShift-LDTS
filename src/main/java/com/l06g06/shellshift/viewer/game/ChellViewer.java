@@ -27,12 +27,25 @@ public class ChellViewer implements ElementViewer<Chell>{
             "   JJJ    JJJ  "
     };
 
+    /*private static final String[] HITBOX = new String[]{
+            "P"
+    };*/
+
     @Override
     public void draw(Chell chell, Gui gui){
         /*gui.drawChell(chell.getPosition());*/
 
-        // Use this to draw the coin in ASCII Art.
         View.ASCII_Drawer(CHELL, chell.getPosition(), gui);
+
+        //Uncomment this to see hithox.
+        /*
+        for (int i = 0; i < chell.getPolygon().npoints; i++) {
+            int x = chell.getPolygon().xpoints[i];
+            int y = chell.getPolygon().ypoints[i];
+            View.ASCII_Drawer(HITBOX, new Position(x,y), gui);
+            System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");
+        }*/
+
 
         /*// Move chell ... DEBUG
         chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/
