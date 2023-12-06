@@ -11,13 +11,14 @@ import com.l06g06.shellshift.states.State;
 import com.l06g06.shellshift.gui.Gui;
 
 import java.awt.*;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
 public class Game {
     private State state;
     private LanternaGUI gui;
-    private ListenForKeys keysListen;
+    private KeyListener keysListen;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
          this.gui = new LanternaGUI(160, 100);
@@ -30,6 +31,12 @@ public class Game {
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
 
+    }
+
+    public static void sleepTimeMS(int miliseconds){
+        try{
+            Thread.sleep(miliseconds);
+        } catch (InterruptedException e){}
     }
 
     public void setState(State state) {
