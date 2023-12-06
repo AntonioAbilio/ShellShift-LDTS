@@ -20,7 +20,7 @@ public class Game {
     private ListenForKeys keysListen;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
-         this.gui = new LanternaGUI(50,50);
+         this.gui = new LanternaGUI(160, 100);
          this.state = new MainMenuState(new MainMenu());
 
          /*// DEBUG

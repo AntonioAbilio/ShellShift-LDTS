@@ -1,17 +1,19 @@
 package com.l06g06.shellshift.model.mainmenu;
 
+import com.l06g06.shellshift.Components;
+
 import java.util.Arrays;
 import java.util.List;
 
 public class MainMenu {
-    private final List<String> options;
+    private final List<Components> options;
     private int currOption = 0;
 
     public MainMenu() {
-        this.options = Arrays.asList("Start", "Shop", "Ranking", "Quit");
+        this.options = Arrays.asList(Components.Start, Components.Shop, Components.Statistics, Components.Quit);
     }
 
-    public List<String> getOptions(){
+    public List<Components> getOptions(){
         return options;
     }
 
@@ -26,6 +28,8 @@ public class MainMenu {
         if (currOption < 0)
             currOption = this.options.size()-1;
     }
+
+    public int getCurrOption() { return currOption; }
 
     public boolean isSelected(int i) {
         return i == currOption;
