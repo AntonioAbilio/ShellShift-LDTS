@@ -7,6 +7,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.statistics.Statistics;
 
 import java.io.IOException;
+import java.util.List;
 
 public class StatisticsController extends Controller<Statistics> {
 
@@ -15,7 +16,7 @@ public class StatisticsController extends Controller<Statistics> {
     }
 
     @Override
-    public void step(Game game, Gui.PressedKey action, long time) throws IOException {
+    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         // ToDo
     }
 

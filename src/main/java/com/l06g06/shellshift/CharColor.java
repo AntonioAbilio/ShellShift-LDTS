@@ -1,7 +1,4 @@
-package com.l06g06.shellshift.viewer;
-
-import com.googlecode.lanterna.TextColor;
-import org.w3c.dom.Text;
+package com.l06g06.shellshift;
 
 public enum CharColor {
     DarkBrown("#1A1410", 'A'),
@@ -20,11 +17,10 @@ public enum CharColor {
     Grey("#828481", 'N'),
     LightGrey("#a2a4a1", 'O'),
     VeryLightGrey("#d1d6d0", 'P'),
-    Orange("#ED7C2B", 'Q'),
-    Yellow("#E3BF35", 'R'),
-    LightOrange("#FFB078", 'S'),
-    DarkOrange("#B44A00", 'T'),
-    VeryLightBlue("#ABF0F9", 'U');
+    Orange("#ED7C2B", '*'),
+    LightOrange("#ffc20e", 'Q'),
+    DarkOrange("#792d01", 'R'),
+    Yellow("#FFD700", 'y');
 
     private final String color;
     private final char c;
@@ -46,7 +42,7 @@ public enum CharColor {
         for (CharColor color : CharColor.values()){
             if (c == color.getChar()) return color;
         }
-        return null; // If the color isn't in the enum, return Black
+        return Black; // If the color isn't in the enum, return Black
     }
 
 }

@@ -35,8 +35,9 @@ public abstract class View<T> {
                 CharColor paint = CharColor.getCharColor(Pixel);
 
                 // Draw the character (Pixel).
-
-                gui.drawText(new Position(x,y), String.valueOf(Pixel), paint.getColor());
+                if (paint != null){
+                    gui.drawText(new Position(x,y), String.valueOf(Pixel), paint.getColor());
+                }
                 x++;
             }
             y++;

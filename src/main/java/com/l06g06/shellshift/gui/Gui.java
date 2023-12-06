@@ -1,12 +1,15 @@
 package com.l06g06.shellshift.gui;
 
+import com.googlecode.lanterna.screen.Screen;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import java.awt.*;
 import java.io.IOException;
+import java.util.List;
 
 public interface Gui {
 
-    PressedKey getNextAction() throws IOException;
+    List<PressedKey> getNextAction() throws IOException;
 
     void drawCoin(Position pos);
 
@@ -22,11 +25,17 @@ public interface Gui {
 
     void drawText(Position pos, String text, String color);
 
+    void drawASCII(Position position, String color);
+    void drawImageASCII(String[] image, Position position);
+
     void clear();
 
     void refresh() throws IOException;
 
     void close() throws IOException;
+
+    public void setGradientBackground(String innerColor, String outerColor);
+
 
     enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};
 }
