@@ -14,15 +14,15 @@ public class Map {
     private final int height;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(10,10));
+    private Chell chell = new Chell(new Position(100,10));
 
     /*private Chell chell;*/
     private Gun gun;
-    private List<Enemy> enemies;
-    private List<Platform> platforms = new ArrayList<>();
-    private List<Bullet> bullets;
-    private List<PowerUp> powerups;
-    private List<Coin> coins;
+    private List<Enemy> enemies = new ArrayList<>(0);
+    private List<Platform> platforms = new ArrayList<>(0);
+    private List<Bullet> bullets = new ArrayList<>(0);
+    private List<PowerUp> powerups = new ArrayList<>(0);
+    private List<Coin> coins = new ArrayList<>(0);
     private PlatformSpawner platformSpawner;
 
     // Sizes
