@@ -38,6 +38,7 @@ public class GameViewer extends View<Map> {
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
+        drawElements(gui, getModel().getCoins(), new CoinViewer());
         /*drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug*/
 

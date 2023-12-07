@@ -22,8 +22,9 @@ public class Map {
     private List<Platform> platforms = new ArrayList<>();
     private List<Bullet> bullets;
     private List<PowerUp> powerups;
-    private List<Coin> coins;
+    private List<Coin> coins = new ArrayList<>();
     private PlatformSpawner platformSpawner;
+    private CoinSpawner coinSpawner;
 
     // Sizes
     public Map(int width, int height) {
@@ -35,6 +36,7 @@ public class Map {
         platforms.add(platform1);
         platforms.add(platform2);*/
         this.platformSpawner = new PlatformSpawner(platforms);
+        this.coinSpawner = new CoinSpawner(coins);
         // Debug
         List<Bullet> bulls = new ArrayList<>();
         Bullet bull = new Bullet(new Position(10, 10));
@@ -49,15 +51,15 @@ public class Map {
         softMonsters.add(softMonster2);
         softMonsters.add(softMonster3);
         softMonsters.add(hardMonster1);
-        this.enemies = softMonsters;
-        Coin coin1 = new Coin(new Position(1, 1));
+        this.enemies = softMonsters; */
+        /*Coin coin1 = new Coin(new Position(1, 1));
         Coin coin2 = new Coin(new Position(50, 50));
         Coin coin3 = new Coin(new Position(4, 3));
         List<Coin> coins = new ArrayList<>();
         coins.add(coin1);
         coins.add(coin2);
-        coins.add(coin3);
-        this.coins = coins;*/
+        coins.add(coin3);*/
+        this.coins = coins;
 
     }
     public int getWidth() {
@@ -128,6 +130,10 @@ public class Map {
         return platformSpawner;
     }
 
-// TODO
+    public CoinSpawner getCoinSpawner() {
+        return coinSpawner;
+    }
+
+    // TODO
     // Add enemies, add platforms, add bullets...
 }
