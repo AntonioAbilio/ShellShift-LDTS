@@ -33,7 +33,7 @@ public class ChellViewer implements ElementViewer<Chell>{
         /*gui.drawChell(chell.getPosition());*/
 
         // Use this to draw the coin in ASCII Art.
-       gui.drawImageASCII(Components.Chell.getImage(), chell.getPosition());
+       gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), chell.getPosition());
 
         /*// Move chell ... DEBUG
         chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/

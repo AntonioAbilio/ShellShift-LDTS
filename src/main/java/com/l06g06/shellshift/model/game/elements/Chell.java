@@ -7,6 +7,7 @@ public class Chell extends Element {
     private int lives;
     private int velocity = 200;
     private int gravity = 1000;
+    private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
 
     private final static int height = 15;
     private final static int width = 15;
@@ -60,5 +61,13 @@ public class Chell extends Element {
     }
     public void setGun(Gun gun) {
         this.gun = gun;
+    }
+
+    public boolean isDirection() {
+        return direction;
+    }
+
+    public void setDirection(boolean direction) {
+        this.direction = direction;
     }
 }

@@ -151,7 +151,12 @@ public enum Components {
             "*QGR",
             "**QR",
             "RRR "
-    }, new String[]{}, "Bullet"),
+    }, new String[]{
+            " RRR",
+            "RGQ*",
+            "RQ**",
+            " RRR"
+    }, "Bullet"),
     
     HeartIcon(new String[] {
         "  RRRR   RRRR ",

@@ -20,13 +20,13 @@ public class MainMenu {
     public void nextOption() {
         currOption++;
         if (currOption > this.options.size() - 1)
-            currOption = 0;
+            currOption = this.options.size() - 1;
     }
 
     public void prevOption() {
         currOption--;
         if (currOption < 0)
-            currOption = this.options.size()-1;
+            currOption = 0;
     }
 
     public int getCurrOption() { return currOption; }

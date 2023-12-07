@@ -32,7 +32,12 @@ public class BulletController extends GameController {
 
     private void fire(long time) {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
-            getModel().addBullet(new Bullet(new Position(getModel().getChell().getPosition().getX(), getModel().getChell().getPosition().getY()+7)));
+            int x = getModel().getChell().getPosition().getX();
+            int y = getModel().getChell().getPosition().getY();
+            Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x + 14 : x - 2, y + 8));
+            bullet.setDirection(getModel().getChell().isDirection());
+            getModel().addBullet(bullet);
+
             getModel().getGun().decreaseNumBullet();
             reloadStartTime = time;
         }
@@ -42,7 +47,9 @@ public class BulletController extends GameController {
         for (Bullet bullet : getModel().getBullets()){
             int x = bullet.getPosition().getX();
             int y = bullet.getPosition().getY();
-            bullet.setPosition(new Position(x + 1, y));
+
+            bullet.setPosition(new Position(bullet.isDirection() ? x + 2 : x - 2, y));
+
         }
     }
 }

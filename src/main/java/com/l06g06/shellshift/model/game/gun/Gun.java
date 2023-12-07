@@ -4,8 +4,6 @@ public class Gun {
     private int numBullets = 10;
     private FireStrategy strategy;
 
-    private double reloadTime = 1500;
-
     public Gun(FireStrategy strategy) {
         this.strategy = strategy;
     }
@@ -30,10 +28,7 @@ public class Gun {
     }
 
     public double getReloadTime() {
-        return reloadTime;
+        return strategy.getReloadTime();
     }
 
-    public void setReloadTime(double reloadTime) {
-        this.reloadTime = reloadTime;
-    }
 }

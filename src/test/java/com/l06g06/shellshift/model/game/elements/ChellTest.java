@@ -30,7 +30,9 @@ public class ChellTest {
 
         class mockFireStrategy implements FireStrategy {
             @Override
-            public void fire() {}
+            public double getReloadTime() {
+                return 0;
+            }
         }
 
         Gun gun = new Gun(new mockFireStrategy());
