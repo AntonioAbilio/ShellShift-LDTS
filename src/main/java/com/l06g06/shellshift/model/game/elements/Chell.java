@@ -4,7 +4,7 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 
 public class Chell extends Element {
     private Gun gun;
-    private int lives;
+    private int lives = 3;
     private int velocity = 200;
     private int gravity = 1000;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda

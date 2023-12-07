@@ -35,6 +35,10 @@ public class Shop {
         return isSelected(0);
     }
 
+    public boolean isSelectedExtraLife() {
+        return isSelected(1);
+    }
+
     public int getTextSize() {
         return this.text.size();
     }

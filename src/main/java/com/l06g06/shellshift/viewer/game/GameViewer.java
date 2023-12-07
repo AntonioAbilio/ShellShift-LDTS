@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.viewer.game;
 
 // Internelly we decided to call arena Map...
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -35,11 +36,15 @@ public class GameViewer extends View<Map> {
         platforms.add(new Platform(new Position(10,10)));
 
         getModel().setPlatforms(platforms);
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
+        //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
 
-        gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#FFFFFF");
+        for (int i = 0; i < getModel().getChell().getLives(); i++) {
+            gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,10));
+        }
+
+        gui.drawImageASCII(Components.Score.getImage(), new Position(5,11));
 
     }
 

@@ -38,6 +38,11 @@ public class ShopController extends Controller<Shop> {
                         map.getGun().setStrategy(new RapidFireStrategy());
                         game.setState(new GameState(map));
                     }
+                    if (getModel().isSelectedExtraLife()) {
+                        Map map = new Map(50,50);
+                        map.getChell().increaseLives();
+                        game.setState(new GameState(map));
+                    }
                     break;
             }
         }

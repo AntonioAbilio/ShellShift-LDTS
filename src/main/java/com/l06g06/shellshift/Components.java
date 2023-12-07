@@ -171,7 +171,15 @@ public enum Components {
         "    RQQ***R    ",
         "      R**R     ",
         "       RR      ",
-    }, new String[]{}, "Icon"),
+    }, new String[]{
+            "  RR  RR",
+            " RQQRRQ*R",
+            " RQGQQQ*R",
+            " RQQQQQ*R",
+            "  RQQ**R",
+            "   R**R",
+            "    RR"
+    }, "Icon"),
 
     Chell(new String[] {
         " AAAA          ",
@@ -261,7 +269,17 @@ public enum Components {
         "y     y yyyyyy y y  y y    y     y y      y  y y y    y",
         "y     y y    y y y   yy    y     y y      y   yy y    y",
         "y     y y    y y y    y    y     y yyyyyy y    y  yyyy "
-    }, "Main Menu");
+    }, "Main Menu"),
+
+    Score(new String[] {
+        " GGG  GGG  GGG  GGG  GGG",
+        "G    G    G   G G  G G",
+        " GG  G    G   G GGG  GG",
+        "   G G    G   G G G  G",
+        "GGG   GGG  GGG  G  G GGG"
+    }, new String[] {}, "Score");
+
+
     
 
     private final String[] image;

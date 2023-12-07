@@ -15,7 +15,7 @@ public class PlatformViewer implements ElementViewer<Platform>{
 
     @Override
     public void draw(Platform platform, Gui gui){
-        View.ASCII_Drawer(PLATFORM, platform.getPosition(), gui);
+        gui.drawImageASCII(PLATFORM, platform.getPosition());
         //gui.drawPlatform(platform.getPosition());
     }
 }

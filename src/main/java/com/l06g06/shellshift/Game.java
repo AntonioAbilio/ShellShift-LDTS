@@ -23,15 +23,12 @@ public class Game {
          this.gui = new LanternaGUI(160, 100);
          this.state = new MainMenuState(new MainMenu());
 
-         /*// DEBUG
-         this.state = new GameState(new Map(80,80));*/
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
 
     }
-
     public void setState(State state) {
         this.state = state;
     }
