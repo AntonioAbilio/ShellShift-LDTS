@@ -14,7 +14,7 @@ public class Map {
     private final int height;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(100,10));
+    private Chell chell = new Chell(new Position(130,0));
 
     /*private Chell chell;*/
     private Gun gun;

@@ -27,24 +27,24 @@ public class ChellViewer implements ElementViewer<Chell>{
             "   JJJ    JJJ  "
     };
 
-    /*private static final String[] HITBOX = new String[]{
+    private static final String[] HITBOX = new String[]{
             "P"
-    };*/
+    };
 
     @Override
     public void draw(Chell chell, Gui gui){
-        /*gui.drawChell(chell.getPosition());*/
 
-        View.ASCII_Drawer(CHELL, chell.getPosition(), gui);
+
+        View.ASCII_Drawer(CHELL, new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14), gui);
+        gui.drawChell(chell.getPosition());
 
         //Uncomment this to see hithox.
-        /*
         for (int i = 0; i < chell.getPolygon().npoints; i++) {
             int x = chell.getPolygon().xpoints[i];
             int y = chell.getPolygon().ypoints[i];
             View.ASCII_Drawer(HITBOX, new Position(x,y), gui);
-            System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");
-        }*/
+            /*System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");*/
+        }
 
 
         /*// Move chell ... DEBUG

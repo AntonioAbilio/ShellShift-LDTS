@@ -14,20 +14,20 @@ public class PlatformViewer implements ElementViewer<Platform>{
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
     };
 
-    /*private static final String[] HITBOX = new String[]{
+    private static final String[] HITBOX = new String[]{
             "P"
-    };*/
+    };
 
     @Override
     public void draw(Platform platform, Gui gui){
         View.ASCII_Drawer(PLATFORM, platform.getPosition(), gui);
         //Uncomment this to see hithox.
-        /*for (int i = 0; i < platform.getPolygon().npoints; i++) {
+        for (int i = 0; i < platform.getPolygon().npoints; i++) {
             int x = platform.getPolygon().xpoints[i];
             int y = platform.getPolygon().ypoints[i];
             View.ASCII_Drawer(HITBOX, new Position(x,y), gui);
-            System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");
-        }*/
+            /*System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");*/
+        }
         //gui.drawPlatform(platform.getPosition());
     }
 }

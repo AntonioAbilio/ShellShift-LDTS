@@ -44,10 +44,10 @@ public class Chell extends Element {
         int x = position.getX();
         int y = position.getY();
 
-        chellHitbox.addPoint(x+1,y+1);
-        chellHitbox.addPoint(x+width-1,y+1);
-        chellHitbox.addPoint(x+1, y+height-1);
-        chellHitbox.addPoint(x+width-1, y+height-1);
+        chellHitbox.addPoint(x-14,y-14);
+        chellHitbox.addPoint(x,y-14);
+        chellHitbox.addPoint(x-14, y+1);
+        chellHitbox.addPoint(x, y+1);
         this.hitbox = chellHitbox;
 
     }
@@ -73,5 +73,10 @@ public class Chell extends Element {
     }
     public void setGun(Gun gun) {
         this.gun = gun;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(new Position(position.getX(), position.getY()/* - 15*/));
     }
 }
