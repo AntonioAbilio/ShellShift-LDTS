@@ -5,7 +5,7 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 public class Chell extends Element {
     private Gun gun;
     private int lives;
-    private float velocity = 200F;
+    private int velocity = 200;
     private int gravity = 1000;
 
     private final static int height = 15;

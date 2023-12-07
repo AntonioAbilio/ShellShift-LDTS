@@ -3,7 +3,9 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.gun.Gun;
+import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Map {
@@ -25,6 +27,8 @@ public class Map {
     public Map(int width, int height) {
         this.width = width;
         this.height = height;
+        this.gun = new Gun(new NormalFireStrategy());
+        this.bullets = new ArrayList<Bullet>();
     }
     public int getWidth() {
         return width;
@@ -71,6 +75,10 @@ public class Map {
     }
     public void setBullets(List<Bullet> bullets){
         this.bullets = bullets;
+    }
+
+    public void addBullet(Bullet bullet) {
+        this.bullets.add(bullet);
     }
 
     // PowerUps

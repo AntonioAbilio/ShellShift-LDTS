@@ -42,7 +42,6 @@ public class Game {
         this.keysListen = new ListenForKeys(this.gui);
 
         while (this.state != null) {
-
             long startTime = System.currentTimeMillis();
 
             state.step(this, gui, startTime);

@@ -11,30 +11,11 @@ public class MainMenuViewer extends View<MainMenu> {
     public MainMenuViewer(MainMenu mainMenu) {
         super(mainMenu);
     }
-
-    private static final String[] CHELL = new String[]{
-            " AAAA          ",
-            "ABBDCAAAAAAAA  ",
-            "ABBDDCCCCCCCCA ",
-            "ABBBDDDDDDDDDCA",
-            " ABBACCCCCCCCCA",
-            "ABBABBBBBBBBBBA",
-            "ABBABBJJIBBJJBA",
-            "ABBABJGEIIBGEJA",
-            " AAAKIGFIIIGFIA",
-            "   MLIIIIIIIIL ",
-            "  MONLLLLLLLL  ",
-            " MGPMNGGGGPNMJJ",
-            " MIMOPGGGGGPIJ ",
-            "  MQQQJJJJQQJ  ",
-            "   JJJ    JJJ  "
-    };
-
     @Override
     public void drawElements(Gui gui){
         gui.setGradientBackground("#2F1E0D", "#110902");
         gui.drawImageASCII(Components.Title.getImage(), new Position(10,10));
-        gui.drawImageASCII(CHELL, new Position(130, 10));
+        gui.drawImageASCII(Components.Chell.getImage(), new Position(130, 10));
 
         int i = 0;
         for (Components component : getModel().getOptions()) {

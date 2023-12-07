@@ -145,10 +145,17 @@ public enum Components {
             "    RRR"
 
     }, new String[]{}, "Icon"),
+
+    Bullet(new String[]{
+            "RRR",
+            "*QGR",
+            "**QR",
+            "RRR "
+    }, new String[]{}, "Bullet"),
     
     HeartIcon(new String[] {
-        "  RRRR    RRRR ",
-        " RQQQQR  R****R",
+        "  RRRR   RRRR ",
+        " RQQQQR R****R",
         "RQQGGQQRQQQQ**R",
         "RQGQQQQQQQQQ**R",
         "RQGQQQQQQQQQ**R",
@@ -159,7 +166,41 @@ public enum Components {
         "    RQQ***R    ",
         "      R**R     ",
         "       RR      ",
-    }, new String[]{}, "Icon");
+    }, new String[]{}, "Icon"),
+
+    Chell(new String[] {
+        " AAAA          ",
+        "ABBDCAAAAAAAA  ",
+        "ABBDDCCCCCCCCA ",
+        "ABBBDDDDDDDDDCA",
+        " ABBACCCCCCCCCA",
+        "ABBABBBBBBBBBBA",
+        "ABBABBJJIBBJJBA",
+        "ABBABJGEIIBGEJA",
+        " AAAKIGFIIIGFIA",
+        "   MLIIIIIIIIL ",
+        "  MONLLLLLLLL  ",
+        " MGPMNGGGGPNMJJ",
+        " MIMOPGGGGGPIJ ",
+        "  M***JJJJ**J  ",
+        "   JJJ    JJJ  "
+    }, new String[] {
+        "          AAAA ",
+        "  AAAAAAAACDBBA",
+        " ACCCCCCCCDDBBA",
+        "ACDDDDDDDDDBBBA",
+        "ACCCCCCCCCABBA ",
+        "ABBBBBBBBBBABBA",
+        "ABJJBBIJJBBABBA",
+        "AJEGBIIEGJBABBA",
+        "AIFGIIIFGIKAAA ",
+        " LIIIIIIIILM   ",
+        "  LLLLLLLLNOM  ",
+        "JJMNPGGGGNMPGM ",
+        " JIPGGGGGPOMIM ",
+        "  J**JJJJ***M  ",
+        "  JJJ    JJJ   "
+    }, "Chell Model");
 
     private final String[] image;
     private final String[] imageSelected;

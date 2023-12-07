@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.viewer.game;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -32,7 +33,7 @@ public class ChellViewer implements ElementViewer<Chell>{
         /*gui.drawChell(chell.getPosition());*/
 
         // Use this to draw the coin in ASCII Art.
-        View.ASCII_Drawer(CHELL, chell.getPosition(), gui);
+       gui.drawImageASCII(Components.Chell.getImage(), chell.getPosition());
 
         /*// Move chell ... DEBUG
         chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/

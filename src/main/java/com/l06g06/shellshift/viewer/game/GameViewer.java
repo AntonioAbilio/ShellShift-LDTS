@@ -2,6 +2,7 @@ package com.l06g06.shellshift.viewer.game;
 
 // Internelly we decided to call arena Map...
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.elements.Bullet;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
@@ -29,15 +30,17 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
 
         //DEBUG
+
         List<Platform> platforms = new ArrayList<Platform>();
         platforms.add(new Platform(new Position(10,10)));
+
         getModel().setPlatforms(platforms);
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-
         drawElement(gui, getModel().getChell(), new ChellViewer());
-
+        drawElements(gui, getModel().getBullets(), new BulletViewer());
 
         gui.drawText(new Position(0, 0), "Lives: " + getModel().getChell().getLives(), "#FFFFFF");
+
     }
 
     private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {
