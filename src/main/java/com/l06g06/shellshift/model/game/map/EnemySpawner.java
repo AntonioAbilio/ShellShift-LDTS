@@ -21,12 +21,8 @@ public class EnemySpawner {
     public void spawn(Position position){
         Enemy spawned_enemy = (Enemy) enemyCreator.create(position);
         enemies.add(spawned_enemy);
-        if (i >= 3) {
-            i = 3;
-            enemies.remove(0);
-        }
-        else{
-            i++;
+        for (int i = 0; i < enemies.size(); i++){
+            if (enemies.get(i).getPosition().getX() <= 40) enemies.remove(i);
         }
     }
 

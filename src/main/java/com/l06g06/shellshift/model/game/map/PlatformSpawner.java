@@ -20,12 +20,8 @@ public class PlatformSpawner {
     public void spawn(Position position){
         Platform spawned_platform = (Platform) platformCreator.create(position);
         platforms.add(spawned_platform);
-        if (i >= 3) {
-            i = 3;
-            platforms.remove(0);
-        }
-        else{
-            i++;
+        for (int i = 0; i < platforms.size(); i++){
+            if (platforms.get(i).getPosition().getX() <= 40) platforms.remove(i);
         }
     }
 

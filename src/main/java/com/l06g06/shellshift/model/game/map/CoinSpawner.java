@@ -22,12 +22,8 @@ public class CoinSpawner {
     public void spawn(Position position){
         Coin spawned_coin = (Coin) coinCreator.create(position);
         coins.add(spawned_coin);
-        if (i >= 3) {
-            i = 3;
-            coins.remove(0);
-        }
-        else{
-            i++;
+        for (int i = 0; i < coins.size(); i++){
+            if (coins.get(i).getPosition().getX() <= 40) coins.remove(i);
         }
     }
 }
