@@ -21,8 +21,9 @@ public class MapController extends GameController{
     private final GunController gunController;
     private final PlatformController platformController;
     private final CoinController coinController;
-    private final SoftMonsterController softMonsterController;
-    private final HardMonsterController hardMonsterController;
+    //private final SoftMonsterController softMonsterController;
+    //private final HardMonsterController hardMonsterController;
+    private final EnemyController enemyController;
 
     public MapController(Map map){
         super(map);
@@ -32,8 +33,9 @@ public class MapController extends GameController{
         this.gunController = new GunController(map);
         this.platformController = new PlatformController(map);
         this.coinController = new CoinController(map);
-        this.softMonsterController = new SoftMonsterController(map);
-        this.hardMonsterController = new HardMonsterController(map);
+        //this.softMonsterController = new SoftMonsterController(map);
+        //this.hardMonsterController = new HardMonsterController(map);
+        this.enemyController = new EnemyController(map);
         //ToDo (more are missing)
     }
 
@@ -45,8 +47,9 @@ public class MapController extends GameController{
         gunController.step(game, action, time);
         platformController.step(game, action, time);
         coinController.step(game, action, time);
-        softMonsterController.step(game, action, time);
-        hardMonsterController.step(game, action, time);
+        //softMonsterController.step(game, action, time);
+        //hardMonsterController.step(game, action, time);
+        enemyController.step(game, action, time);
         // ToDo
     }
 

@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.game.map;
 
 import com.l06g06.shellshift.model.creators.CoinCreator;
@@ -25,13 +26,16 @@ public class SoftMonsterSpawner {
         if (spawned_softMonster instanceof SoftMonster) enemies.add(spawned_softMonster);
 
         // ToDo: Implement this in the Enemy Creator (maybe)
-        /*if (i >= 3) {
+        */
+/*if (i >= 3) {
             i = 3;
             enemies.remove(0);
         }
         else{
             i++;
-        }*/
+        }*//*
+
     }
 
 }
+*/

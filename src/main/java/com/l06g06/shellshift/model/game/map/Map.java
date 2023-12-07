@@ -27,8 +27,9 @@ public class Map {
     private List<Coin> coins = new ArrayList<>();
     private PlatformSpawner platformSpawner;
     private CoinSpawner coinSpawner;
-    private SoftMonsterSpawner softMonsterSpawner;
-    private HardMonsterSpawner hardMonsterSpawner;
+    //private SoftMonsterSpawner softMonsterSpawner;
+    //private HardMonsterSpawner hardMonsterSpawner;
+    private EnemySpawner enemySpawner;
 
     // Sizes
     public Map(int width, int height) {
@@ -41,8 +42,9 @@ public class Map {
         platforms.add(platform2);*/
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
-        this.softMonsterSpawner = new SoftMonsterSpawner(enemies);
-        this.hardMonsterSpawner = new HardMonsterSpawner(enemies);
+        //this.softMonsterSpawner = new SoftMonsterSpawner(enemies);
+        //this.hardMonsterSpawner = new HardMonsterSpawner(enemies);
+        this.enemySpawner = new EnemySpawner(enemies);
 
         // Debug
         List<Bullet> bulls = new ArrayList<>();
@@ -149,12 +151,16 @@ public class Map {
         }
     }
 
-    public SoftMonsterSpawner getSoftMonsterSpawner() {
+    /*public SoftMonsterSpawner getSoftMonsterSpawner() {
         return softMonsterSpawner;
     }
 
     public HardMonsterSpawner getHardMonsterSpawner() {
         return hardMonsterSpawner;
+    }*/
+
+    public EnemySpawner getEnemySpawner() {
+        return enemySpawner;
     }
 
     // TODO

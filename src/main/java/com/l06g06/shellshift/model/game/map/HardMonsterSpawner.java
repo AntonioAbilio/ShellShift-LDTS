@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.game.map;
 
 import com.l06g06.shellshift.model.creators.CoinCreator;
@@ -27,12 +28,15 @@ public class HardMonsterSpawner {
 
 
         // ToDo: Do this in the EnemyCreator (maybe)
-        /*if (i >= 3) {
+        */
+/*if (i >= 3) {
             i = 3;
             hardMonsters.remove(0);
         }
         else{
             i++;
-        }*/
+        }*//*
+
     }
 }
+*/

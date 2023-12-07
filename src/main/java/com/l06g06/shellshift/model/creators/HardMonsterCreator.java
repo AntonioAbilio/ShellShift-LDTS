@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.creators;
 
 import com.l06g06.shellshift.model.game.elements.Element;
@@ -20,3 +21,4 @@ public class HardMonsterCreator extends Creator {
         };
     }
 }
+*/
