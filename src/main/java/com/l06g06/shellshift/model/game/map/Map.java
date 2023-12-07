@@ -24,6 +24,7 @@ public class Map {
     private List<PowerUp> powerups = new ArrayList<>(0);
     private List<Coin> coins = new ArrayList<>(0);
     private PlatformSpawner platformSpawner;
+    private CoinSpawner coinSpawner;
 
     // Sizes
     public Map(int width, int height) {
@@ -35,6 +36,31 @@ public class Map {
         platforms.add(platform1);
         platforms.add(platform2);*/
         this.platformSpawner = new PlatformSpawner(platforms);
+        this.coinSpawner = new CoinSpawner(coins);
+        // Debug
+        List<Bullet> bulls = new ArrayList<>();
+        Bullet bull = new Bullet(new Position(10, 10));
+        bulls.add(bull);
+        this.bullets = bulls;
+        /*SoftMonster softMonster1 = new SoftMonster(new Position(1, 1));
+        SoftMonster softMonster2 = new SoftMonster(new Position(10, 10));
+        SoftMonster softMonster3 = new SoftMonster(new Position(80, 80));
+        HardMonster hardMonster1 = new HardMonster(new Position(30, 30));
+        List<Enemy> softMonsters = new ArrayList<>();
+        softMonsters.add(softMonster1);
+        softMonsters.add(softMonster2);
+        softMonsters.add(softMonster3);
+        softMonsters.add(hardMonster1);
+        this.enemies = softMonsters; */
+        /*Coin coin1 = new Coin(new Position(1, 1));
+        Coin coin2 = new Coin(new Position(50, 50));
+        Coin coin3 = new Coin(new Position(4, 3));
+        List<Coin> coins = new ArrayList<>();
+        coins.add(coin1);
+        coins.add(coin2);
+        coins.add(coin3);*/
+        this.coins = coins;
+
     }
     public int getWidth() {
         return width;
@@ -104,6 +130,19 @@ public class Map {
         return platformSpawner;
     }
 
-// TODO
+    public CoinSpawner getCoinSpawner() {
+        return coinSpawner;
+    }
+
+    public void removeUpdateCoins() {
+        for (Coin coin : coins){
+            if (coin.getPosition().getX() <= 20){
+                coins.remove(0);
+            }
+        }
+    }
+
+
+    // TODO
     // Add enemies, add platforms, add bullets...
 }
