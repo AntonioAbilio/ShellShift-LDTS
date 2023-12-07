@@ -3,8 +3,11 @@ package com.l06g06.shellshift.controller.menus;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.gun.RapidFireStrategy;
+import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.model.shop.Shop;
+import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.ShopState;
 
@@ -30,16 +33,13 @@ public class ShopController extends Controller<Shop> {
                     break;
                 case SELECT:
                     if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
+                    if (getModel().isSelectedRapidFire()) {
+                        Map map = new Map(50,50);
+                        map.getGun().setStrategy(new RapidFireStrategy());
+                        game.setState(new GameState(map));
+                    }
                     break;
             }
         }
-       /* switch (action) {
-            case UP:
-
-            case DOWN:
-
-            case SELECT:
-
-        }*/
     }
 }

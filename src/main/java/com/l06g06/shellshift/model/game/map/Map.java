@@ -4,6 +4,7 @@ import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
+import com.l06g06.shellshift.model.game.gun.RapidFireStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -7,6 +7,8 @@ import com.l06g06.shellshift.controller.game.elements.GunController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
+import com.l06g06.shellshift.model.gameOver.GameOver;
+import com.l06g06.shellshift.states.GameOverState;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,6 +35,10 @@ public class MapController extends GameController{
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
         gunController.step(game, action, time);
+
+        if (getModel().getGun().getNumBullets() <= 0) {
+            game.setState(new GameOverState(new GameOver()));
+        }
         // ToDo
     }
 

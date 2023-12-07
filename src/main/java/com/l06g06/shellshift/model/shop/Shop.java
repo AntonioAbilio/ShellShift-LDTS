@@ -18,17 +18,21 @@ public class Shop {
     public void nextOption() {
         currOption++;
         if (currOption > this.text.size() - 1)
-            currOption = 0;
+            currOption = this.text.size() - 1;
     }
 
     public void prevOption() {
         currOption--;
         if (currOption < 0)
-            currOption = this.text.size()-1;
+            currOption = 0;
     }
+
 
     public boolean isSelected(int i) {
         return i == currOption;
+    }
+    public boolean isSelectedRapidFire() {
+        return isSelected(0);
     }
 
     public int getTextSize() {
