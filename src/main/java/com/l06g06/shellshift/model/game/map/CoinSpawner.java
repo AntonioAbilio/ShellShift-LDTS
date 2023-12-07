@@ -9,6 +9,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import java.util.List;
 
 public class CoinSpawner {
+    int i = 0;
 
     private CoinCreator coinCreator;
     private List<Coin> coins;
@@ -21,5 +22,12 @@ public class CoinSpawner {
     public void spawn(Position position){
         Coin spawned_coin = (Coin) coinCreator.create(position);
         coins.add(spawned_coin);
+        if (i >= 3) {
+            i = 3;
+            coins.remove(0);
+        }
+        else{
+            i++;
+        }
     }
 }

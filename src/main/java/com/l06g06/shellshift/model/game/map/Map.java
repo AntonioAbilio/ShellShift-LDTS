@@ -134,6 +134,15 @@ public class Map {
         return coinSpawner;
     }
 
+    public void removeUpdateCoins() {
+        for (Coin coin : coins){
+            if (coin.getPosition().getX() <= 20){
+                coins.remove(0);
+            }
+        }
+    }
+
+
     // TODO
     // Add enemies, add platforms, add bullets...
 }
