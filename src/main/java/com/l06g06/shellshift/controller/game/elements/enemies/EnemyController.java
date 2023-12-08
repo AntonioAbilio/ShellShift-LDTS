@@ -37,6 +37,10 @@ public class EnemyController extends GameController {
             left_shift();
         }
 
+        for (Enemy enemy : getModel().getEnemies()){
+            enemy.setPosition(enemy.getMoveStrategy().move(enemy.getPosition()));  // Make Enemy move according to MoveStrategy
+        }
+
     }
 
     public void left_shift(){

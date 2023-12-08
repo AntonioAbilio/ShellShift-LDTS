@@ -6,6 +6,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
+import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
 
 import java.util.Random;
 
@@ -20,8 +21,8 @@ public class EnemyCreator extends Creator{
 
         Random rn_enemy = new Random();
         int i2 = rn_enemy.nextInt(2);
-        if (i2 == 0) return new HardMonster(new Position(position.getX(), new_y));
-        return new SoftMonster(new Position(position.getX(), new_y));
+        if (i2 == 0) return new HardMonster(new Position(position.getX(), new_y), new HorizontalMoveStrategy());
+        return new SoftMonster(new Position(position.getX(), new_y), new HorizontalMoveStrategy());
     }
 
 }
