@@ -10,7 +10,10 @@ import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
+import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.states.GameOverState;
+import com.l06g06.shellshift.states.MainMenuState;
+import com.sun.tools.javac.Main;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,10 +51,16 @@ public class MapController extends GameController{
         platformController.step(game, action, time);
         coinController.step(game, action, time);
 
+        /*
         if (getModel().getGun().getNumBullets() <= 0) {
             game.setState(new GameOverState(new GameOver()));
         }
-        // ToDo
+         */
+
+        if (getModel().getChell().getLives() <= 0) {
+            Game.sleepTimeMS(1000);
+            game.setState((new GameOverState(new GameOver())));
+        }
     }
 
 }

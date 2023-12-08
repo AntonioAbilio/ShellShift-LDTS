@@ -5,8 +5,10 @@ import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
 import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.map.Map;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -28,13 +30,14 @@ public class BulletController extends GameController {
             }
         }
         bulletUpdate();
+        bulletCollision();
     }
 
     private void fire(long time) {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
-            Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x : x - 2, y - 8));
+            Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x : x - 16, y - 5));
             bullet.setDirection(getModel().getChell().isDirection());
             getModel().addBullet(bullet);
 
@@ -49,7 +52,26 @@ public class BulletController extends GameController {
             int y = bullet.getPosition().getY();
 
             bullet.setPosition(new Position(bullet.isDirection() ? x + 2 : x - 2, y));
-
         }
     }
+
+    public void bulletCollision() {
+        List<Bullet> bullets = getModel().getBullets();
+        List<Enemy> enemies = getModel().getEnemies();
+
+        Iterator<Enemy> enemyIterator = enemies.iterator();
+        while (enemyIterator.hasNext()) {
+            Enemy enemy = enemyIterator.next();
+
+            Iterator<Bullet> bulletIterator = bullets.iterator();
+            while (bulletIterator.hasNext()) {
+                Bullet bullet = bulletIterator.next();
+                if (bullet.getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
+                    bulletIterator.remove();
+                    enemyIterator.remove();
+                }
+            }
+        }
+    }
+
 }

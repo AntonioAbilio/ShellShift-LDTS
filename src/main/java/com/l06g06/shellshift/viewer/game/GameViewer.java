@@ -40,6 +40,9 @@ public class GameViewer extends View<Map> {
         //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
 
         // Clean
+        gui.setBackground("#000000");
+
+
 
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
@@ -54,10 +57,9 @@ public class GameViewer extends View<Map> {
 
         //HUD
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
-            gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,10));
+            gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,6));
         }
-
-        gui.drawImageASCII(Components.Score.getImage(), new Position(5,11));
+        gui.drawImageASCII(Components.Score.getImage(), new Position(5,7));
 
     }
 
