@@ -3,10 +3,12 @@ package com.l06g06.shellshift.model.game.elements;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
+import java.awt.*;
+
 public class Chell extends Element {
     private Gun gun;
     private int lives;
-    private int velocity = 200;
+    private float velocity = 250F;
     private int gravity = 1000;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
 
@@ -40,6 +42,17 @@ public class Chell extends Element {
     public Chell(Position position) {
         super(position);
         this.lives = Database.getInstance().getNumLives();
+        Polygon chellHitbox = new Polygon();
+
+        int x = position.getX();
+        int y = position.getY();
+
+        chellHitbox.addPoint(x-14,y-14);
+        chellHitbox.addPoint(x,y-14);
+        chellHitbox.addPoint(x-14, y+1);
+        chellHitbox.addPoint(x, y+1);
+        this.hitbox = chellHitbox;
+
     }
 
     public int getLives() {
@@ -71,5 +84,10 @@ public class Chell extends Element {
 
     public void setDirection(boolean direction) {
         this.direction = direction;
+    }
+
+    @Override
+    public void setPosition(Position position) {
+        super.setPosition(new Position(position.getX(), position.getY()/* - 15*/));
     }
 }

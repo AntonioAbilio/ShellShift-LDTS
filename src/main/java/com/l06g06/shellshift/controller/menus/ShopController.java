@@ -23,6 +23,7 @@ public class ShopController extends Controller<Shop> {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        Game.sleepTimeMS(50);
 
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {

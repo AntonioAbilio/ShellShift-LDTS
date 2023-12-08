@@ -22,7 +22,10 @@ public class MainMenuController extends Controller<MainMenu> {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+
         for (Gui.PressedKey gpk : action) {
+            Game.sleepTimeMS(50);
+
             switch (gpk) {
                 case UP:
                     getModel().prevOption();
