@@ -28,7 +28,7 @@ public class PlatformViewer implements ElementViewer<Platform>{
             View.ASCII_Drawer(HITBOX, new Position(x,y), gui);
             *//*System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");*//*
         }*/
-        gui.drawImageASCII(PLATFORM, platform.getPosition());
-        //gui.drawPlatform(platform.getPosition());
+        gui.drawImageASCII(PLATFORM, new Position(platform.getPosition().getX() - Platform.getWidth(), platform.getPosition().getY()));
+        gui.drawPlatform(platform.getPosition());
     }
 }

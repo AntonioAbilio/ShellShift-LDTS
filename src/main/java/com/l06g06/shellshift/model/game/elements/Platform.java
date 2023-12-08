@@ -10,15 +10,23 @@ public class Platform extends Element{
     public Platform(Position position) {
         super(position);
 
-        Polygon chellHitbox = new Polygon();
+        Polygon platformHitbox = new Polygon();
 
         int x = position.getX();
         int y = position.getY();
 
-        chellHitbox.addPoint(x,y);
-        chellHitbox.addPoint(x+width,y);
-        chellHitbox.addPoint(x, y+height-1);
-        chellHitbox.addPoint(x+width, y+height-1);
-        this.hitbox = chellHitbox;
+        platformHitbox.addPoint(x,y);
+        platformHitbox.addPoint(x-width,y);
+        platformHitbox.addPoint(x, y+height-1);
+        platformHitbox.addPoint(x-width, y+height-1);
+        this.hitbox = platformHitbox;
+    }
+
+    public static int getHeight() {
+        return height;
+    }
+
+    public static int getWidth() {
+        return width;
     }
 }

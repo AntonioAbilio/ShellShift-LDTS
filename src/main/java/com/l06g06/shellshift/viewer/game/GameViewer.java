@@ -54,10 +54,10 @@ public class GameViewer extends View<Map> {
 
         //HUD
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
-            gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,10));
+            gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,3));
         }
 
-        gui.drawImageASCII(Components.Score.getImage(), new Position(5,11));
+        gui.drawImageASCII(Components.Score.getImage(), new Position(5,4));
 
     }
 

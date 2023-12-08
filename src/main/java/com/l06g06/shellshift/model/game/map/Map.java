@@ -45,6 +45,12 @@ public class Map {
         Platform platform2 = new Platform(new Position(20, 30));
         platforms.add(platform1);
         platforms.add(platform2);*/
+        // Spawn the first platform.
+
+
+       /* Platform platform1 = new Platform(new Position(10, 10));
+        platforms.add(platform1);*/
+
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         //this.softMonsterSpawner = new SoftMonsterSpawner(enemies);
