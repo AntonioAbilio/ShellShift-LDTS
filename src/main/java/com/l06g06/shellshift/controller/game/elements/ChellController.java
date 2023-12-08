@@ -30,19 +30,29 @@ public class ChellController extends GameController {
     private boolean EnemyColision(){
         boolean colided = false;
         List<Enemy> original_enemies = getModel().getEnemies();
-        List<Enemy> new_enemies = new ArrayList<Enemy>(0);
-        for (Enemy enemy : original_enemies){
-            if (this.getModel().getChell().getPolygon().intersects(enemy.getPolygon().getBounds2D())){
+        /*List<Enemy> new_enemies = original_enemies;*/
+        for (int i = 0; i < original_enemies.size(); i++){
+            if (this.getModel().getChell().getPolygon().intersects(original_enemies.get(i).getPolygon().getBounds2D())){
                 colided = true;
+                original_enemies.remove(i);
                 this.getModel().getChell().setLives(this.getModel().getChell().getLives() - 1);
                 if (this.getModel().getChell().getLives() <= 0){
                     // game over;
                 }
-            } else {
-                new_enemies.add(enemy);
             }
         }
-        this.getModel().setEnemies(new_enemies);
+
+        /*for (Enemy enemy : new_enemies){
+            if (this.getModel().getChell().getPolygon().intersects(enemy.getPolygon().getBounds2D())){
+                colided = true;
+                original_enemies.remove(enemy);
+                this.getModel().getChell().setLives(this.getModel().getChell().getLives() - 1);
+                if (this.getModel().getChell().getLives() <= 0){
+                    // game over;
+                }
+            }
+        }*/
+        /*this.getModel().setEnemies(new_enemies);*/
         return colided;
     }
 

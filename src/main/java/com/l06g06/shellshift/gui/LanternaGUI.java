@@ -24,6 +24,7 @@ import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class LanternaGUI implements Gui{
@@ -82,29 +83,33 @@ public class LanternaGUI implements Gui{
 
         if (this.buttons.isEmpty()) return pressedKeyList;
 
-        for (Integer intg : this.buttons){
-            switch (intg){
-                case 38:
-                    pressedKeyList.add(PressedKey.UP);
-                    break;
-                case 40:
-                    pressedKeyList.add(PressedKey.DOWN);
-                    break;
-                case 37:
-                    pressedKeyList.add(PressedKey.LEFT);
-                    break;
-                case 39:
-                    pressedKeyList.add(PressedKey.RIGHT);
-                    break;
-                case 10:
-                    pressedKeyList.add(PressedKey.SELECT);
-                    break;
-                case 32:
-                    pressedKeyList.add(PressedKey.FIRE);
-                    break;
-                default:
-                    return pressedKeyList;
+        try {
+            for (Integer intg : this.buttons) {
+                switch (intg) {
+                    case 38:
+                        pressedKeyList.add(PressedKey.UP);
+                        break;
+                    case 40:
+                        pressedKeyList.add(PressedKey.DOWN);
+                        break;
+                    case 37:
+                        pressedKeyList.add(PressedKey.LEFT);
+                        break;
+                    case 39:
+                        pressedKeyList.add(PressedKey.RIGHT);
+                        break;
+                    case 10:
+                        pressedKeyList.add(PressedKey.SELECT);
+                        break;
+                    case 32:
+                        pressedKeyList.add(PressedKey.FIRE);
+                        break;
+                    default:
+                        return pressedKeyList;
+                }
             }
+        } catch (ConcurrentModificationException e){
+            getNextAction();
         }
 
         /*KeyStroke key = this.screen.pollInput();*/
