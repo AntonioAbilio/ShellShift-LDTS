@@ -186,10 +186,11 @@ public class LanternaGUI implements Gui{
     public void drawText(Position position, String text, String color) {
         TextGraphics textStr = screen.newTextGraphics();
         //textStr.setBackgroundColor(TextColor.ANSI.DEFAULT);
-        textStr.setBackgroundColor(TextColor.Factory.fromString(color));
+        //textStr.setBackgroundColor(TextColor.Factory.fromString(color));
         textStr.setForegroundColor(TextColor.Factory.fromString(color));
         textStr.putString(position.getX(), position.getY(), text);
     }
+
     @Override
     public void drawASCII(Position position, String color) {
         TextGraphics textStr = screen.newTextGraphics();
@@ -205,10 +206,8 @@ public class LanternaGUI implements Gui{
         // Iterate over the horizontal line of characters.
         for (String horizontalPixelMatrix : image){
 
-            // Get the starting position of the Element
             int x = position.getX();
             for (char Pixel : horizontalPixelMatrix.toCharArray()){
-
                 // Get the corresponding color of the character.
                 CharColor paint = CharColor.getCharColor(Pixel);
                 if (Pixel != ' ')
