@@ -41,13 +41,12 @@ public class GameViewer extends View<Map> {
 
         // Clean
 
-        /*drawElement(gui, getModel().getChell(), new ChellViewer());
+        drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
-        drawElements(gui, getModel().getBullets(), new BulletViewer());*/
 
 
         //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug

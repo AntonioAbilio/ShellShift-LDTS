@@ -36,6 +36,7 @@ public class GameOverController extends Controller<GameOver> {
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
             }
+            Game.sleepTimeMS(100);
         }
     }
 

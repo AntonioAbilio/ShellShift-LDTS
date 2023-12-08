@@ -3,6 +3,7 @@ package com.l06g06.shellshift.viewer.game;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
+import com.l06g06.shellshift.model.game.elements.Position;
 //import com.l06g06.shellshift.model.game.elements.Position;
 //import com.l06g06.shellshift.viewer.CharColor;
 //import com.l06g06.shellshift.viewer.View;

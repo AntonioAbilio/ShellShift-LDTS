@@ -52,10 +52,10 @@ public class Map {
         this.enemySpawner = new EnemySpawner(enemies);
 
         // Debug
-        List<Bullet> bulls = new ArrayList<>();
+        /*List<Bullet> bulls = new ArrayList<>();
         Bullet bull = new Bullet(new Position(10, 10));
         bulls.add(bull);
-        this.bullets = bulls;
+        this.bullets = bulls;*/
         /*SoftMonster softMonster1 = new SoftMonster(new Position(1, 1));
         SoftMonster softMonster2 = new SoftMonster(new Position(10, 10));
         SoftMonster softMonster3 = new SoftMonster(new Position(80, 80));
