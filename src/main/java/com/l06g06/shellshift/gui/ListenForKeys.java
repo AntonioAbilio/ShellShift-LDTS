@@ -5,7 +5,6 @@ import java.awt.event.KeyListener;
 
 public class ListenForKeys implements KeyListener {
     private LanternaGUI guigui;
-    private boolean lock = false;
     public ListenForKeys(LanternaGUI gui) {
         this.guigui = gui;
         guigui.addKeyListenner(this);

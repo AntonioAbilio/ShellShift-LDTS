@@ -1,10 +1,11 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
 public class Chell extends Element {
     private Gun gun;
-    private int lives = 3;
+    private int lives;
     private int velocity = 200;
     private int gravity = 1000;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
@@ -38,6 +39,7 @@ public class Chell extends Element {
 
     public Chell(Position position) {
         super(position);
+        this.lives = Database.getInstance().getNumLives();
     }
 
     public int getLives() {

@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.menus;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
@@ -34,14 +35,12 @@ public class ShopController extends Controller<Shop> {
                 case SELECT:
                     if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
-                        Map map = new Map(50,50);
-                        map.getGun().setStrategy(new RapidFireStrategy());
-                        game.setState(new GameState(map));
+                        Database.getInstance().setFiringStrategy(new RapidFireStrategy());
+                        game.setState(new MainMenuState(new MainMenu()));
                     }
                     if (getModel().isSelectedExtraLife()) {
-                        Map map = new Map(50,50);
-                        map.getChell().increaseLives();
-                        game.setState(new GameState(map));
+                        Database.getInstance().setNumLives(Database.getInstance().getNumLives()+1);
+                        game.setState(new MainMenuState(new MainMenu()));
                     }
                     break;
             }

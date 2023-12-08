@@ -157,6 +157,18 @@ public enum Components {
             "RQ**",
             " RRR"
     }, "Bullet"),
+
+    BulletEmpowered(new String[]{
+            "RRR",
+            "S*QR",
+            "SS*R",
+            "RRR "
+    }, new String[]{
+            " RRR",
+            "RQ*S",
+            "R*SS",
+            " RRR"
+    }, "Bullet"),
     
     HeartIcon(new String[] {
         "  RRRR   RRRR ",

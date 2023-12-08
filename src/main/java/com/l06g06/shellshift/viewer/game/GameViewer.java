@@ -40,6 +40,7 @@ public class GameViewer extends View<Map> {
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
 
+        //HUD
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
             gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,10));
         }

@@ -7,6 +7,6 @@ import com.l06g06.shellshift.model.game.elements.Bullet;
 public class BulletViewer implements ElementViewer<Bullet>{
     @Override
     public void draw(Bullet bullet, Gui gui){
-        gui.drawImageASCII(bullet.isDirection() ? Components.Bullet.getImage() : Components.Bullet.getImageSelected(), bullet.getPosition());
+        gui.drawImageASCII(bullet.isDirection() ? Components.BulletEmpowered.getImage() : Components.BulletEmpowered.getImageSelected(), bullet.getPosition());
     }
 }

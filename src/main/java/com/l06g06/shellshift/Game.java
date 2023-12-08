@@ -7,6 +7,7 @@ import com.l06g06.shellshift.gui.LanternaGUI;
 import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
+import com.l06g06.shellshift.Database;
 
 import com.l06g06.shellshift.gui.Gui;
 
@@ -27,7 +28,7 @@ public class Game {
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
         new Game().start();
-
+        Database.getInstance();
     }
     public void setState(State state) {
         this.state = state;
