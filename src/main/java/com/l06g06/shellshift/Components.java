@@ -286,11 +286,11 @@ public enum Components {
     }, "Main Menu"),
 
     Score(new String[] {
-        " GGG  GGG  GGG  GGG  GGG",
-        "G    G    G   G G  G G",
-        " GG  G    G   G GGG  GG",
-        "   G G    G   G G G  G",
-        "GGG   GGG  GGG  G  G GGG"
+        " GGG  GGG  GGG  GGG  GGG  ",
+        "G    G    G   G G  G G   G ",
+        " GG  G    G   G GGG  GG   ",
+        "   G G    G   G G G  G   G ",
+        "GGG   GGG  GGG  G  G GGG  "
     }, new String[] {}, "Score"),
     
     Coin(new String[] {
@@ -313,10 +313,10 @@ public enum Components {
 
     SoftMonster( new String[] {
             "   JJJ   JJJ   ",
-            "   JSJ   JSJ   ",
-            "    JSJJJSJ    ",
-            "JJ JS*****SJ JJ",
-            "JSJS*******SJSJ",
+            "   JQJ   JQJ   ",
+            "    JQJJJQJ    ",
+            "JJ JQ*****QJ JJ",
+            "JQJQ*******QJQJ",
             "J***JJ***JJ***J",
             "J**JGGJ*JGGJ**J",
             "J**JGJJ*JJGJ**J",
@@ -337,7 +337,7 @@ public enum Components {
             "JUJUFFFFFFFUJUJ",
             "JFFJJFFFFFJJFFJ",
             "JFFJGJFFFJGJFFJ",
-            "JFFJGTJFJTGJFFJ",
+            "JFFJGSJFJSGJFFJ",
             " JFFJJFFFJJFFJ ",
             " JFFFFFJFFFFFJ ",
             " JFFFEEEEEFFFJ ",
@@ -345,8 +345,87 @@ public enum Components {
             "  JEEJ   JEEJ  ",
             " JEJJ     JJEJ ",
             " JJ         JJ ",
-    }, new String[]{}, "HardMonster");
-    
+    }, new String[]{}, "HardMonster"),
+
+    Zero(new String[]{
+            " GG ",
+            "G  G",
+            "G  G",
+            "G  G",
+            " GG"
+    }, new String[]{}, "0"),
+
+    One(new String[] {
+            " GG ",
+            "G G",
+            "  G",
+            "  G",
+            "GGGG"
+    }, new String[]{},"1"),
+
+    Two(new String[]{
+            " GG ",
+            "G  G",
+            "  G ",
+            " G  ",
+            "GGGG",
+    }, new String[]{}, "2"),
+
+    Three(new String[]{
+            " GG",
+            "G  G",
+            "  GG",
+            "G  G",
+            " GG"
+    }, new String[]{}, "3"),
+
+    Four(new String[]{
+            "G  G",
+            "G  G",
+            "GGGG",
+            "   G",
+            "   G"
+    }, new String[]{}, "4"),
+
+    Five(new String[]{
+            "GGGG",
+            "G",
+            "GGG",
+            "   G",
+            "GGG"
+    }, new String[]{}, "5"),
+
+    Six(new String[]{
+            " GGG",
+            "G",
+            "GGG",
+            "G  G",
+            " GG ",
+    }, new String[]{}, "6"),
+
+    Seven(new String[]{
+            "GGGG",
+            "   G",
+            "   G",
+            "  G",
+            " G"
+    }, new String[]{}, "7"),
+
+    Eight(new String[]{
+            " GG ",
+            "G  G",
+            " GG ",
+            "G  G",
+            " GG"
+    }, new String[]{}, "8"),
+
+    Nine(new String[]{
+            " GG ",
+            "G  G",
+            " GGG",
+            "   G",
+            "GGG "
+    }, new String[]{}, "9");
 
     private final String[] image;
     private final String[] imageSelected;

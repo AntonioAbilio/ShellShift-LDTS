@@ -23,6 +23,8 @@ public class MainMenuController extends Controller<MainMenu> {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
+            Game.sleepTimeMS(100);
+
             switch (gpk) {
                 case UP:
                     getModel().prevOption();
@@ -36,7 +38,6 @@ public class MainMenuController extends Controller<MainMenu> {
                     if (getModel().isSelectedStart()) game.setState(new GameState(new Map(50, 50)));
                     break;
             }
-            Game.sleepTimeMS(100);
         }
     }
 }

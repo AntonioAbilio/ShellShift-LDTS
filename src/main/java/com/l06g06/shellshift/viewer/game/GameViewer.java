@@ -11,6 +11,7 @@ import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class GameViewer extends View<Map> {
@@ -40,7 +41,7 @@ public class GameViewer extends View<Map> {
         //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
 
         // Clean
-        gui.setBackground("#000000");
+        //gui.setBackground("#000000");
 
 
 
@@ -55,11 +56,20 @@ public class GameViewer extends View<Map> {
         //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
         //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
 
-        //HUD
+        //Lives
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
             gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,6));
         }
         gui.drawImageASCII(Components.Score.getImage(), new Position(5,7));
+
+        //printing score ta mt messy, converto para string para facilitar percorrer esquerda -> direita
+        List<Components> numbers = Arrays.asList(Components.Zero, Components.One, Components.Two, Components.Three, Components.Four, Components.Five, Components.Six, Components.Seven, Components.Eight, Components.Nine);
+        String score = Integer.toString(getModel().getScore());
+
+        for (int i = 0; i < score.length(); i++) {
+            char digit = score.charAt(i);
+            gui.drawImageASCII(numbers.get(Character.getNumericValue(digit)).getImage(), new Position(35 + i * 6, 7));
+        }
 
     }
 

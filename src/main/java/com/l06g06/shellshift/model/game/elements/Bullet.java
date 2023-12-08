@@ -7,7 +7,8 @@ import javax.xml.crypto.Data;
 import java.awt.*;
 
 public class Bullet extends Element {
-    private double damageMultiplier;
+    private final int damage = 50;
+    private int damageMultiplier;
     private boolean direction = true; // true = direita, false = esquerda
 
     private final static int height = 4;
@@ -31,7 +32,7 @@ public class Bullet extends Element {
         this.damageMultiplier = damageMultiplier;
     }
 
-    public double getDamageMultiplier() {
+    public int getDamageMultiplier() {
         return damageMultiplier;
     }
 
@@ -41,5 +42,9 @@ public class Bullet extends Element {
 
     public void setDirection(boolean direction) {
         this.direction = direction;
+    }
+
+    public int getDamage() {
+        return damage * damageMultiplier;
     }
 }

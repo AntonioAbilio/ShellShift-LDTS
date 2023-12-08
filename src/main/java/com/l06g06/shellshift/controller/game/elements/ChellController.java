@@ -31,6 +31,7 @@ public class ChellController extends GameController {
         this.previousY = this.groundY;
     }
 
+    /*
     public void enemyCollision() {
         List<Enemy> enemies = getModel().getEnemies();
         Iterator<Enemy> enemiesIterator = enemies.iterator();
@@ -39,9 +40,11 @@ public class ChellController extends GameController {
             Enemy enemy = enemiesIterator.next();
             if (getModel().getChell().getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
                 enemiesIterator.remove();
+                getModel().getChell().decreaseLives();
             }
         }
     }
+     */
 
     private boolean EnemyCollision(){
         boolean colided = false;
@@ -80,8 +83,6 @@ public class ChellController extends GameController {
 
                 onPlatform = platform.getPolygon().getBounds().getMinY() == getModel().getChell().getPosition().getY();
                 break;
-
-
             } else {
                 onPlatform = false;
             }
@@ -91,13 +92,12 @@ public class ChellController extends GameController {
         return onPlatform;
     }
 
-    private void lookForColisions(){
+    private void platformCollision(){
         for (Platform platform : getModel().getPlatforms()) {
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
-                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY));
+                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
                 isJumping = false;
-                enemyCollision();
                 break; // Exit the loop after the first collision
             }
         }
@@ -105,22 +105,16 @@ public class ChellController extends GameController {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
-
         if (!ignore_standingOnPlatform){
-
             // If chell is not standing on a Platform.
             if (!standingOnPlatform()){
-
                 // If Chell is not jumping.
                 if (!isJumping){
-                    lookForColisions();
+                    platformCollision();
                     int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
                     getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
                 }
-
             }
-
-
         }
 
         for (Gui.PressedKey gpk : action) {
@@ -134,17 +128,16 @@ public class ChellController extends GameController {
                     break;*/
                 case LEFT:
                     moveLEFT();
-                    //EnemyCollision();
-                    enemyCollision();
+                    EnemyCollision();
+
                     break;
                 case RIGHT:
                     moveRIGHT();
-                    //EnemyCollision();
-                    enemyCollision();
+                    EnemyCollision();
                     break;
             }
         }
-
+        //enemyCollision();
         if (isJumping) jumpUpdate(time);
     }
 
@@ -196,7 +189,7 @@ public class ChellController extends GameController {
             System.out.println("Chell is going up");
         } else if (y > previousY) {
             System.out.println("Chell is falling");
-            lookForColisions();
+            platformCollision();
         }
 
         previousY = y; // Update the previous Y position
@@ -206,7 +199,7 @@ public class ChellController extends GameController {
             System.out.println("True");
             isJumping = false;
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
-            enemyCollision();
+            //enemyCollision();
         }
     }
 

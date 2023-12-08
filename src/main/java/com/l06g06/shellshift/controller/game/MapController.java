@@ -17,9 +17,11 @@ import com.sun.tools.javac.Main;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class MapController extends GameController{
-
+    private long addedScoreTimer = System.currentTimeMillis();
     private final ChellController chellController;
     private final BulletController bulletController;
     private final GunController gunController;
@@ -57,10 +59,20 @@ public class MapController extends GameController{
         }
          */
 
+        // adiciona 1 ponto a cada segundo
+        if (System.currentTimeMillis() - addedScoreTimer >= 1000) {
+            setAddedScoreTimer(System.currentTimeMillis());
+            getModel().setScore(getModel().getScore() + 1);
+        }
+
+        // game over condition
         if (getModel().getChell().getLives() <= 0) {
             Game.sleepTimeMS(1000);
             game.setState((new GameOverState(new GameOver())));
         }
     }
 
+    public void setAddedScoreTimer(long addedScoreTimer) {
+        this.addedScoreTimer = addedScoreTimer;
+    }
 }
