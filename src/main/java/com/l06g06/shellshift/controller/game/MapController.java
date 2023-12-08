@@ -65,8 +65,8 @@ public class MapController extends GameController{
             getModel().setScore(getModel().getScore() + 1);
         }
 
-        // game over condition
-        if (getModel().getChell().getLives() <= 0) {
+        // game over conditions
+        if (getModel().getChell().getPosition().getY() > 150 | getModel().getChell().getPosition().getX() < 0 | getModel().getChell().getLives() <= 0) {
             Game.sleepTimeMS(1000);
             game.setState((new GameOverState(new GameOver())));
         }

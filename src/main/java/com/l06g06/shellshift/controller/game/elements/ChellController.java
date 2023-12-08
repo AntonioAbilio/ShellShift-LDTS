@@ -74,7 +74,6 @@ public class ChellController extends GameController {
 
     private boolean standingOnPlatform(){
         boolean onPlatform = true; // Let's assume Chell is in a platform.
-
         for (Platform platform : getModel().getPlatforms()){
             // First condition of colision, Chell's hitbox must intersect the platform's hitbox.
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())){
@@ -87,8 +86,6 @@ public class ChellController extends GameController {
                 onPlatform = false;
             }
         }
-
-
         return onPlatform;
     }
 
