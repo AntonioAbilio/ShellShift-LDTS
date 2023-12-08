@@ -1,11 +1,13 @@
 package com.l06g06.shellshift.model.game.map;
 
+import com.l06g06.shellshift.controller.game.elements.enemies.HardMonsterController;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
+import java.lang.invoke.CallSite;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +27,9 @@ public class Map {
     private List<Coin> coins = new ArrayList<>(0);
     private PlatformSpawner platformSpawner;
     private CoinSpawner coinSpawner;
+    //private SoftMonsterSpawner softMonsterSpawner;
+    //private HardMonsterSpawner hardMonsterSpawner;
+    private EnemySpawner enemySpawner;
 
     // Sizes
     public Map(int width, int height) {
@@ -37,6 +42,10 @@ public class Map {
         platforms.add(platform2);*/
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
+        //this.softMonsterSpawner = new SoftMonsterSpawner(enemies);
+        //this.hardMonsterSpawner = new HardMonsterSpawner(enemies);
+        this.enemySpawner = new EnemySpawner(enemies);
+
         // Debug
         List<Bullet> bulls = new ArrayList<>();
         Bullet bull = new Bullet(new Position(10, 10));
@@ -59,7 +68,7 @@ public class Map {
         coins.add(coin1);
         coins.add(coin2);
         coins.add(coin3);*/
-        this.coins = coins;
+        //this.coins = coins;
 
     }
     public int getWidth() {
@@ -142,6 +151,17 @@ public class Map {
         }
     }
 
+    /*public SoftMonsterSpawner getSoftMonsterSpawner() {
+        return softMonsterSpawner;
+    }
+
+    public HardMonsterSpawner getHardMonsterSpawner() {
+        return hardMonsterSpawner;
+    }*/
+
+    public EnemySpawner getEnemySpawner() {
+        return enemySpawner;
+    }
 
     // TODO
     // Add enemies, add platforms, add bullets...
