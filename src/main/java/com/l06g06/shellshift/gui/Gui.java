@@ -36,6 +36,8 @@ public interface Gui {
 
     public void setGradientBackground(String innerColor, String outerColor);
 
+    void setBackground(String color);
+
 
     enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};
 }

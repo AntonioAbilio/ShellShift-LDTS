@@ -12,6 +12,7 @@ import com.l06g06.shellshift.states.GameOverState;
 import com.l06g06.shellshift.states.GameState;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -30,7 +31,19 @@ public class ChellController extends GameController {
         this.previousY = this.groundY;
     }
 
-    private boolean EnemyCollision(Game game){
+    public void enemyCollision() {
+        List<Enemy> enemies = getModel().getEnemies();
+        Iterator<Enemy> enemiesIterator = enemies.iterator();
+
+        while (enemiesIterator.hasNext()) {
+            Enemy enemy = enemiesIterator.next();
+            if (getModel().getChell().getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
+                enemiesIterator.remove();
+            }
+        }
+    }
+
+    private boolean EnemyCollision(){
         boolean colided = false;
         List<Enemy> original_enemies = getModel().getEnemies();
         /*List<Enemy> new_enemies = original_enemies;*/
@@ -38,10 +51,7 @@ public class ChellController extends GameController {
             if (this.getModel().getChell().getPolygon().intersects(original_enemies.get(i).getPolygon().getBounds2D())){
                 colided = true;
                 original_enemies.remove(i);
-                this.getModel().getChell().setLives(this.getModel().getChell().getLives() - 1);
-                if (this.getModel().getChell().getLives() <= 0){
-                    game.setState(new GameOverState(new GameOver()));
-                }
+                this.getModel().getChell().decreaseLives();
             }
         }
 
@@ -81,13 +91,13 @@ public class ChellController extends GameController {
         return onPlatform;
     }
 
-    private void lookForColisions(Game game){
+    private void lookForColisions(){
         for (Platform platform : getModel().getPlatforms()) {
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
                 getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY));
                 isJumping = false;
-                EnemyCollision(game);
+                enemyCollision();
                 break; // Exit the loop after the first collision
             }
         }
@@ -103,7 +113,7 @@ public class ChellController extends GameController {
 
                 // If Chell is not jumping.
                 if (!isJumping){
-                    lookForColisions(game);
+                    lookForColisions();
                     int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
                     getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
                 }
@@ -124,16 +134,18 @@ public class ChellController extends GameController {
                     break;*/
                 case LEFT:
                     moveLEFT();
-                    EnemyCollision(game);
+                    //EnemyCollision();
+                    enemyCollision();
                     break;
                 case RIGHT:
                     moveRIGHT();
-                    EnemyCollision(game);
+                    //EnemyCollision();
+                    enemyCollision();
                     break;
             }
         }
 
-        if (isJumping) jumpUpdate(time, game);
+        if (isJumping) jumpUpdate(time);
     }
 
     public void jump(long time){
@@ -165,7 +177,7 @@ public class ChellController extends GameController {
         }
     }*/
 
-    public void jumpUpdate(long time, Game game) {
+    public void jumpUpdate(long time) {
         int x = getModel().getChell().getPosition().getX();
 
         // Calculate the elapsed time since the jump started
@@ -184,7 +196,7 @@ public class ChellController extends GameController {
             System.out.println("Chell is going up");
         } else if (y > previousY) {
             System.out.println("Chell is falling");
-            lookForColisions(game);
+            lookForColisions();
         }
 
         previousY = y; // Update the previous Y position
@@ -194,7 +206,7 @@ public class ChellController extends GameController {
             System.out.println("True");
             isJumping = false;
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
-            EnemyCollision(game);
+            enemyCollision();
         }
     }
 

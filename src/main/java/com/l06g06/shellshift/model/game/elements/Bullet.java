@@ -10,7 +10,7 @@ public class Bullet extends Element {
     private double damageMultiplier;
     private boolean direction = true; // true = direita, false = esquerda
 
-    private final static int height = 3;
+    private final static int height = 4;
     private final static int width = 4;
 
     public Bullet(Position position) {
@@ -18,10 +18,8 @@ public class Bullet extends Element {
         this.damageMultiplier = Database.getInstance().getDamageMultiplier();
 
         Polygon bulletHitbox = new Polygon();
-
         int x = position.getX();
         int y = position.getY();
-
         bulletHitbox.addPoint(x,y);
         bulletHitbox.addPoint(x+width-1,y);
         bulletHitbox.addPoint(x, y+height-1);
