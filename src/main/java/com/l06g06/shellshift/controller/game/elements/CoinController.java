@@ -9,6 +9,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
 public class CoinController extends GameController {
@@ -38,6 +39,7 @@ public class CoinController extends GameController {
             lastShiftTime = currentTime;
             left_shift();
         }
+        coinCollision();
 
     }
 
@@ -46,6 +48,19 @@ public class CoinController extends GameController {
             int x = coin.getPosition().getX();
             int y = coin.getPosition().getY();
             coin.setPosition(new Position(x - 1, y));
+        }
+    }
+
+    public void coinCollision() {
+        List<Coin> coins = getModel().getCoins();
+        Iterator<Coin> coinsIterator = coins.iterator();
+        while (coinsIterator.hasNext()) {
+            Coin coin = coinsIterator.next();
+
+            if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
+                coinsIterator.remove();
+                getModel().setScore(getModel().getScore() + coin.getValue());
+            }
         }
     }
 }

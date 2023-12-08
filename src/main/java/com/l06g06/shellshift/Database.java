@@ -8,12 +8,12 @@ public class Database {
 
     private FireStrategy firingStrategy;
     private int numLives;
-    private double damageMultiplier;
+    private int damageMultiplier;
 
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
         this.numLives = 3;
-        this.damageMultiplier = 1.0;
+        this.damageMultiplier = 1;
     }
 
     public static Database getInstance() {
@@ -39,11 +39,11 @@ public class Database {
         this.numLives = numLives;
     }
 
-    public double getDamageMultiplier() {
+    public int getDamageMultiplier() {
         return damageMultiplier;
     }
 
-    public void setDamageMultiplier(double damageMultiplier) {
+    public void setDamageMultiplier(int damageMultiplier) {
         this.damageMultiplier = damageMultiplier;
     }
 }

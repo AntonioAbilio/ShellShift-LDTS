@@ -6,6 +6,7 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.util.Iterator;
@@ -68,7 +69,11 @@ public class BulletController extends GameController {
                 Bullet bullet = bulletIterator.next();
                 if (bullet.getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
                     bulletIterator.remove();
-                    enemyIterator.remove();
+                    enemy.decreaseHP(bullet.getDamage());
+                    if (enemy.getHP() <= 0) {
+                        enemyIterator.remove();
+                        getModel().setScore(getModel().getScore() + enemy.getScore());
+                    }
                 }
             }
         }

@@ -7,13 +7,15 @@ import java.awt.*;
 
 public abstract class Enemy extends Element {
     protected int HP;
+    protected int score;
 
     private final static int width = 15;
     private final static int height = 15;
 
-    public Enemy(Position position, int HP) {
+    public Enemy(Position position, int HP, int score) {
         super(position);
         this.HP = HP;
+        this.score = score;
 
         Polygon enemyHitbox = new Polygon();
 
@@ -27,5 +29,16 @@ public abstract class Enemy extends Element {
         this.hitbox = enemyHitbox;
     }
 
+    public int getHP() {
+        return HP;
+    }
+
+    public void decreaseHP(int damage) {
+        this.HP -= damage;
+    }
+
+    public int getScore(){
+        return this.score;
+    }
 
 }

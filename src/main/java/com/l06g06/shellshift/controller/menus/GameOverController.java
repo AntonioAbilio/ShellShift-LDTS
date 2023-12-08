@@ -23,6 +23,7 @@ public class GameOverController extends Controller<GameOver> {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        //funciona como um controller de menu basicamente, duas opcoes restart e main menu
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
@@ -36,7 +37,7 @@ public class GameOverController extends Controller<GameOver> {
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
             }
-            Game.sleepTimeMS(100);
+            Game.sleepTimeMS(100); // isto aqui e so para os inputs nao serem tao sensiveis
         }
     }
 

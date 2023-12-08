@@ -18,6 +18,8 @@ public class Map {
     private final int width;
     private final int height;
 
+    private int score = 0;
+
     // DEBUG
     private Chell chell = new Chell(new Position(130,0));
 
@@ -170,6 +172,14 @@ public class Map {
 
     public EnemySpawner getEnemySpawner() {
         return enemySpawner;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     // TODO
