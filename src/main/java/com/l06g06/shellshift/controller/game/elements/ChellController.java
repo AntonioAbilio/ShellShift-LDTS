@@ -217,7 +217,11 @@ public class ChellController extends GameController {
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         getModel().getChell().setDirection(true);
-        getModel().getChell().setPosition(new Position(x+1,y));
+        // Border à direita
+        if (x < 160) {
+            getModel().getChell().setPosition(new Position(x+1,y));
+        }
+
     }
 
 }
