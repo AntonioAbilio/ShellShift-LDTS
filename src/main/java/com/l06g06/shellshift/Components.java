@@ -1,5 +1,7 @@
 package com.l06g06.shellshift;
 
+import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
+
 public enum Components {
 
     Title(new String[] {
@@ -289,9 +291,61 @@ public enum Components {
         " GG  G    G   G GGG  GG",
         "   G G    G   G G G  G",
         "GGG   GGG  GGG  G  G GGG"
-    }, new String[] {}, "Score");
+    }, new String[] {}, "Score"),
+    
+    Coin(new String[] {
+            "   JJJJ   ",
+            "  JGGGGJ  ",
+            " JGyyyy*J ",
+            " JGyGGy*J ",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            "JGyGyyJy*J",
+            " JyyJJy*J ",
+            " Jyyyyy*J ",
+            "  J****J  ",
+            "   JJJJ   "
+    }, new String[]{}, "Coin"),
 
+    SoftMonster( new String[] {
+            "   JJJ   JJJ   ",
+            "   JSJ   JSJ   ",
+            "    JSJJJSJ    ",
+            "JJ JS*****SJ JJ",
+            "JSJS*******SJSJ",
+            "J***JJ***JJ***J",
+            "J**JGGJ*JGGJ**J",
+            "J**JGJJ*JJGJ**J",
+            " J**JJ***JJ**J ",
+            " J*****J*****J ",
+            " J***RRRRR***J ",
+            " JR**JJJJJ**RJ ",
+            "  JRRJ   JRRJ  ",
+            " JRJJ     JJRJ ",
+            " JJ         JJ "
+    }, new String[]{}, "SoftMonster"),
 
+    HardMonster( new String[]{
+            "   JJJ   JJJ   ",
+            "   JUJ   JUJ   ",
+            "    JUJJJUJ    ",
+            "JJ JUFFFFFUJ JJ",
+            "JUJUFFFFFFFUJUJ",
+            "JFFJJFFFFFJJFFJ",
+            "JFFJGJFFFJGJFFJ",
+            "JFFJGTJFJTGJFFJ",
+            " JFFJJFFFJJFFJ ",
+            " JFFFFFJFFFFFJ ",
+            " JFFFEEEEEFFFJ ",
+            " JEFFJJJJJFFEJ ",
+            "  JEEJ   JEEJ  ",
+            " JEJJ     JJEJ ",
+            " JJ         JJ ",
+    }, new String[]{}, "HardMonster");
     
 
     private final String[] image;
