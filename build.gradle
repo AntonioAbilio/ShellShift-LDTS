@@ -1,5 +1,10 @@
 plugins {
     id 'java'
+    id 'application'
+}
+
+application {
+    mainClassName = 'com.l06g06.shellshift.game.MainClass'
 }
 
 group 'com.l06g06.shellshift'
@@ -20,7 +25,7 @@ dependencies {
 }
 
 test {
-    useJUnitPlatform{
+    useJUnitPlatform {
         includeEngines ('junit-jupiter', 'jqwik')
     }
 }
