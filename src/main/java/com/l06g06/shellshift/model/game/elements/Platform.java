@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Platform extends Element{
 
-    private final static int height = 4;
-    private final static int width = 66;
+    private final int height = 4;
+    private final int width = 66;
 
     public Platform(Position position) {
         super(position);
@@ -20,5 +20,13 @@ public class Platform extends Element{
         chellHitbox.addPoint(x, y+height-1);
         chellHitbox.addPoint(x+width, y+height-1);
         this.hitbox = chellHitbox;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
     }
 }

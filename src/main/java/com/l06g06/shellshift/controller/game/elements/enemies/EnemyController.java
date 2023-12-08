@@ -3,6 +3,8 @@ package com.l06g06.shellshift.controller.game.elements.enemies;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.elements.Element;
+import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
@@ -16,6 +18,10 @@ public class EnemyController extends GameController {
     double shiftCooldown = 0.1; // Shift every 0.1 seconds
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
+    int spawnX = 110;
+    int offsetX = 0;
+    int offsetY = 15;
+    int distBetweenEnemy = 15;
     public EnemyController(Map map) {
         super(map);
     }
@@ -28,7 +34,7 @@ public class EnemyController extends GameController {
         // Spawn coin logic
         if (currentTime - lastSpawnTime >= spawnCooldown){
             lastSpawnTime = currentTime;
-            getModel().getEnemySpawner().spawn(new Position(110, 50));
+            spawnOnPlatform();
         }
 
         // Shift coin logic
@@ -49,5 +55,25 @@ public class EnemyController extends GameController {
             int y = enemy.getPosition().getY();
             enemy.setPosition(new Position(x - 1, y));
         }
+    }
+
+    public void spawnOnPlatform(){
+        for (Platform platform : getModel().getPlatforms()){
+            if (platform.getPosition().getX() >= spawnX - 30){
+                Position spawnPos = new Position(platform.getPosition().getX() + offsetX + platform.getWidth()/2,
+                        platform.getPosition().getY() /*- platform.getHeight()*/ - offsetY);
+                if (noEnemyInPos(spawnPos)) getModel().getEnemySpawner().spawn(spawnPos);
+            }
+        }
+    }
+
+    public boolean noEnemyInPos(Position spawnPos){
+        int diffX = 0;
+        for (Enemy enemy : getModel().getEnemies()){
+            diffX = spawnPos.getX() - enemy.getPosition().getX();
+            if (diffX < 0) diffX = -diffX;
+            if (diffX < distBetweenEnemy) return false;
+        }
+        return true;
     }
 }

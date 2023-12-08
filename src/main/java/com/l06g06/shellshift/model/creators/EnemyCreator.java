@@ -31,8 +31,8 @@ public class EnemyCreator extends Creator{
         else moveStrategy = new VerticalMoveStrategy();
 
 
-        if (i2 == 0) return new HardMonster(new Position(position.getX(), new_y), moveStrategy);
-        return new SoftMonster(new Position(position.getX(), new_y), moveStrategy);
+        if (i2 == 0) return new HardMonster(new Position(position.getX(), position.getY()), moveStrategy);
+        return new SoftMonster(new Position(position.getX(), position.getY()), moveStrategy);
     }
 
 }
