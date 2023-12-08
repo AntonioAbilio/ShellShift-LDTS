@@ -28,6 +28,7 @@ public class SoftMonsterViewer extends EnemyViewer {
 
     @Override
     public void draw(Enemy enemy, Gui gui) {
-        if (enemy instanceof SoftMonster) View.ASCII_Drawer(SOFTMONSTER, enemy.getPosition(),gui);
+        //if (enemy instanceof SoftMonster) View.ASCII_Drawer(SOFTMONSTER, enemy.getPosition(),gui);
+        if (enemy instanceof SoftMonster) gui.drawImageASCII(SOFTMONSTER, enemy.getPosition());
     }
 }

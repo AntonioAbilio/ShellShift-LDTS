@@ -26,7 +26,8 @@ public class CoinViewer implements ElementViewer<Coin> {
 
     @Override
     public void draw(Coin coin, Gui gui) {
-        View.ASCII_Drawer(COIN, coin.getPosition(),gui);
+        //View.ASCII_Drawer(COIN, coin.getPosition(),gui);
+        gui.drawImageASCII(COIN, coin.getPosition());
     }
 
 }

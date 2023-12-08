@@ -27,6 +27,7 @@ public class HardMonsterViewer extends EnemyViewer{
 
     @Override
     public void draw(Enemy enemy, Gui gui) {
-        if (enemy instanceof HardMonster) View.ASCII_Drawer(HARDMONSTER, enemy.getPosition(), gui);
+        //if (enemy instanceof HardMonster) View.ASCII_Drawer(HARDMONSTER, enemy.getPosition(), gui);
+        if (enemy instanceof HardMonster) gui.drawImageASCII(HARDMONSTER, enemy.getPosition());
     }
 }
