@@ -41,9 +41,7 @@ public class GameViewer extends View<Map> {
         //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
 
         // Clean
-        //gui.setBackground("#000000");
-
-
+        gui.setBackground("#211300");
 
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
