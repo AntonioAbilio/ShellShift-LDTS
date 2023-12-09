@@ -2,6 +2,7 @@ package com.l06g06.shellshift.model.game.elements.enemies;
 
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
 
 import java.awt.*;
 
@@ -11,10 +12,12 @@ public abstract class Enemy extends Element {
 
     private final static int width = 15;
     private final static int height = 15;
+    private final MoveStrategy moveStrategy;
 
-    public Enemy(Position position, int HP, int score) {
+    public Enemy(Position position, int HP, MoveStrategy moveStrategy,  int score) {
         super(position);
         this.HP = HP;
+        this.moveStrategy = moveStrategy;
         this.score = score;
 
         Polygon enemyHitbox = new Polygon();
@@ -41,4 +44,7 @@ public abstract class Enemy extends Element {
         return this.score;
     }
 
+    public MoveStrategy getMoveStrategy() {
+        return moveStrategy;
+    }
 }
