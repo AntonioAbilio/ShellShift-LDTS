@@ -29,32 +29,25 @@ public class CoinControllerTest {
         this.coins = new ArrayList<>();
         Mockito.when(map.getCoins()).thenReturn(coins);
         this.coinController = new CoinController(map);
-    }
 
-    @Test
-    public void leftShiftTest(){
-        Position position = new Position(0, 0);
-        Coin coin = new Coin(position);
-        coins.add(coin);
-
-        // Make sure coin starts with correct Position
-        Assertions.assertEquals(position, coin.getPosition());
-
-        // Check if coin is left shifting correctly
-        coinController.left_shift();
-        Position expectedPos = new Position(-1, 0);
-        Assertions.assertEquals(expectedPos, coin.getPosition());
-    }
-
-    @Test
-    public void coinCollisionTest(){
         Coin coin1 = new Coin(new Position(1,  0));
         Coin coin2 = new Coin(new Position(5, 5));
         Coin coin3 = new Coin(new Position(2, 9));
         coins.add(coin1);
         coins.add(coin2);
         coins.add(coin3);
+    }
 
+    @Test
+    public void leftShiftTest(){
+        // Check if coin is left shifting correctly
+        coinController.left_shift();
+        Position expectedPos = new Position(0, 0);
+        Assertions.assertEquals(expectedPos, coins.get(0).getPosition());
+    }
+
+    @Test
+    public void coinCollisionTest(){
         // Chell intersects coin1
         Position chellPosition = new Position(3, 1);    // Chell intersects coin1 in this position
         Chell chell = new Chell(chellPosition);

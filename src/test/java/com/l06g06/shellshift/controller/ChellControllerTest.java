@@ -61,7 +61,7 @@ public class ChellControllerTest {
         Position position = new Position(0, 0);
         Chell mockedChell = new Chell(position);
         Mockito.when(map.getChell()).thenReturn(mockedChell);
-        ChellController chellController = new ChellController(map); // Assuming ChellController takes Chell and Map in its constructor
+        ChellController chellController = new ChellController(map);
         chellController.moveRIGHT();
 
         Position expected = new Position(1, 0);
@@ -73,7 +73,7 @@ public class ChellControllerTest {
         Position position = new Position(0, 0);
         Chell mockedChell = new Chell(position);
         Mockito.when(map.getChell()).thenReturn(mockedChell);
-        ChellController chellController = new ChellController(map); // Assuming ChellController takes Chell and Map in its constructor
+        ChellController chellController = new ChellController(map);
         chellController.moveLEFT();
 
         Position expected = new Position(-1, 0);
