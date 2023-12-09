@@ -1,24 +1,18 @@
 package com.l06g06.shellshift.controller;
 
-import com.l06g06.shellshift.controller.game.elements.ChellController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
-import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
-import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.mockito.Mockito.mock;
