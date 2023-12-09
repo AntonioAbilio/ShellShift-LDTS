@@ -23,7 +23,8 @@ public enum CharColor {
     Red("#FF4433", 'S'),
     Yellow("#FFD700", 'y'),
     VeryLightBlue("#ABF0F9", 'U'),
-    Green("#00FF01", 'V');
+    Green("#00FF01", 'V'),
+    CloudShadow("#C3E1FF", 'T');
 
     private final String color;
     private final char c;

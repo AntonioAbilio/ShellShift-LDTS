@@ -468,17 +468,17 @@ public enum Components {
 
     SpeedPowerUp(new String[]{
             "          HH",
-            "    HHHHHHGH",
-            "    HQ**HGH",
-            "     H*HGHNH",
-            "     H*HHGH",
-            "     H*HGHNH",
-            "     H*HHHH",
-            "    HQ***H",
-            " HHHQ***RH",
-            "HQQ***RRRH",
-            "H****RRHRH",
-            " HHHHHH HH"
+            "         HGH",
+            "        HGH",
+            "    HHHHGHNH",
+            "    HQ*HHGH",
+            "    H**HGHNH",
+            "    H**HHHH",
+            "    H****H",
+            "  HHQ***RH",
+            " HQQ***RRH",
+            " H***RRRRH ",
+            "  HHHHHHH"
     }, new String[]{}, "SpeedPowerUp"),
     Tutorial(new String[] {
             "*******                                           ",
@@ -605,7 +605,20 @@ public enum Components {
             "y                            y",
             "y                            y",
             "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-    }, "SpaceBar");
+    }, "SpaceBar"),
+
+    Cloud(new String[]{
+            "         HHHHH",
+            "        HGGGGGH",
+            "       HGGGGGGGGHH",
+            "      HGGGGGGGGGGTH",
+            "    HHTGGGGGGGGGGGH",
+            " HHHGGGTGGGGGGGGTTTHH ",
+            "HTGGGGGGTGGGGGGTGGGGTH",
+            "HTTGGGGTTTTTTTTGGGGGGTH",
+            " HTTTTTTTTTTTTTTTTTTTTH",
+            "  HHHHHHHHHHHHHHHHHHHH",
+    }, new String[]{}, "Cloud");
     
 
     private final String[] image;

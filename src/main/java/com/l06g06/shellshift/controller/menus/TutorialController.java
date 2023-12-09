@@ -4,6 +4,7 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
+import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
@@ -23,7 +24,8 @@ public class TutorialController extends Controller<TutorialMap> {
     long reloadStartTime = 0;
     double lastShiftTime = 0;
     double shiftCooldown = 0.1;
-    boolean coinCollected = false;
+    boolean coinCheckpoint = false;
+    boolean delayBackground = false;
 
     public TutorialController(TutorialMap model) {
         super(model);
@@ -49,10 +51,6 @@ public class TutorialController extends Controller<TutorialMap> {
                     getModel().setSelectedSpace(true);
                     fire(time);
                     break;
-                case SELECT:
-                    game.setState(new MainMenuState(new MainMenu()));
-                    Game.sleepTimeMS(100);
-                    break;
             }
         }
 
@@ -68,7 +66,7 @@ public class TutorialController extends Controller<TutorialMap> {
         bulletUpdate();
 
         coinCollision();
-        if (coinCollected) {
+        if (coinCheckpoint) {
             for (Enemy enemy : getModel().getEnemies()) {
                 enemy.setPosition(enemy.getMoveStrategy().move(enemy.getPosition()));
             }
@@ -176,13 +174,24 @@ public class TutorialController extends Controller<TutorialMap> {
     }
 
     public void leftShift() {
+        // a medida que o jogo aacelera, as nuvens tbm aceleram um pouco -> IDEIA
+        if (!delayBackground) delayBackground = true;
+        else {
+            for (Cloud cloud : getModel().getClouds()) {
+                int x = cloud.getPosition().getX();
+                int y = cloud.getPosition().getY();
+                cloud.setPosition(new Position(x - 1, y));
+            }
+            delayBackground = false;
+        }
+
         for (Coin coin : getModel().getCoins()) {
             int x = coin.getPosition().getX();
             int y = coin.getPosition().getY();
             coin.setPosition(new Position(x - 1, y));
         }
 
-        if (coinCollected) {
+        if (coinCheckpoint) {
             for (Enemy enemy : getModel().getEnemies()) {
                 int x = enemy.getPosition().getX();
                 int y = enemy.getPosition().getY();
@@ -200,7 +209,7 @@ public class TutorialController extends Controller<TutorialMap> {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
                 getModel().addCoin();
-                this.coinCollected = true;
+                this.coinCheckpoint = true;
             }
         }
     }

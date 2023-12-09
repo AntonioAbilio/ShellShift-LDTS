@@ -14,6 +14,9 @@ public class MainMenuViewer extends View<MainMenu> {
     @Override
     public void drawElements(Gui gui){
         gui.setGradientBackground("#2F1E0D", "#110902");
+        //gui.setGradientBackground("#457da8", "#171f4a");
+
+
         gui.drawImageASCII(Components.Title.getImage(), new Position(10,10));
         gui.drawImageASCII(Components.Chell.getImage(), new Position(130, 10));
 

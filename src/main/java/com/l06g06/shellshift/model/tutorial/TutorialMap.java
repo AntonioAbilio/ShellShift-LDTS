@@ -12,12 +12,17 @@ import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class TutorialMap {
     private Chell chell;
     private Gun gun;
     private List<Bullet> bullets;
     private List<Enemy> enemies = new ArrayList<>(0);
+    private List<Cloud> clouds = new ArrayList<>(0);
     private Platform platform;
     private List<PowerUp> powerUps;
     private List<Coin> coins = new ArrayList<>(0);
@@ -36,8 +41,24 @@ public class TutorialMap {
         this.coins.add(new Coin(new Position(170, 20)));
         this.enemies.add(new SoftMonster(new Position(200, 30), new HorizontalMoveStrategy()));
         this.enemies.add(new HardMonster(new Position(250, 30), new VerticalMoveStrategy()));
+        startCloudAddingTask();
     }
 
+    public void startCloudAddingTask() {
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        Random rand = new Random();
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(3, 10), TimeUnit.SECONDS);
+    }
+
+    private void addCloud() {
+        Random rand = new Random();
+        Cloud newCloud = new Cloud(new Position(200, 8 + rand.nextInt(0, 30)));
+        clouds.add(newCloud);
+    }
+
+    public List<Cloud> getClouds() {
+        return clouds;
+    }
 
     public boolean isSelectedSpace() {
         return selectedSpace;
