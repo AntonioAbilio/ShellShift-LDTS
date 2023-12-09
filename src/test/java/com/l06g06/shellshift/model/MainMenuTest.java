@@ -1,4 +1,4 @@
-package model;
+package com.l06g06.shellshift.model;
 
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import org.junit.jupiter.api.BeforeEach;
