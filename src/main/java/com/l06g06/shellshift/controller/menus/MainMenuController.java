@@ -8,9 +8,11 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.model.shop.Shop;
 import com.l06g06.shellshift.model.shop.Shop;
+import com.l06g06.shellshift.model.tutorial.Tutorial;
 import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.ShopState;
 import com.l06g06.shellshift.states.ShopState;
+import com.l06g06.shellshift.states.TutorialState;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,6 +37,7 @@ public class MainMenuController extends Controller<MainMenu> {
                 case SELECT:
                     if (getModel().isSelectedQuit()) game.setState(null);
                     if (getModel().isSelectedShop()) game.setState(new ShopState(new Shop()));
+                    if (getModel().isSelectedTutorial()) game.setState(new TutorialState(new Tutorial()));
                     if (getModel().isSelectedStart()) game.setState(new GameState(new Map(160, 100)));
                     break;
             }

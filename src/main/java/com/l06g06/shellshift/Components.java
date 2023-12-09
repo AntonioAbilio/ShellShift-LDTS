@@ -425,7 +425,178 @@ public enum Components {
             " GGG",
             "   G",
             "GGG "
-    }, new String[]{}, "9");
+    }, new String[]{}, "9"),
+
+    StarPowerUp(new String[] {
+            "     H",
+            "    HGH",
+            "    HyH",
+            "HHHHGy*HHHH",
+            "HGGGyyyyy*H",
+            " Hyyyyyy*H",
+            "  HyyyyyH",
+            "  HyyyyyH",
+            " HGyHHHy*H",
+            " HyH   H*H",
+            " HH     HH"
+    }, new String[]{}, "StarPowerUp"),
+
+    BulletPowerUp(new String[] {
+            "HHHHHHHHHHHH",
+            "HNGGGGGGGGNH",
+            "HGNNNNNNNNOH",
+            "HGNNNNNVNNOH",
+            "HGNNNNVVVNOH",
+            "HGNRRRNVNNOH",
+            "HGN*QGRNNNOH",
+            "HGN**QRNNNOH",
+            "HGNRRRNNNNOH",
+            "HGNNNNNNNNOH",
+            "HNOOOOOOOONH",
+            "HHHHHHHHHHHH"
+    }, new String[]{}, "BulletPowerUp"),
+
+    SpeedPowerUp(new String[]{
+            "          HH",
+            "    HHHHHHGH",
+            "    HQ**HGH",
+            "     H*HGHNH",
+            "     H*HHGH",
+            "     H*HGHNH",
+            "     H*HHHH",
+            "    HQ***H",
+            " HHHQ***RH",
+            "HQQ***RRRH",
+            "H****RRHRH",
+            " HHHHHH HH"
+    }, new String[]{}, "SpeedPowerUp"),
+    Tutorial(new String[] {
+            "*******                                           ",
+            "   *    *    * *****  ****  *****  *   **   *     ",
+            "   *    *    *   *   *    * *    * *  *  *  *     ",
+            "   *    *    *   *   *    * *    * * *    * *     ",
+            "   *    *    *   *   *    * *****  * ****** *     ",
+            "   *    *    *   *   *    * *   *  * *    * *     ",
+            "   *     ****    *    ****  *    * * *    * ******"
+    }, new String[]{
+            "yyyyyyy                                           ",
+            "   y    y    y yyyyy  yyyy  yyyyy  y   yy   y     ",
+            "   y    y    y   y   y    y y    y y  y  y  y     ",
+            "   y    y    y   y   y    y y    y y y    y y     ",
+            "   y    y    y   y   y    y yyyyy  y yyyyyy y     ",
+            "   y    y    y   y   y    y y   y  y y    y y     ",
+            "   y     yyyy    y    yyyy  y    y y y    y yyyyyy"
+    }, "Tutorial"),
+
+    ArrowUp(new String[]{
+            "GGGGGGGGGGGGG",
+            "G           G",
+            "G           G",
+            "G     G     G",
+            "G    GGG    G",
+            "G   G G G   G",
+            "G     G     G",
+            "G     G     G",
+            "G     G     G",
+            "G           G",
+            "G           G",
+            "GGGGGGGGGGGGG"
+    }, new String[]{
+            "yyyyyyyyyyyyy",
+            "y           y",
+            "y           y",
+            "y     y     y",
+            "y    yyy    y",
+            "y   y y y   y",
+            "y     y     y",
+            "y     y     y",
+            "y     y     y",
+            "y           y",
+            "y           y",
+            "yyyyyyyyyyyyy"
+    }, "ArrowUp"),
+
+    ArrowLeft(new String[]{
+            "GGGGGGGGGGGGG",
+            "G           G",
+            "G           G",
+            "G    G      G",
+            "G   G       G",
+            "G  GGGGGGG  G",
+            "G   G       G",
+            "G    G      G",
+            "G           G",
+            "G           G",
+            "G           G",
+            "GGGGGGGGGGGGG"
+    }, new String[]{
+            "yyyyyyyyyyyyy",
+            "y           y",
+            "y           y",
+            "y    y      y",
+            "y   y       y",
+            "y  yyyyyyy  y",
+            "y   y       y",
+            "y    y      y",
+            "y           y",
+            "y           y",
+            "y           y",
+            "yyyyyyyyyyyyy"
+    }, "ArrowLeft"),
+    ArrowRight(new String[]{
+            "GGGGGGGGGGGGG",
+            "G           G",
+            "G           G",
+            "G      G    G",
+            "G       G   G",
+            "G  GGGGGGG  G",
+            "G       G   G",
+            "G      G    G",
+            "G           G",
+            "G           G",
+            "G           G",
+            "GGGGGGGGGGGGG"
+    }, new String[]{
+            "yyyyyyyyyyyyy",
+            "y           y",
+            "y           y",
+            "y      y    y",
+            "y       y   y",
+            "y  yyyyyyy  y",
+            "y       y   y",
+            "y      y    y",
+            "y           y",
+            "y           y",
+            "y           y",
+            "yyyyyyyyyyyyy"
+    }, "ArrowRight"),
+    SpaceBar(new String[]{
+            "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+            "G                            G",
+            "G                            G",
+            "G   GGG GGGG  GG   GGG GGGG  G",
+            "G  G    G  G G  G G    G     G",
+            "G   GG  G  G GGGG G    GGG   G",
+            "G     G GGG  G  G G    G     G",
+            "G  GGG  G    G  G  GGG GGGG  G",
+            "G                            G",
+            "G                            G",
+            "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+
+    }, new String[]{
+            "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+            "y                            y",
+            "y                            y",
+            "y   yyy yyyy  yy   yyy yyyy  y",
+            "y  y    y  y y  y y    y     y",
+            "y   yy  y  y yyyy y    yyy   y",
+            "y     y yyy  y  y y    y     y",
+            "y  yyy  y    y  y  yyy yyyy  y",
+            "y                            y",
+            "y                            y",
+            "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
+    }, "SpaceBar");
+    
 
     private final String[] image;
     private final String[] imageSelected;

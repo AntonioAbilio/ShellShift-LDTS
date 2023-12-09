@@ -77,8 +77,13 @@ public class GameViewer extends View<Map> {
             char digit = numBullets.charAt(i);
             gui.drawImageASCII(numbers.get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
         }
-
+        /*
+        gui.drawImageASCII(Components.StarPowerUp.getImage(), new Position(100, 80));
+        gui.drawImageASCII(Components.BulletPowerUp.getImage(), new Position(30, 80));
+        gui.drawImageASCII(Components.SpeedPowerUp.getImage(), new Position(10, 80));
+        */
     }
+
 
     private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {
         for (T element : elements)

@@ -10,7 +10,7 @@ public class MainMenu {
     private int currOption = 0;
 
     public MainMenu() {
-        this.options = Arrays.asList(Components.Start, Components.Shop, Components.Statistics, Components.Quit);
+        this.options = Arrays.asList(Components.Start, Components.Shop, Components.Tutorial, Components.Statistics, Components.Quit);
     }
 
     public List<Components> getOptions(){
@@ -44,7 +44,7 @@ public class MainMenu {
     }
 
     public boolean isSelectedRanking() {
-        return isSelected(2);
+        return isSelected(3);
     }
 
     public boolean isSelectedStart() {
@@ -53,6 +53,14 @@ public class MainMenu {
 
     public boolean isSelectedQuit() {
         return isSelected(getOptionsSize() - 1);
+    }
+
+    public boolean isSelectedTutorial() {
+        return isSelected(2);
+    }
+
+    public boolean isSelectedStatistics() {
+        return isSelected(4);
     }
 
 }
