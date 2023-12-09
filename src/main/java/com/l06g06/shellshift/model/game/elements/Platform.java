@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Platform extends Element{
 
-    private final int height = 4;
-    private final int width = 66;
+    private final static int height = 4;
+    private final static int width = 66;
 
     public Platform(Position position) {
         super(position);
@@ -27,14 +27,6 @@ public class Platform extends Element{
     }
 
     public static int getWidth() {
-        return width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
         return width;
     }
 }

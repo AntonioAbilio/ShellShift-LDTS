@@ -11,7 +11,7 @@ public class Database {
 
     private FireStrategy firingStrategy;
     private int numLives;
-    private double damageMultiplier;
+    private int damageMultiplier;
     private boolean tutorialCompleted;
 
     private Database() {

@@ -61,7 +61,7 @@ public class ChellController extends GameController {
             } else {
                 canJump = true;
             }
-        }
+
 
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
