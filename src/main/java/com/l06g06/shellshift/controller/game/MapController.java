@@ -5,22 +5,13 @@ import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
-import com.l06g06.shellshift.model.game.elements.Coin;
-import com.l06g06.shellshift.model.game.elements.Element;
-import com.l06g06.shellshift.model.game.elements.Platform;
-import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
-import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.states.GameOverState;
-import com.l06g06.shellshift.states.MainMenuState;
-import com.sun.tools.javac.Main;
 
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MapController extends GameController{
     private long addedScoreTimer = System.currentTimeMillis();

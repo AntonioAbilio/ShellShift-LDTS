@@ -1,15 +1,10 @@
 package com.l06g06.shellshift;
 
 import com.l06g06.shellshift.gui.ListenForKeys;
-import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.gui.LanternaGUI;
-import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
-import com.l06g06.shellshift.Database;
-
-import com.l06g06.shellshift.gui.Gui;
 
 import java.awt.*;
 import java.awt.event.KeyListener;

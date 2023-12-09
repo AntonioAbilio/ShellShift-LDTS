@@ -3,14 +3,11 @@ package com.l06g06.shellshift.viewer.game;
 // Internelly we decided to call arena Map...
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Bullet;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -62,12 +59,11 @@ public class GameViewer extends View<Map> {
         gui.drawImageASCII(Components.Score.getImage(), new Position(5,7));
 
         //printing score ta mt messy, converto para string para facilitar percorrer esquerda -> direita
-        List<Components> numbers = Arrays.asList(Components.Zero, Components.One, Components.Two, Components.Three, Components.Four, Components.Five, Components.Six, Components.Seven, Components.Eight, Components.Nine);
         String score = Integer.toString(getModel().getScore());
 
         for (int i = 0; i < score.length(); i++) {
             char digit = score.charAt(i);
-            gui.drawImageASCII(numbers.get(Character.getNumericValue(digit)).getImage(), new Position(35 + i * 6, 7));
+            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position(35 + i * 6, 7));
         }
 
         //Bullet Counter
@@ -75,8 +71,18 @@ public class GameViewer extends View<Map> {
         String numBullets = Integer.toString(getModel().getGun().getNumBullets());
         for (int i = 0; i < numBullets.length(); i++) {
             char digit = numBullets.charAt(i);
-            gui.drawImageASCII(numbers.get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
+            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
         }
+
+        //Coins Collected Counter
+        gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
+        String coinsCollected = Integer.toString(getModel().getCoinsCollected());
+        for (int i = 0; i < coinsCollected.length(); i++) {
+            char digit = coinsCollected.charAt(i);
+            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 16 + i * 6, 90));
+        }
+
+        //PowerUps
         /*
         gui.drawImageASCII(Components.StarPowerUp.getImage(), new Position(100, 80));
         gui.drawImageASCII(Components.BulletPowerUp.getImage(), new Position(30, 80));

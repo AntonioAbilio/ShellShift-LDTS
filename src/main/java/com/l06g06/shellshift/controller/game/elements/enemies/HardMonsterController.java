@@ -2,13 +2,8 @@ package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Coin;
-import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
-import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.map.Map;
 
-import java.io.IOException;
 import java.util.List;
 
 

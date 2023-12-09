@@ -1,16 +1,10 @@
 package com.l06g06.shellshift.model.game.map;
 
-import com.l06g06.shellshift.controller.game.elements.enemies.HardMonsterController;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
-import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
-import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
-import com.l06g06.shellshift.model.game.gun.RapidFireStrategy;
 
-import java.lang.invoke.CallSite;
-import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +29,7 @@ public class Map {
     //private SoftMonsterSpawner softMonsterSpawner;
     //private HardMonsterSpawner hardMonsterSpawner;
     private EnemySpawner enemySpawner;
+    private int coinsCollected = 0;
 
     // Sizes
     public Map(int width, int height) {
@@ -186,6 +181,14 @@ public class Map {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public void addCoin() {
+        this.coinsCollected++;
+    }
+
+    public int getCoinsCollected() {
+        return coinsCollected;
     }
 
     // TODO

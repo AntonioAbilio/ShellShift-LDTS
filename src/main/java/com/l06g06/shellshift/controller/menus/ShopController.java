@@ -5,12 +5,9 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.gun.RapidFireStrategy;
-import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.model.shop.Shop;
-import com.l06g06.shellshift.states.GameState;
 import com.l06g06.shellshift.states.MainMenuState;
-import com.l06g06.shellshift.states.ShopState;
 
 import java.io.IOException;
 import java.util.List;

@@ -2,22 +2,59 @@ package com.l06g06.shellshift.viewer.tutorial;
 
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.tutorial.Tutorial;
+import com.l06g06.shellshift.model.tutorial.TutorialMap;
 import com.l06g06.shellshift.viewer.View;
+import com.l06g06.shellshift.viewer.game.*;
 
-public class TutorialViewer extends View<Tutorial> {
-    public TutorialViewer(Tutorial model) {
+import java.util.List;
+
+public class TutorialViewer extends View<TutorialMap> {
+    public TutorialViewer(TutorialMap model) {
         super(model);
     }
 
     @Override
-    protected void drawElements(Gui gui) {
-        gui.drawImageASCII(getModel().isChellFacingRight()? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(70,40));
-        gui.drawImageASCII(getModel().isSelectedArrowUp() ? Components.ArrowUp.getImageSelected() : Components.ArrowUp.getImage(), new Position(72, 22));
-        gui.drawImageASCII(getModel().isSelectedArrowLeft() ? Components.ArrowLeft.getImageSelected() : Components.ArrowLeft.getImage(), new Position(50, 43));
-        gui.drawImageASCII(getModel().isSelectedArrowRight() ? Components.ArrowRight.getImageSelected() : Components.ArrowRight.getImage(), new Position(93, 43));
-        gui.drawImageASCII(getModel().isSelectedSpace() ? Components.SpaceBar.getImageSelected() : Components.SpaceBar.getImage(), new Position(63, 60));
+    public void drawElements(Gui gui) {
+        gui.setBackground("#211300");
+        drawElement(gui, getModel().getChell(), new ChellViewer());
+        drawElement(gui, getModel().getPlatform(), new PlatformViewer());
 
+        drawElements(gui, getModel().getBullets(), new BulletViewer());
+        drawElements(gui, getModel().getCoins(), new CoinViewer());
+        drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
+        drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
+
+        gui.drawImageASCII(getModel().isSelectedArrowUp() ? Components.ArrowUp.getImageSelected() : Components.ArrowUp.getImage(), new Position(20, 5));
+        gui.drawImageASCII(getModel().isSelectedArrowLeft() ? Components.ArrowLeft.getImageSelected() : Components.ArrowLeft.getImage(), new Position(5, 20));
+        gui.drawImageASCII(getModel().isSelectedArrowRight() ? Components.ArrowRight.getImageSelected() : Components.ArrowRight.getImage(), new Position(35, 20));
+        gui.drawImageASCII(getModel().isSelectedSpace() ? Components.SpaceBar.getImageSelected() : Components.SpaceBar.getImage(), new Position(55, 10));
+
+        //Bullet Counter
+        gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
+        String numBullets = Integer.toString(getModel().getGun().getNumBullets());
+        for (int i = 0; i < numBullets.length(); i++) {
+            char digit = numBullets.charAt(i);
+            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
+        }
+
+        //Coins Collected Counter
+        gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
+        String coinsCollected = Integer.toString(getModel().getCoinsCollected());
+        for (int i = 0; i < coinsCollected.length(); i++) {
+            char digit = coinsCollected.charAt(i);
+            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 16 + i * 6, 90));
+        }
     }
+
+    private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {
+        for (T element : elements)
+            drawElement(gui, element, viewer);
+    }
+
+    private <T extends Element> void drawElement(Gui gui, T element, ElementViewer<T> viewer) {
+        viewer.draw(element, gui);
+    }
+
 }

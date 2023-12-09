@@ -4,7 +4,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 
@@ -59,6 +58,7 @@ public class CoinController extends GameController {
 
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
+                getModel().addCoin();
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }
         }

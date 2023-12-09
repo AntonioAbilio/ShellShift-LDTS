@@ -2,6 +2,9 @@ package com.l06g06.shellshift;
 
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 
+import java.util.Arrays;
+import java.util.List;
+
 public enum Components {
 
     Title(new String[] {
@@ -309,7 +312,14 @@ public enum Components {
             " Jyyyyy*J ",
             "  J****J  ",
             "   JJJJ   "
-    }, new String[]{}, "Coin"),
+    }, new String[]{
+            "  HH  ",
+            " HGQH",
+            "HGQyQH",
+            "HQQQ*H",
+            " HQ*H",
+            "  HH"
+    }, "Coin"),
 
     SoftMonster( new String[] {
             "   JJJ   JJJ   ",
@@ -601,6 +611,8 @@ public enum Components {
     private final String[] image;
     private final String[] imageSelected;
     private final String name;
+    private static final List<Components> numbers = Arrays.asList(Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
+
     Components(String[] image, String[] imageSelected, String name) {
         this.image = image;
         this.imageSelected = imageSelected;
@@ -635,5 +647,9 @@ public enum Components {
             }
         }
         return new String[]{ "não funcionou" };
+    }
+
+    public static List<Components> getNumbers() {
+        return numbers;
     }
 }

@@ -9,8 +9,6 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
