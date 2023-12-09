@@ -3,7 +3,7 @@ package com.l06g06.shellshift.model.game.gun;
 import com.l06g06.shellshift.Database;
 
 public class Gun {
-    private int numBullets = 10;
+    private int numBullets = 10000;
     private FireStrategy strategy;
 
     public Gun(FireStrategy strategy) {

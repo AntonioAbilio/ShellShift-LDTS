@@ -3,12 +3,16 @@ package com.l06g06.shellshift;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
+import java.io.File;
+import java.io.IOException;
+
 public class Database {
     private static Database instance;
 
     private FireStrategy firingStrategy;
     private int numLives;
-    private int damageMultiplier;
+    private double damageMultiplier;
+    private boolean tutorialCompleted;
 
     private Database() {
         this.firingStrategy = new NormalFireStrategy();

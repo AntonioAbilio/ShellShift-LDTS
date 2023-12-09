@@ -33,7 +33,7 @@ public class GameOverController extends Controller<GameOver> {
                     getModel().nextOption();
                     break;
                 case SELECT:
-                    if (getModel().isSelectedRestart()) game.setState(new GameState(new Map(50,50)));
+                    if (getModel().isSelectedRestart()) game.setState(new GameState(new Map(165,100)));
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
             }

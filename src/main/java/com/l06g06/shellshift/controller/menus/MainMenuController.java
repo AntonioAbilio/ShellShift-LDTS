@@ -35,7 +35,7 @@ public class MainMenuController extends Controller<MainMenu> {
                 case SELECT:
                     if (getModel().isSelectedQuit()) game.setState(null);
                     if (getModel().isSelectedShop()) game.setState(new ShopState(new Shop()));
-                    if (getModel().isSelectedStart()) game.setState(new GameState(new Map(50, 50)));
+                    if (getModel().isSelectedStart()) game.setState(new GameState(new Map(160, 100)));
                     break;
             }
         }
