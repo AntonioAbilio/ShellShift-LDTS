@@ -22,12 +22,12 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class BulletControllerTest {
-        Map map ;
-        Bullet bullet;
-        Gun gun;
-        FireStrategy fireStrategy;
-        List<Bullet> bullets;
-        BulletController bulletController;
+        private Map map ;
+        private Bullet bullet;
+        private Gun gun;
+        private FireStrategy fireStrategy;
+        private List<Bullet> bullets;
+        private BulletController bulletController;
 
 
         @BeforeEach

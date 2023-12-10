@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.elements.Position;

@@ -16,10 +16,10 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class CoinControllerTest {
-    Map map ;
-    Coin coin;
-    List<Coin> coins;
-    CoinController coinController;
+    private Map map ;
+    private Coin coin;
+    private List<Coin> coins;
+    private CoinController coinController;
 
 
     @BeforeEach

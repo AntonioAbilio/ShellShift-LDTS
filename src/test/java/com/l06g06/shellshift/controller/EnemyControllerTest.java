@@ -18,12 +18,12 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class EnemyControllerTest {
-    Map mockedMap ;
-    Enemy mockedEnemy;
-    List<Enemy> enemies;
-    MoveStrategy mockedMoveStrategy;
-    EnemyController enemyController;
-    int distBetweenEnemy;
+    private Map mockedMap ;
+    private Enemy mockedEnemy;
+    private List<Enemy> enemies;
+    private MoveStrategy mockedMoveStrategy;
+    private EnemyController enemyController;
+    private int distBetweenEnemy;
 
 
     @BeforeEach

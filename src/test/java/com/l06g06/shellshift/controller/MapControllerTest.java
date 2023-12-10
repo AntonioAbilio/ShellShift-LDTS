@@ -25,17 +25,17 @@ import static net.jqwik.time.api.Times.times;
 import static org.mockito.Mockito.*;
 
 public class MapControllerTest {
-    MapController mapController;
-    Map map;
-    Game game;
-    List<Gui.PressedKey> action;
-    long addedScoreTimer = System.currentTimeMillis();
-    ChellController chellController;
-    BulletController bulletController;
-    GunController gunController;
-    PlatformController platformController;
-    CoinController coinController;
-    EnemyController enemyController;
+    private MapController mapController;
+    private Map map;
+    private Game game;
+    private List<Gui.PressedKey> action;
+    private long addedScoreTimer = System.currentTimeMillis();
+    private ChellController chellController;
+    private BulletController bulletController;
+    private GunController gunController;
+    private PlatformController platformController;
+    private CoinController coinController;
+    private EnemyController enemyController;
 
 
     @BeforeEach

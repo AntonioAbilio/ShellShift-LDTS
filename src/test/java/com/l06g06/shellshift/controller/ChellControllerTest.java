@@ -24,14 +24,14 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class ChellControllerTest {
-    Chell chell;
-    Map map ;
-    ChellController chellController;
-    List<KeyEvent> keyEventList;
-    KeyEvent right;
-    KeyEvent left;
-    KeyEvent up;
-    KeyEvent space;
+    private Chell chell;
+    private Map map ;
+    private ChellController chellController;
+    private List<KeyEvent> keyEventList;
+    private KeyEvent right;
+    private KeyEvent left;
+    private KeyEvent up;
+    private KeyEvent space;
 
     @BeforeEach
     public void setup(){
@@ -40,6 +40,7 @@ public class ChellControllerTest {
         this.chellController = mock(ChellController.class);
         this.keyEventList = new ArrayList<>();
 
+        // ToDo: change this
         for(int k = 0; k < 256; k++){
             KeyEvent e = new KeyEvent(Mockito.mock(Component.class), 1, 20, 0,
                     k, KeyEvent.CHAR_UNDEFINED);

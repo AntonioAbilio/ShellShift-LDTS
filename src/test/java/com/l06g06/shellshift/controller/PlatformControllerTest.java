@@ -18,10 +18,10 @@ import java.util.List;
 import static org.mockito.Mockito.mock;
 
 public class PlatformControllerTest {
-    Map map ;
-    Platform platform;
-    List<Platform>  platforms;
-    PlatformController platformController;
+    private Map map ;
+    private Platform platform;
+    private List<Platform>  platforms;
+    private PlatformController platformController;
 
 
     @BeforeEach
