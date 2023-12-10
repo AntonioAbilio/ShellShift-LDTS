@@ -1,19 +1,15 @@
 package com.l06g06.shellshift.model.game.map;
 
-import com.l06g06.shellshift.model.creators.CoinCreator;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Position;
-import org.checkerframework.checker.units.qual.C;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sound.sampled.Port;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class CoinSpawnerTest {
     private CoinSpawner coinSpawner;
