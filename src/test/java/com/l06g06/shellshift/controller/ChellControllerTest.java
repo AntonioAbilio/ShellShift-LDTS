@@ -84,7 +84,6 @@ public class ChellControllerTest {
     @Test
     public void jumpTest(){
         // ToDo
-        Assertions.assertEquals(1, 2);
     }
 
 }

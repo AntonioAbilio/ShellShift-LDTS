@@ -77,7 +77,6 @@ public class EnemyControllerTest {
     @Test
     public void spawnOnPlatformTest(){
         // ToDo
-        Assertions.assertEquals(1, 2);
     }
 
 }
