@@ -16,7 +16,7 @@ public class VerticalMoveStrategyTest {
     }
 
     @Test
-    void testMoveUp() {
+    void moveUpTest() {
         Position currentPos = new Position(10, 10);
         for (int i = 0; i < 20; i++) {
             currentPos = verticalMoveStrategy.move(currentPos);
@@ -26,7 +26,7 @@ public class VerticalMoveStrategyTest {
     }
 
     @Test
-    void testMoveDown() {
+    void moveDownTest() {
         Position currentPos = new Position(10, 10);
 
         // Move up first
