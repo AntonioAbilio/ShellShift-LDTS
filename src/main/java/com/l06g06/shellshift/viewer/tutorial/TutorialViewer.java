@@ -20,13 +20,10 @@ public class TutorialViewer extends View<TutorialMap> {
     public void drawElements(Gui gui) {
         gui.setBackground("#8ec4e8");
 
-        for (Cloud cloud : getModel().getClouds()) {
-            gui.drawImageASCII(Components.Cloud.getImage(), cloud.getPosition());
-        }
+        drawElements(gui, getModel().getClouds(), new CloudViewer());
 
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElement(gui, getModel().getPlatform(), new PlatformViewer());
-
         drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
@@ -39,31 +36,12 @@ public class TutorialViewer extends View<TutorialMap> {
 
         //Bullet Counter
         gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
-        /*
-        String numBullets = Integer.toString(getModel().getGun().getNumBullets());
-        for (int i = 0; i < numBullets.length(); i++) {
-            char digit = numBullets.charAt(i);
-            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
-        }
-
-         */
         gui.numToASCII(getModel().getGun().getNumBullets(), 142,90);
 
         //Coins Collected Counter
         gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
-        /*
-        String coinsCollected = Integer.toString(getModel().getCoinsCollected());
-        for (int i = 0; i < coinsCollected.length(); i++) {
-            char digit = coinsCollected.charAt(i);
-            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 16 + i * 6, 90));
-        }
-        */
-
         gui.numToASCII(getModel().getCoinsCollected(),16,91);
 
-        //gui.drawImageASCII(Components.StarPowerUp.getImage(), new Position(100, 80));
-        //gui.drawImageASCII(Components.BulletPowerUp.getImage(), new Position(30, 80));
-        //gui.drawImageASCII(Components.SpeedPowerUp.getImage(), new Position(10, 80));
     }
 
     private <T extends Element> void drawElements(Gui gui, List<T> elements, ElementViewer<T> viewer) {

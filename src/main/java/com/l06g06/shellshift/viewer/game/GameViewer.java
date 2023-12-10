@@ -3,6 +3,7 @@ package com.l06g06.shellshift.viewer.game;
 // Internelly we decided to call arena Map...
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
@@ -39,8 +40,9 @@ public class GameViewer extends View<Map> {
 
         // Clean
         //gui.setBackground("#211300");
-        gui.setBackground("#301e18");
+        gui.setBackground("#8ec4e8");
 
+        drawElements(gui, getModel().getClouds(), new CloudViewer());
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());

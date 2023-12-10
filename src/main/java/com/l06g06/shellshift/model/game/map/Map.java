@@ -9,6 +9,10 @@ import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Map {
     private final int width;
@@ -17,7 +21,7 @@ public class Map {
     private int score = 0;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(130,0));
+    private Chell chell = new Chell(new Position(80,0));
 
     /*private Chell chell;*/
     private Gun gun;
@@ -26,9 +30,13 @@ public class Map {
     private List<Bullet> bullets = new ArrayList<>(0);
     private List<PowerUp> powerups = new ArrayList<>(0);
     private List<Coin> coins = new ArrayList<>(0);
+    private List<Cloud> clouds = new ArrayList<>(0);
+
     private PlatformSpawner platformSpawner;
     private CoinSpawner coinSpawner;
     private EnemySpawner enemySpawner;
+    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+
     private int coinsCollected = 0;
     private int monstersKilled = 0;
 
@@ -38,6 +46,11 @@ public class Map {
         this.height = height;
         this.gun = new Gun(new NormalFireStrategy());
         this.bullets = new ArrayList<Bullet>();
+
+        //plataforma inicial
+        this.platforms.add(new Platform(new Position(130, 55)));
+
+
         // DEBUG
         /*Platform platform1 = new Platform(new Position(10, 10));
         Platform platform2 = new Platform(new Position(20, 30));
@@ -79,7 +92,24 @@ public class Map {
         coins.add(coin3);*/
         //this.coins = coins;
 
+        startCloudAddingTask();
+
     }
+
+    public void startCloudAddingTask() {
+        Random rand = new Random();
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(0, 15), TimeUnit.SECONDS);
+    }
+    public void stopCloudAddingTask(){
+        executorService.close();
+    }
+
+    private void addCloud() {
+        Random rand = new Random();
+        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(0, 70)));
+        this.clouds.add(newCloud);
+    }
+
     public int getWidth() {
         return width;
     }
@@ -199,6 +229,10 @@ public class Map {
 
     public void addMonsterKilled(){
         monstersKilled++;
+    }
+
+    public List<Cloud> getClouds() {
+        return clouds;
     }
 
     // TODO

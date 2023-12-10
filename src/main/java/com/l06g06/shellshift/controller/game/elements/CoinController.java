@@ -43,6 +43,7 @@ public class CoinController extends GameController {
     }
 
     public void left_shift(){
+        //todos os leftshifts sao comuns para elementos, podemos fazer leftShift(Element) no map/game e usar dps -> preciso eliminar elementos quando saem do ecra se nao vamos ter listas mt grandes
         for (Coin coin : getModel().getCoins()){
             int x = coin.getPosition().getX();
             int y = coin.getPosition().getY();
