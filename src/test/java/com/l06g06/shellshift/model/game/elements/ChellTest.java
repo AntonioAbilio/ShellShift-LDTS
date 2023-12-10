@@ -48,8 +48,31 @@ public class ChellTest {
     }
 
     @Property
-    void chell_lives(@ForAll int lives) {
+    void settersGettersVelocityTest(@ForAll int velocity){
+        mockpos = Mockito.mock(Position.class);
+        chell = new Chell(mockpos);
+        chell.setVelocity(velocity);
+        Assertions.assertEquals(velocity, chell.getVelocity());
+    }
 
+    @Property
+    void settersGettersGravityTest(@ForAll int gravity) {
+        mockpos = Mockito.mock(Position.class);
+        chell = new Chell(mockpos);
+        chell.setGravity(gravity);
+        Assertions.assertEquals(gravity, chell.getGravity());
+    }
+
+    @Property
+    void settersGettersDirectionTest(@ForAll boolean direction) {
+        mockpos = Mockito.mock(Position.class);
+        chell = new Chell(mockpos);
+        chell.setDirection(direction);
+        Assertions.assertEquals(direction, chell.isDirection());
+    }
+
+        @Property
+    void chell_lives(@ForAll int lives) {
         mockpos = Mockito.mock(Position.class);
         Mockito.when(mockpos.getX()).thenReturn(5);
         Mockito.when(mockpos.getY()).thenReturn(5);
@@ -69,5 +92,6 @@ public class ChellTest {
         chell.decreaseLives();
         Assertions.assertEquals(lives - 1, chell.getLives());
     }
+
 
 }
