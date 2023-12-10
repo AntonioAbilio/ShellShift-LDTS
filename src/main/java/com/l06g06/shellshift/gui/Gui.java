@@ -34,9 +34,11 @@ public interface Gui {
 
     void close() throws IOException;
 
-    public void setGradientBackground(String innerColor, String outerColor);
+    void setGradientBackground(String innerColor, String outerColor);
 
     void setBackground(String color);
+
+    void numToASCII(int num, int x, int y);
 
 
     enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};

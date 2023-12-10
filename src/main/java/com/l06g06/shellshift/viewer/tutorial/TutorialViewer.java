@@ -32,26 +32,34 @@ public class TutorialViewer extends View<TutorialMap> {
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
 
-        gui.drawImageASCII(getModel().isSelectedArrowUp() ? Components.ArrowUp.getImageSelected() : Components.ArrowUp.getImage(), new Position(20, 5));
-        gui.drawImageASCII(getModel().isSelectedArrowLeft() ? Components.ArrowLeft.getImageSelected() : Components.ArrowLeft.getImage(), new Position(5, 20));
-        gui.drawImageASCII(getModel().isSelectedArrowRight() ? Components.ArrowRight.getImageSelected() : Components.ArrowRight.getImage(), new Position(35, 20));
-        gui.drawImageASCII(getModel().isSelectedSpace() ? Components.SpaceBar.getImageSelected() : Components.SpaceBar.getImage(), new Position(55, 10));
+        gui.drawImageASCII(getModel().isSelectedArrowUp() ? Components.ArrowUp.getImageSelected() : Components.ArrowUp.getImage(), new Position(55, 70));
+        gui.drawImageASCII(getModel().isSelectedArrowLeft() ? Components.ArrowLeft.getImageSelected() : Components.ArrowLeft.getImage(), new Position(40, 85));
+        gui.drawImageASCII(getModel().isSelectedArrowRight() ? Components.ArrowRight.getImageSelected() : Components.ArrowRight.getImage(), new Position(70, 85));
+        gui.drawImageASCII(getModel().isSelectedSpace() ? Components.SpaceBar.getImageSelected() : Components.SpaceBar.getImage(), new Position(90, 77));
 
         //Bullet Counter
         gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
+        /*
         String numBullets = Integer.toString(getModel().getGun().getNumBullets());
         for (int i = 0; i < numBullets.length(); i++) {
             char digit = numBullets.charAt(i);
             gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
         }
 
+         */
+        gui.numToASCII(getModel().getGun().getNumBullets(), 142,90);
+
         //Coins Collected Counter
         gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
+        /*
         String coinsCollected = Integer.toString(getModel().getCoinsCollected());
         for (int i = 0; i < coinsCollected.length(); i++) {
             char digit = coinsCollected.charAt(i);
             gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 16 + i * 6, 90));
         }
+        */
+
+        gui.numToASCII(getModel().getCoinsCollected(),16,91);
 
         //gui.drawImageASCII(Components.StarPowerUp.getImage(), new Position(100, 80));
         //gui.drawImageASCII(Components.BulletPowerUp.getImage(), new Position(30, 80));

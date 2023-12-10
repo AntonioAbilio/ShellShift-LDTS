@@ -23,8 +23,8 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
+        //Database.getInstance();
         new Game().start();
-        Database.getInstance();
     }
 
     public static void sleepTimeMS(int miliseconds){

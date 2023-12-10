@@ -13,6 +13,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.CharColor;
 
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
 
-public class LanternaGUI implements Gui{
+public class LanternaGUI implements Gui {
     protected final TerminalScreen screen;
     private List<Integer> buttons = new ArrayList<Integer>(0);
 
@@ -76,6 +77,15 @@ public class LanternaGUI implements Gui{
                 tg.setForegroundColor(TextColor.Factory.fromString(color));
                 tg.putString(x, y, " ");
             }
+        }
+    }
+
+    @Override
+    public void numToASCII(int num, int x, int y) {
+        String numString = Integer.toString(num);
+        for (int i = 0; i < numString.length(); i++) {
+            char digit = numString.charAt(i);
+            drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( x + i * 6, y));
         }
     }
 

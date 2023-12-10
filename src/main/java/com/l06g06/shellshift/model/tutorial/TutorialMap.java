@@ -31,6 +31,8 @@ public class TutorialMap {
     private boolean selectedArrowLeft;
     private boolean selectedArrowRight;
     private int coinsCollected;
+    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+
 
     public TutorialMap() {
         this.gun = new Gun(new NormalFireStrategy());
@@ -38,21 +40,24 @@ public class TutorialMap {
         this.bullets = new ArrayList<Bullet>();
         this.chell = new Chell(new Position(55,60));
         this.platform = new Platform(new Position(80, 60));
-        this.coins.add(new Coin(new Position(170, 20)));
+        this.coins.add(new Coin(new Position(180, 20)));
         this.enemies.add(new SoftMonster(new Position(200, 30), new HorizontalMoveStrategy()));
         this.enemies.add(new HardMonster(new Position(250, 30), new VerticalMoveStrategy()));
         startCloudAddingTask();
+
     }
 
     public void startCloudAddingTask() {
-        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         Random rand = new Random();
-        executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(3, 10), TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(5, 20), TimeUnit.SECONDS);
+    }
+    public void stopCloudAddingTask(){
+        executorService.close();
     }
 
     private void addCloud() {
         Random rand = new Random();
-        Cloud newCloud = new Cloud(new Position(200, 8 + rand.nextInt(0, 30)));
+        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(0, 30)));
         clouds.add(newCloud);
     }
 

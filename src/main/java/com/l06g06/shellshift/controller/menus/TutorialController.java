@@ -74,7 +74,10 @@ public class TutorialController extends Controller<TutorialMap> {
             bulletCollision();
         }
 
-        if (getModel().getEnemies().size() <= 0) game.setState(new MainMenuState(new MainMenu()));
+        if (getModel().getEnemies().size() <= 0){
+            getModel().stopCloudAddingTask();
+            game.setState(new MainMenuState(new MainMenu()));
+        }
     }
     public void jump(long time){
         isJumping = true;
@@ -177,11 +180,16 @@ public class TutorialController extends Controller<TutorialMap> {
         // a medida que o jogo aacelera, as nuvens tbm aceleram um pouco -> IDEIA
         if (!delayBackground) delayBackground = true;
         else {
-            for (Cloud cloud : getModel().getClouds()) {
-                int x = cloud.getPosition().getX();
-                int y = cloud.getPosition().getY();
-                cloud.setPosition(new Position(x - 1, y));
+            List<Cloud> clouds = getModel().getClouds();
+            Iterator<Cloud> cloudIterator = clouds.iterator();
+            while (cloudIterator.hasNext()) {
+                Cloud cloud = cloudIterator.next();
+                if (cloud.getPosition().getX() < -10) {
+                    cloudIterator.remove();
+                }
+                else cloud.setPosition(new Position(cloud.getPosition().getX()-1,cloud.getPosition().getY()));
             }
+
             delayBackground = false;
         }
 
@@ -206,7 +214,7 @@ public class TutorialController extends Controller<TutorialMap> {
         while (coinsIterator.hasNext()) {
             Coin coin = coinsIterator.next();
 
-            if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
+            if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) | coin.getPosition().getX() < -10) {
                 coinsIterator.remove();
                 getModel().addCoin();
                 this.coinCheckpoint = true;

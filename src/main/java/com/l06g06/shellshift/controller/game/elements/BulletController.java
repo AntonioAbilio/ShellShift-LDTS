@@ -69,6 +69,7 @@ public class BulletController extends GameController {
                     bulletIterator.remove();
                     enemy.decreaseHP(bullet.getDamage());
                     if (enemy.getHP() <= 0) {
+                        getModel().addMonsterKilled();
                         enemyIterator.remove();
                         getModel().setScore(getModel().getScore() + enemy.getScore());
                     }

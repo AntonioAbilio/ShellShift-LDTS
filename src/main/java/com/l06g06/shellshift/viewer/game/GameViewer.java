@@ -77,12 +77,15 @@ public class GameViewer extends View<Map> {
 
         //Coins Collected Counter
         gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
+        /*
         String coinsCollected = Integer.toString(getModel().getCoinsCollected());
         for (int i = 0; i < coinsCollected.length(); i++) {
             char digit = coinsCollected.charAt(i);
             gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 16 + i * 6, 90));
         }
 
+         */
+        gui.numToASCII(getModel().getCoinsCollected(), 16,90);
         //PowerUps
         /*
         gui.drawImageASCII(Components.StarPowerUp.getImage(), new Position(100, 80));

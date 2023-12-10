@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.menus;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
@@ -33,12 +34,22 @@ public class ShopController extends Controller<Shop> {
                 case SELECT:
                     if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
-                        Database.getInstance().setFiringStrategy(new RapidFireStrategy());
-                        game.setState(new MainMenuState(new MainMenu()));
+                        int price = getModel().getPrice(Components.RapidFire);
+                        if (price <= Database.getInstance().getNumCoins()) {
+                            Database.getInstance().setFiringStrategy(new RapidFireStrategy());
+                            Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
+                            game.setState(new MainMenuState(new MainMenu()));
+
+                        }
                     }
                     if (getModel().isSelectedExtraLife()) {
-                        Database.getInstance().setNumLives(Database.getInstance().getNumLives()+1);
-                        game.setState(new MainMenuState(new MainMenu()));
+                        int price = getModel().getPrice(Components.ExtraLife);
+                        if (price <= Database.getInstance().getNumCoins()) {
+                            Database.getInstance().setNumLives(Database.getInstance().getNumLives()+1);
+                            Database.getInstance().setNumCoins(Database.getInstance().getNumCoins()- price);
+                            game.setState(new MainMenuState(new MainMenu()));
+
+                        }
                     }
                     break;
             }

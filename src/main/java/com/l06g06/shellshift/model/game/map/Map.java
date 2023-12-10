@@ -1,10 +1,12 @@
 package com.l06g06.shellshift.model.game.map;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +28,9 @@ public class Map {
     private List<Coin> coins = new ArrayList<>(0);
     private PlatformSpawner platformSpawner;
     private CoinSpawner coinSpawner;
-    //private SoftMonsterSpawner softMonsterSpawner;
-    //private HardMonsterSpawner hardMonsterSpawner;
     private EnemySpawner enemySpawner;
     private int coinsCollected = 0;
+    private int monstersKilled = 0;
 
     // Sizes
     public Map(int width, int height) {
@@ -181,6 +182,7 @@ public class Map {
 
     public void setScore(int score) {
         this.score = score;
+        if (this.score > Database.getInstance().getMAXSCORE()) this.score = Database.getInstance().getMAXSCORE();
     }
 
     public void addCoin() {
@@ -189,6 +191,14 @@ public class Map {
 
     public int getCoinsCollected() {
         return coinsCollected;
+    }
+
+    public int getMonstersKilled() {
+        return monstersKilled;
+    }
+
+    public void addMonsterKilled(){
+        monstersKilled++;
     }
 
     // TODO

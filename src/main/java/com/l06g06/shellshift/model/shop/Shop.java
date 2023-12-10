@@ -1,24 +1,26 @@
 package com.l06g06.shellshift.model.shop;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class Shop {
-    private final List<Components> text;
+    private final Map<Components, Integer> options = new LinkedHashMap<>();
     private final List<Components> icons;
     private int currOption = 0;
 
     public Shop() {
-        this.text = Arrays.asList(Components.RapidFire,Components.ExtraLife, Components.Quit);
+        this.options.put(Components.RapidFire, 100);
+        this.options.put(Components.ExtraLife, 50);
+        this.options.put(Components.Quit, 0);
         this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon);
     }
 
     public void nextOption() {
         currOption++;
-        if (currOption > this.text.size() - 1)
-            currOption = this.text.size() - 1;
+        if (currOption > this.options.size() - 1)
+            currOption = this.options.size() - 1;
     }
 
     public void prevOption() {
@@ -31,6 +33,9 @@ public class Shop {
     public boolean isSelected(int i) {
         return i == currOption;
     }
+    public int getPrice(Components component) {
+        return options.get(component);
+    }
     public boolean isSelectedRapidFire() {
         return isSelected(0);
     }
@@ -40,11 +45,11 @@ public class Shop {
     }
 
     public int getTextSize() {
-        return this.text.size();
+        return this.options.size();
     }
 
-    public List<Components> getText() {
-        return this.text;
+    public Map<Components, Integer> getOptions() {
+        return this.options;
     }
 
     public List<Components> getIcons() {
@@ -52,6 +57,8 @@ public class Shop {
     }
 
     public boolean isSelectedQuit() {
-        return isSelected(this.text.size()-1);
+        return isSelected(this.options.size()-1);
     }
+
+
 }
