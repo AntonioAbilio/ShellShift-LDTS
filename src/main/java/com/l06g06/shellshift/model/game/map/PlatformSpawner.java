@@ -4,6 +4,7 @@ import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class PlatformSpawner {
@@ -17,6 +18,17 @@ public class PlatformSpawner {
 
     public void spawn(Position position){
         Platform spawned_platform = (Platform) platformCreator.create(position);
+
+        Iterator<Platform> platformIterator = platforms.iterator();
+
+        while(platformIterator.hasNext()){
+            Platform platform = platformIterator.next();
+            while (spawned_platform.getPolygon().intersects(platform.getPolygon().getBounds2D())) {
+                spawned_platform = (Platform) platformCreator.create(position);
+            }
+
+        }
+
         platforms.add(spawned_platform);
         for (int i = 0; i < platforms.size(); i++){
             if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
