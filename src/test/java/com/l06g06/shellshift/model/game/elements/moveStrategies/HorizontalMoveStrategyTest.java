@@ -7,18 +7,18 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class HorizontalMoveStrategyTest {
-    private HorizontalMoveStrategy moveStrategy;
+    private HorizontalMoveStrategy horizontalMoveStrategy;
 
     @BeforeEach
     void setUp() {
-        moveStrategy = new HorizontalMoveStrategy();
+        horizontalMoveStrategy = new HorizontalMoveStrategy();
     }
 
     @Test
     void moveLeftTest() {
         Position currentPos = new Position(10, 10);
         for (int i = 0; i < 20; i++) {
-            currentPos = moveStrategy.move(currentPos);
+            currentPos = horizontalMoveStrategy.move(currentPos);
             Assertions.assertEquals(10 - i - 1, currentPos.getX());
             Assertions.assertEquals(10, currentPos.getY());
         }
@@ -30,12 +30,12 @@ public class HorizontalMoveStrategyTest {
 
         // Move to the left first
         for (int i = 0; i < 20; i++) {
-            currentPos = moveStrategy.move(currentPos);
+            currentPos = horizontalMoveStrategy.move(currentPos);
         }
 
         // Move right
         for (int i = 0; i < 20; i++) {
-            currentPos = moveStrategy.move(currentPos);
+            currentPos = horizontalMoveStrategy.move(currentPos);
             Assertions.assertEquals(-10 + i + 1, currentPos.getX());
             Assertions.assertEquals(10, currentPos.getY());
         }
