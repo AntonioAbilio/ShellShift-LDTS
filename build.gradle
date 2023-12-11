@@ -4,7 +4,7 @@ plugins {
 }
 
 application {
-    mainClassName = 'com.l06g06.shellshift.game.MainClass'
+    mainClassName = 'com.l06g06.shellshift.Game'
 }
 
 group 'com.l06g06.shellshift'
