@@ -21,40 +21,12 @@ public class GameViewer extends View<Map> {
 
     @Override
     public void drawElements(Gui gui) /*throws IOException*/ {
-
-        /*//DEBUG
-        System.out.println("Method Call to drawElements of GameViewer\n");*/
-
-        /*drawElements(gui, getModel().getBullets(), new BulletViewer());
-        drawElements(gui, getModel().getCoins(), new CoinViewer());
-        drawElements(gui, getModel().getEnemies(), new EnemyViewer());
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-        drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
-
-        //DEBUG
-        /*List<Platform> platforms = new ArrayList<Platform>();
-        platforms.add(new Platform(new Position(10,10)));
-        getModel().setPlatforms(platforms);
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());*/
-
-        /*drawElements(gui, getModel().getCoins(), new CoinViewer());*/
-        //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-
-        // Clean
-        //gui.setBackground("#000000");
-
-
-
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
-
-
-        //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
-        //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
 
         // HUD
         //Lives
