@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.junit.MockitoTestListener;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class ShopViewerTest {
 
         shopViewer.drawElements(gui);
         verify(gui, Mockito.times(1)).setGradientBackground(Mockito.any(String.class), Mockito.any(String.class));
-        verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Shop.getImage()), Mockito.any(Position.class));
+        verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Shop.getImage()), eq(new Position(65, 5)));
     }
 
 }
