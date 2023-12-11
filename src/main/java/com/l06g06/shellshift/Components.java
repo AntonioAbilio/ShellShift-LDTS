@@ -8,35 +8,35 @@ import java.util.List;
 public enum Components {
 
     Title(new String[] {
-            "      *******      *                 ***     ***              *******      *                  ***            ",
-            "    *       ***  **                   ***     ***           *       ***  **          *      ** ***      *    ",
-            "   *         **  **                    **      **          *         **  **         ***    **   ***    **    ",
-            "   **        *   **                    **      **          **        *   **          *     **          **    ",
-            "    ***          **                    **      **           ***          **                **        ********",
-            "   ** ***        **  ***      ***      **      **          ** ***        **  ***   ***     ******   ******** ",
-            "    *** ***      ** * ***    * ***     **      **           *** ***      ** * ***   ***    *****       **    ",
-            "      *** ***    ***   ***  *   ***    **      **             *** ***    ***   ***   **    **          **    ",
-            "        *** ***  **     ** **    ***   **      **               *** ***  **     **   **    **          **    ",
-            "          ** *** **     ** ********    **      **                 ** *** **     **   **    **          **    ",
-            "           ** ** **     ** *******     **      **                  ** ** **     **   **    **          **    ",
-            "            * *  **     ** **          **      **                   * *  **     **   **    **          **    ",
-            "  ***        *   **     ** ****    *   **      **         ***        *   **     **   **    **          **    ",
-            " *  *********    **     **  *******    *** *   *** *     *  *********    **     **   *** * **           **   ",
-            "*     *****       **    **   *****      ***     ***     *     *****       **    **    ***   **               ",
-            "*                       *                               *                       *                            ",
-            " **                    *                                 **                    *                             ",
-            "                      *                                                       *                              ",
-            "                     *                                                       *                               "
+            "      HHHHHHH      H                 HHH     HHH              HHHHHHH      H                  HHH            ",
+            "    H       HHH  HH                   HHH     HHH           H       HHH  HH          H      HH HHH      H    ",
+            "   H         HH  HH                    HH      HH          H         HH  HH         HHH    HH   HHH    HH    ",
+            "   HH        H   HH                    HH      HH          HH        H   HH          H     HH          HH    ",
+            "    HHH          HH                    HH      HH           HHH          HH                HH        HHHHHHHH",
+            "   HH HHH        HH  HHH      HHH      HH      HH          HH HHH        HH  HHH   HHH     HHHHHH   HHHHHHHH ",
+            "    HHH HHH      HH H HHH    H HHH     HH      HH           HHH HHH      HH H HHH   HHH    HHHHH       HH    ",
+            "      HHH HHH    HHH   HHH  H   HHH    HH      HH             HHH HHH    HHH   HHH   HH    HH          HH    ",
+            "        HHH HHH  HH     HH HH    HHH   HH      HH               HHH HHH  HH     HH   HH    HH          HH    ",
+            "          HH HHH HH     HH HHHHHHHH    HH      HH                 HH HHH HH     HH   HH    HH          HH    ",
+            "           HH HH HH     HH HHHHHHH     HH      HH                  HH HH HH     HH   HH    HH          HH    ",
+            "            H H  HH     HH HH          HH      HH                   H H  HH     HH   HH    HH          HH    ",
+            "  HHH        H   HH     HH HHHH    H   HH      HH         HHH        H   HH     HH   HH    HH          HH    ",
+            " H  HHHHHHHHH    HH     HH  HHHHHHH    HHH H   HHH H     H  HHHHHHHHH    HH     HH   HHH H HH           HH   ",
+            "H     HHHHH       HH    HH   HHHHH      HHH     HHH     H     HHHHH       HH    HH    HHH   HH               ",
+            "H                       H                               H                       H                            ",
+            " HH                    H                                 HH                    H                             ",
+            "                      H                                                       H                              ",
+            "                     H                                                       H                               "
     }, new String[] {} ,"Title"),
 
     Start(new String[]{
-            " *****                           ",
-            "*     * *****   **   *****  *****",
-            "*         *    *  *  *    *   *  ",
-            " *****    *   *    * *    *   *  ",
-            "      *   *   ****** *****    *  ",
-            "*     *   *   *    * *   *    *  ",
-            " *****    *   *    * *    *   *  "
+            " HHHHH                           ",
+            "H     H HHHHH   HH   HHHHH  HHHHH",
+            "H         H    H  H  H    H   H  ",
+            " HHHHH    H   H    H H    H   H  ",
+            "      H   H   HHHHHH HHHHH    H  ",
+            "H     H   H   H    H H   H    H  ",
+            " HHHHH    H   H    H H    H   H  "
     }, new String[] {
             " yyyyy                           ",
             "y     y yyyyy   yy   yyyyy  yyyyy",
@@ -48,13 +48,13 @@ public enum Components {
     }, "Start"),
 
     Statistics(new String[] {
-            " *****                                                   ",
-            "*     * *****   **   ***** *  ****  ***** *  ****   **** ",
-            "*         *    *  *    *   * *        *   * *    * *     ",
-            " *****    *   *    *   *   *  ****    *   * *       **** ",
-            "      *   *   ******   *   *      *   *   * *           *",
-            "*     *   *   *    *   *   * *    *   *   * *    * *    *",
-            " *****    *   *    *   *   *  ****    *   *  ****   **** "
+            " HHHHH                                                   ",
+            "H     H HHHHH   HH   HHHHH H  HHHH  HHHHH H  HHHH   HHHH ",
+            "H         H    H  H    H   H H        H   H H    H H     ",
+            " HHHHH    H   H    H   H   H  HHHH    H   H H       HHHH ",
+            "      H   H   HHHHHH   H   H      H   H   H H           H",
+            "H     H   H   H    H   H   H H    H   H   H H    H H    H",
+            " HHHHH    H   H    H   H   H  HHHH    H   H  HHHH   HHHH "
     }, new String[] {
             " yyyyy                                                   ",
             "y     y yyyyy   yy   yyyyy y  yyyy  yyyyy y  yyyy   yyyy ",
@@ -66,13 +66,13 @@ public enum Components {
     }, "Statistics"),
 
     Quit(new String[] {
-            " *****                ",
-            "*     * *    * * *****",
-            "*     * *    * *   *  ",
-            "*     * *    * *   *  ",
-            "*   * * *    * *   *  ",
-            "*    *  *    * *   *  ",
-            " **** *  ****  *   *  "
+            " HHHHH                ",
+            "H     H H    H H HHHHH",
+            "H     H H    H H   H  ",
+            "H     H H    H H   H  ",
+            "H   H H H    H H   H  ",
+            "H    H  H    H H   H  ",
+            " HHHH H  HHHH  H   H  "
     }, new String[] {
             " yyyyy                ",
             "y     y y    y y yyyyy",
@@ -84,13 +84,13 @@ public enum Components {
     }, "Quit"),
 
     Shop(new String[] {
-            " *****                      ",
-            "*     * *    *  ****  ***** ",
-            "*       *    * *    * *    *",
-            " *****  ****** *    * *    *",
-            "      * *    * *    * ***** ",
-            "*     * *    * *    * *     ",
-            " *****  *    *  ****  *     "
+            " HHHHH                      ",
+            "H     H H    H  HHHH  HHHHH ",
+            "H       H    H H    H H    H",
+            " HHHHH  HHHHHH H    H H    H",
+            "      H H    H H    H HHHHH ",
+            "H     H H    H H    H H     ",
+            " HHHHH  H    H  HHHH  H     "
     }, new String[] {
             " yyyyy                      ",
             "y     y y    y  yyyy  yyyyy ",
@@ -102,13 +102,13 @@ public enum Components {
     }, "Shop"),
     
     RapidFire(new String[] {
-            "******                            *******                ",
-            "*     *   **   *****  * *****     *       * *****  ******",
-            "*     *  *  *  *    * * *    *    *       * *    * *     ",
-            "******  *    * *    * * *    *    *****   * *    * ***** ",
-            "*   *   ****** *****  * *    *    *       * *****  *     ",
-            "*    *  *    * *      * *    *    *       * *   *  *     ",
-            "*     * *    * *      * *****     *       * *    * ******",
+            "HHHHHH                            HHHHHHH                ",
+            "H     H   HH   HHHHH  H HHHHH     H       H HHHHH  HHHHHH",
+            "H     H  H  H  H    H H H    H    H       H H    H H     ",
+            "HHHHHH  H    H H    H H H    H    HHHHH   H H    H HHHHH ",
+            "H   H   HHHHHH HHHHH  H H    H    H       H HHHHH  H     ",
+            "H    H  H    H H      H H    H    H       H H   H  H     ",
+            "H     H H    H H      H HHHHH     H       H H    H HHHHHH",
     }, new String[]{
             "yyyyyy                            yyyyyyy                ",
             "y     y   yy   yyyyy  y yyyyy     y       y yyyyy  yyyyyy",
@@ -120,13 +120,13 @@ public enum Components {
     }, "Rapid Fire"),
 
     ExtraLife(new String[]{
-        "*******                               *                      ",
-        "*       *    * ***** *****    **      *       * ****** ******",
-        "*        *  *    *   *    *  *  *     *       * *      *     ",
-        "*****     **     *   *    * *    *    *       * *****  ***** ",
-        "*         **     *   *****  ******    *       * *      *     ",
-        "*        *  *    *   *   *  *    *    *       * *      *     ",
-        "******* *    *   *   *    * *    *    ******* * *      ******"
+        "HHHHHHH                               H                      ",
+        "H       H    H HHHHH HHHHH    HH      H       H HHHHHH HHHHHH",
+        "H        H  H    H   H    H  H  H     H       H H      H     ",
+        "HHHHH     HH     H   H    H H    H    H       H HHHHH  HHHHH ",
+        "H         HH     H   HHHHH  HHHHHH    H       H H      H     ",
+        "H        H  H    H   H   H  H    H    H       H H      H     ",
+        "HHHHHHH H    H   H   H    H H    H    HHHHHHH H H      HHHHHH"
     }, new String[]{
         "yyyyyyy                               y                      ",
         "y       y    y yyyyy yyyyy    yy      y       y yyyyyy yyyyyy",
@@ -481,13 +481,13 @@ public enum Components {
             "  HHHHHHH"
     }, new String[]{}, "SpeedPowerUp"),
     Tutorial(new String[] {
-            "*******                                           ",
-            "   *    *    * *****  ****  *****  *   **   *     ",
-            "   *    *    *   *   *    * *    * *  *  *  *     ",
-            "   *    *    *   *   *    * *    * * *    * *     ",
-            "   *    *    *   *   *    * *****  * ****** *     ",
-            "   *    *    *   *   *    * *   *  * *    * *     ",
-            "   *     ****    *    ****  *    * * *    * ******"
+            "HHHHHHH                                           ",
+            "   H    H    H HHHHH  HHHH  HHHHH  H   HH   H     ",
+            "   H    H    H   H   H    H H    H H  H  H  H     ",
+            "   H    H    H   H   H    H H    H H H    H H     ",
+            "   H    H    H   H   H    H HHHHH  H HHHHHH H     ",
+            "   H    H    H   H   H    H H   H  H H    H H     ",
+            "   H     HHHH    H    HHHH  H    H H H    H HHHHHH"
     }, new String[]{
             "yyyyyyy                                           ",
             "   y    y    y yyyyy  yyyy  yyyyy  y   yy   y     ",
@@ -618,7 +618,19 @@ public enum Components {
             "HTTGGGGTTTTTTTTGGGGGGTH",
             " HTTTTTTTTTTTTTTTTTTTTH",
             "  HHHHHHHHHHHHHHHHHHHH",
-    }, new String[]{}, "Cloud");
+    }, new String[]{}, "Cloud"),
+
+    Platform(new String[] {
+            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
+            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
+            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
+            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
+    }, new String[]{
+            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
+            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
+            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
+            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
+    }, "Platform");
     
 
     private final String[] image;
