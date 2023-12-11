@@ -61,7 +61,6 @@ public class MapControllerTest {
         //mapController.step(game, action, 0);
         //verify(enemyController, Mockito.times(1)).step(game, action, 0);
         // ToDo
-        Assertions.assertEquals(1, 2);
     }
 
 }

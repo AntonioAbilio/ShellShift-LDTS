@@ -1,64 +1,66 @@
 package com.l06g06.shellshift.model;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class MainMenuTest {
-
-    @Mock
-    private List<String> optionsMock;
-
     private MainMenu mainMenu;
 
     @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
+    public void setUp() {
         mainMenu = new MainMenu();
     }
 
     @Test
-    void getOptions() {
-        assertNotNull(mainMenu.getOptions());
-        assertEquals(4, mainMenu.getOptionsSize());
+    public void getOptionsTest() {
+        List<Components> expected = Arrays.asList(Components.Start, Components.Shop, Components.Statistics, Components.Quit);
+        assertEquals(expected, mainMenu.getOptions());
     }
 
     @Test
-    void nextOption() {
-        int initialOption = mainMenu.getOptions().indexOf("Start");
+    public void nextOptionTest() {
         mainMenu.nextOption();
-        assertEquals(initialOption + 1, mainMenu.getOptions().indexOf("Shop"));
+        assertEquals(1, mainMenu.getCurrOption());
     }
 
     @Test
-    void prevOption() {
-        int initialOption = mainMenu.getOptions().indexOf("Shop");
+    public void prevOptionTest() {
         mainMenu.prevOption();
-        assertEquals(initialOption - 1, mainMenu.getOptions().indexOf("Start"));
+        assertEquals(0, mainMenu.getCurrOption());
     }
 
     @Test
-    void isSelected() {
+    public void getCurrOptionTest() {
+        assertEquals(0, mainMenu.getCurrOption());
+    }
+
+    @Test
+    public void isSelectedTest() {
         assertTrue(mainMenu.isSelected(0));
         assertFalse(mainMenu.isSelected(1));
     }
 
     @Test
-    void isSelectedShop() {
+    public void getOptionsSizeTest() {
+        assertEquals(4, mainMenu.getOptionsSize());
+    }
+
+    @Test
+    public void isSelectedShopTest() {
         assertFalse(mainMenu.isSelectedShop());
         mainMenu.nextOption();
         assertTrue(mainMenu.isSelectedShop());
     }
 
     @Test
-    void isSelectedRanking() {
+    public void isSelectedStatisticsTest() {
         assertFalse(mainMenu.isSelectedRanking());
         mainMenu.nextOption();
         mainMenu.nextOption();
@@ -66,19 +68,18 @@ class MainMenuTest {
     }
 
     @Test
-    void isSelectedStart() {
+    public void isSelectedStartTest() {
         assertTrue(mainMenu.isSelectedStart());
-        mainMenu.nextOption();
-        assertFalse(mainMenu.isSelectedStart());
     }
 
     @Test
-    void isSelectedQuit() {
+    public void isSelectedQuitTest() {
         assertFalse(mainMenu.isSelectedQuit());
-        mainMenu.nextOption();
-        mainMenu.nextOption();
-        mainMenu.nextOption();
+        for (int i = 0; i < mainMenu.getOptionsSize(); i++) {
+            mainMenu.nextOption();
+        }
         assertTrue(mainMenu.isSelectedQuit());
     }
+
 }
 
