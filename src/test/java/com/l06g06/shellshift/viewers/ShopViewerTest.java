@@ -1,38 +1,46 @@
 package com.l06g06.shellshift.viewers;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.shop.Shop;
 import com.l06g06.shellshift.viewer.shop.ShopViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 public class ShopViewerTest {
     private Shop shop;
-    private ShopViewer viewer;
+    private ShopViewer shopViewer;
     private Gui gui;
 
     @BeforeEach
     void setUp(){
-        shop = Mockito.mock(Shop.class);
-        viewer = new ShopViewer(shop);
-        gui = Mockito.mock(Gui.class);
+        this.shop = Mockito.mock(Shop.class);
+        this.shopViewer = new ShopViewer(shop);
+        this.gui = Mockito.mock(Gui.class);
     }
 
     @Test
     void drawShop() {
+        List<Components> mockComponents = new ArrayList<>();
+        mockComponents.add(Components.Shop);
+        when(shop.getText()).thenReturn(mockComponents);
+        when(shop.getIcons()).thenReturn(mockComponents);
 
-        try {
-            viewer.drawTest(gui);
-            Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(Position.class), Mockito.eq("Shop"), Mockito.eq("#FFFFF"));
-        } catch (IOException ioe) {
-            fail("Caught the IOException: " + ioe.getMessage());
-        }
-
+        shopViewer.drawElements(gui);
+        verify(gui, Mockito.times(1)).setGradientBackground(Mockito.any(String.class), Mockito.any(String.class));
+        verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Shop.getImage()), Mockito.any(Position.class));
     }
+
 }
