@@ -4,6 +4,7 @@ import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.StringJoiner;
 
 public enum Components {
 
@@ -186,8 +187,9 @@ public enum Components {
         "  RQQQQQQQ**R  ",
         "   RQQQQ***R   ",
         "    RQQ***R    ",
-        "      R**R     ",
-        "       RR      ",
+        "     R***R     ",
+        "      R*R      ",
+        "       R"
     }, new String[]{
             "  RR  RR",
             " RQQRRQ*R",
@@ -633,8 +635,35 @@ public enum Components {
     }, "Platform"),
 
     MonstersKilled(new String[]{
+            "H     H                                                                                        ",
+            "HH   HH  HHHH  H    H  HHHH  HHHHH HHHHHH HHHHH   HHHH     H    H H H      H      HHHHHH HHHHH ",
+            "H H H H H    H HH   H H        H   H      H    H H         H   H  H H      H      H      H    H",
+            "H  H  H H    H H H  H  HHHH    H   HHHHH  H    H  HHHH     HHHH   H H      H      HHHHH  H    H  H",
+            "H     H H    H H  H H      H   H   H      HHHHH       H    H  H   H H      H      H      H    H",
+            "H     H H    H H   HH H    H   H   H      H   H  H    H    H   H  H H      H      H      H    H  H",
+            "H     H  HHHH  H    H  HHHH    H   HHHHHH H    H  HHHH     H    H H HHHHHH HHHHHH HHHHHH HHHHH ",
 
     }, new String[]{}, "MonstersKilled"),
+
+    NumLives(new String[]{
+            "H                            ",
+            "H       H H    H HHHHHH  HHHH",
+            "H       H H    H H      H" ,
+            "H       H H    H HHHHH   HHHH   H",
+            "H       H H    H H           H",
+            "H       H  H  H  H      H    H  H",
+            "HHHHHHH H   HH   HHHHHH  HHHH"
+    }, new String[]{}, "NumLives"),
+    
+    CoinsCollected(new String[]{
+          " HHHHH                                                                                         ",
+          "H     H  HHHH  H H    H  HHHH      HHHH   HHHH  H      H      HHHHHH  HHHH  HHHHH HHHHHH HHHHH ",
+          "H       H    H H HH   H H         H    H H    H H      H      H      H    H   H   H      H    H",
+          "H       H    H H H H  H  HHHH     H      H    H H      H      HHHHH  H        H   HHHHH  H    H  H",
+          "H       H    H H H  H H      H    H      H    H H      H      H      H        H   H      H    H",
+          "H     H H    H H H   HH H    H    H    H H    H H      H      H      H    H   H   H      H    H  H",
+          " HHHHH   HHHH  H H    H  HHHH      HHHH   HHHH  HHHHHH HHHHHH HHHHHH  HHHH    H   HHHHHH HHHHH ",
+    }, new String[]{}, "CoinsCollected"),
 
     Highscores(new String[]{
             "H     H                                                          ",
@@ -683,7 +712,39 @@ public enum Components {
             "HHH     H   HHHH",
             "   H    H   H  H",
             "HHH     H   H  H"
-    }, new String[]{}, "Fifth");
+    }, new String[]{}, "Fifth"),
+    MoreBullets(new String[]{
+
+
+            "H     H",
+            "HH   HH  HHHH  HHHHH  HHHHHH    HHHHH  H    H H      H      HHHHHH HHHHH  HHHH",
+            "H H H H H    H H    H H         H    H H    H H      H      H        H   H",
+            "H  H  H H    H H    H HHHHH     HHHHH  H    H H      H      HHHHH    H    HHHH",
+            "H     H H    H HHHHH  H         H    H H    H H      H      H        H        H",
+            "H     H H    H H   H  H         H    H H    H H      H      H        H   H    H",
+            "H     H  HHHH  H    H HHHHHH    HHHHH   HHHH  HHHHHH HHHHHH HHHHHH   H    HHHH "
+
+
+    }, new String[]{
+            "y     y",
+            "yy   yy  yyyy  yyyyy  yyyyyy    yyyyy  y    y y      y      yyyyyy yyyyy  yyyy",
+            "y y y y y    y y    y y         y    y y    y y      y      y        y   y",
+            "y  y  y y    y y    y yyyyy     yyyyy  y    y y      y      yyyyy    y    yyyy",
+            "y     y y    y yyyyy  y         y    y y    y y      y      y        y        y",
+            "y     y y    y y   y  y         y    y y    y y      y      y        y   y    y",
+            "y     y  yyyy  y    y yyyyyy    yyyyy   yyyy  yyyyyy yyyyyy yyyyyy   y    yyyy "
+    }, "MoreBullets"),
+    
+    MoreBulletsIcon(new String[]{
+            " ",
+            " ",
+            "         V    ",
+            "        VVV   ",
+            "     RRR V    ",
+            "     *QGR     ",
+            "     **QR     ",
+            "     RRR      "
+    }, new String[]{}, "MoreBullets");
 
     private final String[] image;
     private final String[] imageSelected;

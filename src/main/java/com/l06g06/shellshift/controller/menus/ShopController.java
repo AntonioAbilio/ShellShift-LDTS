@@ -21,8 +21,6 @@ public class ShopController extends Controller<Shop> {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
-
-
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
@@ -39,20 +37,26 @@ public class ShopController extends Controller<Shop> {
                             Database.getInstance().setFiringStrategy(new RapidFireStrategy());
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
                             game.setState(new MainMenuState(new MainMenu()));
-
                         }
                     }
                     if (getModel().isSelectedExtraLife()) {
                         int price = getModel().getPrice(Components.ExtraLife);
-                        if (price <= Database.getInstance().getNumCoins()) {
+                        if (price <= Database.getInstance().getNumCoins() && Database.getInstance().getNumLives() < 8) {
                             Database.getInstance().setNumLives(Database.getInstance().getNumLives()+1);
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins()- price);
                             game.setState(new MainMenuState(new MainMenu()));
 
                         }
                     }
+                    if (getModel().isSelectedMoreBullets()) {
+                        int price = getModel().getPrice(Components.MoreBullets);
+                        Database.getInstance().addStartingBullets(10);
+                        Database.getInstance().setNumCoins(Database.getInstance().getNumCoins()- price);
+                        game.setState(new MainMenuState(new MainMenu()));
+                    }
                     break;
             }
+
             Game.sleepTimeMS(100);
         }
 

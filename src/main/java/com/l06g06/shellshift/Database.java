@@ -14,15 +14,15 @@ public class Database {
     private static Database instance;
 
     private FireStrategy firingStrategy;
-    private int numLives;
-    private int damageMultiplier;
-    private int numCoins;
-    private int monstersKilled;
+    private int numLives = 3;
+    private int damageMultiplier = 1;
+    private int numCoins = 999;
+    private int collectedCoins = 0;
+    private int monstersKilled = 0;
+    private int startingNumBullets = 30;
     private List<Integer> scores = new ArrayList<>(0);
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
-        this.numLives = 5;
-        this.damageMultiplier = 1;
         for (int i = 0 ; i < 3; i++)  addScore(0);
     }
 
@@ -83,6 +83,7 @@ public class Database {
 
     public void addCoins(int coins) {
         this.numCoins += coins;
+        addCollectedCoins(coins);
         if (getMAXCOINS() < numCoins) this.numCoins = getMAXCOINS();
     }
 
@@ -101,7 +102,32 @@ public class Database {
     public int getMAXLIVES() {
         return 8;
     }
+    public int getMAXBULLETS() {
+        return 200;
+    }
     public void addMonstersKilled(int monstersKilled) {
         this.monstersKilled += monstersKilled;
+    }
+
+    public int getCollectedCoins() {
+        return collectedCoins;
+    }
+
+    public void setCollectedCoins(int collectedCoins) {
+        this.collectedCoins = collectedCoins;
+    }
+
+    public void addCollectedCoins(int coins) {
+        this.collectedCoins += coins;
+        if (collectedCoins > getMAXCOINS()) this.collectedCoins = getMAXCOINS();
+    }
+
+    public void addStartingBullets(int bullets) {
+        this.startingNumBullets += bullets;
+        if (this.startingNumBullets > getMAXBULLETS()) this.startingNumBullets = getMAXBULLETS();
+    }
+
+    public int getStartingNumBullets() {
+        return this.startingNumBullets;
     }
 }

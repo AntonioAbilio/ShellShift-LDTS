@@ -52,7 +52,7 @@ public class MapController extends GameController{
             if (lives <= 0)
                 game.setState(new GameOverState(new GameOver()));
             else
-                getModel().getChell().setLives(lives - 1);
+                getModel().getChell().decreaseLives();
         }
 
         // Check for Bullet and Enemy collisions. -> mudar isto temos no bullet controller esta função e passar o game parece estranho

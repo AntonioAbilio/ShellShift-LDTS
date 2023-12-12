@@ -3,11 +3,12 @@ package com.l06g06.shellshift.model.game.gun;
 import com.l06g06.shellshift.Database;
 
 public class Gun {
-    private int numBullets = 20;
+    private int numBullets;
     private FireStrategy strategy;
 
     public Gun(FireStrategy strategy) {
         this.strategy = Database.getInstance().getFiringStrategy();
+        this.numBullets = Database.getInstance().getStartingNumBullets();
     }
     public void decreaseNumBullet() {
         this.numBullets--;

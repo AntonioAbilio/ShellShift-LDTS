@@ -13,8 +13,9 @@ public class Shop {
     public Shop() {
         this.options.put(Components.RapidFire, 100);
         this.options.put(Components.ExtraLife, 50);
+        this.options.put(Components.MoreBullets, 10);
         this.options.put(Components.Quit, 0);
-        this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon);
+        this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon, Components.MoreBulletsIcon);
     }
 
     public void nextOption() {
@@ -58,6 +59,10 @@ public class Shop {
 
     public boolean isSelectedQuit() {
         return isSelected(this.options.size()-1);
+    }
+
+    public boolean isSelectedMoreBullets() {
+        return isSelected(2);
     }
 
 

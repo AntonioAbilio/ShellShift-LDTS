@@ -6,7 +6,6 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class Chell extends Element {
     private Gun gun;
@@ -14,9 +13,8 @@ public class Chell extends Element {
     private float velocity = 250F;
     private int gravity = 1000;
     private int horizontalSpeed = 1;
-   // private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
-
+    private boolean invincible = false;
     private final static int height = 15;
     private final static int width = 15;
 
@@ -69,7 +67,8 @@ public class Chell extends Element {
     }
 
     public void decreaseLives() {
-        this.lives--;
+        if (!invincible)
+            this.lives--;
     }
 
     public void increaseLives() {
@@ -100,7 +99,7 @@ public class Chell extends Element {
         return horizontalSpeed;
     }
 
-    public void setHorizontalSpeed(int speed) {
+    public void setHorizontalSpeedWithTimer(int speed) {
         this.horizontalSpeed = speed;
         // Schedule a task to reset speed after 3 seconds
         Timer timer = new Timer();
@@ -116,4 +115,22 @@ public class Chell extends Element {
     private void resetToDefaultSpeed() {
         this.horizontalSpeed = 1;
     }
+    public void activateInvincibility() {
+        this.invincible = true;
+        // Schedule a task to deactivate invincibility after 10 seconds
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                deactivateInvincibility();
+                timer.cancel(); // Stop the timer after deactivating invincibility
+            }
+        }, 10000); // 10000 milliseconds = 10 seconds
+    }
+
+    private void deactivateInvincibility() {
+        this.invincible = false;
+    }
+
+
 }

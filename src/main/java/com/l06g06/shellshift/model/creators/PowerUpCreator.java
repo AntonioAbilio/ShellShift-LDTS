@@ -6,6 +6,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,6 +21,7 @@ public class PowerUpCreator extends Creator {
         Position pos = new Position(0,0);
         availablePowerUps.put(0, new BulletPowerUp(pos));
         availablePowerUps.put(1, new SpeedPowerUp(pos));
+        availablePowerUps.put(2, new StarPowerUp(pos));
     }
     @Override
     public Element create(Position position) {
@@ -31,7 +33,10 @@ public class PowerUpCreator extends Creator {
         if (powerUp instanceof BulletPowerUp) {
             return new BulletPowerUp(position);
         }
-        else return new SpeedPowerUp(position);
+        if (powerUp instanceof StarPowerUp) {
+            return new StarPowerUp(position);
+        }
+        else return new BulletPowerUp(position);
 
     }
 }
