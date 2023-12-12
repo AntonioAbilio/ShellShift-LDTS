@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.menus;
 
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
@@ -32,6 +33,7 @@ public class MainMenuController extends Controller<MainMenu> {
                     getModel().nextOption();
                     break;
                 case SELECT:
+                    Sound.playSound(Sound.SoundsFx.OptionSelect);
                     if (getModel().isSelectedQuit()) game.setState(null);
                     if (getModel().isSelectedStatistics()) game.setState(new StatisticsState(new Statistics()));
                     if (getModel().isSelectedShop()) game.setState(new ShopState(new Shop()));

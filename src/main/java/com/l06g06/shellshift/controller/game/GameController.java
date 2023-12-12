@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -24,6 +25,7 @@ public abstract class GameController extends Controller<Map> {
         while (enemiesIterator.hasNext()) {
             Enemy enemy = enemiesIterator.next();
             if (element.getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
+                Sound.playSound(Sound.SoundsFx.MonsterCollision);
                 enemiesIterator.remove();
                 isColliding = true;
             }
