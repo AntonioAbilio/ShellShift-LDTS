@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.game.gun;
 
 import com.l06g06.shellshift.Database;
+import com.l06g06.shellshift.Sound;
 
 public class Gun {
     private int numBullets = 10000;
@@ -10,6 +11,7 @@ public class Gun {
         this.strategy = Database.getInstance().getFiringStrategy();
     }
     public void decreaseNumBullet() {
+        Sound.playSound(Sound.SoundsFx.BulletFired);
         this.numBullets--;
     }
 

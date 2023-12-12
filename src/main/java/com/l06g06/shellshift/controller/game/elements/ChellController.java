@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -66,7 +67,9 @@ public class ChellController extends GameController {
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
-                    if (!isJumping && canJump) jump(time);
+                    if (!isJumping && canJump){
+                        jump(time);
+                    }
                     break;
                 case LEFT:
                     moveLEFT();
@@ -81,6 +84,10 @@ public class ChellController extends GameController {
     }
 
     public void jump(long time){
+        if (!isJumping){
+            if (time - jumpStartTime >= 500)
+                Sound.playSound(Sound.SoundsFx.Jump);
+        }
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();
@@ -95,16 +102,16 @@ public class ChellController extends GameController {
         // Calculate the new position using the updated elapsed time
         int y = (int) (groundY - (getModel().getChell().getVelocity() * elapsedTime - 0.5 * getModel().getChell().getGravity() * elapsedTime * elapsedTime));
 
-        System.out.println(y);
+        //System.out.println(y);
 
         // Update Chell's position;
         getModel().getChell().setPosition(new Position(x, y));
 
         // Check if Chell is moving up or down based on the change in position
         if (y < previousY) {
-            System.out.println("Chell is going up");
+            //System.out.println("Chell is going up");
         } else if (y > previousY) {
-            System.out.println("Chell is falling");
+            //System.out.println("Chell is falling");
             lookForColisions();
         }
 
@@ -112,7 +119,7 @@ public class ChellController extends GameController {
 
         // Check if ground already reached
         if (getModel().getChell().getPosition().getY() >= groundY + 1) {
-            System.out.println("True");
+            //System.out.println("True");
             isJumping = false;
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
         }

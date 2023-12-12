@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
@@ -18,6 +19,7 @@ public class CoinController extends GameController {
     double shiftCooldown = 0.1; // Shift every 0.1 seconds
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
+    long lastTimePickedUP = 0;
 
     public CoinController(Map map) {
         super(map);
@@ -39,7 +41,7 @@ public class CoinController extends GameController {
             lastShiftTime = currentTime;
             left_shift();
         }
-        coinCollision();
+        coinCollision(time);
 
     }
 
@@ -51,7 +53,7 @@ public class CoinController extends GameController {
         }
     }
 
-    public void coinCollision() {
+    public void coinCollision(long time) {
         List<Coin> coins = getModel().getCoins();
         Iterator<Coin> coinsIterator = coins.iterator();
         while (coinsIterator.hasNext()) {
@@ -59,6 +61,9 @@ public class CoinController extends GameController {
 
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
+
+                Sound.playSound(Sound.SoundsFx.Coin);
+                lastTimePickedUP = time;
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }
         }

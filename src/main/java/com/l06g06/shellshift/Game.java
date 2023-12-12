@@ -22,9 +22,8 @@ public class Game {
     private KeyListener keysListen;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
-         this.gui = new LanternaGUI(160, 100);
-         this.state = new MainMenuState(new MainMenu());
-
+        this.gui = new LanternaGUI(160, 100);
+        this.state = new MainMenuState(new MainMenu());
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
@@ -43,6 +42,7 @@ public class Game {
     }
 
     private void start() throws IOException {
+        //Sound.playSound(Sound.SoundsFx.Coin);
         int FPS = 60;
         int frameTime = 1000 / FPS;
         this.keysListen = new ListenForKeys(this.gui);
