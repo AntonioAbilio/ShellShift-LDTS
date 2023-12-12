@@ -19,6 +19,7 @@ public class Map {
     private final int height;
 
     private int score = 0;
+    private int speed = 1;
 
     // DEBUG
     private Chell chell = new Chell(new Position(80,0));
@@ -237,6 +238,14 @@ public class Map {
 
     public PowerUpSpawner getPowerUpSpawner() {
         return this.powerUpSpawner;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
     }
 
     // TODO

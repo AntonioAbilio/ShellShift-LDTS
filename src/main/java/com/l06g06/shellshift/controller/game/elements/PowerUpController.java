@@ -10,6 +10,7 @@ import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -43,6 +44,7 @@ public class PowerUpController extends GameController {
             left_shift();
         }
 
+        powerUpCollision();
 
     }
 
@@ -74,6 +76,18 @@ public class PowerUpController extends GameController {
 
         Position powerUpPosition = new Position(randomPlatform.getPosition().getX() + offsetX, minY - 15);
         getModel().getPowerUpSpawner().spawn(powerUpPosition);
+    }
+
+    public void powerUpCollision() {
+        List<PowerUp> powerUps = getModel().getPowerUps();
+        Iterator<PowerUp> powerUpIterator = powerUps.iterator();
+        while(powerUpIterator.hasNext()) {
+            PowerUp powerUp = powerUpIterator.next();
+            if (getModel().getChell().getPolygon().intersects(powerUp.getPolygon().getBounds2D())) {
+                powerUp.activate(getModel());
+                powerUpIterator.remove();
+            }
+        }
     }
 
 }

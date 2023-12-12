@@ -10,16 +10,16 @@ public class Coin extends Element{
     public Coin(Position position) {
         super(position);
 
-        Polygon chellHitbox = new Polygon();
+        Polygon coinHitbox = new Polygon();
 
         int x = position.getX();
         int y = position.getY();
 
-        chellHitbox.addPoint(x+1,y+1);
-        chellHitbox.addPoint(x+width-1,y+1);
-        chellHitbox.addPoint(x+1, y+height-1);
-        chellHitbox.addPoint(x+width-1, y+height-1);
-        this.hitbox = chellHitbox;
+        coinHitbox.addPoint(x+1,y+1);
+        coinHitbox.addPoint(x+width-1,y+1);
+        coinHitbox.addPoint(x+1, y+height-1);
+        coinHitbox.addPoint(x+width-1, y+height-1);
+        this.hitbox = coinHitbox;
     }
 
     public int getValue() {
