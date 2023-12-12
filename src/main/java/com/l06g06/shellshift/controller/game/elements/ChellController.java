@@ -23,7 +23,8 @@ public class ChellController extends GameController {
     int groundY;
     int previousY;
     long hitProtectionStartTime;
-    double blinkTime = 0.5;
+    double shiftCooldown = 0.1; // Shift every 0.1 seconds
+    double lastShiftTime = 0;
 
     public ChellController(Map map) {
         super(map);
@@ -86,6 +87,13 @@ public class ChellController extends GameController {
         }
 
         if (isJumping) jumpUpdate(time);
+
+        double currentTime = time / 1000.0; // Convert to seconds
+
+        if (currentTime - lastShiftTime >= shiftCooldown){
+            lastShiftTime = currentTime;
+            left_shift();
+        }
     }
 
     public void jump(long time){
@@ -146,17 +154,21 @@ public class ChellController extends GameController {
 
     public void blink(long time, long hitProtectionStartTime){
         double elapsedTimeSinceHitProtection = ((double) time - (double) hitProtectionStartTime) / 1000;
-        //System.out.println(elapsedTimeSinceHitProtection);
         if ((elapsedTimeSinceHitProtection > 0 && elapsedTimeSinceHitProtection < 0.3)
             || (elapsedTimeSinceHitProtection > 0.6 && elapsedTimeSinceHitProtection < 0.9)
             || (elapsedTimeSinceHitProtection > 1.2 && elapsedTimeSinceHitProtection < 1.5)) getModel().getChell().setBlink(false);
         else getModel().getChell().setBlink(true);
         if (elapsedTimeSinceHitProtection >= 2){
             getModel().getChell().setOnHitProtection(false);
-            //System.out.println("Not on hit protection anymore");
         }
-        // ToDo: code for blinking
     }
+
+    public void left_shift(){
+        int x = getModel().getChell().getPosition().getX();
+        int y = getModel().getChell().getPosition().getY();
+        getModel().getChell().setPosition(new Position(x - 1, y));
+    }
+
 }
 
 
