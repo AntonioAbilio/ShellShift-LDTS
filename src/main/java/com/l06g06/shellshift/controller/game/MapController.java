@@ -32,6 +32,8 @@ public class MapController extends GameController{
     //private final SoftMonsterController softMonsterController;
     //private final HardMonsterController hardMonsterController;
     private final EnemyController enemyController;
+    static long gameStartTime;
+    private boolean first;
 
     public MapController(Map map){
         super(map);
@@ -43,6 +45,7 @@ public class MapController extends GameController{
         //this.softMonsterController = new SoftMonsterController(map);
         //this.hardMonsterController = new HardMonsterController(map);
         this.enemyController = new EnemyController(map);
+        this.first = true;
         //ToDo (more are missing)
     }
 
@@ -80,6 +83,11 @@ public class MapController extends GameController{
 
     // Step should give the received action to each controller...
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        if (first){
+            gameStartTime = time;
+            first = false;
+        }
+
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
@@ -112,5 +120,9 @@ public class MapController extends GameController{
 
     public void setAddedScoreTimer(long addedScoreTimer) {
         this.addedScoreTimer = addedScoreTimer;
+    }
+
+    public static long getGameStartTime(){
+        return gameStartTime;
     }
 }
