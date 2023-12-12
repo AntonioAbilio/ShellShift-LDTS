@@ -96,7 +96,7 @@ public class Database {
     }
 
     public int getMAXCOINS() {
-        return 1000;
+        return 999;
     }
 
     public int getMAXLIVES() {
