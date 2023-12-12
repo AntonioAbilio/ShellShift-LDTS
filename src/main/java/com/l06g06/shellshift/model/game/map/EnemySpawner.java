@@ -9,7 +9,6 @@ import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import java.util.List;
 
 public class EnemySpawner {
-    private int i = 0;
     private EnemyCreator enemyCreator;
     private List<Enemy> enemies;
 
@@ -22,7 +21,7 @@ public class EnemySpawner {
         Enemy spawned_enemy = (Enemy) enemyCreator.create(position);
         enemies.add(spawned_enemy);
         for (int i = 0; i < enemies.size(); i++){
-            if (enemies.get(i).getPosition().getX() <= 40) enemies.remove(i);
+            if (enemies.get(i).getPosition().getX() <= -30) enemies.remove(i);
         }
     }
 

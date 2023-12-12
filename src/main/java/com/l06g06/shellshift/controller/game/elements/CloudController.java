@@ -14,11 +14,10 @@ import java.util.List;
 
 public class CloudController extends GameController {
     private double spawnCooldown = 3; // Spawn every 3 seconds
-    private double shiftCooldown = 0.1; // Shift every 0.1 seconds
+    private double shiftCooldown = 0.3; // Shift every 0.3 seconds
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
 
-    private boolean delayBackground = false;
 
     public CloudController(Map map) {
         super(map);
@@ -37,18 +36,16 @@ public class CloudController extends GameController {
     }
 
     public void left_shift(){
-        if (!delayBackground) delayBackground = true;
-        else {
-            delayBackground = false;
-            List<Cloud> clouds = getModel().getClouds();
-            Iterator<Cloud> cloudIterator = clouds.iterator();
-            while (cloudIterator.hasNext()) {
-                Cloud cloud = cloudIterator.next();
-                if (cloud.getPosition().getX() < -10) {
-                    cloudIterator.remove();
-                } else cloud.setPosition(new Position(cloud.getPosition().getX() - 1, cloud.getPosition().getY()));
-            }
+
+        List<Cloud> clouds = getModel().getClouds();
+        Iterator<Cloud> cloudIterator = clouds.iterator();
+        while (cloudIterator.hasNext()) {
+            Cloud cloud = cloudIterator.next();
+            if (cloud.getPosition().getX() < -50) {
+                cloudIterator.remove();
+            } else cloud.setPosition(new Position(cloud.getPosition().getX() - 1, cloud.getPosition().getY()));
         }
+
 
 
     }

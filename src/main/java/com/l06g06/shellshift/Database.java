@@ -6,6 +6,7 @@ import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class Database {
     private List<Integer> scores = new ArrayList<>(0);
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
-        this.numLives = 3;
+        this.numLives = 5;
         this.damageMultiplier = 1;
+        for (int i = 0 ; i < 3; i++)  addScore(0);
     }
 
     public static Database getInstance() {
@@ -74,8 +76,8 @@ public class Database {
     public void addScore(int score) {
         this.scores.add(score);
         this.scores.sort(Collections.reverseOrder());
-        if (this.scores.size() > 5) {
-            this.scores = this.scores.subList(0,5);
+        if (this.scores.size() > 3) {
+            this.scores = this.scores.subList(0,3);
         }
     }
 
@@ -94,5 +96,12 @@ public class Database {
 
     public int getMAXCOINS() {
         return 1000;
+    }
+
+    public int getMAXLIVES() {
+        return 8;
+    }
+    public void addMonstersKilled(int monstersKilled) {
+        this.monstersKilled += monstersKilled;
     }
 }

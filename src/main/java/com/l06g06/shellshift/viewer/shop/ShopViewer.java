@@ -20,11 +20,7 @@ public class ShopViewer extends View<Shop> {
         gui.drawImageASCII(Components.Shop.getImage(), new Position(10, 8));
         gui.drawImageASCII(Components.Coin.getImageSelected(), new Position(130,6));
 
-        String coins = Integer.toString(Database.getInstance().getNumCoins());
-        for (int i = 0; i < coins.length(); i++) {
-            char digit = coins.charAt(i);
-            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( 138 + i * 6, 6));
-        }
+
         gui.numToASCII(Database.getInstance().getNumCoins(),138,6);
 
         int i = 0;

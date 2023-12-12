@@ -29,7 +29,7 @@ public class PlatformController extends GameController {
         // Spawn platforms logic
         if (currentTime - lastSpawnTime >= spawnCooldown){
             lastSpawnTime = currentTime;
-            getModel().getPlatformSpawner().spawn(new Position(110, getModel().getChell().getPosition().getY()));
+            getModel().getPlatformSpawner().spawn(new Position(250, getModel().getChell().getPosition().getY()));
         }
 
         // Shift platforms logic

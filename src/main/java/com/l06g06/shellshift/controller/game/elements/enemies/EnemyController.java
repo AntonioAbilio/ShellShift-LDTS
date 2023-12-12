@@ -29,13 +29,13 @@ public class EnemyController extends GameController {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        // Spawn coin logic
+        // Spawn enemy logic
         if (currentTime - lastSpawnTime >= spawnCooldown){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
-        // Shift coin logic
+        // Shift enemy logic
         if (currentTime - lastShiftTime >= shiftCooldown){
             lastShiftTime = currentTime;
             left_shift();

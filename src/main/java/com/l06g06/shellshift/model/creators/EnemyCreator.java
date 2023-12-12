@@ -12,7 +12,7 @@ import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.Vertical
 
 import java.util.Random;
 
-public class EnemyCreator extends Creator{
+public class EnemyCreator extends Creator {
     public Element create(Position position) {
         Random rn = new Random();
         int maximum = 50;

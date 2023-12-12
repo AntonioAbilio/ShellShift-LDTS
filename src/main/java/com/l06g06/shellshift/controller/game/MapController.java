@@ -28,6 +28,7 @@ public class MapController extends GameController{
 
     private final CloudController cloudController;
 
+    private final PowerUpController powerUpController;
     public MapController(Map map){
         super(map);
         this.chellController = new ChellController(map);
@@ -39,6 +40,7 @@ public class MapController extends GameController{
         //this.hardMonsterController = new HardMonsterController(map);
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
+        this.powerUpController = new PowerUpController(map);
         //ToDo (more are missing)
     }
 
@@ -86,6 +88,7 @@ public class MapController extends GameController{
         platformController.step(game, action, time);
         coinController.step(game, action, time);
         cloudController.step(game, action, time);
+        powerUpController.step(game, action, time);
 
 
         /*
@@ -104,7 +107,7 @@ public class MapController extends GameController{
         if (getModel().getChell().getPosition().getY() > 150 | getModel().getChell().getPosition().getX() < 0 | getModel().getChell().getLives() <= 0) {
             Database.getInstance().addScore(getModel().getScore());
             Database.getInstance().addCoins(getModel().getCoinsCollected());
-            Database.getInstance().setMonstersKilled(getModel().getMonstersKilled());
+            Database.getInstance().addMonstersKilled(getModel().getMonstersKilled());
             getModel().stopCloudAddingTask();
             Game.sleepTimeMS(200);
             game.setState((new GameOverState(new GameOver())));

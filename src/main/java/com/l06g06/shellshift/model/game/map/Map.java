@@ -3,10 +3,10 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -28,13 +28,14 @@ public class Map {
     private List<Enemy> enemies = new ArrayList<>(0);
     private List<Platform> platforms = new ArrayList<>(0);
     private List<Bullet> bullets = new ArrayList<>(0);
-    private List<PowerUp> powerups = new ArrayList<>(0);
+    private List<PowerUp> powerUps = new ArrayList<>(0);
     private List<Coin> coins = new ArrayList<>(0);
     private List<Cloud> clouds = new ArrayList<>(0);
 
     private PlatformSpawner platformSpawner;
     private CoinSpawner coinSpawner;
     private EnemySpawner enemySpawner;
+    private PowerUpSpawner powerUpSpawner;
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
     private int coinsCollected = 0;
@@ -48,7 +49,7 @@ public class Map {
         this.bullets = new ArrayList<Bullet>();
 
         //plataforma inicial
-        this.platforms.add(new Platform(new Position(130, 55)));
+        this.platforms.add(new Platform(new Position(140, 55)));
 
 
         // DEBUG
@@ -64,9 +65,8 @@ public class Map {
 
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
-        //this.softMonsterSpawner = new SoftMonsterSpawner(enemies);
-        //this.hardMonsterSpawner = new HardMonsterSpawner(enemies);
         this.enemySpawner = new EnemySpawner(enemies);
+        this.powerUpSpawner = new PowerUpSpawner(powerUps);
 
         // Debug
         /*List<Bullet> bulls = new ArrayList<>();
@@ -162,12 +162,12 @@ public class Map {
     }
 
     // PowerUps
-    public List<PowerUp> getPowerups(){
-        return powerups;
+    public List<PowerUp> getPowerUps(){
+        return powerUps;
     }
 
-    public void setPowerups(List<PowerUp> pups) {
-        this.powerups = pups;
+    public void setPowerUps(List<PowerUp> pups) {
+        this.powerUps = pups;
     }
 
     // Coins
@@ -233,6 +233,10 @@ public class Map {
 
     public List<Cloud> getClouds() {
         return clouds;
+    }
+
+    public PowerUpSpawner getPowerUpSpawner() {
+        return this.powerUpSpawner;
     }
 
     // TODO

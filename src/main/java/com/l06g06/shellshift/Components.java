@@ -630,14 +630,66 @@ public enum Components {
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-    }, "Platform");
-    
+    }, "Platform"),
+
+    MonstersKilled(new String[]{
+
+    }, new String[]{}, "MonstersKilled"),
+
+    Highscores(new String[]{
+            "H     H                                                          ",
+            "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  HHHHH  HHHHHH  HHHH ",
+            "H     H H H    H H    H H      H    H H    H H    H H      H     ",
+            "HHHHHHH H H      HHHHHH  HHHH  H      H    H H    H HHHHH   HHHH ",
+            "H     H H H  HHH H    H      H H      H    H HHHHH  H           H",
+            "H     H H H    H H    H H    H H    H H    H H   H  H      H    H",
+            "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  H    H HHHHHH  HHHH ",
+    }, new String[]{}, "Highscores"),
+    First(new String[]{
+            " HH    HHH HHHHH",
+            "H H   H      H",
+            "  H    HH    H",
+            "  H      H   H",
+            "HHHH  HHH    H"
+    }, new String[]{}, "First"),
+
+    Second(new String[]{
+            " HH   H   H HHH",
+            "H  H  HH  H H  H",
+            "  H   H H H H  H",
+            " H    H  HH H  H",
+            "HHHH  H   H HHH",
+    }, new String[]{}, "Second"),
+
+    Third(new String[]{
+            " HH   HHH  HHH  ",
+            "H  H  H  H H  H ",
+            "  HH  HHH  H  H",
+            "H  H  H  H H  H  ",
+            " HH   H  H HHH "
+    }, new String[]{}, "Third"),
+
+    Fourth(new String[]{
+            "H  H  HHHHH H  H",
+            "H  H    H   H  H",
+            "HHHH    H   HHHH",
+            "   H    H   H  H",
+            "   H    H   H  H"
+    }, new String[]{}, "Fourth"),
+
+    Fifth(new String[]{
+            "HHHH  HHHHH H  H",
+            "H       H   H  H",
+            "HHH     H   HHHH",
+            "   H    H   H  H",
+            "HHH     H   H  H"
+    }, new String[]{}, "Fifth");
 
     private final String[] image;
     private final String[] imageSelected;
     private final String name;
     private static final List<Components> numbers = Arrays.asList(Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
-
+    private static final List<Components> ordinalNumbers = Arrays.asList(First, Second, Third, Fourth, Fifth);
     Components(String[] image, String[] imageSelected, String name) {
         this.image = image;
         this.imageSelected = imageSelected;
@@ -676,5 +728,9 @@ public enum Components {
 
     public static List<Components> getNumbers() {
         return numbers;
+    }
+
+    public static List<Components> getOrdinalNumbers() {
+        return ordinalNumbers;
     }
 }

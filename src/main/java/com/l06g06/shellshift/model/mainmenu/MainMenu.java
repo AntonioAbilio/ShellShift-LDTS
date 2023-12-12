@@ -43,10 +43,6 @@ public class MainMenu {
         return isSelected(1);
     }
 
-    public boolean isSelectedRanking() {
-        return isSelected(3);
-    }
-
     public boolean isSelectedStart() {
         return isSelected(0);
     }
@@ -60,7 +56,7 @@ public class MainMenu {
     }
 
     public boolean isSelectedStatistics() {
-        return isSelected(4);
+        return isSelected(3);
     }
 
 }

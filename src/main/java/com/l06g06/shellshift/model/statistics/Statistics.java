@@ -9,12 +9,6 @@ public class Statistics{
     public Statistics() {
         this.options = Arrays.asList("Main Menu");
     }
-    public void prevOption() {
-        currOption--;
-        if (currOption < 0)
-            currOption = this.options.size()-1;
-    }
-
     public boolean isSelected(int i) {
         return i == currOption;
     }

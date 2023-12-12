@@ -36,7 +36,7 @@ public class BulletController extends GameController {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
-            Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x : x - 16, y - 5));
+            Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x : x - 16, y - 6));
             bullet.setDirection(getModel().getChell().isDirection());
             getModel().addBullet(bullet);
 
