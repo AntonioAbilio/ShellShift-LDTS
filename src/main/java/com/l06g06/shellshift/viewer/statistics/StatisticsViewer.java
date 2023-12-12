@@ -18,13 +18,22 @@ public class StatisticsViewer extends View<Statistics> {
     @Override
     public void drawElements(Gui gui) {
         gui.setGradientBackground("#ABF0F9", "#457da8");
-        gui.drawImageASCII(Components.Highscores.getImage(), new Position(10,10));
+        gui.drawImageASCII(Components.Highscores.getImage(), new Position(8,10));
 
         List<Integer> scores = Database.getInstance().getScores();
         for (int i = 0; i < scores.size(); i++) {
             gui.drawImageASCII(Components.getOrdinalNumbers().get(i).getImage(), new Position(10,25 + i * 10));
             gui.numToASCII(scores.get(i), 30, 25 + i * 10);
         }
+
+        gui.drawImageASCII(Components.MonstersKilled.getImage(), new Position(8, 58));
+        gui.numToASCII(Database.getInstance().getMonstersKilled(), 110, 60);
+
+        gui.drawImageASCII(Components.NumLives.getImage(), new Position(8, 70));
+        gui.numToASCII(Database.getInstance().getNumLives(), 45, 72);
+
+        gui.drawImageASCII(Components.CoinsCollected.getImage(), new Position(8, 83));
+        gui.numToASCII(Database.getInstance().getCollectedCoins(), 110 ,85);
 
         //gui.numToASCII(Database.getInstance().getMonstersKilled(), 50,50);
         //gui.numToASCII(Database.getInstance().getNumLives(), 50,50);

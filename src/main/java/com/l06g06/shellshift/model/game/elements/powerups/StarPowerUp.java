@@ -10,6 +10,8 @@ public class StarPowerUp extends PowerUp{
 
     @Override
     public void activate(Map map) {
-
+        map.getChell().activateInvincibility();
+        map.getChell().setHorizontalSpeedWithTimer(2);
+        map.getGun().setNumBullets(map.getGun().getNumBullets() + 50);
     }
 }

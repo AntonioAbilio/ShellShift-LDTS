@@ -10,6 +10,6 @@ public class SpeedPowerUp extends PowerUp{
 
     @Override
     public void activate(Map map) {
-        map.getChell().setHorizontalSpeed(2);
+        map.getChell().setHorizontalSpeedWithTimer(2);
     }
 }

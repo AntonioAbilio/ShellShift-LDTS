@@ -101,7 +101,7 @@ public class Map {
         executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(0, 15), TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
-        executorService.close();
+        executorService.shutdown();
     }
 
     private void addCloud() {
