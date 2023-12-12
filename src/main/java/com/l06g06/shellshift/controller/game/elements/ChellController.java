@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -90,7 +91,7 @@ public class ChellController extends GameController {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= shiftCooldown){
+        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -145,7 +146,7 @@ public class ChellController extends GameController {
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         getModel().getChell().setDirection(true);
-        getModel().getChell().setPosition(new Position(x+1,y));
+        getModel().getChell().setPosition(new Position(x+2,y));
     }
 
     public void setHitProtectionStartTime(long hitProtectionStartTime){

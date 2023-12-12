@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -38,7 +39,7 @@ public class EnemyController extends GameController {
         }
 
         // Shift coin logic
-        if (currentTime - lastShiftTime >= shiftCooldown){
+        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }

@@ -33,7 +33,11 @@ public class MapController extends GameController{
     //private final HardMonsterController hardMonsterController;
     private final EnemyController enemyController;
     static long gameStartTime;
+    static double shiftCooldown = 0.1;
     private boolean first;
+
+    boolean updated1 = false;
+    boolean updated2 = false;
 
     public MapController(Map map){
         super(map);
@@ -119,6 +123,25 @@ public class MapController extends GameController{
             Game.sleepTimeMS(1000);
             game.setState((new GameOverState(new GameOver())));
         }
+
+        long elapsedTimeSinceGameStart =  (time - MapController.getGameStartTime()) / 1000;
+
+        updateAcceleration(elapsedTimeSinceGameStart);
+
+
+    }
+
+    public void updateAcceleration(long elapsedTimeSinceGameStart){
+        // Acceleration is divided in 3 levels
+        if (!updated1 && elapsedTimeSinceGameStart >= 5){
+            updated1 = true;
+            shiftCooldown = 0.05;
+            System.out.println("30 seconds passed (Acceleration level 2)");
+        } else if (!updated2 && elapsedTimeSinceGameStart >= 10){
+            updated2 = true;
+            shiftCooldown = 0.02;
+            System.out.println("120 seconds passed (Acceleration level 3)");
+        }
     }
 
     public void setAddedScoreTimer(long addedScoreTimer) {
@@ -127,5 +150,9 @@ public class MapController extends GameController{
 
     public static long getGameStartTime(){
         return gameStartTime;
+    }
+
+    public static double getShiftCooldown(){
+        return shiftCooldown;
     }
 }
