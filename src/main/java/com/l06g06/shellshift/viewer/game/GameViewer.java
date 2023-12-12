@@ -58,17 +58,23 @@ public class GameViewer extends View<Map> {
         //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
 
         // HUD
+
         //Lives
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
             gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,6));
         }
 
+        //Score
         gui.drawImageASCII(Components.Score.getImage(), new Position(5,7));
         gui.numToASCII(getModel().getScore(), 35,7);
 
         //Bullet Counter
         gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
         gui.numToASCII(getModel().getGun().getNumBullets(), 142,90);
+
+        //Coins
+        gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
+        gui.numToASCII(getModel().getCoinsCollected(), 16,90);
 
     }
 
