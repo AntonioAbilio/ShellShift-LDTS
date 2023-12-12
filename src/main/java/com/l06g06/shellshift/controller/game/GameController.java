@@ -23,7 +23,7 @@ public abstract class GameController extends Controller<Map> {
 
         while (enemiesIterator.hasNext()) {
             Enemy enemy = enemiesIterator.next();
-            if (element.getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
+            if (element.getPolygon().intersects(enemy.getPolygon().getBounds2D()) && !getModel().getChell().isOnHitProtection()) {
                 enemiesIterator.remove();
                 isColliding = true;
             }
