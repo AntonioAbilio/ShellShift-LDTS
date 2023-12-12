@@ -120,7 +120,7 @@ public class ChellController extends GameController {
         getModel().getChell().setDirection(false);
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
-        getModel().getChell().setPosition(new Position(x- getModel().getSpeed(),y));
+        getModel().getChell().setPosition(new Position(x- getModel().getChell().getHorizontalSpeed(),y));
     }
 
     public void moveRIGHT(){
@@ -128,7 +128,7 @@ public class ChellController extends GameController {
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
             getModel().getChell().setDirection(true);
-            getModel().getChell().setPosition(new Position(x + getModel().getSpeed(), y));
+            getModel().getChell().setPosition(new Position(x + getModel().getChell().getHorizontalSpeed(), y));
         }
     }
 

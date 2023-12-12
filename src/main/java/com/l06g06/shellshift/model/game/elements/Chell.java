@@ -4,12 +4,17 @@ import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
 
 public class Chell extends Element {
     private Gun gun;
     private int lives;
     private float velocity = 250F;
     private int gravity = 1000;
+    private int horizontalSpeed = 1;
+   // private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
 
     private final static int height = 15;
@@ -89,5 +94,26 @@ public class Chell extends Element {
     @Override
     public void setPosition(Position position) {
         super.setPosition(new Position(position.getX(), position.getY()/* - 15*/));
+    }
+
+    public int getHorizontalSpeed() {
+        return horizontalSpeed;
+    }
+
+    public void setHorizontalSpeed(int speed) {
+        this.horizontalSpeed = speed;
+        // Schedule a task to reset speed after 3 seconds
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                resetToDefaultSpeed();
+                timer.cancel(); // Stop the timer after resetting speed
+            }
+        }, 10000); // 3000 milliseconds = 3 seconds
+    }
+
+    private void resetToDefaultSpeed() {
+        this.horizontalSpeed = 1;
     }
 }
