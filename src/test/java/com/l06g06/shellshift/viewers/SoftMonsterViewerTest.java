@@ -1,31 +1,37 @@
-/*
 package com.l06g06.shellshift.viewers;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
+import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
 import com.l06g06.shellshift.viewer.game.EnemyViewer;
+import com.l06g06.shellshift.viewer.game.HardMonsterViewer;
+import com.l06g06.shellshift.viewer.game.SoftMonsterViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.mockito.ArgumentMatchers.eq;
+
 public class SoftMonsterViewerTest {
-    private Enemy enemy;
-    private EnemyViewer viewer;
+    private SoftMonster softMonster;
+    private MoveStrategy moveStrategy;
+    private SoftMonsterViewer softMonsterViewer;
     private Gui gui;
 
     @BeforeEach
     void setUp(){
-        enemy = new SoftMonster(new Position(10, 10));
-        viewer = new EnemyViewer();
+        softMonster = new SoftMonster(new Position(10, 10), moveStrategy);
+        softMonsterViewer = new SoftMonsterViewer();
         gui = Mockito.mock(Gui.class);
     }
 
     @Test
     void drawSoftMonster(){
-        viewer.draw(enemy, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawMonster(enemy.getPosition());
+        softMonsterViewer.draw(softMonster, gui);
+        Mockito.verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.SoftMonster.getImage()), eq(softMonster.getPosition()));
     }
 }
-*/
