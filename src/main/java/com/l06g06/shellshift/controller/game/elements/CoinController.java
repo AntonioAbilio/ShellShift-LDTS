@@ -58,10 +58,14 @@ public class CoinController extends GameController {
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
             System.out.println("x: " + randomPlatform.getPosition().getX());
-            i++;
             System.out.println("SEARCHING");
-        } while (randomPlatform.getPosition().getX() <= 170);
+            i++;
+        } while (randomPlatform.getPosition().getX() < 170 && i < 20000);
 
+        if (i >= 20000) {
+            System.out.println("NOT FOUND");
+            return;
+        }
         System.out.println("FOUND");
         int minY = 200;
         for (int y : randomPlatform.getPolygon().ypoints) {
@@ -92,8 +96,8 @@ public class CoinController extends GameController {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
 
-                Sound.playSound(Sound.SoundsFx.Coin);
-                lastTimePickedUP = time;
+                //Sound.playSound(Sound.SoundsFx.Coin);
+                //lastTimePickedUP = time;
                 getModel().addCoin();
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }

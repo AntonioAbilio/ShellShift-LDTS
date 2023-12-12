@@ -62,24 +62,13 @@ public class GameViewer extends View<Map> {
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
             gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,6));
         }
+
         gui.drawImageASCII(Components.Score.getImage(), new Position(5,7));
-
-        //printing score ta mt messy, converto para string para facilitar percorrer esquerda -> direita
-        List<Components> numbers = Arrays.asList(Components.Zero, Components.One, Components.Two, Components.Three, Components.Four, Components.Five, Components.Six, Components.Seven, Components.Eight, Components.Nine);
-        String score = Integer.toString(getModel().getScore());
-
-        for (int i = 0; i < score.length(); i++) {
-            char digit = score.charAt(i);
-            gui.drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position(35 + i * 6, 7));
-        }
+        gui.numToASCII(getModel().getScore(), 35,7);
 
         //Bullet Counter
         gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
-        String numBullets = Integer.toString(getModel().getGun().getNumBullets());
-        for (int i = 0; i < numBullets.length(); i++) {
-            char digit = numBullets.charAt(i);
-            gui.drawImageASCII(numbers.get(Character.getNumericValue(digit)).getImage(), new Position( 142 + i * 6, 90));
-        }
+        gui.numToASCII(getModel().getGun().getNumBullets(), 142,90);
 
     }
 

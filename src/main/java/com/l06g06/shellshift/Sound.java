@@ -27,6 +27,7 @@ public class Sound {
     }
 
     public static void playSound(SoundsFx soundsFx){
+    /*
         try{
             System.out.println(soundsFx.getPath());
 
@@ -42,10 +43,13 @@ public class Sound {
 
             clip.loop(0);
             //clip.start();
+
         }
         catch (UnsupportedAudioFileException | IOException | LineUnavailableException | NullPointerException uafe){
             System.out.println(uafe.getMessage());
         }
+
+    */
 
     }
 }
