@@ -146,7 +146,7 @@ public class ChellController extends GameController {
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         getModel().getChell().setDirection(true);
-        getModel().getChell().setPosition(new Position(x+2,y));
+        getModel().getChell().setPosition(new Position(x+1,y));
     }
 
     public void setHitProtectionStartTime(long hitProtectionStartTime){
