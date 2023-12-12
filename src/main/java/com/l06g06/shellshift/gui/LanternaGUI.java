@@ -71,12 +71,19 @@ public class LanternaGUI implements Gui {
     @Override
     public void setBackground(String color) {
         TextGraphics tg = this.screen.newTextGraphics();
-        for (int y = 0; y < this.screen.getTerminalSize().getRows(); y++) {
-            for (int x = 0; x < this.screen.getTerminalSize().getColumns(); x++) {
-                tg.setBackgroundColor(TextColor.Factory.fromString(color));
-                tg.setForegroundColor(TextColor.Factory.fromString(color));
-                tg.putString(x, y, " ");
-            }
+        TextColor textColor = TextColor.Factory.fromString(color);
+        tg.setBackgroundColor(textColor);
+        tg.setForegroundColor(textColor);
+
+        StringBuilder sb = new StringBuilder();
+        for (int x = 0; x < this.screen.getTerminalSize().getColumns(); x++) {
+            sb.append(" ");
+        }
+        String row = sb.toString();
+
+        TerminalSize terminalSize = this.screen.getTerminalSize();
+        for (int y = 0; y < terminalSize.getRows(); y++) {
+            tg.putString(0, y, row);
         }
     }
 
