@@ -52,7 +52,7 @@ public class TutorialMap {
         executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(5, 20), TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
-        executorService.close();
+        executorService.shutdown();
     }
 
     private void addCloud() {
