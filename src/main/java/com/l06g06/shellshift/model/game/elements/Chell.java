@@ -15,6 +15,9 @@ public class Chell extends Element {
     private int horizontalSpeed = 1;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
     private boolean invincible = false;
+    private boolean isOnHitProtection = false;
+    private boolean blink = false; // true = show Chell, false = don't show Chell
+
     private final static int height = 15;
     private final static int width = 15;
 
@@ -133,4 +136,20 @@ public class Chell extends Element {
     }
 
 
+
+    public boolean isOnHitProtection() {
+        return isOnHitProtection;
+    }
+
+    public void setOnHitProtection(boolean onHitProtection) {
+        isOnHitProtection = onHitProtection;
+    }
+
+    public boolean getBlink() {
+        return blink;
+    }
+
+    public void setBlink(boolean blink) {
+        this.blink = blink;
+    }
 }

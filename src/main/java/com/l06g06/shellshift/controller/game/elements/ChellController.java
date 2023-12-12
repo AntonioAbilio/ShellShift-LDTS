@@ -3,6 +3,7 @@ package com.l06g06.shellshift.controller.game.elements;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -10,6 +11,9 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
 
+import javax.sound.midi.Soundbank;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -20,6 +24,9 @@ public class ChellController extends GameController {
     long jumpStartTime=0;
     int groundY;
     int previousY;
+    long hitProtectionStartTime;
+    double shiftCooldown = 0.1; // Shift every 0.1 seconds
+    double lastShiftTime = 0;
 
     public ChellController(Map map) {
         super(map);
@@ -45,6 +52,11 @@ public class ChellController extends GameController {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
 
+        // Chell cannot lose lives during hit protection
+        if (getModel().getChell().isOnHitProtection()){
+            blink(time, hitProtectionStartTime);
+        }
+
         // Check if Chell is dead.
         if (getModel().getChell().getLives() <= 0) game.setState(new GameOverState(new GameOver()));
 
@@ -65,9 +77,7 @@ public class ChellController extends GameController {
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
-                    if (!isJumping && canJump){
-                        jump(time);
-                    }
+                    if (!isJumping && canJump) jump(time);
                     break;
                 case LEFT:
                     moveLEFT();
@@ -79,6 +89,13 @@ public class ChellController extends GameController {
         }
 
         if (isJumping) jumpUpdate(time);
+
+        double currentTime = time / 1000.0; // Convert to seconds
+
+        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+            lastShiftTime = currentTime;
+            left_shift();
+        }
     }
 
     public void jump(long time){
@@ -137,6 +154,27 @@ public class ChellController extends GameController {
             getModel().getChell().setDirection(true);
             getModel().getChell().setPosition(new Position(x + getModel().getChell().getHorizontalSpeed(), y));
         }
+    }
+
+    public void setHitProtectionStartTime(long hitProtectionStartTime){
+        this.hitProtectionStartTime =  hitProtectionStartTime;
+    }
+
+    public void blink(long time, long hitProtectionStartTime){
+        double elapsedTimeSinceHitProtection = ((double) time - (double) hitProtectionStartTime) / 1000;
+        if ((elapsedTimeSinceHitProtection > 0 && elapsedTimeSinceHitProtection < 0.3)
+            || (elapsedTimeSinceHitProtection > 0.6 && elapsedTimeSinceHitProtection < 0.9)
+            || (elapsedTimeSinceHitProtection > 1.2 && elapsedTimeSinceHitProtection < 1.5)) getModel().getChell().setBlink(false);
+        else getModel().getChell().setBlink(true);
+        if (elapsedTimeSinceHitProtection >= 2){
+            getModel().getChell().setOnHitProtection(false);
+        }
+    }
+
+    public void left_shift(){
+        int x = getModel().getChell().getPosition().getX();
+        int y = getModel().getChell().getPosition().getY();
+        getModel().getChell().setPosition(new Position(x - 1, y));
     }
 
 }

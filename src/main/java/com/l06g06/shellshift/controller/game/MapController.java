@@ -25,6 +25,12 @@ public class MapController extends GameController{
     //private final SoftMonsterController softMonsterController;
     //private final HardMonsterController hardMonsterController;
     private final EnemyController enemyController;
+    static long gameStartTime;
+    static double shiftCooldown = 0.1;
+    private boolean first;
+
+    boolean updated1 = false;
+    boolean updated2 = false;
 
     private final CloudController cloudController;
 
@@ -41,18 +47,23 @@ public class MapController extends GameController{
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
+        this.first = true;
         //ToDo (more are missing)
     }
 
-    private void enemyCollisionHandler(Game game){
+    private void enemyColisionHandler(Game game, long time){
         // Check for Chell and Enemy collisions.
-        if (ElementEnemyCollision(getModel().getChell())){
+        if (ElementEnemyCollision(getModel().getChell()) && !getModel().getChell().isOnHitProtection()){
             System.out.println("AUCH!");
             int lives = getModel().getChell().getLives();
             if (lives <= 0)
                 game.setState(new GameOverState(new GameOver()));
-            else
+            else {
                 getModel().getChell().decreaseLives();
+                getModel().getChell().setOnHitProtection(true);
+                chellController.setHitProtectionStartTime(time);
+                //System.out.println("On hit protection");
+            }
         }
 
         // Check for Bullet and Enemy collisions. -> mudar isto temos no bullet controller esta função e passar o game parece estranho
@@ -77,12 +88,17 @@ public class MapController extends GameController{
 
     // Step should give the received action to each controller...
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        if (first){
+            gameStartTime = time;
+            first = false;
+        }
+
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
 
-        enemyCollisionHandler(game);
-        //outOfBoundsHandler(game); //isto nao pode ser game over condition tbm se nao temos varias formas de ir para la oq faz com que tenha de repetir mt codigo
+        enemyCollisionHandler(game, time);
+        //outOfBoundsHandler(game);
 
         gunController.step(game, action, time);
         platformController.step(game, action, time);
@@ -112,9 +128,36 @@ public class MapController extends GameController{
             Game.sleepTimeMS(200);
             game.setState((new GameOverState(new GameOver())));
         }
+
+        long elapsedTimeSinceGameStart =  (time - MapController.getGameStartTime()) / 1000;
+
+        updateAcceleration(elapsedTimeSinceGameStart);
+
+
+    }
+
+    public void updateAcceleration(long elapsedTimeSinceGameStart){
+        // Acceleration is divided in 3 levels
+        if (!updated1 && elapsedTimeSinceGameStart >= 5){
+            updated1 = true;
+            shiftCooldown = 0.05;
+            System.out.println("30 seconds passed (Acceleration level 2)");
+        } else if (!updated2 && elapsedTimeSinceGameStart >= 10){
+            updated2 = true;
+            shiftCooldown = 0.02;
+            System.out.println("120 seconds passed (Acceleration level 3)");
+        }
     }
 
     public void setAddedScoreTimer(long addedScoreTimer) {
         this.addedScoreTimer = addedScoreTimer;
+    }
+
+    public static long getGameStartTime(){
+        return gameStartTime;
+    }
+
+    public static double getShiftCooldown(){
+        return shiftCooldown;
     }
 }

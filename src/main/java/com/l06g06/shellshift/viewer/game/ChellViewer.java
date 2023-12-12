@@ -49,8 +49,17 @@ public class ChellViewer implements ElementViewer<Chell>{
         }*/
 
         // Use this to draw the coin in ASCII Art.
-       gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14));
+       //gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14));
 
+        if (!chell.isOnHitProtection()) {
+            gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
+        }
+        else {
+            if (chell.getBlink()) gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
+            else; // gui.drawImageASCII(Components.Start.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
+            //gui.drawImageASCII(Components.Coin.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
+            //gui.drawImageASCII(Components.Title.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
+        }
         /*// Move chell ... DEBUG
         chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/
 

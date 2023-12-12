@@ -54,7 +54,10 @@ public class PlatformCreator extends Creator {
 
         int y = possiblePlatforms.get(nextPlatform).get(1);
 
-        if (lastPosition.getX() == x && lastPosition.getY() == y){
+        //System.out.println("Current X: " + x + " Y: " + y);
+        //System.out.println("Last X: " + x + " Y: " + y);
+
+        if (lastPosition.getY() == y){
             nextPlatform = rn.nextInt(5);
             y = possiblePlatforms.get(nextPlatform).get(1);
         }
