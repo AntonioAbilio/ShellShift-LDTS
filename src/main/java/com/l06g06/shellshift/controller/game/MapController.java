@@ -49,16 +49,19 @@ public class MapController extends GameController{
         //ToDo (more are missing)
     }
 
-    private void enemyColisionHandler(Game game){
+    private void enemyColisionHandler(Game game, long time){
         // Check for Chell and Enemy collisions.
-
-        if (ElementEnemyCollision(getModel().getChell())){
+        if (ElementEnemyCollision(getModel().getChell()) && !getModel().getChell().isOnHitProtection()){
             System.out.println("AUCH!");
             int lives = getModel().getChell().getLives();
             if (lives <= 0)
                 game.setState(new GameOverState(new GameOver()));
-            else
+            else {
                 getModel().getChell().setLives(lives - 1);
+                getModel().getChell().setOnHitProtection(true);
+                chellController.setHitProtectionStartTime(time);
+                //System.out.println("On hit protection");
+            }
         }
 
         // Check for Bullet and Enemy collisions.
@@ -92,7 +95,7 @@ public class MapController extends GameController{
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
 
-        enemyColisionHandler(game);
+        enemyColisionHandler(game, time);
         outOfBoundsHandler(game);
 
         gunController.step(game, action, time);

@@ -9,6 +9,7 @@ import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
 
+import javax.sound.midi.Soundbank;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -21,6 +22,8 @@ public class ChellController extends GameController {
     long jumpStartTime=0;
     int groundY;
     int previousY;
+    long hitProtectionStartTime;
+    double blinkTime = 0.5;
 
     public ChellController(Map map) {
         super(map);
@@ -45,6 +48,11 @@ public class ChellController extends GameController {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
+
+        // Chell cannot lose lives during hit protection
+        if (getModel().getChell().isOnHitProtection()){
+            blink(time, hitProtectionStartTime);
+        }
 
         // Check if Chell is dead.
         if (getModel().getChell().getLives() <= 0) game.setState(new GameOverState(new GameOver()));
@@ -95,16 +103,16 @@ public class ChellController extends GameController {
         // Calculate the new position using the updated elapsed time
         int y = (int) (groundY - (getModel().getChell().getVelocity() * elapsedTime - 0.5 * getModel().getChell().getGravity() * elapsedTime * elapsedTime));
 
-        System.out.println(y);
+        //System.out.println(y);
 
         // Update Chell's position;
         getModel().getChell().setPosition(new Position(x, y));
 
         // Check if Chell is moving up or down based on the change in position
         if (y < previousY) {
-            System.out.println("Chell is going up");
+            //System.out.println("Chell is going up");
         } else if (y > previousY) {
-            System.out.println("Chell is falling");
+            //System.out.println("Chell is falling");
             lookForColisions();
         }
 
@@ -132,6 +140,23 @@ public class ChellController extends GameController {
         getModel().getChell().setPosition(new Position(x+1,y));
     }
 
+    public void setHitProtectionStartTime(long hitProtectionStartTime){
+        this.hitProtectionStartTime =  hitProtectionStartTime;
+    }
+
+    public void blink(long time, long hitProtectionStartTime){
+        double elapsedTimeSinceHitProtection = ((double) time - (double) hitProtectionStartTime) / 1000;
+        //System.out.println(elapsedTimeSinceHitProtection);
+        if ((elapsedTimeSinceHitProtection > 0 && elapsedTimeSinceHitProtection < 0.3)
+            || (elapsedTimeSinceHitProtection > 0.6 && elapsedTimeSinceHitProtection < 0.9)
+            || (elapsedTimeSinceHitProtection > 1.2 && elapsedTimeSinceHitProtection < 1.5)) getModel().getChell().setBlink(false);
+        else getModel().getChell().setBlink(true);
+        if (elapsedTimeSinceHitProtection >= 2){
+            getModel().getChell().setOnHitProtection(false);
+            //System.out.println("Not on hit protection anymore");
+        }
+        // ToDo: code for blinking
+    }
 }
 
 
