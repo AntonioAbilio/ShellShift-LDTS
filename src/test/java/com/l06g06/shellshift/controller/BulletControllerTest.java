@@ -1,7 +1,11 @@
 package com.l06g06.shellshift.controller;
 
+import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.elements.BulletController;
+import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
+import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
@@ -17,9 +21,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class BulletControllerTest {
         private Map map ;
@@ -28,6 +33,7 @@ public class BulletControllerTest {
         private FireStrategy fireStrategy;
         private List<Bullet> bullets;
         private BulletController bulletController;
+        private Game game;
 
 
         @BeforeEach
@@ -37,6 +43,7 @@ public class BulletControllerTest {
             this.bullets = new ArrayList<>();
             this.fireStrategy = mock(FireStrategy.class);
             this.gun = new Gun(fireStrategy);
+            this.game = mock(Game.class);
             Mockito.when(map.getBullets()).thenReturn(bullets);
             Mockito.when(map.getGun()).thenReturn(gun);
             this.bulletController = new BulletController(map);
@@ -96,5 +103,27 @@ public class BulletControllerTest {
                 }
             }*/
         }
+
+        @Test
+        public void stepTest(){
+            this.fireStrategy = new NormalFireStrategy();
+            this.gun = new Gun(fireStrategy);
+            gun.setNumBullets(4);
+            double reloadTime = gun.getReloadTime();
+            long fireTime = (long) (200 + reloadTime);
+            when(map.getChell()).thenReturn(mock(Chell.class));
+            when(map.getChell().isDirection()).thenReturn(true);
+            when(map.getChell().getPosition()).thenReturn(mock(Position.class));
+
+            Assertions.assertEquals(30, map.getGun().getNumBullets());
+
+            List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.FIRE);
+
+            bulletController.step(game, actions, fireTime);
+
+            //Assertions.assertEquals(3, map.getGun().getNumBullets());
+        }
+
+
 }
 

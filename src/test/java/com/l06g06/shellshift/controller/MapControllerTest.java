@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.controller.game.elements.*;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,31 +38,48 @@ public class MapControllerTest {
     private PlatformController platformController;
     private CoinController coinController;
     private EnemyController enemyController;
+    private CloudController cloudController;
+    private PowerUpController powerUpController;
 
 
     @BeforeEach
     public void setup(){
         this.addedScoreTimer = 0;
         this.map = mock(Map.class);
+        when(map.getChell()).thenReturn(new Chell(new Position(0, 0)));
         this.game = mock(Game.class);
         this.action = new ArrayList<>();
-        this.chellController = mock(ChellController.class);
-        this.bulletController = mock(BulletController.class);
-        this.gunController = mock(GunController.class);
-        this.platformController = mock(PlatformController.class);
-        this.coinController = mock(CoinController.class);
-        this.enemyController = mock(EnemyController.class);
-
-        // ToDo: find a way to inject Controllers into MapController
-        //this.mapController = new MapController(map);
+        this.chellController = new ChellController(map);
+        this.bulletController = new BulletController(map);
+        this.gunController = new GunController(map);
+        this.platformController = new PlatformController(map);
+        this.coinController = new CoinController(map);
+        this.enemyController = new EnemyController(map);
+        this.cloudController = new CloudController(map);
+        this.powerUpController = new PowerUpController(map);
+        this.mapController = new MapController(map);
     }
 
 
-    @Test
+    /*@Test
     public void stepCallTest() throws IOException {
         //mapController.step(game, action, 0);
         //verify(enemyController, Mockito.times(1)).step(game, action, 0);
         // ToDo
+    }*/
+
+    @Test
+    public void updateAccelerationTest() {
+        Assertions.assertEquals(false, mapController.isCheckpoint1());
+        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        long elapsedTimeSinceGameStart = 30;
+        mapController.updateAcceleration(elapsedTimeSinceGameStart);
+        Assertions.assertEquals(true, mapController.isCheckpoint1());
+        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        elapsedTimeSinceGameStart = 120;
+        mapController.updateAcceleration(elapsedTimeSinceGameStart);
+        Assertions.assertEquals(true, mapController.isCheckpoint1());
+        Assertions.assertEquals(true, mapController.isCheckpoint2());
     }
 
 }

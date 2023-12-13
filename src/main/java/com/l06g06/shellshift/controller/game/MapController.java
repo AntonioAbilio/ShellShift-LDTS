@@ -116,4 +116,16 @@ public class MapController extends GameController{
     public static int getSpawnCooldown() {
         return spawnCooldown;
     }
+
+    public boolean isCheckpoint1() {
+        return checkpoint1;
+    }
+
+    public boolean isCheckpoint2() {
+        return checkpoint2;
+    }
+
+    public static void setGameStartTime(long gameStartTime) {
+        MapController.gameStartTime = gameStartTime;
+    }
 }

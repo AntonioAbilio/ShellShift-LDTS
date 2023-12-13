@@ -98,7 +98,7 @@ public class Map {
 
     public void startCloudAddingTask() {
         Random rand = new Random();
-        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(0, 15), TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
         executorService.shutdown();
@@ -106,7 +106,7 @@ public class Map {
 
     private void addCloud() {
         Random rand = new Random();
-        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(0, 70)));
+        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(70)));
         this.clouds.add(newCloud);
     }
 

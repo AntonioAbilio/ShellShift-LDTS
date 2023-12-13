@@ -81,7 +81,7 @@ public class PowerUpController extends GameController {
             if (y < minY) minY = y;
         }
 
-        int offsetX = random.nextInt(-65, 0);
+        int offsetX = -random.nextInt(65);
 
         Position powerUpPosition = new Position(randomPlatform.getPosition().getX() + offsetX, minY - 15);
         getModel().getPowerUpSpawner().spawn(powerUpPosition);
