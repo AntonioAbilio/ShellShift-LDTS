@@ -1,64 +1,37 @@
-/*
 package com.l06g06.shellshift.model.optionsMenu;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 
+import javax.xml.crypto.Data;
 import java.util.Arrays;
 import java.util.List;
 
 public class OptionsMenu {
     private final List<Components> options;
-    private int currOption = 0;
+    public static boolean soundOFF;
 
     public OptionsMenu() {
-        //this.options = Arrays.asList(Components.SoundText);
+        this.options = Arrays.asList(Components.SoundON, Components.SoundOFF);
+        soundOFF = Database.getInstance().isSoundIsOn();
     }
 
     public List<Components> getOptions(){
         return options;
     }
 
-    public void nextOption() {
-        currOption++;
-        if (currOption > this.options.size() - 1)
-            currOption = this.options.size() - 1;
-    }
-
-    public void prevOption() {
-        currOption--;
-        if (currOption < 0)
-            currOption = 0;
-    }
-
-    public int getCurrOption() { return currOption; }
-
-    public boolean isSelected(int i) {
-        return i == currOption;
-    }
-
     public int getOptionsSize() {
         return this.options.size();
     }
 
-    public boolean isSelectedShop() {
-        return isSelected(1);
+    public boolean isSoundOFF() {
+        return soundOFF;
     }
 
-    public boolean isSelectedStart() {
-        return isSelected(0);
-    }
-
-    public boolean isSelectedQuit() {
-        return isSelected(getOptionsSize() - 1);
-    }
-
-    public boolean isSelectedTutorial() {
-        return isSelected(2);
-    }
-
-    public boolean isSelectedStatistics() {
-        return isSelected(3);
+    public void setSound(boolean soundState){
+        soundOFF = soundState;
+        Database database = Database.getInstance();
+        database.setSound(soundState);
     }
 
 }
-*/

@@ -1,5 +1,7 @@
 package com.l06g06.shellshift;
 
+import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
+
 import javax.sound.sampled.*;
 import java.io.File;
 import java.net.URL;
@@ -26,26 +28,26 @@ public class Sound {
     }
 
     public static void playSound(SoundsFx soundsFx){
+        if (!OptionsMenu.soundOFF) {
+            try {
+                // create AudioInputStream object
+                URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(resource.getPath()).getAbsoluteFile());
 
-        try{
-            // create AudioInputStream object
-            URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(resource.getPath()).getAbsoluteFile());
+                // create clip reference
+                Clip clip = AudioSystem.getClip();
 
-            // create clip reference
-            Clip clip = AudioSystem.getClip();
+                // open audioInputStream to the clip
+                clip.open(audioInputStream);
 
-            // open audioInputStream to the clip
-            clip.open(audioInputStream);
+                // change clip volume
+                //FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                //gainControl.setValue(-20.0f);
 
-            // change clip volume
-            //FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            //gainControl.setValue(-20.0f);
-
-            clip.loop(0);
-        }
-        catch (Exception uafe){
-            System.out.println(uafe.getMessage());
+                clip.loop(0);
+            } catch (Exception uafe) {
+                System.out.println(uafe.getMessage());
+            }
         }
     }
 }

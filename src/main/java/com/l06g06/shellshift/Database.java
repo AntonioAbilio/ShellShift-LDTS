@@ -17,7 +17,7 @@ public class Database {
     private int collectedCoins = 0;
     private int monstersKilled = 0;
     private int startingNumBullets = 30;
-    private boolean soundIsOn = true;
+    private boolean soundIsOn = false;
     private List<Integer> scores = new ArrayList<>(0);
     private Database() {
         this.firingStrategy = new NormalFireStrategy();

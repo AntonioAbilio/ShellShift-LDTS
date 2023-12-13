@@ -23,7 +23,7 @@ public class MainMenuViewer extends View<MainMenu> {
 
         int i = 0;
         for (Components component : getModel().getOptions()) {
-            gui.drawImageASCII(getModel().isSelected(i) ? component.getImageSelected() : component.getImage(), new Position(15,35 + i * 12));
+            gui.drawImageASCII(getModel().isSelected(i) ? component.getImageSelected() : component.getImage(), new Position(15,33 + i * 12));
             i++;
         }
 

@@ -98,7 +98,7 @@ public enum Components {
             "y     y y    y y    y y     ",
             " yyyyy  y    y  yyyy  y     "
     }, "Shop"),
-    
+
     RapidFire(new String[] {
             "HHHHHH                            HHHHHHH                ",
             "H     H   HH   HHHHH  H HHHHH     H       H HHHHH  HHHHHH",
@@ -172,7 +172,7 @@ public enum Components {
             "R*SS",
             " RRR"
     }, "Bullet"),
-    
+
     HeartIcon(new String[] {
         "  RRRR   RRRR ",
         " RQQQQR R****R",
@@ -250,7 +250,7 @@ public enum Components {
         "                                                                                                            ",
         "                                                                                                            "
     }, new String[]{}, "Game Over"),
-    
+
     Restart(new String[]{
             "GGGGGG                                         ",
             "G     G GGGGGG  GGGG  GGGGG   GG   GGGGG  GGGGG",
@@ -268,7 +268,7 @@ public enum Components {
             "y    y  y      y    y   y   y    y y   y    y  ",
             "y     y yyyyyy  yyyy    y   y    y y    y   y  "
     }, "Restart"),
-    
+
     MainMenu(new String[]{
         "G     G                    G     G                     ",
         "GG   GG   GG   G G    G    GG   GG GGGGGG G    G G    G",
@@ -294,7 +294,7 @@ public enum Components {
         "   G G    G   G G G  G   G ",
         "GGG   GGG  GGG  G  G GGG  "
     }, new String[] {}, "Score"),
-    
+
     Coin(new String[] {
             "   JJJJ   ",
             "  JGGGGJ  ",
@@ -651,7 +651,7 @@ public enum Components {
             "H       H  H  H  H      H    H  H",
             "HHHHHHH H   HH   HHHHHH  HHHH"
     }, new String[]{}, "NumLives"),
-    
+
     CoinsCollected(new String[]{
           " HHHHH                                                                                         ",
           "H     H  HHHH  H H    H  HHHH      HHHH   HHHH  H      H      HHHHHH  HHHH  HHHHH HHHHHH HHHHH ",
@@ -731,7 +731,7 @@ public enum Components {
             "y     y y    y y   y  y         y    y y    y y      y      y        y   y    y",
             "y     y  yyyy  y    y yyyyyy    yyyyy   yyyy  yyyyyy yyyyyy yyyyyy   y    yyyy "
     }, "MoreBullets"),
-    
+
     MoreBulletsIcon(new String[]{
             " ",
             " ",
@@ -741,7 +741,63 @@ public enum Components {
             "     *QGR     ",
             "     **QR     ",
             "     RRR      "
-    }, new String[]{}, "MoreBullets");
+    }, new String[]{}, "MoreBullets"),
+
+    SoundOFF(new String[]{
+            " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH HHHHHHH HHHHHHH",
+            "H     H H     H H     H HH    H H     H    H     H H       H      ",
+            "H       H     H H     H H H   H H     H    H     H H       H      ",
+            " HHHHH  H     H H     H H  H  H H     H    H     H HHHHH   HHHHH  ",
+            "      H H     H H     H H   H H H     H    H     H H       H      ",
+            "H     H H     H H     H H    HH H     H    H     H H       H      ",
+            " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H       H      "
+    }, new String[]{
+            " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy yyyyyyy yyyyyyy",
+            "y     y y     y y     y yy    y y     y    y     y y       y      ",
+            "y       y     y y     y y y   y y     y    y     y y       y      ",
+            " yyyyy  y     y y     y y  y  y y     y    y     y yyyyy   yyyyy  ",
+            "      y y     y y     y y   y y y     y    y     y y       y      ",
+            "y     y y     y y     y y    yy y     y    y     y y       y      ",
+            " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y       y      "
+    }, "SoundOFF"),
+
+    SoundON(new String[]{
+            " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH H     H",
+            "H     H H     H H     H HH    H H     H    H     H HH    H",
+            "H       H     H H     H H H   H H     H    H     H H H   H",
+            " HHHHH  H     H H     H H  H  H H     H    H     H H  H  H",
+            "      H H     H H     H H   H H H     H    H     H H   H H",
+            "H     H H     H H     H H    HH H     H    H     H H    HH",
+            " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H     H"
+
+    }, new String[]{
+            " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy y     y",
+            "y     y y     y y     y yy    y y     y    y     y yy    y",
+            "y       y     y y     y y y   y y     y    y     y y y   y",
+            " yyyyy  y     y y     y y  y  y y     y    y     y y  y  y",
+            "      y y     y y     y y   y y y     y    y     y y   y y",
+            "y     y y     y y     y y    yy y     y    y     y y    yy",
+            " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y     y"
+
+    }, "SoundON"),
+    
+    Options(new String[]{
+            " HHHHH  HHHHHH  HHHHHHH HHH  HHHHH  H     H  HHHHH ",
+            "H     H H     H    H     H  H     H HH    H H     H",
+            "H     H H     H    H     H  H     H H H   H H      ",
+            "H     H HHHHHH     H     H  H     H H  H  H  HHHHH ",
+            "H     H H          H     H  H     H H   H H       H",
+            "H     H H          H     H  H     H H    HH H     H",
+            " HHHHH  H          H    HHH HHHHHHH H     H  HHHHH "
+    }, new String[]{
+            " yyyyy  yyyyyy  yyyyyyy yyy  yyyyy  y     y  yyyyy ",
+            "y     y y     y    y     y  y     y yy    y y     y",
+            "y     y y     y    y     y  y     y y y   y y      ",
+            "y     y yyyyyy     y     y  y     y y  y  y  yyyyy ",
+            "y     y y          y     y  y     y y   y y       y",
+            "y     y y          y     y  y     y y    yy y     y",
+            " yyyyy  y          y    yyy  yyyyy  y     y  yyyyy "
+    }, "OptionText");
 
     private final String[] image;
     private final String[] imageSelected;

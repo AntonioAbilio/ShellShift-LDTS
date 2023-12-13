@@ -10,7 +10,7 @@ public class MainMenu {
     private int currOption = 0;
 
     public MainMenu() {
-        this.options = Arrays.asList(Components.Start, Components.Shop, Components.Tutorial, Components.Statistics, Components.Quit);
+        this.options = Arrays.asList(Components.Start, Components.Shop, Components.Tutorial, Components.Statistics, Components.Options, Components.Quit);
     }
 
     public List<Components> getOptions(){
@@ -57,6 +57,10 @@ public class MainMenu {
 
     public boolean isSelectedStatistics() {
         return isSelected(3);
+    }
+
+    public boolean isSelectedOptions(){
+        return isSelected(4);
     }
 
 }

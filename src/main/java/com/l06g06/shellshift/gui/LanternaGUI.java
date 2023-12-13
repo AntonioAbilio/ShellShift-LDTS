@@ -156,6 +156,9 @@ public class LanternaGUI implements Gui {
                     case 32:
                         pressedKeyList.add(PressedKey.FIRE);
                         break;
+                    case 27:
+                        pressedKeyList.add(PressedKey.EXIT);
+                        break;
                     default:
                         return pressedKeyList;
                 }

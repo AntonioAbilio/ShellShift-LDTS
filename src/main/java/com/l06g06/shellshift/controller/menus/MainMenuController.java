@@ -7,6 +7,7 @@ import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
+import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
 import com.l06g06.shellshift.model.shop.Shop;
 import com.l06g06.shellshift.model.statistics.Statistics;
 import com.l06g06.shellshift.model.tutorial.TutorialMap;
@@ -39,6 +40,7 @@ public class MainMenuController extends Controller<MainMenu> {
                     if (getModel().isSelectedShop()) game.setState(new ShopState(new Shop()));
                     if (getModel().isSelectedTutorial()) game.setState(new TutorialState(new TutorialMap()));
                     if (getModel().isSelectedStart()) game.setState(new GameState(new Map()));
+                    if (getModel().isSelectedOptions()) game.setState(new OptionsMenuState(new OptionsMenu()));
                     break;
             }
         }
