@@ -15,7 +15,6 @@ public class ShopViewer extends View<Shop> {
 
     @Override
     public void drawElements(Gui gui){
-        //gui.setGradientBackground("#2F1E0D", "#110902");
         gui.setGradientBackground("#ABF0F9", "#457da8");
         gui.drawImageASCII(Components.Shop.getImage(), new Position(10, 8));
         gui.drawImageASCII(Components.Coin.getImageSelected(), new Position(130,6));

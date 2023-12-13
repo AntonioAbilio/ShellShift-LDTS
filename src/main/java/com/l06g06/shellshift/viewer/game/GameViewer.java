@@ -21,27 +21,6 @@ public class GameViewer extends View<Map> {
 
     @Override
     public void drawElements(Gui gui) /*throws IOException*/ {
-
-        /*//DEBUG
-        System.out.println("Method Call to drawElements of GameViewer\n");*/
-
-        /*drawElements(gui, getModel().getBullets(), new BulletViewer());
-        drawElements(gui, getModel().getCoins(), new CoinViewer());
-        drawElements(gui, getModel().getEnemies(), new EnemyViewer());
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-        drawElements(gui, getModel().getPowerups(), new PowerupViewer());*/
-
-        //DEBUG
-        /*List<Platform> platforms = new ArrayList<Platform>();
-        platforms.add(new Platform(new Position(10,10)));
-        getModel().setPlatforms(platforms);
-        drawElements(gui, getModel().getPlatforms(), new PlatformViewer());*/
-
-        /*drawElements(gui, getModel().getCoins(), new CoinViewer());*/
-        //drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
-
-        // Clean
-        //gui.setBackground("#211300");
         gui.setBackground("#8ec4e8");
 
         drawElements(gui, getModel().getClouds(), new CloudViewer());
@@ -53,12 +32,7 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
         drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
 
-
-        //drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());  // Debug
-        //drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());  // Debug
-
         // HUD
-
         //Lives
         for (int i = 0; i < getModel().getChell().getLives(); i++) {
             gui.drawImageASCII(Components.HeartIcon.getImageSelected(), new Position((120 - (getModel().getChell().getLives()-3) * 10) + i * 10,6));

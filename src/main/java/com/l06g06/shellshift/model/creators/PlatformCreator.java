@@ -1,18 +1,14 @@
 package com.l06g06.shellshift.model.creators;
 
-import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class PlatformCreator extends Creator {
-
-    //private int X_SPAWN = 160;
     private Position lastPosition = new Position(-1,-1);
 
     public Element create(Position position) {
@@ -53,9 +49,6 @@ public class PlatformCreator extends Creator {
         else x = possiblePlatforms.get(nextPlatform).get(0) - offsetX;
 
         int y = possiblePlatforms.get(nextPlatform).get(1);
-
-        //System.out.println("Current X: " + x + " Y: " + y);
-        //System.out.println("Last X: " + x + " Y: " + y);
 
         if (lastPosition.getY() == y){
             nextPlatform = rn.nextInt(5);

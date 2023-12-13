@@ -2,7 +2,6 @@ package com.l06g06.shellshift.viewer.tutorial;
 
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.tutorial.TutorialMap;

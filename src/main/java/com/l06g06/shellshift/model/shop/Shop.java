@@ -45,10 +45,6 @@ public class Shop {
         return isSelected(1);
     }
 
-    public int getTextSize() {
-        return this.options.size();
-    }
-
     public Map<Components, Integer> getOptions() {
         return this.options;
     }

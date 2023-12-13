@@ -5,7 +5,6 @@ import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
@@ -18,8 +17,6 @@ import java.util.Random;
 
 public class PowerUpController extends GameController {
 
-    private double spawnCooldown = 15; // Spawn every 3 seconds
-    private double shiftCooldown = 0.1; // Shift every 0.1 seconds
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
     private Random random;

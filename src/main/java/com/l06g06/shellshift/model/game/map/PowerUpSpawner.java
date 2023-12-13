@@ -19,12 +19,5 @@ public class PowerUpSpawner {
         PowerUp powerUpSpawned = (PowerUp) powerUpCreator.create(position);
         powerUps.add(powerUpSpawned);
         powerUps.removeIf(powerUp -> powerUp.getPosition().getX() <= -20);
-
-
-        //Platform spawned_platform = (Platform) platformCreator.create(position);
-        //platforms.add(spawned_platform);
-        //for (int i = 0; i < platforms.size(); i++){
-        //    if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
-        //}
     }
 }

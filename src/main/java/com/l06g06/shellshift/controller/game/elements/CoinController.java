@@ -11,15 +11,12 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 public class CoinController extends GameController {
 
-    private double spawnCooldown = 4; // Spawn every 3 seconds
-    private double shiftCooldown = 0.1; // Shift every 0.1 seconds
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
     private Random random;
@@ -38,7 +35,6 @@ public class CoinController extends GameController {
         // Spawn coin logic
         if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
             lastSpawnTime = currentTime;
-            //getModel().getCoinSpawner().spawn(new Position(180, 50));
             spawnOnPlatform();
         }
 

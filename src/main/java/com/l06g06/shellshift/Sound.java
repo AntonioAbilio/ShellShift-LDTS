@@ -29,8 +29,6 @@ public class Sound {
     public static void playSound(SoundsFx soundsFx){
 
         try{
-            System.out.println(soundsFx.getPath());
-
             // create AudioInputStream object
             URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(resource.getPath()).getAbsoluteFile());

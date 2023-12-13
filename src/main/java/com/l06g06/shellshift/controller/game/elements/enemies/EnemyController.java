@@ -17,7 +17,6 @@ public class EnemyController extends GameController {
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
     int spawnX = 110;
-    // int offsetX = 0; -> adicionar 0 nao faz nada
     int offsetY = 15;
     int distBetweenEnemy = 15;
     public EnemyController(Map map) {

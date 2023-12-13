@@ -24,14 +24,6 @@ public class Gun {
         this.numBullets = numBullets;
     }
 
-    public void setStrategy(FireStrategy strategy) {
-        this.strategy = strategy;
-    }
-
-    public FireStrategy getFireStrategy() {
-        return this.strategy;
-    }
-
     public double getReloadTime() {
         return strategy.getReloadTime();
     }

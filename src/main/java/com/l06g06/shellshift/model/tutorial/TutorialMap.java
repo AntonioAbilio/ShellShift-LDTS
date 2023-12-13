@@ -24,7 +24,6 @@ public class TutorialMap {
     private List<Enemy> enemies = new ArrayList<>(0);
     private List<Cloud> clouds = new ArrayList<>(0);
     private Platform platform;
-    private List<PowerUp> powerUps;
     private List<Coin> coins = new ArrayList<>(0);
     private boolean selectedSpace;
     private boolean selectedArrowUp;
@@ -37,7 +36,7 @@ public class TutorialMap {
     public TutorialMap() {
         this.gun = new Gun(new NormalFireStrategy());
         this.gun.setNumBullets(50);
-        this.bullets = new ArrayList<Bullet>();
+        this.bullets = new ArrayList<>();
         this.chell = new Chell(new Position(55,60));
         this.platform = new Platform(new Position(80, 60));
         this.coins.add(new Coin(new Position(180, 20)));
@@ -122,6 +121,7 @@ public class TutorialMap {
     public List<Coin> getCoins() {
         return coins;
     }
+
     public void addBullet(Bullet bullet) {
         this.bullets.add(bullet);
     }

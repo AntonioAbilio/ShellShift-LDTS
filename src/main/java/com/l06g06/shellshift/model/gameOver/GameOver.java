@@ -30,10 +30,6 @@ public class GameOver{
         return isSelected(0);
     }
 
-    public int getOptionsSize() {
-        return this.options.size();
-    }
-
     public List<Components> getOptions() {
         return this.options;
     }

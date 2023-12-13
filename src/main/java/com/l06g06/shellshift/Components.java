@@ -1,10 +1,7 @@
 package com.l06g06.shellshift;
 
-import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.StringJoiner;
 
 public enum Components {
 
@@ -771,21 +768,13 @@ public enum Components {
 
     public String[] getImage(String name) {
         for (Components c : Components.values()) {
-            if (c.getName() == name) {
+            if (c.getName().equals(name)) {
                 return c.getImage();
             }
         }
         return new String[]{ "não funcionou" };
     }
 
-    public String[] getImageSelected(String name) {
-        for (Components c : Components.values()) {
-            if (c.getName() == name) {
-                return c.getImageSelected();
-            }
-        }
-        return new String[]{ "não funcionou" };
-    }
 
     public static List<Components> getNumbers() {
         return numbers;

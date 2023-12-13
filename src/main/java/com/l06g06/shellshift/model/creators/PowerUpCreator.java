@@ -1,7 +1,6 @@
 package com.l06g06.shellshift.model.creators;
 
 import com.l06g06.shellshift.model.game.elements.Element;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
@@ -9,7 +8,6 @@ import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 

@@ -1,7 +1,6 @@
 package com.l06g06.shellshift.viewer;
 
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.io.IOException;
 
