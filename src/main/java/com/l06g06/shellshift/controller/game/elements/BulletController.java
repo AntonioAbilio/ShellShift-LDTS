@@ -50,7 +50,7 @@ public class BulletController extends GameController {
             int x = bullet.getPosition().getX();
             int y = bullet.getPosition().getY();
 
-            bullet.setPosition(new Position(bullet.isDirection() ? x + 2 : x - 2, y));
+            bullet.setPosition(new Position(bullet.isDirection() ? x + 3 : x - 3, y));
         }
     }
 

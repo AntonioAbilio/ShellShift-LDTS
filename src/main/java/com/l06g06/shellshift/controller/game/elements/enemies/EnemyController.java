@@ -87,7 +87,7 @@ public class EnemyController extends GameController {
                 enemiesIterator.remove();
                 if (!getModel().getChell().isInvincible()) {
                     getModel().getChell().decreaseLives();
-                    //Sound.playSound(Sound.SoundsFx.MonsterCollision);
+                    Sound.playSound(Sound.SoundsFx.MonsterCollision);
                     getModel().getChell().activateBlink(1000);
 
                 }
