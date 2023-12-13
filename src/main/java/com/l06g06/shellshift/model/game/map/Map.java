@@ -18,7 +18,7 @@ public class Map {
     private int score = 0;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(80,0));
+    private Chell chell = new Chell(new Position(120,0));
     private Gun gun;
     private List<Enemy> enemies = new ArrayList<>(0);
     private List<Platform> platforms = new ArrayList<>(0);
@@ -43,7 +43,7 @@ public class Map {
 
         //plataforma inicial
         this.platforms.add(new Platform(new Position(140, 55)));
-
+        this.platforms.add(new Platform(new Position(210, 35)));
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         this.enemySpawner = new EnemySpawner(enemies);
