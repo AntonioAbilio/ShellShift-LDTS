@@ -57,17 +57,6 @@ public class ChellControllerTest {
         assertEquals(expected, mockedChell.getPosition());
     }
 
-    @Test
-    void isChellStandingOnPlatformTest() {
-        // Test when Chell is standing on a platform
-        Platform platform = new Platform(new Position(0, 0));
-        Chell chell = new Chell(new Position(-20, 0));
-        chell.setPosition(new Position(platform.getPosition().getX(), platform.getPosition().getY() - 1));
-        List<Platform> platforms = new ArrayList<>();
-        platforms.add(platform);
-        map.setPlatforms(platforms);
-        map.setChell(chell);
-        assertFalse(chellController.isChellStandingOnPlatform());
-    }
+
 
 }

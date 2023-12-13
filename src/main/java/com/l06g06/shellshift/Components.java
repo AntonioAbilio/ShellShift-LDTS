@@ -782,21 +782,22 @@ public enum Components {
     }, "SoundON"),
     
     Options(new String[]{
-            " HHHHH  HHHHHH  HHHHHHH HHH  HHHHH  H     H  HHHHH ",
-            "H     H H     H    H     H  H     H HH    H H     H",
-            "H     H H     H    H     H  H     H H H   H H      ",
-            "H     H HHHHHH     H     H  H     H H  H  H  HHHHH ",
-            "H     H H          H     H  H     H H   H H       H",
-            "H     H H          H     H  H     H H    HH H     H",
-            " HHHHH  H          H    HHH HHHHHHH H     H  HHHHH "
+            " HHHHH                                    ",
+            "H     H HHHHH  HHHHH H  HHHH  H    H  HHHH ",
+            "H     H H    H   H   H H    H HH   H H     ",
+            "H     H H    H   H   H H    H H H  H  HHHH ",
+            "H     H HHHHH    H   H H    H H  H H      H",
+            "H     H H        H   H H    H H   HH H    H",
+            " HHHHH  H        H   H  HHHH  H    H  HHHH ",
+       
     }, new String[]{
-            " yyyyy  yyyyyy  yyyyyyy yyy  yyyyy  y     y  yyyyy ",
-            "y     y y     y    y     y  y     y yy    y y     y",
-            "y     y y     y    y     y  y     y y y   y y      ",
-            "y     y yyyyyy     y     y  y     y y  y  y  yyyyy ",
-            "y     y y          y     y  y     y y   y y       y",
-            "y     y y          y     y  y     y y    yy y     y",
-            " yyyyy  y          y    yyy  yyyyy  y     y  yyyyy "
+            " yyyyy                                    ",
+            "y     y yyyyy  yyyyy y  yyyy  y    y  yyyy ",
+            "y     y y    y   y   y y    y yy   y y     ",
+            "y     y y    y   y   y y    y y y  y  yyyy ",
+            "y     y yyyyy    y   y y    y y  y y      y",
+            "y     y y        y   y y    y y   yy y    y",
+            " yyyyy  y        y   y  yyyy  y    y  yyyy ",
     }, "OptionText");
 
     private final String[] image;

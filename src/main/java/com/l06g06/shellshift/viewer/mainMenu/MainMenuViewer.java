@@ -15,7 +15,7 @@ public class MainMenuViewer extends View<MainMenu> {
     public void drawElements(Gui gui){
         gui.setGradientBackground("#ABF0F9", "#457da8");
 
-        gui.drawImageASCII(Components.Title.getImage(), new Position(25,10));
+        gui.drawImageASCII(Components.Title.getImage(), new Position(25,5));
         gui.drawImageASCII(Components.Chell.getImage(), new Position(100, 60));
         gui.drawImageASCII(Components.Cloud.getImage(), new Position(95, 40));
         gui.drawImageASCII(Components.Cloud.getImage(), new Position(120, 55));
@@ -23,7 +23,7 @@ public class MainMenuViewer extends View<MainMenu> {
 
         int i = 0;
         for (Components component : getModel().getOptions()) {
-            gui.drawImageASCII(getModel().isSelected(i) ? component.getImageSelected() : component.getImage(), new Position(15,33 + i * 12));
+            gui.drawImageASCII(getModel().isSelected(i) ? component.getImageSelected() : component.getImage(), new Position(15,28 + i * 12));
             i++;
         }
 

@@ -41,8 +41,8 @@ public class Sound {
                 clip.open(audioInputStream);
 
                 // change clip volume
-                //FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                //gainControl.setValue(-20.0f);
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(-5.0f);
 
                 clip.loop(0);
             } catch (Exception uafe) {

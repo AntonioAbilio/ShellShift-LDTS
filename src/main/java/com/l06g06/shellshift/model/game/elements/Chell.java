@@ -14,7 +14,7 @@ public class Chell extends Element {
     private Gun gun;
     private int lives;
     private float velocity = 250F;
-    private int gravity = 1000;
+    private int gravity = 600;
     private int horizontalSpeed = 1;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
     private boolean invincible = false;
