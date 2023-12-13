@@ -13,8 +13,7 @@ import java.net.URISyntaxException;
 
 public class Game {
     private State state;
-    private LanternaGUI gui;
-    private KeyListener keysListen;
+    private final LanternaGUI gui;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(160, 100);
@@ -22,7 +21,6 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
-        //Database.getInstance();
         new Game().start();
     }
 
@@ -40,7 +38,7 @@ public class Game {
         //Sound.playSound(Sound.SoundsFx.Coin);
         int FPS = 60;
         int frameTime = 1000 / FPS;
-        this.keysListen = new ListenForKeys(this.gui);
+        KeyListener keysListen = new ListenForKeys(this.gui);
 
         while (this.state != null) {
             long startTime = System.currentTimeMillis();

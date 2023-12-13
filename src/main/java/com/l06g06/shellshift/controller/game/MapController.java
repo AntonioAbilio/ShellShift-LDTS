@@ -16,7 +16,6 @@ public class MapController extends GameController{
     private long addedScoreTimer = System.currentTimeMillis();
     private final ChellController chellController;
     private final BulletController bulletController;
-    private final GunController gunController;
     private final PlatformController platformController;
     private final CoinController coinController;
     private final EnemyController enemyController;
@@ -32,7 +31,6 @@ public class MapController extends GameController{
         super(map);
         this.chellController = new ChellController(map);
         this.bulletController = new BulletController(map);
-        this.gunController = new GunController(map);
         this.platformController = new PlatformController(map);
         this.coinController = new CoinController(map);
         this.enemyController = new EnemyController(map);
@@ -40,20 +38,11 @@ public class MapController extends GameController{
         this.powerUpController = new PowerUpController(map);
         gameStartTime = System.currentTimeMillis();
     }
-    /*
-    private void enemyCollisionHandler(Game game, long time) {
-        // Check for Chell and Enemy collisions. -> por esta funcao dentro da chell
-        if (ElementEnemyCollision(getModel().getChell())) {
-            getModel().getChell().decreaseLives();
-            getModel().getChell().activateBlink();
-        }
-    }
-    */
+
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
-        gunController.step(game, action, time);
         platformController.step(game, action, time);
         coinController.step(game, action, time);
         cloudController.step(game, action, time);
@@ -83,12 +72,10 @@ public class MapController extends GameController{
         if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             shiftCooldown = 0.05;
-            System.out.println("30 seconds passed (Acceleration level 2)");
         } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
             checkpoint2 = true;
             shiftCooldown = 0.03;
             spawnCooldown = 2;
-            System.out.println("120 seconds passed (Acceleration level 3)");
         }
     }
 
@@ -113,6 +100,7 @@ public class MapController extends GameController{
     public static double getShiftCooldown(){
         return shiftCooldown;
     }
+
     public static int getSpawnCooldown() {
         return spawnCooldown;
     }

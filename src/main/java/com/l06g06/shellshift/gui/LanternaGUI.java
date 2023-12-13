@@ -45,9 +45,7 @@ public class LanternaGUI implements Gui {
         DefaultTerminalFactory terminalFactory = new DefaultTerminalFactory().setInitialTerminalSize(terminalSize);
         terminalFactory.setForceAWTOverSwing(true);
         terminalFactory.setTerminalEmulatorFontConfiguration(fontConfig);
-        Terminal terminal = terminalFactory.createTerminal();
-
-        return terminal;
+        return terminalFactory.createTerminal();
     }
 
     private Screen createScreen(Terminal terminal) throws IOException {
@@ -60,11 +58,50 @@ public class LanternaGUI implements Gui {
         return screen;
     }
 
-    private void drawElement(int x, int y, char chr, String color){
-        TextGraphics graphics = screen.newTextGraphics();
-        graphics.setForegroundColor(TextColor.Factory.fromString(color));
-        graphics.putString(x,y, String.valueOf(chr));
+    public void addButton(Integer button) {
+        if (!this.buttons.contains(button)) this.buttons.add(button);
     }
+
+    public void removeButton(Integer button) {
+        this.buttons.remove(button);
+    }
+
+    public TerminalScreen getScreen() {
+        return screen;
+    }
+
+    public void addKeyListener(KeyListener keyListener){
+        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
+    }
+
+    private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException, NullPointerException {
+        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
+        File fontFile = new File(resource.toURI());
+        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        ge.registerFont(font);
+
+        Font loadedFont = font.deriveFont(Font.PLAIN, 8);
+        return AWTTerminalFontConfiguration.newInstance(loadedFont);
+    }
+
+    private String calculateGradientColor(String startColor, String endColor, double factor) {
+        int startRed = Integer.parseInt(startColor.substring(1, 3), 16);
+        int startGreen = Integer.parseInt(startColor.substring(3, 5), 16);
+        int startBlue = Integer.parseInt(startColor.substring(5, 7), 16);
+
+        int endRed = Integer.parseInt(endColor.substring(1, 3), 16);
+        int endGreen = Integer.parseInt(endColor.substring(3, 5), 16);
+        int endBlue = Integer.parseInt(endColor.substring(5, 7), 16);
+
+        int red = (int) (startRed + factor * (endRed - startRed));
+        int green = (int) (startGreen + factor * (endGreen - startGreen));
+        int blue = (int) (startBlue + factor * (endBlue - startBlue));
+
+        return String.format("#%02X%02X%02X", red, green, blue);
+    }
+
     @Override
     public void setBackground(String color) {
         TextGraphics tg = this.screen.newTextGraphics();
@@ -73,9 +110,7 @@ public class LanternaGUI implements Gui {
         tg.setForegroundColor(textColor);
 
         StringBuilder sb = new StringBuilder();
-        for (int x = 0; x < this.screen.getTerminalSize().getColumns(); x++) {
-            sb.append(" ");
-        }
+        sb.append(" ".repeat(Math.max(0, this.screen.getTerminalSize().getColumns())));
         String row = sb.toString();
 
         TerminalSize terminalSize = this.screen.getTerminalSize();
@@ -91,14 +126,6 @@ public class LanternaGUI implements Gui {
             char digit = numString.charAt(i);
             drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( x + i * 6, y));
         }
-    }
-
-    public void addButton(Integer button) {
-        if (!this.buttons.contains(button)) this.buttons.add(button);
-    }
-
-    public void removeButton(Integer button) {
-        this.buttons.remove(button);
     }
 
     @Override
@@ -137,72 +164,7 @@ public class LanternaGUI implements Gui {
             getNextAction();
         }
 
-        /*KeyStroke key = this.screen.pollInput();*/
-
-        /*if (key == null)  return PressedKey.NONE;*/
-
-        /*switch (key.getKeyType()){
-            case ArrowUp:
-                return PressedKey.UP;
-            case ArrowDown:
-                return PressedKey.DOWN;
-            case ArrowLeft:
-                return PressedKey.LEFT;
-            case ArrowRight:
-                return PressedKey.RIGHT;
-            case Enter:
-                return PressedKey.SELECT;
-            case Character:
-                if (key.getCharacter() == ' '){
-                    return PressedKey.FIRE;
-                } else if (key.getCharacter() == 'q'){
-                    return PressedKey.EXIT;
-                } else {
-                    return PressedKey.NONE;
-                }
-            default:
-                return PressedKey.NONE;
-        }*/
         return pressedKeyList;
-    }
-
-    @Override
-    public void drawCoin(Position pos){
-        drawElement(pos.getX(), pos.getY(), 'c', "#FFFF00");
-    }
-
-    @Override
-    public void drawChell(Position pos){
-        drawElement(pos.getX(), pos.getY(), 'P', "#FFFF00");
-    }
-
-    @Override
-    public void drawBullet(Position pos){
-        drawElement(pos.getX(), pos.getY(), '*', "#FFFF00");
-    }
-
-    @Override
-    public void drawPlatform(Position pos){
-        drawElement(pos.getX(), pos.getY(), '-', "#FFFF00");
-    }
-
-    @Override
-    public void drawMonster(Position pos){
-        drawElement(pos.getX(), pos.getY(), 'M', "#FFFF00");
-    }
-
-    @Override
-    public void drawPowerup(Position pos) {
-        drawElement(pos.getX(), pos.getY(), '=', "#FFFF00");
-    }
-
-    @Override
-    public void drawText(Position position, String text, String color) {
-        TextGraphics textStr = screen.newTextGraphics();
-        //textStr.setBackgroundColor(TextColor.ANSI.DEFAULT);
-        //textStr.setBackgroundColor(TextColor.Factory.fromString(color));
-        textStr.setForegroundColor(TextColor.Factory.fromString(color));
-        textStr.putString(position.getX(), position.getY(), text);
     }
 
     @Override
@@ -247,30 +209,6 @@ public class LanternaGUI implements Gui {
         screen.close();
     }
 
-    public TerminalScreen getScreen() {
-        return screen;
-    }
-
-    public void addKeyListener(KeyListener keyListener){
-        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
-    }
-
-    public void removeKeyListenner(KeyListener keyListener){
-        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).removeKeyListener(keyListener);
-    }
-
-    private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException {
-        URL resource = getClass().getClassLoader().getResource("fonts/square.ttf");
-        File fontFile = new File(resource.toURI());
-        Font font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        ge.registerFont(font);
-
-        Font loadedFont = font.deriveFont(Font.PLAIN, 8);
-        AWTTerminalFontConfiguration fontConfig = AWTTerminalFontConfiguration.newInstance(loadedFont);
-        return fontConfig;
-    }
     @Override
     public void setGradientBackground(String innerColor, String outerColor) {
         TextGraphics textGraphics = this.screen.newTextGraphics();
@@ -293,21 +231,5 @@ public class LanternaGUI implements Gui {
                 textGraphics.putString(x, y, " ");
             }
         }
-    }
-
-    private String calculateGradientColor(String startColor, String endColor, double factor) {
-        int startRed = Integer.parseInt(startColor.substring(1, 3), 16);
-        int startGreen = Integer.parseInt(startColor.substring(3, 5), 16);
-        int startBlue = Integer.parseInt(startColor.substring(5, 7), 16);
-
-        int endRed = Integer.parseInt(endColor.substring(1, 3), 16);
-        int endGreen = Integer.parseInt(endColor.substring(3, 5), 16);
-        int endBlue = Integer.parseInt(endColor.substring(5, 7), 16);
-
-        int red = (int) (startRed + factor * (endRed - startRed));
-        int green = (int) (startGreen + factor * (endGreen - startGreen));
-        int blue = (int) (startBlue + factor * (endBlue - startBlue));
-
-        return String.format("#%02X%02X%02X", red, green, blue);
     }
 }

@@ -10,6 +10,7 @@ import com.l06g06.shellshift.model.game.map.Map;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 
 public class BulletController extends GameController {
@@ -22,10 +23,8 @@ public class BulletController extends GameController {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
         for (Gui.PressedKey gpk : action) {
-            switch (gpk) {
-                case FIRE:
-                    fire(time);
-                    break;
+            if (Objects.requireNonNull(gpk) == Gui.PressedKey.FIRE) {
+                fire(time);
             }
         }
         bulletUpdate();

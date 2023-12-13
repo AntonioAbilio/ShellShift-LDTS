@@ -5,7 +5,6 @@ import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Cloud;
-import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 

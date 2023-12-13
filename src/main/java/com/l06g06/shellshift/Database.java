@@ -53,10 +53,6 @@ public class Database {
         return damageMultiplier;
     }
 
-    public void setDamageMultiplier(int damageMultiplier) {
-        this.damageMultiplier = damageMultiplier;
-    }
-
     public int getNumCoins() {
         return numCoins;
     }
@@ -67,10 +63,6 @@ public class Database {
 
     public int getMonstersKilled() {
         return monstersKilled;
-    }
-
-    public void setMonstersKilled(int monstersKilled) {
-        this.monstersKilled = monstersKilled;
     }
 
     public void addScore(int score) {
@@ -99,9 +91,6 @@ public class Database {
         return 999;
     }
 
-    public int getMAXLIVES() {
-        return 8;
-    }
     public int getMAXBULLETS() {
         return 200;
     }
@@ -111,10 +100,6 @@ public class Database {
 
     public int getCollectedCoins() {
         return collectedCoins;
-    }
-
-    public void setCollectedCoins(int collectedCoins) {
-        this.collectedCoins = collectedCoins;
     }
 
     public void addCollectedCoins(int coins) {

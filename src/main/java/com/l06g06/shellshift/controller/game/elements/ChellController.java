@@ -31,7 +31,6 @@ public class ChellController extends GameController {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
         // Check if Chell is inside a Platform before doing anything else.
-        //elementInsidePlatform(getModel().getChell()); --> nao faz nada
 
         // Check where Chell will land.
         if (!isChellStandingOnPlatform() && !isJumping){
@@ -96,7 +95,6 @@ public class ChellController extends GameController {
             if (time - jumpStartTime >= 500)
                 Sound.playSound(Sound.SoundsFx.Jump);
         }
-        System.out.println("ola");
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();

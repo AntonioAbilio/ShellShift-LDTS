@@ -34,12 +34,4 @@ public class PlatformSpawner {
             if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
         }
     }
-
-    // Not complete
-    /*static Map createMap(int x, int y){
-        createEntities();
-        return new Map(x,y);
-    }
-
-    private static void createEntities(){}*/
 }

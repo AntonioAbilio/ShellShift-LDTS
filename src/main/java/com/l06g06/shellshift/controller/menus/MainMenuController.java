@@ -38,7 +38,7 @@ public class MainMenuController extends Controller<MainMenu> {
                     if (getModel().isSelectedStatistics()) game.setState(new StatisticsState(new Statistics()));
                     if (getModel().isSelectedShop()) game.setState(new ShopState(new Shop()));
                     if (getModel().isSelectedTutorial()) game.setState(new TutorialState(new TutorialMap()));
-                    if (getModel().isSelectedStart()) game.setState(new GameState(new Map(160, 100)));
+                    if (getModel().isSelectedStart()) game.setState(new GameState(new Map()));
                     break;
             }
         }

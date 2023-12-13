@@ -1,8 +1,6 @@
 package com.l06g06.shellshift.model.game.map;
 
 import com.l06g06.shellshift.model.creators.EnemyCreator;
-import com.l06g06.shellshift.model.creators.PlatformCreator;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 

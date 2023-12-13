@@ -33,7 +33,7 @@ public class GameOverController extends Controller<GameOver> {
                     break;
                 case SELECT:
                     Sound.playSound(Sound.SoundsFx.OptionSelect);
-                    if (getModel().isSelectedRestart()) game.setState(new GameState(new Map(165,100)));
+                    if (getModel().isSelectedRestart()) game.setState(new GameState(new Map()));
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
             }

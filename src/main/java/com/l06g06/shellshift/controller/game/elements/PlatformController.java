@@ -14,8 +14,6 @@ import java.util.List;
 public class PlatformController extends GameController {
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
-    //int acceleration;
-
 
     public PlatformController(Map map) {
         super(map);
@@ -47,18 +45,4 @@ public class PlatformController extends GameController {
             platform.setPosition(new Position(x - 1, y));
         }
     }
-
-    /*public void updateAcceleration(long elapsedTimeSinceGameStart){
-        // Acceleration is divided in 3 levels
-        if (!updated1 && elapsedTimeSinceGameStart >= 30){
-            updated1 = true;
-            acceleration++;
-            System.out.println("30 seconds passed (Acceleration level 2)");
-        } else if (!updated2 && elapsedTimeSinceGameStart >= 120){
-            updated2 = true;
-            acceleration++;
-            System.out.println("120 seconds passed (Acceleration level 3)");
-        }
-    }*/
-
 }

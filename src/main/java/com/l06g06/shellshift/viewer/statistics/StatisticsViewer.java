@@ -6,7 +6,6 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.statistics.Statistics;
 import com.l06g06.shellshift.viewer.View;
-import jdk.jfr.DataAmount;
 
 import java.util.List;
 
@@ -34,9 +33,5 @@ public class StatisticsViewer extends View<Statistics> {
 
         gui.drawImageASCII(Components.CoinsCollected.getImage(), new Position(8, 83));
         gui.numToASCII(Database.getInstance().getCollectedCoins(), 110 ,85);
-
-        //gui.numToASCII(Database.getInstance().getMonstersKilled(), 50,50);
-        //gui.numToASCII(Database.getInstance().getNumLives(), 50,50);
-
     }
 }
