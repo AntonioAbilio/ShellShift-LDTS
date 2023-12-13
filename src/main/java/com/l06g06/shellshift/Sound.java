@@ -2,7 +2,6 @@ package com.l06g06.shellshift;
 
 import javax.sound.sampled.*;
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 public class Sound {
@@ -40,8 +39,8 @@ public class Sound {
             clip.open(audioInputStream);
 
             // change clip volume
-            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-20.0f);
+            //FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            //gainControl.setValue(-20.0f);
 
             clip.loop(0);
         }

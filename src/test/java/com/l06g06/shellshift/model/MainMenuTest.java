@@ -20,7 +20,7 @@ class MainMenuTest {
 
     @Test
     public void getOptionsTest() {
-        List<Components> expected = Arrays.asList(Components.Start, Components.Shop, Components.Statistics, Components.Quit);
+        List<Components> expected = Arrays.asList(Components.Start, Components.Shop, Components.Tutorial, Components.Statistics, Components.Quit);
         assertEquals(expected, mainMenu.getOptions());
     }
 
@@ -49,7 +49,7 @@ class MainMenuTest {
 
     @Test
     public void getOptionsSizeTest() {
-        assertEquals(4, mainMenu.getOptionsSize());
+        assertEquals(5, mainMenu.getOptionsSize());
     }
 
     @Test

@@ -1,7 +1,6 @@
 package com.l06g06.shellshift.model.shop;
 
 import com.l06g06.shellshift.Components;
-import com.l06g06.shellshift.Database;
 
 import java.util.*;
 

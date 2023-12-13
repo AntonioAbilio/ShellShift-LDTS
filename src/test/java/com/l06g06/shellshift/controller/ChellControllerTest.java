@@ -6,7 +6,6 @@ import com.l06g06.shellshift.gui.ListenForKeys;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

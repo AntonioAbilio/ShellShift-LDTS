@@ -29,7 +29,8 @@ public class StatisticsViewerTest {
 
         try {
             viewer.drawTest(gui);
-            Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(Position.class), Mockito.eq("Ranking"), Mockito.eq("#FFFFF"));
+            // Extra info: Commented because method does not exist anymore.
+            //Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(Position.class), Mockito.eq("Ranking"), Mockito.eq("#FFFFF"));
         } catch (IOException ioe) {
             fail("Caught the IOException: " + ioe.getMessage());
         }

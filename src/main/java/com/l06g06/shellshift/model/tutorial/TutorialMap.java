@@ -6,7 +6,6 @@ import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.VerticalMoveStrategy;
-import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 

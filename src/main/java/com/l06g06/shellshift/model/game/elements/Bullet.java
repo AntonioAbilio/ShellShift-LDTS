@@ -2,8 +2,6 @@ package com.l06g06.shellshift.model.game.elements;
 
 import com.l06g06.shellshift.Database;
 
-import javax.xml.crypto.Data;
-
 import java.awt.*;
 
 public class Bullet extends Element {

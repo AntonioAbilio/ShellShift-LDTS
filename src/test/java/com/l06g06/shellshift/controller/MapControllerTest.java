@@ -32,7 +32,6 @@ public class MapControllerTest {
     private long addedScoreTimer = System.currentTimeMillis();
     private ChellController chellController;
     private BulletController bulletController;
-    private GunController gunController;
     private PlatformController platformController;
     private CoinController coinController;
     private EnemyController enemyController;
@@ -46,7 +45,6 @@ public class MapControllerTest {
         this.action = new ArrayList<>();
         this.chellController = mock(ChellController.class);
         this.bulletController = mock(BulletController.class);
-        this.gunController = mock(GunController.class);
         this.platformController = mock(PlatformController.class);
         this.coinController = mock(CoinController.class);
         this.enemyController = mock(EnemyController.class);

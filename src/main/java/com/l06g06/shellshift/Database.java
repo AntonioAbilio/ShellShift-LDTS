@@ -3,10 +3,7 @@ package com.l06g06.shellshift;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 

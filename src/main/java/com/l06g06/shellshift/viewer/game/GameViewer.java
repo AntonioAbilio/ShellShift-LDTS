@@ -3,15 +3,11 @@ package com.l06g06.shellshift.viewer.game;
 // Internelly we decided to call arena Map...
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Bullet;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class GameViewer extends View<Map> {
