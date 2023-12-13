@@ -33,7 +33,7 @@ public class CoinController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn coin logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
@@ -56,7 +56,7 @@ public class CoinController extends GameController {
             System.out.println("x: " + randomPlatform.getPosition().getX());
             System.out.println("SEARCHING " + i);
             i++;
-        } while (randomPlatform.getPosition().getX() < 170 && i < 30);
+        } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
             System.out.println("NOT FOUND");

@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -85,7 +86,9 @@ public class EnemyController extends GameController {
                 enemiesIterator.remove();
                 if (!getModel().getChell().isInvincible()) {
                     getModel().getChell().decreaseLives();
+                    Sound.playSound(Sound.SoundsFx.MonsterCollision);
                     getModel().getChell().activateBlink(1000);
+
                 }
             }
         }

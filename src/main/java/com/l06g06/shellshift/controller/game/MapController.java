@@ -37,10 +37,6 @@ public class MapController extends GameController{
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
         gameStartTime = System.currentTimeMillis();
-        this.shiftCooldown = 0.08;
-        this.spawnCooldown = 5;
-        this.checkpoint1 = false;
-        this.checkpoint2 = false;
     }
 
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
@@ -66,7 +62,7 @@ public class MapController extends GameController{
             game.setState((new GameOverState(new GameOver())));
         }
 
-        long elapsedTimeSinceGameStart =  (time - MapController.getGameStartTime()) / 1000;
+        long elapsedTimeSinceGameStart =  (time - getGameStartTime()) / 1000;
         updateAcceleration(elapsedTimeSinceGameStart);
 
     }
@@ -76,6 +72,7 @@ public class MapController extends GameController{
         if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             shiftCooldown = 0.05;
+            spawnCooldown = 3;
         } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
             checkpoint2 = true;
             shiftCooldown = 0.03;

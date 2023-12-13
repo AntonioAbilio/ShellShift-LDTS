@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.model.game.map;
+package com.l06g06.shellshift.model.game.spawners;
 
 import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -20,8 +20,6 @@ public class PlatformSpawner {
         Platform spawned_platform = (Platform) platformCreator.create(position);
 
         platforms.add(spawned_platform);
-        for (int i = 0; i < platforms.size(); i++){
-            if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
-        }
+        platforms.removeIf(platform -> platform.getPosition().getX() <= 0);
     }
 }

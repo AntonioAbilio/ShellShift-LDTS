@@ -23,20 +23,17 @@ public class ChellController extends GameController {
     public ChellController(Map map) {
         super(map);
         this.isJumping = false;
-        this.canJump = true;
+        this.canJump = false;
         this.groundY = getModel().getChell().getPosition().getY();
         this.previousY = this.groundY;
     }
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
-        // Check if Chell is inside a Platform before doing anything else.
-
         // Check where Chell will land.
-        if (!isChellStandingOnPlatform() && !isJumping){
+        if (!isJumping){
             lookForPlatformCollision();
-            canJump = false;
-            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
+            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
         } else {
             canJump = true;
@@ -45,7 +42,10 @@ public class ChellController extends GameController {
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
-                    if (!isJumping && canJump) jump(time);
+                    if (!isJumping && canJump) {
+                        getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-1));
+                        jump(time);
+                    }
                     break;
                 case LEFT:
                     moveLEFT();
@@ -66,37 +66,23 @@ public class ChellController extends GameController {
         }
     }
 
-    public boolean isChellStandingOnPlatform(){
-        boolean onPlatform = false; // Let's assume Element is standing on a platform. -> e melhor ser falso assim nao temos que ter um else
-        for (Platform platform : getModel().getPlatforms()){
-            // First condition of colision. Element's hitbox must intersect the platform's hitbox.
-            if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())){
-                // Second condition for colision. Element's real position must be directly above the platform for any x coor.
-                onPlatform = platform.getPolygon().getBounds().getMinY() == getModel().getChell().getPosition().getY();
-                break;
-            }
-        }
-        return onPlatform;
-    }
-
     public void lookForPlatformCollision(){
         for (Platform platform : getModel().getPlatforms()) {
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
                 getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
                 isJumping = false;
+                canJump = true;
                 break; // Exit the loop after the first collision
             }
         }
     }
 
     public void jump(long time){
-        if (!isJumping){
-            if (time - jumpStartTime >= 500)
-                Sound.playSound(Sound.SoundsFx.Jump);
-        }
+        Sound.playSound(Sound.SoundsFx.Jump);
         isJumping = true;
         jumpStartTime = time;
+        canJump = false;
         groundY = getModel().getChell().getPosition().getY();
     }
 
@@ -115,11 +101,6 @@ public class ChellController extends GameController {
         if (y > previousY) lookForPlatformCollision();
         previousY = y; // Update the previous Y position
 
-        // Check if ground already reached
-        if (getModel().getChell().getPosition().getY() >= groundY + 1) {
-            isJumping = false;
-            getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
-        }
     }
 
     public void moveLEFT(){
