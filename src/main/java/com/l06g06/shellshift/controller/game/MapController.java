@@ -83,6 +83,7 @@ public class MapController extends GameController{
         if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             shiftCooldown = 0.05;
+            spawnCooldown = 3;
             System.out.println("30 seconds passed (Acceleration level 2)");
         } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
             checkpoint2 = true;
