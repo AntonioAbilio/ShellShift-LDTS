@@ -159,4 +159,8 @@ public class Map {
     public PowerUpSpawner getPowerUpSpawner() {
         return this.powerUpSpawner;
     }
+
+    public void setPlatforms(List<Platform> platforms) {
+        this.platforms = platforms;
+    }
 }
