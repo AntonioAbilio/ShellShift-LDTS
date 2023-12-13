@@ -18,7 +18,6 @@ public class PowerUpSpawner {
     public void spawn(Position position){
         PowerUp powerUpSpawned = (PowerUp) powerUpCreator.create(position);
         powerUps.add(powerUpSpawned);
-        System.out.println("ADDED POWERUP");
         powerUps.removeIf(powerUp -> powerUp.getPosition().getX() <= -20);
 
 

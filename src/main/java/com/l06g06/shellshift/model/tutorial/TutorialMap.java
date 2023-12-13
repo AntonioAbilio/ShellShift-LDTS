@@ -43,6 +43,7 @@ public class TutorialMap {
         this.coins.add(new Coin(new Position(180, 20)));
         this.enemies.add(new SoftMonster(new Position(200, 30), new HorizontalMoveStrategy()));
         this.enemies.add(new HardMonster(new Position(250, 30), new VerticalMoveStrategy()));
+        this.clouds.add(new Cloud(new Position(60,20)));
         startCloudAddingTask();
 
     }

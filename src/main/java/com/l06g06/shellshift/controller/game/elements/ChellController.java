@@ -8,61 +8,40 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
-import com.l06g06.shellshift.model.gameOver.GameOver;
-import com.l06g06.shellshift.states.GameOverState;
 
-import javax.sound.midi.Soundbank;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 
 public class ChellController extends GameController {
     boolean isJumping;
-    /*boolean ignore_standingOnPlatform;*/
     boolean canJump;
-    long jumpStartTime=0;
+    long jumpStartTime = 0;
     int groundY;
     int previousY;
-    long hitProtectionStartTime;
-    double shiftCooldown = 0.1; // Shift every 0.1 seconds
     double lastShiftTime = 0;
 
     public ChellController(Map map) {
         super(map);
         this.isJumping = false;
-        /*this.ignore_standingOnPlatform = false;*/
         this.canJump = true;
         this.groundY = getModel().getChell().getPosition().getY();
         this.previousY = this.groundY;
     }
 
-
-    private void lookForColisions(){
-        for (Platform platform : getModel().getPlatforms()) {
-            if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
-                groundY = (int) platform.getPolygon().getBounds().getMinY();
-                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
-                isJumping = false;
-                break; // Exit the loop after the first collision
-            }
-        }
-    }
-
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
         // Check if Chell is inside a Platform before doing anything else.
-        elementInsidePlatform(getModel().getChell());
+        //elementInsidePlatform(getModel().getChell()); --> nao faz nada
 
         // Check where Chell will land.
-        if (!elementStandingOnPlatform() && !isJumping){
-                lookForColisions();
-                canJump = false;
-                int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
-                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
-            } else {
-                canJump = true;
-            }
+        if (!isChellStandingOnPlatform() && !isJumping){
+            lookForPlatformCollision();
+            canJump = false;
+            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
+            getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
+        } else {
+            canJump = true;
+        }
 
 
         for (Gui.PressedKey gpk : action) {
@@ -89,6 +68,30 @@ public class ChellController extends GameController {
         }
     }
 
+    public boolean isChellStandingOnPlatform(){
+        boolean onPlatform = false;// Let's assume Element is standing on a platform. -> e melhor ser falso assim nao temos que ter um else
+        for (Platform platform : getModel().getPlatforms()){
+            // First condition of colision. Element's hitbox must intersect the platform's hitbox.
+            if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())){
+                // Second condition for colision. Element's real position must be directly above the platform for any x coor.
+                onPlatform = platform.getPolygon().getBounds().getMinY() == getModel().getChell().getPosition().getY();
+                break;
+            }
+        }
+        return onPlatform;
+    }
+
+    public void lookForPlatformCollision(){
+        for (Platform platform : getModel().getPlatforms()) {
+            if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
+                groundY = (int) platform.getPolygon().getBounds().getMinY();
+                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
+                isJumping = false;
+                break; // Exit the loop after the first collision
+            }
+        }
+    }
+
     public void jump(long time){
         if (!isJumping){
             if (time - jumpStartTime >= 500)
@@ -108,24 +111,14 @@ public class ChellController extends GameController {
         // Calculate the new position using the updated elapsed time
         int y = (int) (groundY - (getModel().getChell().getVelocity() * elapsedTime - 0.5 * getModel().getChell().getGravity() * elapsedTime * elapsedTime));
 
-        //System.out.println(y);
-
         // Update Chell's position;
         getModel().getChell().setPosition(new Position(x, y));
 
-        // Check if Chell is moving up or down based on the change in position
-        if (y < previousY) {
-            //System.out.println("Chell is going up");
-        } else if (y > previousY) {
-            //System.out.println("Chell is falling");
-            lookForColisions();
-        }
-
+        if (y > previousY) lookForPlatformCollision();
         previousY = y; // Update the previous Y position
 
         // Check if ground already reached
         if (getModel().getChell().getPosition().getY() >= groundY + 1) {
-            //System.out.println("True");
             isJumping = false;
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
         }

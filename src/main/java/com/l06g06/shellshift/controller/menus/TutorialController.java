@@ -23,14 +23,13 @@ public class TutorialController extends Controller<TutorialMap> {
     int previousY;
     long reloadStartTime = 0;
     double lastShiftTime = 0;
-    double shiftCooldown = 0.1;
+    double shiftCooldown = 0.08;
     boolean coinCheckpoint = false;
     boolean delayBackground = false;
 
     public TutorialController(TutorialMap model) {
         super(model);
     }
-
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
@@ -66,6 +65,7 @@ public class TutorialController extends Controller<TutorialMap> {
         bulletUpdate();
 
         coinCollision();
+
         if (coinCheckpoint) {
             for (Enemy enemy : getModel().getEnemies()) {
                 enemy.setPosition(enemy.getMoveStrategy().move(enemy.getPosition()));
@@ -76,6 +76,7 @@ public class TutorialController extends Controller<TutorialMap> {
 
         if (getModel().getEnemies().size() <= 0){
             getModel().stopCloudAddingTask();
+            Game.sleepTimeMS(100);
             game.setState(new MainMenuState(new MainMenu()));
         }
     }
@@ -177,14 +178,13 @@ public class TutorialController extends Controller<TutorialMap> {
     }
 
     public void leftShift() {
-        // a medida que o jogo aacelera, as nuvens tbm aceleram um pouco -> IDEIA
         if (!delayBackground) delayBackground = true;
         else {
             List<Cloud> clouds = getModel().getClouds();
             Iterator<Cloud> cloudIterator = clouds.iterator();
             while (cloudIterator.hasNext()) {
                 Cloud cloud = cloudIterator.next();
-                if (cloud.getPosition().getX() < -10) {
+                if (cloud.getPosition().getX() < -30) {
                     cloudIterator.remove();
                 }
                 else cloud.setPosition(new Position(cloud.getPosition().getX()-1,cloud.getPosition().getY()));
@@ -200,10 +200,14 @@ public class TutorialController extends Controller<TutorialMap> {
         }
 
         if (coinCheckpoint) {
-            for (Enemy enemy : getModel().getEnemies()) {
+            List<Enemy> enemies = getModel().getEnemies();
+            Iterator<Enemy> enemiesIterator = enemies.iterator();
+            while(enemiesIterator.hasNext()) {
+                Enemy enemy = enemiesIterator.next();
                 int x = enemy.getPosition().getX();
                 int y = enemy.getPosition().getY();
-                enemy.setPosition(new Position(x - 1, y));
+                if (x < -20) enemiesIterator.remove();
+                else enemy.setPosition(new Position(x - 1, y));
             }
         }
     }

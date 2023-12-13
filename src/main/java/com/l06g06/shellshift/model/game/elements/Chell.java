@@ -72,8 +72,7 @@ public class Chell extends Element {
     }
 
     public void decreaseLives() {
-        if (!invincible)
-            this.lives--;
+        this.lives--;
     }
 
     public void increaseLives() {
@@ -114,7 +113,7 @@ public class Chell extends Element {
                 resetToDefaultSpeed();
                 timer.cancel(); // Stop the timer after resetting speed
             }
-        }, 10000); // 3000 milliseconds = 3 seconds
+        }, 10000);
     }
 
     private void resetToDefaultSpeed() {
@@ -128,12 +127,13 @@ public class Chell extends Element {
             @Override
             public void run() {
                 deactivateInvincibility();
+
                 timer.cancel(); // Stop the timer after deactivating invincibility
             }
-        }, milliseconds); // 10000 milliseconds = 10 seconds
+        }, milliseconds);
     }
 
-    public void activateBlink() {
+    public void activateBlink(long delay) {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleAtFixedRate(this::toggleBlink, 0, 150, TimeUnit.MILLISECONDS);
 
@@ -145,7 +145,7 @@ public class Chell extends Element {
                 executorService.shutdown();
                 timer.cancel();
             }
-        }, 1000);
+        }, delay);
     }
     public void toggleBlink() {
         this.blink = !this.blink;
@@ -165,8 +165,5 @@ public class Chell extends Element {
 
     public boolean getBlink() {
         return blink;
-    }
-    public void setBlink(boolean blink) {
-        this.blink = blink;
     }
 }

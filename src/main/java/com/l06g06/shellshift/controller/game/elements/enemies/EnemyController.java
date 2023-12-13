@@ -9,6 +9,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.map.Map;
 
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -16,7 +17,7 @@ public class EnemyController extends GameController {
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
     int spawnX = 110;
-    int offsetX = 0;
+    // int offsetX = 0; -> adicionar 0 nao faz nada
     int offsetY = 15;
     int distBetweenEnemy = 15;
     public EnemyController(Map map) {
@@ -44,6 +45,8 @@ public class EnemyController extends GameController {
             enemy.setPosition(enemy.getMoveStrategy().move(enemy.getPosition()));  // Make Enemy move according to MoveStrategy
         }
 
+        enemyChellCollision();
+
     }
 
     public void left_shift(){
@@ -57,14 +60,14 @@ public class EnemyController extends GameController {
     public void spawnOnPlatform(){
         for (Platform platform : getModel().getPlatforms()){
             if (platform.getPosition().getX() >= spawnX - 30){
-                Position spawnPos = new Position(platform.getPosition().getX() + offsetX + platform.getWidth()/2,
-                        platform.getPosition().getY() /*- platform.getHeight()*/ - offsetY);
+                Position spawnPos = new Position(platform.getPosition().getX()  + platform.getWidth()/2,
+                        platform.getPosition().getY() - offsetY);
                 if (noEnemyInPos(spawnPos)) getModel().getEnemySpawner().spawn(spawnPos);
             }
         }
     }
 
-    public boolean noEnemyInPos(Position spawnPos){
+    public boolean noEnemyInPos(Position spawnPos){ // esta funcao nao é usada pode ser eliminada
         int diffX = 0;
         for (Enemy enemy : getModel().getEnemies()){
             diffX = spawnPos.getX() - enemy.getPosition().getX();
@@ -72,5 +75,20 @@ public class EnemyController extends GameController {
             if (diffX < distBetweenEnemy) return false;
         }
         return true;
+    }
+
+    public void enemyChellCollision() {
+        List<Enemy> enemies = getModel().getEnemies();
+        Iterator<Enemy> enemiesIterator = enemies.iterator();
+        while(enemiesIterator.hasNext()) {
+            Enemy enemy = enemiesIterator.next();
+            if (getModel().getChell().getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
+                enemiesIterator.remove();
+                if (!getModel().getChell().isInvincible()) {
+                    getModel().getChell().decreaseLives();
+                    getModel().getChell().activateBlink(1000);
+                }
+            }
+        }
     }
 }
