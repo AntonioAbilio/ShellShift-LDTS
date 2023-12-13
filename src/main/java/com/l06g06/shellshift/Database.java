@@ -17,6 +17,7 @@ public class Database {
     private int collectedCoins = 0;
     private int monstersKilled = 0;
     private int startingNumBullets = 30;
+    private boolean soundIsOn = true;
     private List<Integer> scores = new ArrayList<>(0);
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
@@ -111,5 +112,13 @@ public class Database {
 
     public int getStartingNumBullets() {
         return this.startingNumBullets;
+    }
+
+    public void setSound(boolean option){
+        this.soundIsOn = option;
+    }
+
+    public boolean isSoundIsOn() {
+        return soundIsOn;
     }
 }
