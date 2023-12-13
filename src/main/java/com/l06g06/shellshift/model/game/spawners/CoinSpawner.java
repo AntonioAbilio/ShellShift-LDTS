@@ -1,10 +1,8 @@
-package com.l06g06.shellshift.model.game.map;
+package com.l06g06.shellshift.model.game.spawners;
 
 import com.l06g06.shellshift.model.creators.CoinCreator;
-import com.l06g06.shellshift.model.creators.CoinFactory;
-import com.l06g06.shellshift.model.creators.PlatformCreator;
+import com.l06g06.shellshift.model.factories.CoinFactory;
 import com.l06g06.shellshift.model.game.elements.Coin;
-import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.util.List;
@@ -26,8 +24,6 @@ public class CoinSpawner {
         //Coin spawned_coin = (Coin) coinCreator.create(position);
         Coin spawned_coin = (Coin) coinFactory.create(position);
         coins.add(spawned_coin);
-        for (int i = 0; i < coins.size(); i++){
-            if (coins.get(i).getPosition().getX() <= 40) coins.remove(i);
-        }
+        coins.removeIf(coin -> coin.getPosition().getX() <= -30);
     }
 }

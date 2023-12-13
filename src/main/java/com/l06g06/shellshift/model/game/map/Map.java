@@ -6,6 +6,10 @@ import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
+import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
+import com.l06g06.shellshift.model.game.spawners.EnemySpawner;
+import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
+import com.l06g06.shellshift.model.game.spawners.PowerUpSpawner;
 
 import java.util.ArrayList;
 import java.util.List;

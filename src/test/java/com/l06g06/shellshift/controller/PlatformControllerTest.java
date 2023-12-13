@@ -1,12 +1,8 @@
 package com.l06g06.shellshift.controller;
 
-import com.l06g06.shellshift.controller.game.elements.CoinController;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.model.game.elements.*;
-import com.l06g06.shellshift.model.game.gun.Gun;
-import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
-import com.l06g06.shellshift.model.game.map.PlatformSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

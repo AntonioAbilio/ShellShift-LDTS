@@ -3,6 +3,7 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -11,8 +11,8 @@ public class Shop {
     private int currOption = 0;
 
     public Shop() {
-        this.options.put(Components.RapidFire, 100);
-        this.options.put(Components.ExtraLife, 50);
+        this.options.put(Components.RapidFire, 50);
+        this.options.put(Components.ExtraLife, 20simple);
         this.options.put(Components.MoreBullets, 10);
         this.options.put(Components.Quit, 0);
         this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon, Components.MoreBulletsIcon);

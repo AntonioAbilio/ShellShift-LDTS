@@ -68,7 +68,7 @@ public class PowerUpController extends GameController {
             System.out.println("x: " + randomPlatform.getPosition().getX());
             System.out.println("SEARCHING " + i);
             i++;
-        } while (randomPlatform.getPosition().getX() < 170 && i < 30);
+        } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
             System.out.println("NOT FOUND");

@@ -34,7 +34,7 @@ public class ChellController extends GameController {
         // Check where Chell will land.
         if (!isJumping){
             lookForPlatformCollision();
-            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
+            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
         } else {
             canJump = true;
@@ -44,7 +44,8 @@ public class ChellController extends GameController {
             switch (gpk) {
                 case UP:
                     if (!isJumping && canJump) {
-                        lookForPlatformCollision();
+                        //lookForPlatformCollision();
+                        getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-1));
                         jump(time);
                     }
                     break;

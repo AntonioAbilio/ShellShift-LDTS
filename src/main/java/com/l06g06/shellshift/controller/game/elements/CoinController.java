@@ -18,8 +18,6 @@ import java.util.Random;
 
 public class CoinController extends GameController {
 
-    private double spawnCooldown = 4; // Spawn every 3 seconds
-    private double shiftCooldown = 0.1; // Shift every 0.1 seconds
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
     private Random random;
@@ -36,7 +34,7 @@ public class CoinController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn coin logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()){
             lastSpawnTime = currentTime;
             //getModel().getCoinSpawner().spawn(new Position(180, 50));
             spawnOnPlatform();
@@ -60,7 +58,7 @@ public class CoinController extends GameController {
             System.out.println("x: " + randomPlatform.getPosition().getX());
             System.out.println("SEARCHING " + i);
             i++;
-        } while (randomPlatform.getPosition().getX() < 170 && i < 30);
+        } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
             System.out.println("NOT FOUND");

@@ -1,6 +1,7 @@
-package com.l06g06.shellshift.model.game.map;
+package com.l06g06.shellshift.model.game.spawners;
 
 import com.l06g06.shellshift.model.creators.*;
+import com.l06g06.shellshift.model.factories.RandomPowerUpFactory;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 
@@ -23,11 +24,5 @@ public class PowerUpSpawner {
         powerUps.add(powerUpSpawned);
         powerUps.removeIf(powerUp -> powerUp.getPosition().getX() <= -20);
 
-
-        //Platform spawned_platform = (Platform) platformCreator.create(position);
-        //platforms.add(spawned_platform);
-        //for (int i = 0; i < platforms.size(); i++){
-        //    if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
-        //}
     }
 }

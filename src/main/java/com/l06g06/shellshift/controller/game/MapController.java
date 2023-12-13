@@ -22,7 +22,7 @@ public class MapController extends GameController{
     private final EnemyController enemyController;
     private final CloudController cloudController;
     private final PowerUpController powerUpController;
-    private static long gameStartTime;
+    private  long gameStartTime;
     private static double shiftCooldown = 0.08;
     private static int spawnCooldown = 5;
     boolean checkpoint1 = false;
@@ -73,7 +73,7 @@ public class MapController extends GameController{
             game.setState((new GameOverState(new GameOver())));
         }
 
-        long elapsedTimeSinceGameStart =  (time - MapController.getGameStartTime()) / 1000;
+        long elapsedTimeSinceGameStart =  (time - getGameStartTime()) / 1000;
         updateAcceleration(elapsedTimeSinceGameStart);
 
     }
@@ -85,7 +85,7 @@ public class MapController extends GameController{
             shiftCooldown = 0.05;
             spawnCooldown = 3;
             System.out.println("30 seconds passed (Acceleration level 2)");
-        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
+        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 60){
             checkpoint2 = true;
             shiftCooldown = 0.03;
             spawnCooldown = 2;
@@ -107,7 +107,7 @@ public class MapController extends GameController{
         this.addedScoreTimer = addedScoreTimer;
     }
 
-    public static long getGameStartTime(){
+    public long getGameStartTime(){
         return gameStartTime;
     }
 

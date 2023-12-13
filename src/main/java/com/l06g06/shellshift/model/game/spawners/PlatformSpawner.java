@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.model.game.map;
+package com.l06g06.shellshift.model.game.spawners;
 
 import com.l06g06.shellshift.model.creators.PlatformCreator;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -19,20 +19,17 @@ public class PlatformSpawner {
     public void spawn(Position position){
         Platform spawned_platform = (Platform) platformCreator.create(position);
 
+        //esta logica tem q ser passada po create -> guardar nivel onde criou ultima e dps mete noutro diferente
         Iterator<Platform> platformIterator = platforms.iterator();
-
         while(platformIterator.hasNext()){
             Platform platform = platformIterator.next();
             while (spawned_platform.getPolygon().intersects(platform.getPolygon().getBounds2D())) {
                 spawned_platform = (Platform) platformCreator.create(position);
             }
-
         }
 
         platforms.add(spawned_platform);
-        for (int i = 0; i < platforms.size(); i++){
-            if (platforms.get(i).getPosition().getX() <= 0) platforms.remove(i);
-        }
+        platforms.removeIf(platform -> platform.getPosition().getX() <= 0);
     }
 
     // Not complete
