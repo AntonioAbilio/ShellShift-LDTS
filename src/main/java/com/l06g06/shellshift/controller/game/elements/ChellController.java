@@ -51,20 +51,11 @@ public class ChellController extends GameController {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
-
-        // Chell cannot lose lives during hit protection
-        if (getModel().getChell().isOnHitProtection()){
-            blink(time, hitProtectionStartTime);
-        }
-
-        // Check if Chell is dead.
-        if (getModel().getChell().getLives() <= 0) game.setState(new GameOverState(new GameOver()));
-
         // Check if Chell is inside a Platform before doing anything else.
         elementInsidePlatform(getModel().getChell());
 
-        // Cheeck where Chell will land.
-        if (/*!ignore_standingOnPlatform && */!elementStandingOnPlatform() && !isJumping){
+        // Check where Chell will land.
+        if (!elementStandingOnPlatform() && !isJumping){
                 lookForColisions();
                 canJump = false;
                 int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.01 * 0.01));
@@ -153,21 +144,6 @@ public class ChellController extends GameController {
             int y = getModel().getChell().getPosition().getY();
             getModel().getChell().setDirection(true);
             getModel().getChell().setPosition(new Position(x + getModel().getChell().getHorizontalSpeed(), y));
-        }
-    }
-
-    public void setHitProtectionStartTime(long hitProtectionStartTime){
-        this.hitProtectionStartTime =  hitProtectionStartTime;
-    }
-
-    public void blink(long time, long hitProtectionStartTime){
-        double elapsedTimeSinceHitProtection = ((double) time - (double) hitProtectionStartTime) / 1000;
-        if ((elapsedTimeSinceHitProtection > 0 && elapsedTimeSinceHitProtection < 0.3)
-            || (elapsedTimeSinceHitProtection > 0.6 && elapsedTimeSinceHitProtection < 0.9)
-            || (elapsedTimeSinceHitProtection > 1.2 && elapsedTimeSinceHitProtection < 1.5)) getModel().getChell().setBlink(false);
-        else getModel().getChell().setBlink(true);
-        if (elapsedTimeSinceHitProtection >= 2){
-            getModel().getChell().setOnHitProtection(false);
         }
     }
 

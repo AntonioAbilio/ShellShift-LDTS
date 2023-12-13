@@ -3,6 +3,7 @@ package com.l06g06.shellshift.controller.game.elements;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.game.GameController;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -34,13 +35,13 @@ public class PowerUpController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn platforms logic
-        if (currentTime - lastSpawnTime >= spawnCooldown){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown() + 10){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift platforms logic
-        if (currentTime - lastShiftTime >= shiftCooldown){
+        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -61,11 +62,18 @@ public class PowerUpController extends GameController {
         List<Platform> platforms = getModel().getPlatforms();
 
         Platform randomPlatform;
+        int i = 0;
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
             System.out.println("x: " + randomPlatform.getPosition().getX());
-            System.out.println("SEARCHING");
-        } while (randomPlatform.getPosition().getX() <= 170);
+            System.out.println("SEARCHING " + i);
+            i++;
+        } while (randomPlatform.getPosition().getX() < 170 && i < 30);
+
+        if (i >= 30) {
+            System.out.println("NOT FOUND");
+            return;
+        }
 
         System.out.println("FOUND");
         int minY = 200;

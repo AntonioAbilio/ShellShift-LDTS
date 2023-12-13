@@ -26,7 +26,7 @@ public abstract class GameController extends Controller<Map> {
             Enemy enemy = enemiesIterator.next();
             if (element.getPolygon().intersects(enemy.getPolygon().getBounds2D())) {
                 Sound.playSound(Sound.SoundsFx.MonsterCollision);
-            if (element.getPolygon().intersects(enemy.getPolygon().getBounds2D()) && !getModel().getChell().isOnHitProtection()) {
+
                 enemiesIterator.remove();
                 isColliding = true;
             }

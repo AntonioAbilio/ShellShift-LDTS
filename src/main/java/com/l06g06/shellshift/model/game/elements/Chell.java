@@ -6,6 +6,9 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 import java.awt.*;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class Chell extends Element {
     private Gun gun;
@@ -15,7 +18,6 @@ public class Chell extends Element {
     private int horizontalSpeed = 1;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
     private boolean invincible = false;
-    private boolean isOnHitProtection = false;
     private boolean blink = false; // true = show Chell, false = don't show Chell
 
     private final static int height = 15;
@@ -118,7 +120,7 @@ public class Chell extends Element {
     private void resetToDefaultSpeed() {
         this.horizontalSpeed = 1;
     }
-    public void activateInvincibility() {
+    public void activateInvincibilityTimer(long milliseconds) {
         this.invincible = true;
         // Schedule a task to deactivate invincibility after 10 seconds
         Timer timer = new Timer();
@@ -128,27 +130,42 @@ public class Chell extends Element {
                 deactivateInvincibility();
                 timer.cancel(); // Stop the timer after deactivating invincibility
             }
-        }, 10000); // 10000 milliseconds = 10 seconds
+        }, milliseconds); // 10000 milliseconds = 10 seconds
     }
 
-    private void deactivateInvincibility() {
+    public void activateBlink() {
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleAtFixedRate(this::toggleBlink, 0, 150, TimeUnit.MILLISECONDS);
+
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                stopBlinking();
+                executorService.shutdown();
+                timer.cancel();
+            }
+        }, 1000);
+    }
+    public void toggleBlink() {
+        this.blink = !this.blink;
+    }
+    public void stopBlinking(){
+        blink = false;
+    }
+
+
+    public void deactivateInvincibility() {
         this.invincible = false;
     }
 
-
-
-    public boolean isOnHitProtection() {
-        return isOnHitProtection;
-    }
-
-    public void setOnHitProtection(boolean onHitProtection) {
-        isOnHitProtection = onHitProtection;
+    public boolean isInvincible() {
+        return invincible;
     }
 
     public boolean getBlink() {
         return blink;
     }
-
     public void setBlink(boolean blink) {
         this.blink = blink;
     }

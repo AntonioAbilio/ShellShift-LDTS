@@ -34,10 +34,9 @@ public class ChellViewer implements ElementViewer<Chell>{
     };*/
 
     @Override
-    public void draw(Chell chell, Gui gui){
-
-
-        /*View.ASCII_Drawer(CHELL, new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14), gui);
+    public void draw(Chell chell, Gui gui) {
+        /*
+        View.ASCII_Drawer(CHELL, new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14), gui);
         gui.drawChell(chell.getPosition());
 
         //Uncomment this to see hithox.
@@ -48,20 +47,9 @@ public class ChellViewer implements ElementViewer<Chell>{
             *//*System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");*//*
         }*/
 
-        // Use this to draw the coin in ASCII Art.
-       //gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX()-14, chell.getPosition().getY()-14));
-
-        if (!chell.isOnHitProtection()) {
+        if (!chell.getBlink())
             gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
-        }
-        else {
-            if (chell.getBlink()) gui.drawImageASCII(chell.isDirection() ? Components.Chell.getImage() : Components.Chell.getImageSelected(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
-            else; // gui.drawImageASCII(Components.Start.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
-            //gui.drawImageASCII(Components.Coin.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
-            //gui.drawImageASCII(Components.Title.getImage(), new Position(chell.getPosition().getX() - 14, chell.getPosition().getY() - 14));
-        }
-        /*// Move chell ... DEBUG
-        chell.setPosition(new Position(chellPos.getX()+1, chellPos.getY()));*/
+
 
     }
 }

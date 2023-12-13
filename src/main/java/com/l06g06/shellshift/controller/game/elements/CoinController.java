@@ -37,7 +37,7 @@ public class CoinController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn coin logic
-        if (currentTime - lastSpawnTime >= spawnCooldown){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
             lastSpawnTime = currentTime;
             //getModel().getCoinSpawner().spawn(new Position(180, 50));
             spawnOnPlatform();
@@ -59,11 +59,11 @@ public class CoinController extends GameController {
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
             System.out.println("x: " + randomPlatform.getPosition().getX());
-            System.out.println("SEARCHING");
+            System.out.println("SEARCHING " + i);
             i++;
-        } while (randomPlatform.getPosition().getX() < 170 && i < 20000);
+        } while (randomPlatform.getPosition().getX() < 170 && i < 30);
 
-        if (i >= 20000) {
+        if (i >= 30) {
             System.out.println("NOT FOUND");
             return;
         }
@@ -80,7 +80,6 @@ public class CoinController extends GameController {
     }
 
     public void left_shift(){
-        //todos os leftshifts sao comuns para elementos, podemos fazer leftShift(Element) no map/game e usar dps -> preciso eliminar elementos quando saem do ecra se nao vamos ter listas mt grandes
         for (Coin coin : getModel().getCoins()){
             int x = coin.getPosition().getX();
             int y = coin.getPosition().getY();

@@ -13,8 +13,6 @@ import java.util.List;
 
 
 public class EnemyController extends GameController {
-    double spawnCooldown = 3; // Spawn every 3 seconds
-    double shiftCooldown = 0.1; // Shift every 0.1 seconds
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
     int spawnX = 110;
@@ -31,7 +29,7 @@ public class EnemyController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn enemy logic
-        if (currentTime - lastSpawnTime >= spawnCooldown){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }

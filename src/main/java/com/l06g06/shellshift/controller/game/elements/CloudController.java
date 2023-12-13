@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Coin;
@@ -13,11 +14,8 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CloudController extends GameController {
-    private double spawnCooldown = 3; // Spawn every 3 seconds
     private double shiftCooldown = 0.3; // Shift every 0.3 seconds
-    private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
-
 
     public CloudController(Map map) {
         super(map);
@@ -27,16 +25,13 @@ public class CloudController extends GameController {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= shiftCooldown){
+        if (currentTime - lastShiftTime >= MapController.getShiftCooldown() + 0.2){
             lastShiftTime = currentTime;
             left_shift();
         }
-
-
     }
 
     public void left_shift(){
-
         List<Cloud> clouds = getModel().getClouds();
         Iterator<Cloud> cloudIterator = clouds.iterator();
         while (cloudIterator.hasNext()) {

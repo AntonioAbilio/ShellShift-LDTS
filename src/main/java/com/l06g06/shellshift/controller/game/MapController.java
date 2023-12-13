@@ -6,6 +6,7 @@ import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
+import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
@@ -22,12 +23,10 @@ public class MapController extends GameController{
     private final GunController gunController;
     private final PlatformController platformController;
     private final CoinController coinController;
-    //private final SoftMonsterController softMonsterController;
-    //private final HardMonsterController hardMonsterController;
     private final EnemyController enemyController;
     static long gameStartTime;
     static double shiftCooldown = 0.1;
-    private boolean first;
+    static int spawnCooldown = 5;
 
     boolean updated1 = false;
     boolean updated2 = false;
@@ -42,76 +41,31 @@ public class MapController extends GameController{
         this.gunController = new GunController(map);
         this.platformController = new PlatformController(map);
         this.coinController = new CoinController(map);
-        //this.softMonsterController = new SoftMonsterController(map);
-        //this.hardMonsterController = new HardMonsterController(map);
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
-        this.first = true;
-        //ToDo (more are missing)
+        gameStartTime = System.currentTimeMillis();
     }
 
-    private void enemyColisionHandler(Game game, long time){
-        // Check for Chell and Enemy collisions.
-        if (ElementEnemyCollision(getModel().getChell()) && !getModel().getChell().isOnHitProtection()){
-            System.out.println("AUCH!");
-            int lives = getModel().getChell().getLives();
-            if (lives <= 0)
-                game.setState(new GameOverState(new GameOver()));
-            else {
-                getModel().getChell().decreaseLives();
-                getModel().getChell().setOnHitProtection(true);
-                chellController.setHitProtectionStartTime(time);
-                //System.out.println("On hit protection");
-            }
-        }
-
-        // Check for Bullet and Enemy collisions. -> mudar isto temos no bullet controller esta função e passar o game parece estranho
-        List<Bullet> bullets = getModel().getBullets();
-        Iterator<Bullet> bulletIterator = bullets.iterator();
-        while (bulletIterator.hasNext()) {
-            Bullet bullet = bulletIterator.next();
-            if (ElementEnemyCollision(bullet)) bulletIterator.remove();
-        }
-
-    }
-
-    private void outOfBoundsHandler(Game game){
-        if (getModel().getChell().getPosition().getY() >= this.getModel().getHeight()+15){
-            System.out.println("ChellPos: " + getModel().getChell().getPosition().getY());
-
-            System.out.println("Ground: " + (this.getModel().getHeight()+15));
-            System.out.println("out");
-            game.setState(new GameOverState(new GameOver()));
+    private void enemyCollisionHandler(Game game, long time) {
+        // Check for Chell and Enemy collisions. -> por esta funcao dentro da chell
+        if (ElementEnemyCollision(getModel().getChell())) {
+            getModel().getChell().decreaseLives();
+            getModel().getChell().activateBlink();
         }
     }
-
-    // Step should give the received action to each controller...
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
-        if (first){
-            gameStartTime = time;
-            first = false;
-        }
-
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
-
-        enemyCollisionHandler(game, time);
-        //outOfBoundsHandler(game);
-
         gunController.step(game, action, time);
         platformController.step(game, action, time);
         coinController.step(game, action, time);
         cloudController.step(game, action, time);
         powerUpController.step(game, action, time);
 
+        enemyCollisionHandler(game, time);
 
-        /*
-        if (getModel().getGun().getNumBullets() <= 0) {
-            game.setState(new GameOverState(new GameOver()));
-        }
-         */
 
         // adiciona 1 ponto a cada segundo
         if (System.currentTimeMillis() - addedScoreTimer >= 1000) {
@@ -140,11 +94,12 @@ public class MapController extends GameController{
         // Acceleration is divided in 3 levels
         if (!updated1 && elapsedTimeSinceGameStart >= 5){
             updated1 = true;
-            shiftCooldown = 0.05;
+            shiftCooldown = 0.06;
             System.out.println("30 seconds passed (Acceleration level 2)");
         } else if (!updated2 && elapsedTimeSinceGameStart >= 10){
             updated2 = true;
-            shiftCooldown = 0.02;
+            shiftCooldown = 0.03;
+            spawnCooldown = 2;
             System.out.println("120 seconds passed (Acceleration level 3)");
         }
     }
@@ -159,5 +114,8 @@ public class MapController extends GameController{
 
     public static double getShiftCooldown(){
         return shiftCooldown;
+    }
+    public static int getSpawnCooldown() {
+        return spawnCooldown;
     }
 }
