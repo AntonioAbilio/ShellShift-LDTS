@@ -3,8 +3,6 @@ package com.l06g06.shellshift.gui;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
-import com.googlecode.lanterna.input.KeyStroke;
-import com.googlecode.lanterna.input.KeyType;
 import com.googlecode.lanterna.screen.Screen;
 
 
@@ -14,7 +12,6 @@ import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.l06g06.shellshift.Components;
-import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.CharColor;
 
@@ -22,7 +19,6 @@ import java.awt.*;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -255,7 +251,7 @@ public class LanternaGUI implements Gui {
         return screen;
     }
 
-    public void addKeyListenner(KeyListener keyListener){
+    public void addKeyListener(KeyListener keyListener){
         ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
     }
 

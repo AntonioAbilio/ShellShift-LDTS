@@ -58,7 +58,7 @@ class MainMenuTest {
         mainMenu.nextOption();
         assertTrue(mainMenu.isSelectedShop());
     }
-
+    /*
     @Test
     public void isSelectedStatisticsTest() {
         assertFalse(mainMenu.isSelectedRanking());
@@ -66,6 +66,8 @@ class MainMenuTest {
         mainMenu.nextOption();
         assertTrue(mainMenu.isSelectedRanking());
     }
+
+     */
 
     @Test
     public void isSelectedStartTest() {

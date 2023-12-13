@@ -36,7 +36,7 @@ public class ShopViewerTest {
     void drawShop() {
         List<Components> mockComponents = new ArrayList<>();
         mockComponents.add(Components.Shop);
-        when(shop.getText()).thenReturn(mockComponents);
+        //when(shop.getText()).thenReturn(mockComponents);
         when(shop.getIcons()).thenReturn(mockComponents);
 
         shopViewer.drawElements(gui);

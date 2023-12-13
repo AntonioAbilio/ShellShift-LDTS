@@ -3,14 +3,13 @@ package com.l06g06.shellshift.viewers;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
-import com.l06g06.shellshift.viewer.game.PowerupViewer;
-import org.junit.jupiter.api.BeforeEach;
+import com.l06g06.shellshift.viewer.game.PowerUpViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class PowerupViewerTest {
     private PowerUp powerup;
-    private PowerupViewer viewer;
+    private PowerUpViewer viewer;
     private Gui gui;
     /*
     @BeforeEach

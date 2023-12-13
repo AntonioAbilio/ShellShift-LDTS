@@ -3,7 +3,7 @@ package com.l06g06.shellshift.viewers;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.statistics.Statistics;
-import com.l06g06.shellshift.viewer.ranking.RankingViewer;
+import com.l06g06.shellshift.viewer.statistics.StatisticsViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -12,15 +12,15 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.fail;
 
-public class RankingViewerTest {
+public class StatisticsViewerTest {
     private Statistics stats;
-    private RankingViewer viewer;
+    private StatisticsViewer viewer;
     private Gui gui;
 
     @BeforeEach
     void setUp(){
         stats = Mockito.mock(Statistics.class);
-        viewer = new RankingViewer(stats);
+        viewer = new StatisticsViewer(stats);
         gui = Mockito.mock(Gui.class);
     }
 

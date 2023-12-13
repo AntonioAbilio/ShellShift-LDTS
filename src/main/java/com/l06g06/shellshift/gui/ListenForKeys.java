@@ -7,7 +7,7 @@ public class ListenForKeys implements KeyListener {
     private LanternaGUI lanterna_gui;
     public ListenForKeys(LanternaGUI gui) {
         this.lanterna_gui = gui;
-        lanterna_gui.addKeyListenner(this);
+        lanterna_gui.addKeyListener(this);
     }
 
     @Override
