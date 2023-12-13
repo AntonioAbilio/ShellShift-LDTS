@@ -48,7 +48,7 @@ public class TutorialMap {
 
     public void startCloudAddingTask() {
         Random rand = new Random();
-        executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(5, 20), TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(15) + 5, TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
         executorService.shutdown();
@@ -56,7 +56,7 @@ public class TutorialMap {
 
     private void addCloud() {
         Random rand = new Random();
-        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(0, 30)));
+        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(30)));
         clouds.add(newCloud);
     }
 

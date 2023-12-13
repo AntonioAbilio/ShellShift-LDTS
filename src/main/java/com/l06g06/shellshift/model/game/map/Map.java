@@ -18,7 +18,7 @@ public class Map {
     private int score = 0;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(80,0));
+    private Chell chell = new Chell(new Position(120,0));
     private Gun gun;
     private List<Enemy> enemies = new ArrayList<>(0);
     private List<Platform> platforms = new ArrayList<>(0);
@@ -43,7 +43,7 @@ public class Map {
 
         //plataforma inicial
         this.platforms.add(new Platform(new Position(140, 55)));
-
+        this.platforms.add(new Platform(new Position(210, 35)));
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         this.enemySpawner = new EnemySpawner(enemies);
@@ -55,7 +55,7 @@ public class Map {
 
     public void startCloudAddingTask() {
         Random rand = new Random();
-        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(0, 15), TimeUnit.SECONDS);
+        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
         executorService.shutdown();
@@ -63,7 +63,7 @@ public class Map {
 
     private void addCloud() {
         Random rand = new Random();
-        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(0, 70)));
+        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(70)));
         this.clouds.add(newCloud);
     }
 
@@ -158,5 +158,9 @@ public class Map {
 
     public PowerUpSpawner getPowerUpSpawner() {
         return this.powerUpSpawner;
+    }
+
+    public void setPlatforms(List<Platform> platforms) {
+        this.platforms = platforms;
     }
 }

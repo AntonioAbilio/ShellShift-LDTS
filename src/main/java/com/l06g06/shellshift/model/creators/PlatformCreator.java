@@ -4,19 +4,18 @@ import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class PlatformCreator extends Creator {
     private Position lastPosition = new Position(-1,-1);
+    private int last_level = 4;
+    private int nextLevel = 0;
 
     public Element create(Position position) {
-        Random rn = new Random();
-        int nextPlatform = rn.nextInt(5);
-        int offsetX = rn.nextInt(10);
-        int positiveOrNegative = rn.nextInt(2);
-
+        // The platforms added represent y levels and only one platform is chosen at a time
         List<List<Integer>> possiblePlatforms = new ArrayList<>(0);
 
         List<Integer> Platform_1 = new ArrayList<>(0);
@@ -44,16 +43,19 @@ public class PlatformCreator extends Creator {
         Platform_5.add(25);
         possiblePlatforms.add(Platform_5);
 
-        int x;
-        if (positiveOrNegative == 0) x = possiblePlatforms.get(nextPlatform).get(0) + offsetX;
-        else x = possiblePlatforms.get(nextPlatform).get(0) - offsetX;
+        int x = 300;
 
-        int y = possiblePlatforms.get(nextPlatform).get(1);
+        // maximum distance between a lower level to a higher level
+        SecureRandom rn = new SecureRandom();
+        nextLevel = rn.nextInt(last_level + 2);
+        if (nextLevel >= 4) nextLevel = rn.nextInt(last_level + 1);
 
-        if (lastPosition.getY() == y){
-            nextPlatform = rn.nextInt(5);
-            y = possiblePlatforms.get(nextPlatform).get(1);
+        if (last_level == nextLevel && nextLevel != 4){
+            nextLevel++;
         }
+
+        int y = possiblePlatforms.get(nextLevel).get(1);
+        last_level = nextLevel;
 
         lastPosition = new Position(x,y);
 
