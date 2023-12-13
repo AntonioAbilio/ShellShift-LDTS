@@ -67,7 +67,7 @@ public class EnemyController extends GameController {
         }
     }
 
-    public boolean noEnemyInPos(Position spawnPos){ // esta funcao nao é usada pode ser eliminada
+    public boolean noEnemyInPos(Position spawnPos){
         int diffX = 0;
         for (Enemy enemy : getModel().getEnemies()){
             diffX = spawnPos.getX() - enemy.getPosition().getX();

@@ -43,7 +43,6 @@ public class ChellController extends GameController {
             canJump = true;
         }
 
-
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
@@ -69,7 +68,7 @@ public class ChellController extends GameController {
     }
 
     public boolean isChellStandingOnPlatform(){
-        boolean onPlatform = false;// Let's assume Element is standing on a platform. -> e melhor ser falso assim nao temos que ter um else
+        boolean onPlatform = false; // Let's assume Element is standing on a platform. -> e melhor ser falso assim nao temos que ter um else
         for (Platform platform : getModel().getPlatforms()){
             // First condition of colision. Element's hitbox must intersect the platform's hitbox.
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())){
@@ -97,6 +96,7 @@ public class ChellController extends GameController {
             if (time - jumpStartTime >= 500)
                 Sound.playSound(Sound.SoundsFx.Jump);
         }
+        System.out.println("ola");
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();

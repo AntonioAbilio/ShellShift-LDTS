@@ -27,7 +27,7 @@ public class Sound {
     }
 
     public static void playSound(SoundsFx soundsFx){
-    /*
+
         try{
             System.out.println(soundsFx.getPath());
 
@@ -41,15 +41,14 @@ public class Sound {
             // open audioInputStream to the clip
             clip.open(audioInputStream);
 
-            clip.loop(0);
-            //clip.start();
+            // change clip volume
+            FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-20.0f);
 
+            clip.loop(0);
         }
-        catch (UnsupportedAudioFileException | IOException | LineUnavailableException | NullPointerException uafe){
+        catch (Exception uafe){
             System.out.println(uafe.getMessage());
         }
-
-    */
-
     }
 }

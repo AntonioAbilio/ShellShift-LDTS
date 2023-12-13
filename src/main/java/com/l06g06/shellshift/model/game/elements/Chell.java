@@ -153,8 +153,6 @@ public class Chell extends Element {
     public void stopBlinking(){
         blink = false;
     }
-
-
     public void deactivateInvincibility() {
         this.invincible = false;
     }

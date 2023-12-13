@@ -24,7 +24,6 @@ public class CoinController extends GameController {
     private double lastShiftTime = 0;
     private Random random;
 
-    long lastTimePickedUP = 0;
 
     public CoinController(Map map) {
         super(map);
@@ -48,7 +47,7 @@ public class CoinController extends GameController {
             lastShiftTime = currentTime;
             left_shift();
         }
-        coinCollision(time);
+        coinCollision();
     }
 
     public void spawnOnPlatform() {
@@ -67,15 +66,16 @@ public class CoinController extends GameController {
             System.out.println("NOT FOUND");
             return;
         }
+
         System.out.println("FOUND");
         int minY = 200;
         for (int y : randomPlatform.getPolygon().ypoints) {
             if (y < minY) minY = y;
         }
 
-        int offsetX = random.nextInt(-65, 0);
+        int offsetX = random.nextInt(65);
 
-        Position coinPosition = new Position(randomPlatform.getPosition().getX() + offsetX, minY - 18);
+        Position coinPosition = new Position(randomPlatform.getPosition().getX() - offsetX, minY - 18);
         getModel().getCoinSpawner().spawn(coinPosition);
     }
 
@@ -87,7 +87,7 @@ public class CoinController extends GameController {
         }
     }
 
-    public void coinCollision(long time) {
+    public void coinCollision() {
         List<Coin> coins = getModel().getCoins();
         Iterator<Coin> coinsIterator = coins.iterator();
         while (coinsIterator.hasNext()) {
@@ -96,8 +96,7 @@ public class CoinController extends GameController {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
 
-                //Sound.playSound(Sound.SoundsFx.Coin);
-                //lastTimePickedUP = time;
+                Sound.playSound(Sound.SoundsFx.Coin);
                 getModel().addCoin();
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }

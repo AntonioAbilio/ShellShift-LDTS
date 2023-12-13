@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
@@ -53,8 +54,6 @@ public class TutorialController extends Controller<TutorialMap> {
             }
         }
 
-
-
         double currentTime = time / 1000.0; // Convert to seconds
 
         if (currentTime - lastShiftTime >= shiftCooldown){
@@ -84,6 +83,7 @@ public class TutorialController extends Controller<TutorialMap> {
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();
+        Sound.playSound(Sound.SoundsFx.Jump);
     }
 
     public void jumpUpdate(long time) {
@@ -221,6 +221,7 @@ public class TutorialController extends Controller<TutorialMap> {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) | coin.getPosition().getX() < -10) {
                 coinsIterator.remove();
                 getModel().addCoin();
+                Sound.playSound(Sound.SoundsFx.Coin);
                 this.coinCheckpoint = true;
             }
         }

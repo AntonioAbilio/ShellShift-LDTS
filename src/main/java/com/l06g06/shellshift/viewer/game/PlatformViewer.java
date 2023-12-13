@@ -7,18 +7,6 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.viewer.View;
 
 public class PlatformViewer implements ElementViewer<Platform>{
-
-    public static final String[] PLATFORM = {
-            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
-            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
-            "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
-            "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-    };
-
-    /*private static final String[] HITBOX = new String[]{
-            "P"
-    };*/
-
     @Override
     public void draw(Platform platform, Gui gui){
         /*View.ASCII_Drawer(PLATFORM, platform.getPosition(), gui);
@@ -30,6 +18,6 @@ public class PlatformViewer implements ElementViewer<Platform>{
             *//*System.out.println("Vertex " + (i + 1) + ": (" + x + ", " + y + ")");*//*
         }*/
         gui.drawImageASCII(Components.Platform.getImage(), new Position(platform.getPosition().getX() - Platform.getWidth(), platform.getPosition().getY()));
-        gui.drawPlatform(platform.getPosition());
+        //gui.drawPlatform(platform.getPosition());
     }
 }
