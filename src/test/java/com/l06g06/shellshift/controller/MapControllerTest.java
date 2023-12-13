@@ -34,7 +34,6 @@ public class MapControllerTest {
     private long addedScoreTimer = System.currentTimeMillis();
     private ChellController chellController;
     private BulletController bulletController;
-    private GunController gunController;
     private PlatformController platformController;
     private CoinController coinController;
     private EnemyController enemyController;
@@ -51,7 +50,6 @@ public class MapControllerTest {
         this.action = new ArrayList<>();
         this.chellController = new ChellController(map);
         this.bulletController = new BulletController(map);
-        this.gunController = new GunController(map);
         this.platformController = new PlatformController(map);
         this.coinController = new CoinController(map);
         this.enemyController = new EnemyController(map);

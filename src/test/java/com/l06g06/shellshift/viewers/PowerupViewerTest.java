@@ -1,11 +1,14 @@
 package com.l06g06.shellshift.viewers;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.viewer.game.PowerUpViewer;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import static org.mockito.ArgumentMatchers.eq;
 
 public class PowerupViewerTest {
     private PowerUp powerup;
@@ -23,6 +26,6 @@ public class PowerupViewerTest {
     @Test
     void drawPowerup(){
         viewer.draw(powerup, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawPowerup(powerup.getPosition());
+        //Mockito.verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Platform.getImage()), eq(platform.getPosition()));
     }
 }

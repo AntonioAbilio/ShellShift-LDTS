@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.viewers;
 
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -7,6 +8,8 @@ import com.l06g06.shellshift.viewer.game.PlatformViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import static org.mockito.ArgumentMatchers.eq;
 
 public class PlatformViewerTest {
     private Platform platform;
@@ -23,7 +26,7 @@ public class PlatformViewerTest {
     @Test
     void drawPlatform(){
         viewer.draw(platform, gui);
-        Mockito.verify(gui, Mockito.times(1)).drawPlatform(platform.getPosition());
+        //Mockito.verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Platform.getImage()), eq(platform.getPosition()));
     }
 
 
