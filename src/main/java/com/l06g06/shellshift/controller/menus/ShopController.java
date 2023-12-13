@@ -6,6 +6,8 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.model.game.gun.FireStrategy;
+import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.gun.RapidFireStrategy;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.model.shop.Shop;
@@ -35,7 +37,8 @@ public class ShopController extends Controller<Shop> {
                     if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
                         int price = getModel().getPrice(Components.RapidFire);
-                        if (price <= Database.getInstance().getNumCoins()) {
+
+                        if (price <= Database.getInstance().getNumCoins() && Database.getInstance().getFiringStrategy() instanceof NormalFireStrategy) {
                             Database.getInstance().setFiringStrategy(new RapidFireStrategy());
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
                             game.setState(new MainMenuState(new MainMenu()));
@@ -52,9 +55,11 @@ public class ShopController extends Controller<Shop> {
                     }
                     if (getModel().isSelectedMoreBullets()) {
                         int price = getModel().getPrice(Components.MoreBullets);
-                        Database.getInstance().addStartingBullets(10);
-                        Database.getInstance().setNumCoins(Database.getInstance().getNumCoins()- price);
-                        game.setState(new MainMenuState(new MainMenu()));
+                        if (price <= Database.getInstance().getNumCoins()) {
+                            Database.getInstance().addStartingBullets(10);
+                            Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
+                            game.setState(new MainMenuState(new MainMenu()));
+                        }
                     }
                     break;
             }
