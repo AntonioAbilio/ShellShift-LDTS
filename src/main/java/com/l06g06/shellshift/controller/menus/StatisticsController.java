@@ -21,8 +21,9 @@ public class StatisticsController extends Controller<Statistics> {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
             switch(gpk){
-                case SELECT:
+                case EXIT:
                     game.setState(new MainMenuState(new MainMenu()));
+                    break;
             }
         }
     }

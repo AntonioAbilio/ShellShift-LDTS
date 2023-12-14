@@ -35,6 +35,9 @@ public class TutorialController extends Controller<TutorialMap> {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
+                case EXIT:
+                    game.setState(new MainMenuState(new MainMenu()));
+                    break;
                 case UP:
                     getModel().setSelectedArrowUp(true);
                     if (!isJumping) jump(time);

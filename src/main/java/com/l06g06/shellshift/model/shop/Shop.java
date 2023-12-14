@@ -13,7 +13,6 @@ public class Shop {
         this.options.put(Components.RapidFire, 50);
         this.options.put(Components.ExtraLife, 20);
         this.options.put(Components.MoreBullets, 10);
-        this.options.put(Components.Quit, 0);
         this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon, Components.MoreBulletsIcon);
     }
 

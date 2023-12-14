@@ -32,6 +32,7 @@ public class ChellController extends GameController {
     public void step(Game game, List<Gui.PressedKey> action, long time) {
         // Check where Chell will land.
         if (!isJumping){
+            canJump = false;
             lookForPlatformCollision();
             int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
