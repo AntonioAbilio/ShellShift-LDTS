@@ -88,7 +88,7 @@ public class EnemyController extends GameController {
                     getModel().getChell().decreaseLives();
                     Sound.playSound(Sound.SoundsFx.MonsterCollision);
                     getModel().getChell().activateBlink(1000);
-
+                    getModel().getChell().activateInvincibilityTimer(2000);
                 }
             }
         }
