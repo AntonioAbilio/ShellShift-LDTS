@@ -69,7 +69,9 @@ public class ChellController extends GameController {
 
     public void lookForPlatformCollision(){
         for (Platform platform : getModel().getPlatforms()) {
+            System.out.println("BBBBB");
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
+                System.out.println("AAAA");
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
                 getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
                 isJumping = false;
@@ -126,6 +128,25 @@ public class ChellController extends GameController {
         getModel().getChell().setPosition(new Position(x - 1, y));
     }
 
-}
 
+    public boolean isJumping() {
+        return isJumping;
+    }
+
+    public boolean isCanJump() {
+        return canJump;
+    }
+
+    public long getJumpStartTime() {
+        return jumpStartTime;
+    }
+
+    public int getGroundY() {
+        return groundY;
+    }
+
+    public void setJumpStartTime(long jumpStartTime) {
+        this.jumpStartTime = jumpStartTime;
+    }
+}
 
