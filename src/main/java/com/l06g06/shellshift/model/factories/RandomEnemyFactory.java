@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.factories;
 
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -21,3 +22,4 @@ public class RandomEnemyFactory {
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.factories;
 
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
@@ -9,3 +10,4 @@ public class HorizonalMoveStrategyFactory extends MoveStrategyFactory{
         return new HorizontalMoveStrategy();
     }
 }
+*/

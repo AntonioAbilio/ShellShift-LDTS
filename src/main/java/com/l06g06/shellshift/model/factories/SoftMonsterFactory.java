@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.factories;
 
 import com.l06g06.shellshift.model.game.elements.Element;
@@ -10,3 +11,4 @@ public class SoftMonsterFactory extends EnemyFactory {
         return new SoftMonster(position, new RandomMoveStrategyFactory().create());
     }
 }
+*/
