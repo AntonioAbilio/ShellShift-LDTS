@@ -40,6 +40,10 @@ public class Map {
     private int coinsCollected = 0;
     private int monstersKilled = 0;
 
+    private long gameStartTime;
+    private double shiftCooldown = 0.08;
+    private int spawnCooldown = 5;
+
     // Sizes
     public Map() {
         this.gun = new Gun(new NormalFireStrategy());
@@ -57,6 +61,7 @@ public class Map {
 
     }
 
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void startCloudAddingTask() {
         Random rand = new Random();
         executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
@@ -166,5 +171,29 @@ public class Map {
 
     public void setPlatforms(List<Platform> platforms) {
         this.platforms = platforms;
+    }
+
+    public long getGameStartTime(){
+        return gameStartTime;
+    }
+
+    public double getShiftCooldown(){
+        return shiftCooldown;
+    }
+
+    public int getSpawnCooldown() {
+        return spawnCooldown;
+    }
+
+    public void setGameStartTime(long gst) {
+        gameStartTime = gst;
+    }
+
+    public void setShiftCooldown(double ssc){
+        shiftCooldown = ssc;
+    }
+
+    public void setSpawnCooldown(int ssd) {
+        spawnCooldown = ssd;
     }
 }

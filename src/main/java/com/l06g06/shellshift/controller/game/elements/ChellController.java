@@ -54,6 +54,7 @@ public class ChellController extends GameController {
                 case RIGHT:
                     moveRIGHT();
                     break;
+                default:
             }
         }
 
@@ -61,7 +62,7 @@ public class ChellController extends GameController {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }

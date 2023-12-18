@@ -36,6 +36,7 @@ public class GameOverController extends Controller<GameOver> {
                     if (getModel().isSelectedRestart()) game.setState(new GameState(new Map()));
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
+                default:
             }
             Game.sleepTimeMS(100); // isto aqui e so para os inputs nao serem tao sensiveis
         }

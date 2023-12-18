@@ -1,19 +1,18 @@
 package com.l06g06.shellshift.gui;
 
+import com.google.common.collect.ImmutableList;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-
-
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.l06g06.shellshift.CharColor;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.CharColor;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
@@ -23,11 +22,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
+import java.util.Iterator;
 import java.util.List;
 
 public class LanternaGUI implements Gui {
     protected final TerminalScreen screen;
-    private List<Integer> buttons = new ArrayList<Integer>(0);
+    private List<Integer> buttons = new ArrayList<>(0);
 
     // Constructor for tests
     public LanternaGUI(TerminalScreen screen){
@@ -63,7 +63,14 @@ public class LanternaGUI implements Gui {
     }
 
     public void removeButton(Integer button) {
-        this.buttons.remove(button);
+        Iterator<Integer> intIterator = this.buttons.iterator();
+        while(intIterator.hasNext()) {
+            Integer intg = intIterator.next();
+            if (intg.intValue() == button) {
+                intIterator.remove();
+            }
+        }
+        //this.buttons.remove(button);
     }
 
     public TerminalScreen getScreen() {
@@ -124,18 +131,17 @@ public class LanternaGUI implements Gui {
         String numString = Integer.toString(num);
         for (int i = 0; i < numString.length(); i++) {
             char digit = numString.charAt(i);
-            drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( x + i * 6, y));
+            drawImageASCII(Components.getNumbers().get(Character.digit(digit,10)).getImage(), new Position( x + i * 6, y));
         }
     }
 
     @Override
-    public List<PressedKey> getNextAction() throws IOException {
-
-        List<PressedKey> pressedKeyList = new ArrayList<PressedKey>(0);
-
-        if (this.buttons.isEmpty()) return pressedKeyList;
-
+    public List<PressedKey> getNextAction(){
+        List<PressedKey> pressedKeyList = new ArrayList<>(0);
         try {
+            if (this.buttons.isEmpty()) return pressedKeyList;
+
+
             for (Integer intg : this.buttons) {
                 switch (intg) {
                     case 38:
@@ -164,7 +170,7 @@ public class LanternaGUI implements Gui {
                 }
             }
         } catch (ConcurrentModificationException e){
-            getNextAction();
+            return pressedKeyList;
         }
 
         return pressedKeyList;
@@ -178,7 +184,7 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public void drawImageASCII(String[] image, Position position) {
+    public void drawImageASCII(ImmutableList<String> image, Position position) {
         // Get the starting position of the Element
         int y = position.getY();
 
@@ -186,7 +192,8 @@ public class LanternaGUI implements Gui {
         for (String horizontalPixelMatrix : image){
 
             int x = position.getX();
-            for (char Pixel : horizontalPixelMatrix.toCharArray()){
+            for (int i = 0; i < horizontalPixelMatrix.length(); i++){
+                char Pixel = horizontalPixelMatrix.charAt(i);
                 // Get the corresponding color of the character.
                 CharColor paint = CharColor.getCharColor(Pixel);
                 if (Pixel != ' ')

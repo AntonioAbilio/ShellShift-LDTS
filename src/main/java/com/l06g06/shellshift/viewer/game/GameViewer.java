@@ -19,7 +19,7 @@ public class GameViewer extends View<Map> {
     public void drawElements(Gui gui) /*throws IOException*/ {
         gui.setBackground("#8ec4e8");
 
-        drawElements(gui, getModel().getClouds(), new CloudViewer());
+        //drawElements(gui, getModel().getClouds(), new CloudViewer());
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());

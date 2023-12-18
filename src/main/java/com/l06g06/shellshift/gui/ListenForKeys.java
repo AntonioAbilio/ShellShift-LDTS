@@ -4,6 +4,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class ListenForKeys implements KeyListener {
+    public static boolean locked = false;
+
     private LanternaGUI lanterna_gui;
     public ListenForKeys(LanternaGUI gui) {
         this.lanterna_gui = gui;
@@ -16,11 +18,11 @@ public class ListenForKeys implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        this.lanterna_gui.addButton(e.getKeyCode());
+        if (!locked) this.lanterna_gui.addButton(e.getKeyCode());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        this.lanterna_gui.removeButton(e.getKeyCode());
+        if (!locked) this.lanterna_gui.removeButton(e.getKeyCode());
     }
 }

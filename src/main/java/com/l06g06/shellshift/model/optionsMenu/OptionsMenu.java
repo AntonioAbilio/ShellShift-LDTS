@@ -9,11 +9,10 @@ import java.util.List;
 
 public class OptionsMenu {
     private final List<Components> options;
-    public static boolean soundOFF;
+    public static boolean soundOFF = Database.getInstance().isSoundIsOn();;
 
     public OptionsMenu() {
         this.options = Arrays.asList(Components.SoundON, Components.SoundOFF);
-        soundOFF = Database.getInstance().isSoundIsOn();
     }
 
     public List<Components> getOptions(){

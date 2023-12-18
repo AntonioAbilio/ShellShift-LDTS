@@ -13,7 +13,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CloudController extends GameController {
-    private double shiftCooldown = 0.3; // Shift every 0.3 seconds
     private double lastShiftTime = 0;
 
     public CloudController(Map map) {
@@ -24,7 +23,7 @@ public class CloudController extends GameController {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown() + 0.2){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown() + 0.2){
             lastShiftTime = currentTime;
             left_shift();
         }

@@ -1,14 +1,15 @@
 package com.l06g06.shellshift.gui;
 
+import com.google.common.collect.ImmutableList;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.io.IOException;
 import java.util.List;
 
 public interface Gui {
-    List<PressedKey> getNextAction() throws IOException;
+    List<PressedKey> getNextAction();
     void drawASCII(Position position, String color);
-    void drawImageASCII(String[] image, Position position);
+    void drawImageASCII(ImmutableList<String> image, Position position);
     void clear();
     void refresh() throws IOException;
     void close() throws IOException;

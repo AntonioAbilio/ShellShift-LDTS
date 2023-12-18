@@ -54,6 +54,7 @@ public class TutorialController extends Controller<TutorialMap> {
                     getModel().setSelectedSpace(true);
                     fire(time);
                     break;
+                default:
             }
         }
 
@@ -221,7 +222,7 @@ public class TutorialController extends Controller<TutorialMap> {
         while (coinsIterator.hasNext()) {
             Coin coin = coinsIterator.next();
 
-            if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) | coin.getPosition().getX() < -10) {
+            if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) || coin.getPosition().getX() < -10) {
                 coinsIterator.remove();
                 getModel().addCoin();
                 Sound.playSound(Sound.SoundsFx.Coin);

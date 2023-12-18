@@ -33,6 +33,7 @@ public class OptionsMenuController extends Controller<OptionsMenu> {
                         getModel().setSound(true);
                     }
                     break;
+                default:
             }
         }
 

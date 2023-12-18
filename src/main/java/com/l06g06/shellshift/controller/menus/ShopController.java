@@ -65,6 +65,7 @@ public class ShopController extends Controller<Shop> {
                         }
                     }
                     break;
+                default:
             }
 
             Game.sleepTimeMS(100);

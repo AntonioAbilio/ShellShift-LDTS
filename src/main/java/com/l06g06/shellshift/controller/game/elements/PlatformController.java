@@ -25,13 +25,13 @@ public class PlatformController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn platforms logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()){
             lastSpawnTime = currentTime;
             getModel().getPlatformSpawner().spawn(new Position(230, getModel().getChell().getPosition().getY()));
         }
 
         // Shift platforms logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }

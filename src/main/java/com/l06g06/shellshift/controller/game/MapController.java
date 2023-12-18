@@ -5,6 +5,7 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
+import com.l06g06.shellshift.gui.ListenForKeys;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
@@ -21,9 +22,6 @@ public class MapController extends GameController{
     private final EnemyController enemyController;
     private final CloudController cloudController;
     private final PowerUpController powerUpController;
-    private static long gameStartTime;
-    private static double shiftCooldown = 0.08;
-    private static int spawnCooldown = 5;
     boolean checkpoint1 = false;
     boolean checkpoint2 = false;
 
@@ -36,10 +34,12 @@ public class MapController extends GameController{
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
-        gameStartTime = System.currentTimeMillis();
+        getModel().setGameStartTime(System.currentTimeMillis());
     }
 
+    @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+        ListenForKeys.locked = true;
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
@@ -47,6 +47,8 @@ public class MapController extends GameController{
         coinController.step(game, action, time);
         cloudController.step(game, action, time);
         powerUpController.step(game, action, time);
+        action.clear();
+        ListenForKeys.locked = false;
 
         // adiciona 1 ponto a cada segundo
         if (System.currentTimeMillis() - addedScoreTimer >= 1000) {
@@ -59,10 +61,10 @@ public class MapController extends GameController{
             updateDatabase();
             getModel().stopCloudAddingTask();
             Game.sleepTimeMS(200);
-            game.setState((new GameOverState(new GameOver())));
+            game.setState(new GameOverState(new GameOver()));
         }
 
-        long elapsedTimeSinceGameStart =  (time - getGameStartTime()) / 1000;
+        long elapsedTimeSinceGameStart =  (time - getModel().getGameStartTime()) / 1000;
         updateAcceleration(elapsedTimeSinceGameStart);
 
     }
@@ -71,17 +73,17 @@ public class MapController extends GameController{
         // Acceleration is divided in 3 levels
         if (!checkpoint1 && elapsedTimeSinceGameStart >= 5){
             checkpoint1 = true;
-            shiftCooldown = 0.05;
-            spawnCooldown = 3;
+            getModel().setShiftCooldown(0.05);
+            getModel().setSpawnCooldown(3);
         } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 10){
             checkpoint2 = true;
-            shiftCooldown = 0.03;
-            spawnCooldown = 2;
+            getModel().setShiftCooldown(0.03);
+            getModel().setSpawnCooldown(2);
         }
     }
 
     public boolean isGameOver() {
-        return getModel().getChell().getPosition().getY() > 150 | getModel().getChell().getPosition().getX() < 0 | getModel().getChell().getLives() <= 0;
+        return getModel().getChell().getPosition().getY() > 150 || getModel().getChell().getPosition().getX() < 0 || getModel().getChell().getLives() <= 0;
     }
 
     public void updateDatabase() {
@@ -94,18 +96,6 @@ public class MapController extends GameController{
         this.addedScoreTimer = addedScoreTimer;
     }
 
-    public static long getGameStartTime(){
-        return gameStartTime;
-    }
-
-    public static double getShiftCooldown(){
-        return shiftCooldown;
-    }
-
-    public static int getSpawnCooldown() {
-        return spawnCooldown;
-    }
-
     public boolean isCheckpoint1() {
         return checkpoint1;
     }
@@ -114,7 +104,4 @@ public class MapController extends GameController{
         return checkpoint2;
     }
 
-    public static void setGameStartTime(long gameStartTime) {
-        MapController.gameStartTime = gameStartTime;
-    }
 }

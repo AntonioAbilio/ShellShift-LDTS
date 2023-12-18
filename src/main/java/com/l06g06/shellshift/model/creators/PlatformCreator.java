@@ -14,6 +14,7 @@ public class PlatformCreator extends Creator {
     private int last_level = 4;
     private int nextLevel = 0;
 
+    @Override
     public Element create(Position position) {
         // The platforms added represent y levels and only one platform is chosen at a time
         List<List<Integer>> possiblePlatforms = new ArrayList<>(0);

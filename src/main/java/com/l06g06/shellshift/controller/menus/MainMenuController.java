@@ -42,6 +42,7 @@ public class MainMenuController extends Controller<MainMenu> {
                     if (getModel().isSelectedStart()) game.setState(new GameState(new Map()));
                     if (getModel().isSelectedOptions()) game.setState(new OptionsMenuState(new OptionsMenu()));
                     break;
+                default:
             }
         }
     }

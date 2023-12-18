@@ -30,13 +30,13 @@ public class EnemyController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn enemy logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()+2){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift enemy logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }

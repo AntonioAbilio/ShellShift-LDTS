@@ -33,13 +33,13 @@ public class CoinController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn coin logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift coin logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }

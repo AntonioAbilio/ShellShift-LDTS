@@ -32,13 +32,13 @@ public class PowerUpController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn platforms logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown() + 10){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 10){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift platforms logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }
