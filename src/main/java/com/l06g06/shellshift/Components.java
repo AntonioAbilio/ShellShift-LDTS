@@ -798,7 +798,13 @@ public enum Components {
             "y     y yyyyy    y   y y    y y  y y      y",
             "y     y y        y   y y    y y   yy y    y",
             " yyyyy  y        y   y  yyyy  y    y  yyyy ",
-    }, "OptionText");
+    }, "OptionText"),
+
+    HealthBar(new String[] {
+        " VVV",
+        " VVV",
+        " VVV"
+    }, new String[]{}, "HealthBar");
 
     private final String[] image;
     private final String[] imageSelected;

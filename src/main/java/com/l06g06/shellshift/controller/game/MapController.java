@@ -69,11 +69,11 @@ public class MapController extends GameController{
 
     public void updateAcceleration(long elapsedTimeSinceGameStart){
         // Acceleration is divided in 3 levels
-        if (!checkpoint1 && elapsedTimeSinceGameStart >= 5){
+        if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             shiftCooldown = 0.05;
             spawnCooldown = 3;
-        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 10){
+        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 60){
             checkpoint2 = true;
             shiftCooldown = 0.03;
             spawnCooldown = 2;
