@@ -129,7 +129,7 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public List<PressedKey> getNextAction() throws ConcurrentModificationException {
+    public synchronized List<PressedKey> getNextAction() throws ConcurrentModificationException {
 
         List<PressedKey> pressedKeyList = new ArrayList<>();
 

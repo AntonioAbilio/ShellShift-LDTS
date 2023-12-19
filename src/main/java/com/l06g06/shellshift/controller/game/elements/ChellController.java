@@ -69,9 +69,7 @@ public class ChellController extends GameController {
 
     public void lookForPlatformCollision(){
         for (Platform platform : getModel().getPlatforms()) {
-            System.out.println("BBBBB");
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
-                System.out.println("AAAA");
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
                 getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
                 isJumping = false;
