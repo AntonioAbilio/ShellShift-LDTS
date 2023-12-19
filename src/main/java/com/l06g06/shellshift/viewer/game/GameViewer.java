@@ -51,15 +51,16 @@ public class GameViewer extends View<Map> {
         gui.numToASCII(getModel().getCoinsCollected(), 16,90);
 
         // Active PowerUps
-        int offsetY = 0;
+        int offsetY = 6;
         for (String powerUp : getModel().getActivePowerUp().getPowerUpsAndDuration().keySet()) {
             if (powerUp.equals("Speed")){
-                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(getModel().getChell().getPosition().getX() - 14 , getModel().getChell().getPosition().getY() - 16 - offsetY));
+                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(154, offsetY));
             }
             if (powerUp.equals("Star")){
-                gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(getModel().getChell().getPosition().getX() - 14, getModel().getChell().getPosition().getY() - 16 - offsetY));
+                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(154, offsetY));
+
             }
-            offsetY += 2;
+            offsetY += 4;
         }
 
     }
