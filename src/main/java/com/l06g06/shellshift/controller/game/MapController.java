@@ -6,6 +6,7 @@ import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.gui.ListenForKeys;
+import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
@@ -22,6 +23,7 @@ public class MapController extends GameController{
     private final EnemyController enemyController;
     private final CloudController cloudController;
     private final PowerUpController powerUpController;
+    private final ActivePowerUpController activePowerUpController;
     boolean checkpoint1 = false;
     boolean checkpoint2 = false;
 
@@ -34,6 +36,7 @@ public class MapController extends GameController{
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
+        this.activePowerUpController = new ActivePowerUpController(map);
         getModel().setGameStartTime(System.currentTimeMillis());
     }
 
@@ -47,7 +50,8 @@ public class MapController extends GameController{
         coinController.step(game, action, time);
         cloudController.step(game, action, time);
         powerUpController.step(game, action, time);
-        action.clear();
+        activePowerUpController.step(game, action, time);
+        action.clear(); // TODO -> NEEDS TO BE A BUFFER.
         ListenForKeys.locked = false;
 
         // adiciona 1 ponto a cada segundo

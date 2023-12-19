@@ -8,6 +8,7 @@ import java.awt.*;
 
 public abstract class PowerUp extends Element {
     private final static int size = 12;
+    private String type;
 
     public PowerUp(Position position) {
         super(position);
@@ -23,5 +24,14 @@ public abstract class PowerUp extends Element {
         powerUpHitbox.addPoint(x+size-1, y+size-1);
         this.hitbox = powerUpHitbox;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public abstract void activate(Map map);
 }

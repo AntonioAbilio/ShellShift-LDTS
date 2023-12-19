@@ -3,7 +3,10 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
@@ -36,6 +39,7 @@ public class Map {
     private final EnemySpawner enemySpawner;
     private final PowerUpSpawner powerUpSpawner;
     private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private final ActivePowerUp activePowerUp;
 
     private int coinsCollected = 0;
     private int monstersKilled = 0;
@@ -52,10 +56,18 @@ public class Map {
         //plataforma inicial
         this.platforms.add(new Platform(new Position(140, 55)));
         this.platforms.add(new Platform(new Position(210, 35)));
+
+        //ToDo Remover adições de powerups.
+        this.powerUps.add(new SpeedPowerUp(new Position(130,53)));
+        this.powerUps.add(new StarPowerUp(new Position(130,53)));
+        this.powerUps.add(new SpeedPowerUp(new Position(130,53)));
+        this.powerUps.add(new StarPowerUp(new Position(130,53)));
+
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         this.enemySpawner = new EnemySpawner(enemies);
         this.powerUpSpawner = new PowerUpSpawner(powerUps);
+        this.activePowerUp = new ActivePowerUp();
 
         startCloudAddingTask();
 
@@ -195,5 +207,9 @@ public class Map {
 
     public void setSpawnCooldown(int ssd) {
         spawnCooldown = ssd;
+    }
+
+    public ActivePowerUp getActivePowerUp() {
+        return activePowerUp;
     }
 }

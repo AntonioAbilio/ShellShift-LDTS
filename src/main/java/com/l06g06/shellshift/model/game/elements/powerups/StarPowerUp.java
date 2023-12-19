@@ -6,10 +6,12 @@ import com.l06g06.shellshift.model.game.map.Map;
 public class StarPowerUp extends PowerUp{
     public StarPowerUp(Position position) {
         super(position);
+        this.setType("Star");
     }
 
     @Override
     public void activate(Map map) {
+        map.getActivePowerUp().addOrUpdateActivePowerUp(this.getType(), 10000L);
         map.getChell().activateInvincibilityTimer(10000);
         map.getChell().setHorizontalSpeedWithTimer(2);
         map.getGun().setNumBullets(map.getGun().getNumBullets() + 50);

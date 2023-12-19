@@ -801,7 +801,17 @@ public enum Components {
             "y     y yyyyy    y   y y    y y  y y      y",
             "y     y y        y   y y    y y   yy y    y",
             " yyyyy  y        y   y  yyyy  y    y  yyyy "
-     ), "OptionText");
+     ), "OptionText"),
+
+    ReducedStarComponent(ImmutableList.of(
+            "yy",
+            "yy"
+    ), ImmutableList.of(""), "StarReduced"),
+
+    ReducedSpeedComponent(ImmutableList.of(
+            "BB",
+            "BB"
+    ), ImmutableList.of(""), "StarReduced");
 
     private final ImmutableList<String> image;
     private final ImmutableList<String> imageSelected;

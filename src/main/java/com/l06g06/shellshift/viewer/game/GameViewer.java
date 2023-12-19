@@ -4,6 +4,9 @@ package com.l06g06.shellshift.viewer.game;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
@@ -27,6 +30,7 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
         drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
+        /*drawElement(gui, getModel().getActivePowerUp(), new ActivePowerUpViewer());*/
 
         // HUD
         //Lives
@@ -45,6 +49,18 @@ public class GameViewer extends View<Map> {
         //Coins
         gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
         gui.numToASCII(getModel().getCoinsCollected(), 16,90);
+
+        // Active PowerUps
+        int offsetY = 0;
+        for (String powerUp : getModel().getActivePowerUp().getPowerUpsAndDuration().keySet()) {
+            if (powerUp.equals("Speed")){
+                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(getModel().getChell().getPosition().getX() - 14 , getModel().getChell().getPosition().getY() - 16 - offsetY));
+            }
+            if (powerUp.equals("Star")){
+                gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(getModel().getChell().getPosition().getX() - 14, getModel().getChell().getPosition().getY() - 16 - offsetY));
+            }
+            offsetY += 2;
+        }
 
     }
 
