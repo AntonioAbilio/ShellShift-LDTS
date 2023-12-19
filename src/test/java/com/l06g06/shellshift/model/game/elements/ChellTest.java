@@ -72,7 +72,7 @@ public class ChellTest {
         Assertions.assertEquals(direction, chell.isDirection());
     }
 
-        @Property
+    @Property
     void chell_lives(@ForAll int lives) {
         mockpos = Mockito.mock(Position.class);
         Mockito.when(mockpos.getX()).thenReturn(5);
@@ -94,5 +94,18 @@ public class ChellTest {
         Assertions.assertEquals(lives - 1, chell.getLives());
     }
 
+    @Test
+    public void hitboxTest(){
+        chell.setPosition(new Position(0, 0));
+        Assertions.assertEquals(-14, chell.getPolygon().xpoints[0]);
+        Assertions.assertEquals(0, chell.getPolygon().xpoints[1]);
+        Assertions.assertEquals(-14, chell.getPolygon().xpoints[2]);
+        Assertions.assertEquals(0, chell.getPolygon().xpoints[3]);
+
+        Assertions.assertEquals(-14, chell.getPolygon().ypoints[0]);
+        Assertions.assertEquals(-14, chell.getPolygon().ypoints[1]);
+        Assertions.assertEquals(1, chell.getPolygon().ypoints[2]);
+        Assertions.assertEquals(1, chell.getPolygon().ypoints[3]);
+    }
 
 }

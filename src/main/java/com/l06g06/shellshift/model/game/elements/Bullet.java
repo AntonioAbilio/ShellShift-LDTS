@@ -7,7 +7,7 @@ import java.awt.*;
 public class Bullet extends Element {
     private final int damage = 50;
     private int damageMultiplier;
-    private boolean direction = true; // true = direita, false = esquerda
+    private boolean direction = true; // true = right, false = left
 
     private final static int height = 4;
     private final static int width = 4;
