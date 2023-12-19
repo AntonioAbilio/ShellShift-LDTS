@@ -804,13 +804,23 @@ public enum Components {
      ), "OptionText"),
 
     ReducedStarComponent(ImmutableList.of(
-            "yy",
-            "yy"
+            "   H   ",
+            "  H*H  ",
+            "HHH*HHH",
+            "Hyyyy*H",
+            " HyyyH ",
+            "Hy*Hy*H",
+            "HHH HHH"
     ), ImmutableList.of(""), "StarReduced"),
 
     ReducedSpeedComponent(ImmutableList.of(
-            "BB",
-            "BB"
+            "     HH",
+            "  HHHGH",
+            "  HRHNH",
+            "  HRHH ",
+            "HHHRH  ",
+            "H**RH  ",
+            "HHHHH  "
     ), ImmutableList.of(""), "StarReduced");
 
     private final ImmutableList<String> image;

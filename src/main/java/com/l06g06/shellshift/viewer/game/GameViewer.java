@@ -4,9 +4,6 @@ package com.l06g06.shellshift.viewer.game;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.model.game.elements.Element;
@@ -51,16 +48,16 @@ public class GameViewer extends View<Map> {
         gui.numToASCII(getModel().getCoinsCollected(), 16,90);
 
         // Active PowerUps
-        int offsetY = 6;
+        int offsetY = 1;
         for (String powerUp : getModel().getActivePowerUp().getPowerUpsAndDuration().keySet()) {
             if (powerUp.equals("Speed")){
-                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(154, offsetY));
+                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(151, offsetY));
             }
             if (powerUp.equals("Star")){
-                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(154, offsetY));
+                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(151, offsetY));
 
             }
-            offsetY += 4;
+            offsetY += 8;
         }
 
     }
