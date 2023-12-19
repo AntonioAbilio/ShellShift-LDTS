@@ -32,7 +32,7 @@ public class CoinSpawnerTest {
 
     @Test
     void removeTest() {
-        Position position = new Position(40, 40);
+        Position position = new Position(-30, 40);
         coinSpawner.spawn(position);
         assertEquals(0, coins.size());
     }

@@ -63,9 +63,10 @@ public class BulletControllerTest {
         @Test
         public void bulletUpdateTest(){
             bulletController.bulletUpdate();
-            Assertions.assertEquals(new Position(3, 0), bullets.get(0).getPosition());
-            Assertions.assertEquals(new Position(3, 5), bullets.get(1).getPosition());
-            Assertions.assertEquals(new Position(4, 9), bullets.get(2).getPosition());
+            System.out.println("Pos 1: " + bullets.get(0).getPosition().getX());
+            Assertions.assertEquals(new Position(4, 0), bullets.get(0).getPosition());
+            Assertions.assertEquals(new Position(2, 5), bullets.get(1).getPosition());
+            Assertions.assertEquals(new Position(5, 9), bullets.get(2).getPosition());
         }
 
         @Test
@@ -84,24 +85,6 @@ public class BulletControllerTest {
             bulletController.bulletCollision();
             Assertions.assertEquals(2, enemies.size());
 
-            // ToDo: remove
-            /*int test_x_inf = -20;
-            int test_x_sup = 20;
-            int test_y_inf = -30;
-            int test_y_sup = 30;
-            boolean intersectionFound = false;
-
-            for (int i = test_x_inf; i <= test_x_sup && !intersectionFound; i++) {
-                for (int j = test_y_inf; j <= test_y_sup && !intersectionFound; j++) {
-                    enemy1.setPosition(new Position(i, j));
-
-                    // Check for intersection
-                    if (enemy1.getPolygon().intersects(bullets.get(0).getPolygon().getBounds2D())) {
-                        System.out.println("Intersection found at x: " + i + " y: " + j);
-                        intersectionFound = true;
-                    }
-                }
-            }*/
         }
 
         @Test

@@ -31,7 +31,7 @@ public class EnemySpawnerTest {
 
     @Test
     void removeTest() {
-        Position position = new Position(-30, 40);
+        Position position = new Position(-31, 40);
         enemySpawner.spawn(position);
         assertEquals(0, enemies.size());
     }

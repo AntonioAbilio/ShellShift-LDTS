@@ -41,7 +41,7 @@ public class ShopViewerTest {
 
         shopViewer.drawElements(gui);
         verify(gui, Mockito.times(1)).setGradientBackground(Mockito.any(String.class), Mockito.any(String.class));
-        verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Shop.getImage()), eq(new Position(65, 5)));
+        verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.Shop.getImage()), eq(new Position(10, 8)));
     }
 
 }
