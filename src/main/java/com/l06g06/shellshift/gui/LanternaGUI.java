@@ -27,7 +27,7 @@ import java.util.List;
 
 public class LanternaGUI implements Gui {
     protected final TerminalScreen screen;
-    private List<Integer> buttons = new ArrayList<Integer>(0);
+    private List<Integer> buttons = new ArrayList<>();
 
     // Constructor for tests
     public LanternaGUI(TerminalScreen screen){
@@ -129,9 +129,9 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public List<PressedKey> getNextAction() throws IOException {
+    public List<PressedKey> getNextAction() throws ConcurrentModificationException {
 
-        List<PressedKey> pressedKeyList = new ArrayList<PressedKey>(0);
+        List<PressedKey> pressedKeyList = new ArrayList<>();
 
         if (this.buttons.isEmpty()) return pressedKeyList;
 
@@ -164,7 +164,7 @@ public class LanternaGUI implements Gui {
                 }
             }
         } catch (ConcurrentModificationException e){
-            getNextAction();
+            e.printStackTrace();
         }
 
         return pressedKeyList;
