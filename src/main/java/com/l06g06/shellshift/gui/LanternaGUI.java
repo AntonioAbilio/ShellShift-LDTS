@@ -135,8 +135,10 @@ public class LanternaGUI implements Gui {
 
         if (this.buttons.isEmpty()) return pressedKeyList;
 
+        List<Integer> buttonsCopy = new ArrayList<>(this.buttons);
+
         try {
-            for (Integer intg : this.buttons) {
+            for (Integer intg : buttonsCopy) {
                 switch (intg) {
                     case 38:
                         pressedKeyList.add(PressedKey.UP);

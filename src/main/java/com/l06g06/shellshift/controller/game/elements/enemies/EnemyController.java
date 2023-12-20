@@ -12,14 +12,16 @@ import com.l06g06.shellshift.model.game.map.Map;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 
 public class EnemyController extends GameController {
     double lastSpawnTime = 0;
     double lastShiftTime = 0;
-    int spawnX = 110;
+    int spawnX = 200;
     int offsetY = 15;
-    int distBetweenEnemy = 15;
+    int distBetweenEnemy = 1;
+    boolean spawnOnPlatform = true;
     public EnemyController(Map map) {
         super(map);
     }
@@ -30,9 +32,18 @@ public class EnemyController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn enemy logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown()+2){
+        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown() - 1){
             lastSpawnTime = currentTime;
-            spawnOnPlatform();
+            if (spawnOnPlatform){
+                spawnOnPlatform();
+                spawnOnPlatform = false;
+            }
+            else {
+                Random rn = new Random();
+                int i = rn.nextInt(90);
+                getModel().getEnemySpawner().spawn(new Position(190, i));
+                spawnOnPlatform = true;
+            }
         }
 
         // Shift enemy logic
@@ -59,8 +70,8 @@ public class EnemyController extends GameController {
 
     public void spawnOnPlatform(){
         for (Platform platform : getModel().getPlatforms()){
-            if (platform.getPosition().getX() >= spawnX - 30){
-                Position spawnPos = new Position(platform.getPosition().getX()  + platform.getWidth()/2,
+            if (platform.getPosition().getX() >= spawnX){
+                Position spawnPos = new Position(platform.getPosition().getX()  - platform.getWidth()/2,
                         platform.getPosition().getY() - offsetY);
                 if (noEnemyInPos(spawnPos)) getModel().getEnemySpawner().spawn(spawnPos);
             }
