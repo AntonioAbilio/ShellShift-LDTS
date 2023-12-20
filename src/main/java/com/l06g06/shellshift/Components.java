@@ -1,11 +1,14 @@
 package com.l06g06.shellshift;
 
+import com.google.common.collect.ImmutableList;
+
 import java.util.Arrays;
 import java.util.List;
 
+
 public enum Components {
 
-    Title(new String[] {
+    Title(ImmutableList.of(
             "      HHHHHHH      H                 HHH     HHH              HHHHHHH      H                  HHH            ",
             "    H       HHH  HH                   HHH     HHH           H       HHH  HH          H      HH HHH      H    ",
             "   H         HH  HH                    HH      HH          H         HH  HH         HHH    HH   HHH    HH    ",
@@ -25,9 +28,9 @@ public enum Components {
             " HH                    H                                 HH                    H                             ",
             "                      H                                                       H                              ",
             "                     H                                                       H                               "
-    }, new String[] {} ,"Title"),
+    ), ImmutableList.of("") ,"Title"),
 
-    Start(new String[]{
+    Start(ImmutableList.of(
             " HHHHH                           ",
             "H     H HHHHH   HH   HHHHH  HHHHH",
             "H         H    H  H  H    H   H  ",
@@ -35,7 +38,7 @@ public enum Components {
             "      H   H   HHHHHH HHHHH    H  ",
             "H     H   H   H    H H   H    H  ",
             " HHHHH    H   H    H H    H   H  "
-    }, new String[] {
+    ), ImmutableList.of(
             " yyyyy                           ",
             "y     y yyyyy   yy   yyyyy  yyyyy",
             "y         y    y  y  y    y   y  ",
@@ -43,9 +46,9 @@ public enum Components {
             "      y   y   yyyyyy yyyyy    y  ",
             "y     y   y   y    y y   y    y  ",
             " yyyyy    y   y    y y    y   y  "
-    }, "Start"),
+    ), "Start"),
 
-    Statistics(new String[] {
+    Statistics(ImmutableList.of(
             " HHHHH                                                   ",
             "H     H HHHHH   HH   HHHHH H  HHHH  HHHHH H  HHHH   HHHH ",
             "H         H    H  H    H   H H        H   H H    H H     ",
@@ -53,7 +56,7 @@ public enum Components {
             "      H   H   HHHHHH   H   H      H   H   H H           H",
             "H     H   H   H    H   H   H H    H   H   H H    H H    H",
             " HHHHH    H   H    H   H   H  HHHH    H   H  HHHH   HHHH "
-    }, new String[] {
+    ), ImmutableList.of(
             " yyyyy                                                   ",
             "y     y yyyyy   yy   yyyyy y  yyyy  yyyyy y  yyyy   yyyy ",
             "y         y    y  y    y   y y        y   y y    y y     ",
@@ -61,9 +64,9 @@ public enum Components {
             "      y   y   yyyyyy   y   y      y   y   y y           y",
             "y     y   y   y    y   y   y y    y   y   y y    y y    y",
             " yyyyy    y   y    y   y   y  yyyy    y   y  yyyy   yyyy "
-    }, "Statistics"),
+    ), "Statistics"),
 
-    Quit(new String[] {
+    Quit(ImmutableList.of(
             " HHHHH                ",
             "H     H H    H H HHHHH",
             "H     H H    H H   H  ",
@@ -71,7 +74,7 @@ public enum Components {
             "H   H H H    H H   H  ",
             "H    H  H    H H   H  ",
             " HHHH H  HHHH  H   H  "
-    }, new String[] {
+    ), ImmutableList.of(
             " yyyyy                ",
             "y     y y    y y yyyyy",
             "y     y y    y y   y  ",
@@ -79,9 +82,9 @@ public enum Components {
             "y   y y y    y y   y  ",
             "y    y  y    y y   y  ",
             " yyyy y  yyyy  y   y  "
-    }, "Quit"),
+    ), "Quit"),
 
-    Shop(new String[] {
+    Shop(ImmutableList.of(
             " HHHHH                      ",
             "H     H H    H  HHHH  HHHHH ",
             "H       H    H H    H H    H",
@@ -89,7 +92,7 @@ public enum Components {
             "      H H    H H    H HHHHH ",
             "H     H H    H H    H H     ",
             " HHHHH  H    H  HHHH  H     "
-    }, new String[] {
+    ), ImmutableList.of(
             " yyyyy                      ",
             "y     y y    y  yyyy  yyyyy ",
             "y       y    y y    y y    y",
@@ -97,27 +100,27 @@ public enum Components {
             "      y y    y y    y yyyyy ",
             "y     y y    y y    y y     ",
             " yyyyy  y    y  yyyy  y     "
-    }, "Shop"),
+    ), "Shop"),
 
-    RapidFire(new String[] {
+    RapidFire(ImmutableList.of(
             "HHHHHH                            HHHHHHH                ",
             "H     H   HH   HHHHH  H HHHHH     H       H HHHHH  HHHHHH",
             "H     H  H  H  H    H H H    H    H       H H    H H     ",
             "HHHHHH  H    H H    H H H    H    HHHHH   H H    H HHHHH ",
             "H   H   HHHHHH HHHHH  H H    H    H       H HHHHH  H     ",
             "H    H  H    H H      H H    H    H       H H   H  H     ",
-            "H     H H    H H      H HHHHH     H       H H    H HHHHHH",
-    }, new String[]{
+            "H     H H    H H      H HHHHH     H       H H    H HHHHHH"
+    ), ImmutableList.of(
             "yyyyyy                            yyyyyyy                ",
             "y     y   yy   yyyyy  y yyyyy     y       y yyyyy  yyyyyy",
             "y     y  y  y  y    y y y    y    y       y y    y y     ",
             "yyyyyy  y    y y    y y y    y    yyyyy   y y    y yyyyy ",
             "y   y   yyyyyy yyyyy  y y    y    y       y yyyyy  y     ",
             "y    y  y    y y      y y    y    y       y y   y  y     ",
-            "y     y y    y y      y yyyyy     y       y y    y yyyyyy",
-    }, "Rapid Fire"),
+            "y     y y    y y      y yyyyy     y       y y    y yyyyyy"
+    ), "Rapid Fire"),
 
-    ExtraLife(new String[]{
+    ExtraLife(ImmutableList.of(
         "HHHHHHH                               H                      ",
         "H       H    H HHHHH HHHHH    HH      H       H HHHHHH HHHHHH",
         "H        H  H    H   H    H  H  H     H       H H      H     ",
@@ -125,7 +128,7 @@ public enum Components {
         "H         HH     H   HHHHH  HHHHHH    H       H H      H     ",
         "H        H  H    H   H   H  H    H    H       H H      H     ",
         "HHHHHHH H    H   H   H    H H    H    HHHHHHH H H      HHHHHH"
-    }, new String[]{
+    ), ImmutableList.of(
         "yyyyyyy                               y                      ",
         "y       y    y yyyyy yyyyy    yy      y       y yyyyyy yyyyyy",
         "y        y  y    y   y    y  y  y     y       y y      y     ",
@@ -133,9 +136,9 @@ public enum Components {
         "y         yy     y   yyyyy  yyyyyy    y       y y      y     ",
         "y        y  y    y   y   y  y    y    y       y y      y     ",
         "yyyyyyy y    y   y   y    y y    y    yyyyyyy y y      yyyyyy"
-    }, "Extra Life"),
+    ), "Extra Life"),
 
-    RapidFireIcon(new String[] {
+    RapidFireIcon(ImmutableList.of(
             "  RRR",
             "  *QGR",
             "  **QR   RRR",
@@ -147,33 +150,33 @@ public enum Components {
             "    **QR",
             "    RRR"
 
-    }, new String[]{}, "Icon"),
+    ), ImmutableList.of(), "Icon"),
 
-    Bullet(new String[]{
+    Bullet(ImmutableList.of(
             "RRR",
             "*QGR",
             "**QR",
             "RRR "
-    }, new String[]{
+    ), ImmutableList.of(
             " RRR",
             "RGQ*",
             "RQ**",
             " RRR"
-    }, "Bullet"),
+    ), "Bullet"),
 
-    BulletEmpowered(new String[]{
+    BulletEmpowered(ImmutableList.of(
             "RRR",
             "S*QR",
             "SS*R",
             "RRR "
-    }, new String[]{
+    ), ImmutableList.of(
             " RRR",
             "RQ*S",
             "R*SS",
             " RRR"
-    }, "Bullet"),
+    ), "Bullet"),
 
-    HeartIcon(new String[] {
+    HeartIcon(ImmutableList.of(
         "  RRRR   RRRR ",
         " RQQQQR R****R",
         "RQQGGQQRQQQQ**R",
@@ -187,7 +190,7 @@ public enum Components {
         "     R***R     ",
         "      R*R      ",
         "       R"
-    }, new String[]{
+    ), ImmutableList.of(
             "  RR  RR",
             " RQQRRQ*R",
             " RQGQQQ*R",
@@ -195,9 +198,9 @@ public enum Components {
             "  RQQ**R",
             "   R**R",
             "    RR"
-    }, "Icon"),
+    ), "Icon"),
 
-    Chell(new String[] {
+    Chell(ImmutableList.of(
         " AAAA          ",
         "ABBDCAAAAAAAA  ",
         "ABBDDCCCCCCCCA ",
@@ -213,7 +216,7 @@ public enum Components {
         " MIMOPGGGGGPIJ ",
         "  M***JJJJ**J  ",
         "   JJJ    JJJ  "
-    }, new String[] {
+    ), ImmutableList.of(
         "          AAAA ",
         "  AAAAAAAACDBBA",
         " ACCCCCCCCDDBBA",
@@ -229,9 +232,9 @@ public enum Components {
         " JIPGGGGGPOMIM ",
         "  J**JJJJ***M  ",
         "  JJJ    JJJ   "
-    }, "Chell Model"),
+    ), "Chell Model"),
 
-    GameOver(new String[] {
+    GameOver(ImmutableList.of(
         "      S SSS                                                     S SSS                                       ",
         "    S  SSSS  S                                                S  SSSS                                       ",
         "   S  S  SSSS                                                S  S  SSS   SS                                 ",
@@ -249,9 +252,9 @@ public enum Components {
         "      SSS          SSS   SS    SSS  SSS  SSS   SSSSS            SSS                     SSSSS               ",
         "                                                                                                            ",
         "                                                                                                            "
-    }, new String[]{}, "Game Over"),
+    ), ImmutableList.of(), "Game Over"),
 
-    Restart(new String[]{
+    Restart(ImmutableList.of(
             "GGGGGG                                         ",
             "G     G GGGGGG  GGGG  GGGGG   GG   GGGGG  GGGGG",
             "G     G G      G        G    G  G  G    G   G  ",
@@ -259,7 +262,7 @@ public enum Components {
             "G   G   G           G   G   GGGGGG GGGGG    G  ",
             "G    G  G      G    G   G   G    G G   G    G  ",
             "G     G GGGGGG  GGGG    G   G    G G    G   G  "
-    }, new String[]{
+    ), ImmutableList.of(
             "yyyyyy                                         ",
             "y     y yyyyyy  yyyy  yyyyy   yy   yyyyy  yyyyy",
             "y     y y      y        y    y  y  y    y   y  ",
@@ -267,9 +270,9 @@ public enum Components {
             "y   y   y           y   y   yyyyyy yyyyy    y  ",
             "y    y  y      y    y   y   y    y y   y    y  ",
             "y     y yyyyyy  yyyy    y   y    y y    y   y  "
-    }, "Restart"),
+    ), "Restart"),
 
-    MainMenu(new String[]{
+    MainMenu(ImmutableList.of(
         "G     G                    G     G                     ",
         "GG   GG   GG   G G    G    GG   GG GGGGGG G    G G    G",
         "G G G G  G  G  G GG   G    G G G G G      GG   G G    G",
@@ -277,7 +280,7 @@ public enum Components {
         "G     G GGGGGG G G  G G    G     G G      G  G G G    G",
         "G     G G    G G G   GG    G     G G      G   GG G    G",
         "G     G G    G G G    G    G     G GGGGGG G    G  GGGG "
-    }, new String[] {
+    ), ImmutableList.of(
         "y     y                    y     y                     ",
         "yy   yy   yy   y y    y    yy   yy yyyyyy y    y y    y",
         "y y y y  y  y  y yy   y    y y y y y      yy   y y    y",
@@ -285,17 +288,17 @@ public enum Components {
         "y     y yyyyyy y y  y y    y     y y      y  y y y    y",
         "y     y y    y y y   yy    y     y y      y   yy y    y",
         "y     y y    y y y    y    y     y yyyyyy y    y  yyyy "
-    }, "Main Menu"),
+    ), "Main Menu"),
 
-    Score(new String[] {
+    Score(ImmutableList.of(
         " GGG  GGG  GGG  GGG  GGG  ",
         "G    G    G   G G  G G   G ",
         " GG  G    G   G GGG  GG   ",
         "   G G    G   G G G  G   G ",
         "GGG   GGG  GGG  G  G GGG  "
-    }, new String[] {}, "Score"),
+    ), ImmutableList.of(""), "Score"),
 
-    Coin(new String[] {
+    Coin(ImmutableList.of(
             "   JJJJ   ",
             "  JGGGGJ  ",
             " JGyyyy*J ",
@@ -311,16 +314,16 @@ public enum Components {
             " Jyyyyy*J ",
             "  J****J  ",
             "   JJJJ   "
-    }, new String[]{
+    ), ImmutableList.of(
             "  HH  ",
             " HGQH",
             "HGQyQH",
             "HQQQ*H",
             " HQ*H",
             "  HH"
-    }, "Coin"),
+    ), "Coin"),
 
-    SoftMonster( new String[] {
+    SoftMonster( ImmutableList.of(
             "   JJJ   JJJ   ",
             "   JQJ   JQJ   ",
             "    JQJJJQJ    ",
@@ -336,9 +339,9 @@ public enum Components {
             "  JRRJ   JRRJ  ",
             " JRJJ     JJRJ ",
             " JJ         JJ "
-    }, new String[]{}, "SoftMonster"),
+    ), ImmutableList.of(), "SoftMonster"),
 
-    HardMonster( new String[]{
+    HardMonster( ImmutableList.of(
             "   JJJ   JJJ   ",
             "   JUJ   JUJ   ",
             "    JUJJJUJ    ",
@@ -353,90 +356,90 @@ public enum Components {
             " JEFFJJJJJFFEJ ",
             "  JEEJ   JEEJ  ",
             " JEJJ     JJEJ ",
-            " JJ         JJ ",
-    }, new String[]{}, "HardMonster"),
+            " JJ         JJ "
+    ), ImmutableList.of(), "HardMonster"),
 
-    Zero(new String[]{
+    Zero(ImmutableList.of(
             " GG ",
             "G  G",
             "G  G",
             "G  G",
             " GG"
-    }, new String[]{}, "0"),
+    ), ImmutableList.of(), "0"),
 
-    One(new String[] {
+    One(ImmutableList.of(
             " GG ",
             "G G",
             "  G",
             "  G",
             "GGGG"
-    }, new String[]{},"1"),
+    ), ImmutableList.of(),"1"),
 
-    Two(new String[]{
+    Two(ImmutableList.of(
             " GG ",
             "G  G",
             "  G ",
             " G  ",
-            "GGGG",
-    }, new String[]{}, "2"),
+            "GGGG"
+    ), ImmutableList.of(), "2"),
 
-    Three(new String[]{
+    Three(ImmutableList.of(
             " GG",
             "G  G",
             "  GG",
             "G  G",
             " GG"
-    }, new String[]{}, "3"),
+    ), ImmutableList.of(), "3"),
 
-    Four(new String[]{
+    Four(ImmutableList.of(
             "G  G",
             "G  G",
             "GGGG",
             "   G",
             "   G"
-    }, new String[]{}, "4"),
+    ), ImmutableList.of(), "4"),
 
-    Five(new String[]{
+    Five(ImmutableList.of(
             "GGGG",
             "G",
             "GGG",
             "   G",
             "GGG"
-    }, new String[]{}, "5"),
+    ), ImmutableList.of(), "5"),
 
-    Six(new String[]{
+    Six(ImmutableList.of(
             " GGG",
             "G",
             "GGG",
             "G  G",
-            " GG ",
-    }, new String[]{}, "6"),
+            " GG "
+    ), ImmutableList.of(), "6"),
 
-    Seven(new String[]{
+    Seven(ImmutableList.of(
             "GGGG",
             "   G",
             "   G",
             "  G",
             " G"
-    }, new String[]{}, "7"),
+    ), ImmutableList.of(), "7"),
 
-    Eight(new String[]{
+    Eight(ImmutableList.of(
             " GG ",
             "G  G",
             " GG ",
             "G  G",
             " GG"
-    }, new String[]{}, "8"),
+    ), ImmutableList.of(), "8"),
 
-    Nine(new String[]{
+    Nine(ImmutableList.of(
             " GG ",
             "G  G",
             " GGG",
             "   G",
             "GGG "
-    }, new String[]{}, "9"),
+    ), ImmutableList.of(), "9"),
 
-    StarPowerUp(new String[] {
+    StarPowerUp(ImmutableList.of(
             "     H",
             "    HGH",
             "    HyH",
@@ -448,9 +451,9 @@ public enum Components {
             " HGyHHHy*H",
             " HyH   H*H",
             " HH     HH"
-    }, new String[]{}, "StarPowerUp"),
+    ), ImmutableList.of(), "StarPowerUp"),
 
-    BulletPowerUp(new String[] {
+    BulletPowerUp(ImmutableList.of(
             "HHHHHHHHHHHH",
             "HNGGGGGGGGNH",
             "HGNNNNNNNNOH",
@@ -463,9 +466,9 @@ public enum Components {
             "HGNNNNNNNNOH",
             "HNOOOOOOOONH",
             "HHHHHHHHHHHH"
-    }, new String[]{}, "BulletPowerUp"),
+    ), ImmutableList.of(), "BulletPowerUp"),
 
-    SpeedPowerUp(new String[]{
+    SpeedPowerUp(ImmutableList.of(
             "          HH",
             "         HGH",
             "        HGH",
@@ -478,8 +481,8 @@ public enum Components {
             " HQQ***RRH",
             " H***RRRRH ",
             "  HHHHHHH"
-    }, new String[]{}, "SpeedPowerUp"),
-    Tutorial(new String[] {
+     ), ImmutableList.of( ), "SpeedPowerUp"),
+    Tutorial(ImmutableList.of(
             "HHHHHHH                                           ",
             "   H    H    H HHHHH  HHHH  HHHHH  H   HH   H     ",
             "   H    H    H   H   H    H H    H H  H  H  H     ",
@@ -487,7 +490,7 @@ public enum Components {
             "   H    H    H   H   H    H HHHHH  H HHHHHH H     ",
             "   H    H    H   H   H    H H   H  H H    H H     ",
             "   H     HHHH    H    HHHH  H    H H H    H HHHHHH"
-    }, new String[]{
+     ), ImmutableList.of(
             "yyyyyyy                                           ",
             "   y    y    y yyyyy  yyyy  yyyyy  y   yy   y     ",
             "   y    y    y   y   y    y y    y y  y  y  y     ",
@@ -495,9 +498,9 @@ public enum Components {
             "   y    y    y   y   y    y yyyyy  y yyyyyy y     ",
             "   y    y    y   y   y    y y   y  y y    y y     ",
             "   y     yyyy    y    yyyy  y    y y y    y yyyyyy"
-    }, "Tutorial"),
+     ), "Tutorial"),
 
-    ArrowUp(new String[]{
+    ArrowUp(ImmutableList.of(
             "GGGGGGGGGGGGG",
             "G           G",
             "G           G",
@@ -510,7 +513,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-    }, new String[]{
+     ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -523,9 +526,9 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-    }, "ArrowUp"),
+     ), "ArrowUp"),
 
-    ArrowLeft(new String[]{
+    ArrowLeft(ImmutableList.of(
             "GGGGGGGGGGGGG",
             "G           G",
             "G           G",
@@ -538,7 +541,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-    }, new String[]{
+     ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -551,8 +554,8 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-    }, "ArrowLeft"),
-    ArrowRight(new String[]{
+     ), "ArrowLeft"),
+    ArrowRight(ImmutableList.of(
             "GGGGGGGGGGGGG",
             "G           G",
             "G           G",
@@ -565,7 +568,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-    }, new String[]{
+     ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -578,8 +581,8 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-    }, "ArrowRight"),
-    SpaceBar(new String[]{
+     ), "ArrowRight"),
+    SpaceBar(ImmutableList.of(
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "G                            G",
             "G                            G",
@@ -590,9 +593,9 @@ public enum Components {
             "G  GGG  G    G  G  GGG GGGG  G",
             "G                            G",
             "G                            G",
-            "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
+            "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
 
-    }, new String[]{
+     ), ImmutableList.of(
             "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
             "y                            y",
             "y                            y",
@@ -603,10 +606,10 @@ public enum Components {
             "y  yyy  y    y  y  yyy yyyy  y",
             "y                            y",
             "y                            y",
-            "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
-    }, "SpaceBar"),
+            "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
+     ), "SpaceBar"),
 
-    Cloud(new String[]{
+    Cloud(ImmutableList.of(
             "         HHHHH",
             "        HGGGGGH",
             "       HGGGGGGGGHH",
@@ -616,33 +619,33 @@ public enum Components {
             "HTGGGGGGTGGGGGGTGGGGTH",
             "HTTGGGGTTTTTTTTGGGGGGTH",
             " HTTTTTTTTTTTTTTTTTTTTH",
-            "  HHHHHHHHHHHHHHHHHHHH",
-    }, new String[]{}, "Cloud"),
+            "  HHHHHHHHHHHHHHHHHHHH"
+     ), ImmutableList.of( ), "Cloud"),
 
-    Platform(new String[] {
+    Platform(ImmutableList.of(
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-    }, new String[]{
+     ), ImmutableList.of(
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-    }, "Platform"),
+     ), "Platform"),
 
-    MonstersKilled(new String[]{
+    MonstersKilled(ImmutableList.of(
             "H     H                                                                                        ",
             "HH   HH  HHHH  H    H  HHHH  HHHHH HHHHHH HHHHH   HHHH     H    H H H      H      HHHHHH HHHHH ",
             "H H H H H    H HH   H H        H   H      H    H H         H   H  H H      H      H      H    H",
             "H  H  H H    H H H  H  HHHH    H   HHHHH  H    H  HHHH     HHHH   H H      H      HHHHH  H    H  H",
             "H     H H    H H  H H      H   H   H      HHHHH       H    H  H   H H      H      H      H    H",
             "H     H H    H H   HH H    H   H   H      H   H  H    H    H   H  H H      H      H      H    H  H",
-            "H     H  HHHH  H    H  HHHH    H   HHHHHH H    H  HHHH     H    H H HHHHHH HHHHHH HHHHHH HHHHH ",
+            "H     H  HHHH  H    H  HHHH    H   HHHHHH H    H  HHHH     H    H H HHHHHH HHHHHH HHHHHH HHHHH "
 
-    }, new String[]{}, "MonstersKilled"),
+     ), ImmutableList.of( ), "MonstersKilled"),
 
-    NumLives(new String[]{
+    NumLives(ImmutableList.of(
             "H                            ",
             "H       H H    H HHHHHH  HHHH",
             "H       H H    H H      H" ,
@@ -650,67 +653,67 @@ public enum Components {
             "H       H H    H H           H",
             "H       H  H  H  H      H    H  H",
             "HHHHHHH H   HH   HHHHHH  HHHH"
-    }, new String[]{}, "NumLives"),
+     ), ImmutableList.of( ), "NumLives"),
 
-    CoinsCollected(new String[]{
+    CoinsCollected(ImmutableList.of(
           " HHHHH                                                                                         ",
           "H     H  HHHH  H H    H  HHHH      HHHH   HHHH  H      H      HHHHHH  HHHH  HHHHH HHHHHH HHHHH ",
           "H       H    H H HH   H H         H    H H    H H      H      H      H    H   H   H      H    H",
           "H       H    H H H H  H  HHHH     H      H    H H      H      HHHHH  H        H   HHHHH  H    H  H",
           "H       H    H H H  H H      H    H      H    H H      H      H      H        H   H      H    H",
           "H     H H    H H H   HH H    H    H    H H    H H      H      H      H    H   H   H      H    H  H",
-          " HHHHH   HHHH  H H    H  HHHH      HHHH   HHHH  HHHHHH HHHHHH HHHHHH  HHHH    H   HHHHHH HHHHH ",
-    }, new String[]{}, "CoinsCollected"),
+          " HHHHH   HHHH  H H    H  HHHH      HHHH   HHHH  HHHHHH HHHHHH HHHHHH  HHHH    H   HHHHHH HHHHH "
+     ), ImmutableList.of( ), "CoinsCollected"),
 
-    Highscores(new String[]{
+    Highscores(ImmutableList.of(
             "H     H                                                          ",
             "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  HHHHH  HHHHHH  HHHH ",
             "H     H H H    H H    H H      H    H H    H H    H H      H     ",
             "HHHHHHH H H      HHHHHH  HHHH  H      H    H H    H HHHHH   HHHH ",
             "H     H H H  HHH H    H      H H      H    H HHHHH  H           H",
             "H     H H H    H H    H H    H H    H H    H H   H  H      H    H",
-            "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  H    H HHHHHH  HHHH ",
-    }, new String[]{}, "Highscores"),
-    First(new String[]{
+            "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  H    H HHHHHH  HHHH "
+     ), ImmutableList.of( ), "Highscores"),
+    First(ImmutableList.of(
             " HH    HHH HHHHH",
             "H H   H      H",
             "  H    HH    H",
             "  H      H   H",
             "HHHH  HHH    H"
-    }, new String[]{}, "First"),
+     ), ImmutableList.of( ), "First"),
 
-    Second(new String[]{
+    Second(ImmutableList.of(
             " HH   H   H HHH",
             "H  H  HH  H H  H",
             "  H   H H H H  H",
             " H    H  HH H  H",
-            "HHHH  H   H HHH",
-    }, new String[]{}, "Second"),
+            "HHHH  H   H HHH"
+     ), ImmutableList.of( ), "Second"),
 
-    Third(new String[]{
+    Third(ImmutableList.of(
             " HH   HHH  HHH  ",
             "H  H  H  H H  H ",
             "  HH  HHH  H  H",
             "H  H  H  H H  H  ",
             " HH   H  H HHH "
-    }, new String[]{}, "Third"),
+     ), ImmutableList.of( ), "Third"),
 
-    Fourth(new String[]{
+    Fourth(ImmutableList.of(
             "H  H  HHHHH H  H",
             "H  H    H   H  H",
             "HHHH    H   HHHH",
             "   H    H   H  H",
             "   H    H   H  H"
-    }, new String[]{}, "Fourth"),
+     ), ImmutableList.of( ), "Fourth"),
 
-    Fifth(new String[]{
+    Fifth(ImmutableList.of(
             "HHHH  HHHHH H  H",
             "H       H   H  H",
             "HHH     H   HHHH",
             "   H    H   H  H",
             "HHH     H   H  H"
-    }, new String[]{}, "Fifth"),
-    MoreBullets(new String[]{
+     ), ImmutableList.of( ), "Fifth"),
+    MoreBullets(ImmutableList.of(
 
 
             "H     H",
@@ -722,7 +725,7 @@ public enum Components {
             "H     H  HHHH  H    H HHHHHH    HHHHH   HHHH  HHHHHH HHHHHH HHHHHH   H    HHHH "
 
 
-    }, new String[]{
+     ), ImmutableList.of(
             "y     y",
             "yy   yy  yyyy  yyyyy  yyyyyy    yyyyy  y    y y      y      yyyyyy yyyyy  yyyy",
             "y y y y y    y y    y y         y    y y    y y      y      y        y   y",
@@ -730,9 +733,9 @@ public enum Components {
             "y     y y    y yyyyy  y         y    y y    y y      y      y        y        y",
             "y     y y    y y   y  y         y    y y    y y      y      y        y   y    y",
             "y     y  yyyy  y    y yyyyyy    yyyyy   yyyy  yyyyyy yyyyyy yyyyyy   y    yyyy "
-    }, "MoreBullets"),
+     ), "MoreBullets"),
 
-    MoreBulletsIcon(new String[]{
+    MoreBulletsIcon(ImmutableList.of(
             " ",
             " ",
             "         V    ",
@@ -741,9 +744,9 @@ public enum Components {
             "     *QGR     ",
             "     **QR     ",
             "     RRR      "
-    }, new String[]{}, "MoreBullets"),
+     ), ImmutableList.of( ), "MoreBullets"),
 
-    SoundOFF(new String[]{
+    SoundOFF(ImmutableList.of(
             " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH HHHHHHH HHHHHHH",
             "H     H H     H H     H HH    H H     H    H     H H       H      ",
             "H       H     H H     H H H   H H     H    H     H H       H      ",
@@ -751,7 +754,7 @@ public enum Components {
             "      H H     H H     H H   H H H     H    H     H H       H      ",
             "H     H H     H H     H H    HH H     H    H     H H       H      ",
             " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H       H      "
-    }, new String[]{
+     ), ImmutableList.of(
             " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy yyyyyyy yyyyyyy",
             "y     y y     y y     y yy    y y     y    y     y y       y      ",
             "y       y     y y     y y y   y y     y    y     y y       y      ",
@@ -759,9 +762,9 @@ public enum Components {
             "      y y     y y     y y   y y y     y    y     y y       y      ",
             "y     y y     y y     y y    yy y     y    y     y y       y      ",
             " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y       y      "
-    }, "SoundOFF"),
+     ), "SoundOFF"),
 
-    SoundON(new String[]{
+    SoundON(ImmutableList.of(
             " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH H     H",
             "H     H H     H H     H HH    H H     H    H     H HH    H",
             "H       H     H H     H H H   H H     H    H     H H H   H",
@@ -770,7 +773,7 @@ public enum Components {
             "H     H H     H H     H H    HH H     H    H     H H    HH",
             " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H     H"
 
-    }, new String[]{
+     ), ImmutableList.of(
             " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy y     y",
             "y     y y     y y     y yy    y y     y    y     y yy    y",
             "y       y     y y     y y y   y y     y    y     y y y   y",
@@ -779,33 +782,72 @@ public enum Components {
             "y     y y     y y     y y    yy y     y    y     y y    yy",
             " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y     y"
 
-    }, "SoundON"),
+     ), "SoundON"),
     
-    Options(new String[]{
+    Options(ImmutableList.of(
             " HHHHH                                    ",
             "H     H HHHHH  HHHHH H  HHHH  H    H  HHHH ",
             "H     H H    H   H   H H    H HH   H H     ",
             "H     H H    H   H   H H    H H H  H  HHHH ",
             "H     H HHHHH    H   H H    H H  H H      H",
             "H     H H        H   H H    H H   HH H    H",
-            " HHHHH  H        H   H  HHHH  H    H  HHHH ",
+            " HHHHH  H        H   H  HHHH  H    H  HHHH "
        
-    }, new String[]{
+     ), ImmutableList.of(
             " yyyyy                                    ",
             "y     y yyyyy  yyyyy y  yyyy  y    y  yyyy ",
             "y     y y    y   y   y y    y yy   y y     ",
             "y     y y    y   y   y y    y y y  y  yyyy ",
             "y     y yyyyy    y   y y    y y  y y      y",
             "y     y y        y   y y    y y   yy y    y",
-            " yyyyy  y        y   y  yyyy  y    y  yyyy ",
-    }, "OptionText");
+            " yyyyy  y        y   y  yyyy  y    y  yyyy "
+     ), "OptionText"),
 
-    private final String[] image;
-    private final String[] imageSelected;
+    ReducedStarComponent(ImmutableList.of(
+            "   H   ",
+            "  H*H  ",
+            "HHH*HHH",
+            "Hyyyy*H",
+            " HyyyH ",
+            "Hy*Hy*H",
+            "HHH HHH"
+    ), ImmutableList.of(""), "StarReduced"),
+
+    ReducedSpeedComponent(ImmutableList.of(
+            "     HH",
+            "  HHHGH",
+            "  HRHNH",
+            "  HRHH ",
+            "HHHRH  ",
+            "H**RH  ",
+            "HHHHH  "
+    ), ImmutableList.of(""), "StarReduced"),
+
+    SoundSliderButton(ImmutableList.of(
+            "     ",
+            "JJJJJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JJJJJ"
+    ), ImmutableList.of(
+            "     ",
+            "JJJJJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JJJJJ"
+    ), "SoundSliderButton")
+    ;
+
+    private final ImmutableList<String> image;
+    private final ImmutableList<String> imageSelected;
     private final String name;
     private static final List<Components> numbers = Arrays.asList(Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
     private static final List<Components> ordinalNumbers = Arrays.asList(First, Second, Third, Fourth, Fifth);
-    Components(String[] image, String[] imageSelected, String name) {
+    Components(ImmutableList<String> image, ImmutableList<String> imageSelected, String name) {
         this.image = image;
         this.imageSelected = imageSelected;
         this.name = name;
@@ -815,21 +857,21 @@ public enum Components {
         return name;
     }
 
-    public String[] getImage() {
+    public ImmutableList<String> getImage() {
         return image;
     }
 
-    public String[] getImageSelected() {
+    public ImmutableList<String> getImageSelected() {
         return imageSelected;
     }
 
-    public String[] getImage(String name) {
+    public ImmutableList<String> getImage(String name) {
         for (Components c : Components.values()) {
             if (c.getName().equals(name)) {
                 return c.getImage();
             }
         }
-        return new String[]{ "não funcionou" };
+        return ImmutableList.of("não funcionou");
     }
 
 

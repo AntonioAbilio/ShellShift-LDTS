@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements.enemies;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -32,7 +33,7 @@ public class EnemyController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn enemy logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown() - 1){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() - 1){
             lastSpawnTime = currentTime;
             if (spawnOnPlatform){
                 spawnOnPlatform();
@@ -47,7 +48,7 @@ public class EnemyController extends GameController {
         }
 
         // Shift enemy logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -97,7 +98,7 @@ public class EnemyController extends GameController {
                 enemiesIterator.remove();
                 if (!getModel().getChell().isInvincible()) {
                     getModel().getChell().decreaseLives();
-                    Sound.playSound(Sound.SoundsFx.MonsterCollision);
+                    Sound.getInstance().playSound(SoundsFx.MonsterCollision);
                     getModel().getChell().activateBlink(1000);
                     getModel().getChell().activateInvincibilityTimer(2000);
                 }

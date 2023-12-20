@@ -24,6 +24,7 @@ public class StatisticsController extends Controller<Statistics> {
                 case EXIT:
                     game.setState(new MainMenuState(new MainMenu()));
                     break;
+                default:
             }
         }
     }

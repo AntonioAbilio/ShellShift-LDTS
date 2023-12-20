@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.model.factories;
 
 import com.l06g06.shellshift.model.game.elements.Coin;
@@ -10,3 +11,4 @@ public class CoinFactory implements ElementCreatorInterface{
         return new Coin(position);
     }
 }
+*/

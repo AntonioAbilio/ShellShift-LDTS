@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'application'
     id 'info.solidsoft.pitest' version '1.6.0'
-    //id "org.kordamp.gradle.errorprone" version "0.47.0"
+    id "org.kordamp.gradle.errorprone" version "0.53.0"
 }
 
 application {
@@ -22,7 +22,7 @@ dependencies {
     testImplementation 'net.jqwik:jqwik:1.8.2'
     testImplementation 'org.mockito:mockito-core:3.7.7'
     implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'/
-    //implementation 'com.google.errorprone:error_prone_core:2.23.0'
+    implementation 'com.google.errorprone:error_prone_core:2.23.0'
     //implementation 'org.pitest:pitest:1.15.3'
 
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'

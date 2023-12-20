@@ -10,7 +10,6 @@ import java.util.List;
 
 public abstract class State<T> {
     private final T model;
-    private int i = 0;
     private View<T> viewer;
     private Controller<T> controller;
 

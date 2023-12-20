@@ -18,6 +18,8 @@ public class Database {
     private int monstersKilled = 0;
     private int startingNumBullets = 30;
     private boolean soundIsOn = false;
+    private float soundVolume = -14F; // -60F maxminmax
+    private int soundSliderX = 115;
     private List<Integer> scores = new ArrayList<>(0);
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
@@ -120,5 +122,21 @@ public class Database {
 
     public boolean isSoundIsOn() {
         return soundIsOn;
+    }
+
+    public float getSoundVolume() {
+        return soundVolume;
+    }
+
+    public void setSoundVolume(float soundVolume) {
+        this.soundVolume = soundVolume;
+    }
+
+    public int getSoundSliderX() {
+        return soundSliderX;
+    }
+
+    public void setSoundSliderX(int soundSliderX) {
+        this.soundSliderX = soundSliderX;
     }
 }

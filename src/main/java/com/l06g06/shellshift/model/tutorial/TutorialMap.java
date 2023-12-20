@@ -46,6 +46,7 @@ public class TutorialMap {
 
     }
 
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void startCloudAddingTask() {
         Random rand = new Random();
         executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(15) + 5, TimeUnit.SECONDS);

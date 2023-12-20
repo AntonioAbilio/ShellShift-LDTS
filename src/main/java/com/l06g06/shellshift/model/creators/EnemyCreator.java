@@ -11,6 +11,7 @@ import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.Vertical
 import java.util.Random;
 
 public class EnemyCreator extends Creator {
+    @Override
     public Element create(Position position) {
         MoveStrategy moveStrategy;
         Random rn_strategy = new Random();

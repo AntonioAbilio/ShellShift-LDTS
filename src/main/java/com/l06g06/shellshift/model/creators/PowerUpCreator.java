@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Random;
 
 public class PowerUpCreator extends Creator {
-    private static Map<Integer, PowerUp> availablePowerUps;
+    private final Map<Integer, PowerUp> availablePowerUps;
 
     public PowerUpCreator() {
         availablePowerUps = new HashMap<>();

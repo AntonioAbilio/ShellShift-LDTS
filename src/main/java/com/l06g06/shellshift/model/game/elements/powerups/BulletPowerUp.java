@@ -6,6 +6,7 @@ import com.l06g06.shellshift.model.game.map.Map;
 public class BulletPowerUp extends PowerUp  {
     public BulletPowerUp(Position position) {
         super(position);
+        this.setType("Bullet");
     }
 
     @Override

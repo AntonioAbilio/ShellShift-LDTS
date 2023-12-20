@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -32,13 +33,13 @@ public class PowerUpController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn platforms logic
-        if (currentTime - lastSpawnTime >= MapController.getSpawnCooldown() + 10){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 10){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift platforms logic
-        if (currentTime - lastShiftTime >= MapController.getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -92,7 +93,9 @@ public class PowerUpController extends GameController {
             if (getModel().getChell().getPolygon().intersects(powerUp.getPolygon().getBounds2D())) {
                 powerUp.activate(getModel());
                 powerUpIterator.remove();
-                Sound.playSound(Sound.SoundsFx.PowerUP);
+                Sound sound = Sound.getInstance();
+                sound.playSound(SoundsFx.PowerUP);
+                //SomAqui Sound.playSound(SoundsFx.PowerUP);
             }
         }
     }

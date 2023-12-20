@@ -6,50 +6,108 @@ import javax.sound.sampled.*;
 import java.io.File;
 import java.net.URL;
 
-public class Sound {
-    public enum SoundsFx{
-        Coin("sounds/coin.wav"),
-        PowerUP("sounds/powerup.wav"),
-        Death("sounds/death.wav"),
-        MonsterCollision("sounds/hurt.wav"),
-        Jump("sounds/jump.wav"),
-        BulletFired("sounds/fire.wav"),
-        OptionSelect("sounds/select.wav");
+import static java.lang.Thread.sleep;
 
-        private final String path;
 
-        SoundsFx(String path) {
-            this.path = path;
-        }
+public class Sound implements LineListener, Runnable {
 
-        public String getPath() {
-            return path;
+    private static final int SLEEP_DURATION = 2000;
+
+    private Thread thread;
+
+    private File soundFile;
+    private Clip clip;
+    //private Sound audio;
+    private static Sound soundPlayer;
+
+    private Sound() {
+    }
+
+    public void playSound(SoundsFx soundsFx) {
+        Sound p = getInstance();
+        p.playSoundFx(soundsFx);
+    }
+
+    private void playSoundFx(SoundsFx soundsFx) {
+        URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
+        assert resource != null;
+        this.soundFile = new File(resource.getPath());
+        thread = new Thread(this);
+        thread.setName("SoundPlayer");
+        thread.start();
+    }
+
+    @Override
+    public void update(LineEvent event) {
+    }
+
+    @Override
+    public void run() {
+        if (!OptionsMenu.soundOFF) {
+            try {
+                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.soundFile);
+                AudioFormat format = audioInputStream.getFormat();
+
+                if ((format.getEncoding().equals(AudioFormat.Encoding.ULAW)) || (format.getEncoding().equals(AudioFormat.Encoding.ALAW))) {
+                    AudioFormat tmp = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, format.getSampleRate(), format.getSampleSizeInBits() * 2, format.getChannels(), format.getFrameSize() * 2, format.getFrameRate(), true);
+                    audioInputStream = AudioSystem.getAudioInputStream(tmp, audioInputStream);
+                    format = tmp;
+                }
+
+                DataLine.Info info = new DataLine.Info(Clip.class, audioInputStream.getFormat(), ((int) audioInputStream.getFrameLength() * format.getFrameSize()));
+
+                clip = (Clip) AudioSystem.getLine(info);
+                Clip clip = AudioSystem.getClip();
+                clip.addLineListener(event -> {
+                    if (LineEvent.Type.STOP.equals(event.getType())) {
+                        clip.close();
+                    }
+                });
+
+                clip.open(audioInputStream);
+                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+                gainControl.setValue(OptionsMenu.getSoundSliderValue());
+                clip.start();
+                try {
+                    sleep(SLEEP_DURATION);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                while (clip.isActive() && thread != null) {
+                    try {
+                        sleep(SLEEP_DURATION);
+                    } catch (Exception e) {
+                        break;
+                    }
+                }
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
-    public static void playSound(SoundsFx soundsFx){
-        if (!OptionsMenu.soundOFF) {
-            try {
-                // create AudioInputStream object
-                URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
-                AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(resource.getPath()).getAbsoluteFile());
-
-                // create clip reference
-                Clip clip = AudioSystem.getClip();
-
-                // open audioInputStream to the clip
-                clip.open(audioInputStream);
-
-                // change clip volume
-                FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-                gainControl.setValue(-5.0f);
-
-                clip.loop(0);
-            } catch (Exception uafe) {
-                System.out.println(uafe.getMessage());
-            }
+    public static Sound getInstance()
+    {
+        if (soundPlayer == null)
+        {
+            soundPlayer = new Sound();
         }
+        return soundPlayer;
+    }
 
+    public void stopClip()
+    {
+        clip.stop();
+    }
 
+    public void closeClip()
+    {
+        clip.close();
+    }
+
+    public void startClip()
+    {
+        clip.start();
     }
 }

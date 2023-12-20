@@ -21,24 +21,31 @@ public class Game {
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
-        new Game().start();
+ /*       try {*/
+            new Game().start();
+        /*} catch (Exception e){
+            e.printStackTrace();
+        }*/
     }
 
-    public static void sleepTimeMS(int miliseconds){
+    public static void sleepTimeMS(long miliseconds){
         try{
             Thread.sleep(miliseconds);
-        } catch (InterruptedException e){}
+        } catch (InterruptedException e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void setState(State state) {
         this.state = state;
     }
 
+    @SuppressWarnings("unused")
     private void start() throws IOException {
-        //Sound.playSound(Sound.SoundsFx.Coin);
         int FPS = 60;
         int frameTime = 1000 / FPS;
         KeyListener keysListen = new ListenForKeys(this.gui);
+        Sound sound = Sound.getInstance();
 
         while (this.state != null) {
             long startTime = System.currentTimeMillis();
@@ -48,10 +55,7 @@ public class Game {
             long elapsedTime = System.currentTimeMillis() - startTime;
             long sleepTime = frameTime - elapsedTime;
 
-            try {
-                if (sleepTime > 0) Thread.sleep(sleepTime);
-            } catch (InterruptedException e) {
-            }
+            if (sleepTime > 0) sleepTimeMS(sleepTime);
         }
 
         gui.close();

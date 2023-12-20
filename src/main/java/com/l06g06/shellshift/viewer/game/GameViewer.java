@@ -19,7 +19,7 @@ public class GameViewer extends View<Map> {
     public void drawElements(Gui gui) /*throws IOException*/ {
         gui.setBackground("#8ec4e8");
 
-        drawElements(gui, getModel().getClouds(), new CloudViewer());
+        //drawElements(gui, getModel().getClouds(), new CloudViewer());
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
@@ -27,6 +27,7 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
         drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
+        /*drawElement(gui, getModel().getActivePowerUp(), new ActivePowerUpViewer());*/
 
         // HUD
         //Lives
@@ -45,6 +46,19 @@ public class GameViewer extends View<Map> {
         //Coins
         gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
         gui.numToASCII(getModel().getCoinsCollected(), 16,90);
+
+        // Active PowerUps
+        int offsetY = 1;
+        for (String powerUp : getModel().getActivePowerUp().getPowerUpsAndDuration().keySet()) {
+            if (powerUp.equals("Speed")){
+                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(151, offsetY));
+            }
+            if (powerUp.equals("Star")){
+                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(151, offsetY));
+
+            }
+            offsetY += 8;
+        }
 
     }
 

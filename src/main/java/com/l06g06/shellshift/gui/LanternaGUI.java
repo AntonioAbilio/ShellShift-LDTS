@@ -63,7 +63,14 @@ public class LanternaGUI implements Gui {
     }
 
     public void removeButton(Integer button) {
-        this.buttons.remove(button);
+        Iterator<Integer> intIterator = this.buttons.iterator();
+        while(intIterator.hasNext()) {
+            Integer intg = intIterator.next();
+            if (intg.intValue() == button) {
+                intIterator.remove();
+            }
+        }
+        //this.buttons.remove(button);
     }
 
     public TerminalScreen getScreen() {
@@ -124,7 +131,7 @@ public class LanternaGUI implements Gui {
         String numString = Integer.toString(num);
         for (int i = 0; i < numString.length(); i++) {
             char digit = numString.charAt(i);
-            drawImageASCII(Components.getNumbers().get(Character.getNumericValue(digit)).getImage(), new Position( x + i * 6, y));
+            drawImageASCII(Components.getNumbers().get(Character.digit(digit,10)).getImage(), new Position( x + i * 6, y));
         }
     }
 
@@ -180,7 +187,7 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public void drawImageASCII(String[] image, Position position) {
+    public void drawImageASCII(ImmutableList<String> image, Position position) {
         // Get the starting position of the Element
         int y = position.getY();
 
@@ -188,7 +195,8 @@ public class LanternaGUI implements Gui {
         for (String horizontalPixelMatrix : image){
 
             int x = position.getX();
-            for (char Pixel : horizontalPixelMatrix.toCharArray()){
+            for (int i = 0; i < horizontalPixelMatrix.length(); i++){
+                char Pixel = horizontalPixelMatrix.charAt(i);
                 // Get the corresponding color of the character.
                 CharColor paint = CharColor.getCharColor(Pixel);
                 if (Pixel != ' ')

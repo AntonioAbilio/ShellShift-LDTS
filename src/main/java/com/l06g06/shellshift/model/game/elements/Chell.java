@@ -133,6 +133,7 @@ public class Chell extends Element {
         }, milliseconds);
     }
 
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void activateBlink(long delay) {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
         executorService.scheduleAtFixedRate(this::toggleBlink, 0, 150, TimeUnit.MILLISECONDS);
