@@ -45,6 +45,7 @@ public class Game {
         int FPS = 60;
         int frameTime = 1000 / FPS;
         KeyListener keysListen = new ListenForKeys(this.gui);
+        Sound sound = Sound.getInstance();
 
         while (this.state != null) {
             long startTime = System.currentTimeMillis();

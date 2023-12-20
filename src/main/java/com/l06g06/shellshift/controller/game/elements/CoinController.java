@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -92,7 +93,9 @@ public class CoinController extends GameController {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
 
-                Sound.playSound(Sound.SoundsFx.Coin);
+                //SomAqui Sound.playSound(SoundsFx.Coin);
+                Sound sound = Sound.getInstance();
+                sound.playSound(SoundsFx.Coin);
                 getModel().addCoin();
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }

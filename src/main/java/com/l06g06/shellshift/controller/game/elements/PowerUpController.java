@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -92,7 +93,9 @@ public class PowerUpController extends GameController {
             if (getModel().getChell().getPolygon().intersects(powerUp.getPolygon().getBounds2D())) {
                 powerUp.activate(getModel());
                 powerUpIterator.remove();
-                Sound.playSound(Sound.SoundsFx.PowerUP);
+                Sound sound = Sound.getInstance();
+                sound.playSound(SoundsFx.PowerUP);
+                //SomAqui Sound.playSound(SoundsFx.PowerUP);
             }
         }
     }

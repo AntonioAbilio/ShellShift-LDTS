@@ -42,7 +42,7 @@ public class MapController extends GameController{
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
-        ListenForKeys.locked = true;
+        //ListenForKeys.locked = true;
         enemyController.step(game, action, time);
         bulletController.step(game, action, time);
         chellController.step(game, action, time);
@@ -51,8 +51,8 @@ public class MapController extends GameController{
         cloudController.step(game, action, time);
         powerUpController.step(game, action, time);
         activePowerUpController.step(game, action, time);
-        action.clear(); // TODO -> NEEDS TO BE A BUFFER.
-        ListenForKeys.locked = false;
+        //action.clear(); // TODO -> NEEDS TO BE A BUFFER.
+        //ListenForKeys.locked = false;
 
         // adiciona 1 ponto a cada segundo
         if (System.currentTimeMillis() - addedScoreTimer >= 1000) {

@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
@@ -17,7 +18,8 @@ public class GameOverController extends Controller<GameOver> {
 
     public GameOverController(GameOver gameOver) {
         super(gameOver);
-        Sound.playSound(Sound.SoundsFx.Death);
+        Sound.getInstance().playSound(SoundsFx.Death);
+        //SomAqui Sound.playSound(SoundsFx.Death);
     }
 
     @Override
@@ -32,7 +34,8 @@ public class GameOverController extends Controller<GameOver> {
                     getModel().nextOption();
                     break;
                 case SELECT:
-                    Sound.playSound(Sound.SoundsFx.OptionSelect);
+                    //SomAqui Sound.playSound(SoundsFx.OptionSelect);
+                    Sound.getInstance().playSound(SoundsFx.OptionSelect);
                     if (getModel().isSelectedRestart()) game.setState(new GameState(new Map()));
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;

@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
@@ -81,7 +82,9 @@ public class ChellController extends GameController {
     }
 
     public void jump(long time){
-        Sound.playSound(Sound.SoundsFx.Jump);
+        //SomAqui Sound.playSound(SoundsFx.Jump);
+        Sound sound = Sound.getInstance();
+        sound.playSound(SoundsFx.Jump);
         isJumping = true;
         jumpStartTime = time;
         canJump = false;

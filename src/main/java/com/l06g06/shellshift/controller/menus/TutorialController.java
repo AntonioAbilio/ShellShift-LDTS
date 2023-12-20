@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
@@ -87,7 +88,9 @@ public class TutorialController extends Controller<TutorialMap> {
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();
-        Sound.playSound(Sound.SoundsFx.Jump);
+        Sound sound = Sound.getInstance();
+        sound.playSound(SoundsFx.Jump);
+        //SomAqui Sound.playSound(SoundsFx.Jump);
     }
 
     public void jumpUpdate(long time) {
@@ -225,7 +228,9 @@ public class TutorialController extends Controller<TutorialMap> {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) || coin.getPosition().getX() < -10) {
                 coinsIterator.remove();
                 getModel().addCoin();
-                Sound.playSound(Sound.SoundsFx.Coin);
+                //SomAqui Sound.playSound(SoundsFx.Coin);
+                Sound sound = Sound.getInstance();
+                sound.playSound(SoundsFx.Coin);
                 this.coinCheckpoint = true;
             }
         }

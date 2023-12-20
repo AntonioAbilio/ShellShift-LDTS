@@ -1,9 +1,6 @@
 package com.l06g06.shellshift.controller.menus;
 
-import com.l06g06.shellshift.Components;
-import com.l06g06.shellshift.Database;
-import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.*;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
@@ -36,7 +33,9 @@ public class ShopController extends Controller<Shop> {
                     getModel().nextOption();
                     break;
                 case SELECT:
-                    Sound.playSound(Sound.SoundsFx.OptionSelect);
+                    //SomAqui Sound.playSound(SoundsFx.OptionSelect);
+                    Sound sound = Sound.getInstance();
+                    sound.playSound(SoundsFx.OptionSelect);
                     if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
                         int price = getModel().getPrice(Components.RapidFire);

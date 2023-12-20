@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
@@ -26,7 +27,9 @@ public class OptionsMenuController extends Controller<OptionsMenu> {
                     game.setState(new MainMenuState(new MainMenu()));
                     break;
                 case SELECT:
-                    Sound.playSound(Sound.SoundsFx.OptionSelect);
+                    //SomAqui Sound.playSound(SoundsFx.OptionSelect);
+                    Sound sound = Sound.getInstance();
+                    sound.playSound(SoundsFx.OptionSelect);
                     if (getModel().isSoundOFF()){
                         getModel().setSound(false);
                     } else {
