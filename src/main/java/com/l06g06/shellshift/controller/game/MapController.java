@@ -26,6 +26,31 @@ public class MapController extends GameController{
     private boolean checkpoint1;
     private boolean checkpoint2;
 
+    // Used for tests (dependencyInjection)
+    public MapController(Map map,
+                         ChellController chellController,
+                         BulletController bulletController,
+                         PlatformController platformController,
+                         CoinController coinController,
+                         EnemyController enemyController,
+                         CloudController cloudController,
+                         PowerUpController powerUpController,
+                         ActivePowerUpController activePowerUpController,
+                         long addedScoreTimer){
+        super(map);
+        this.chellController = chellController;
+        this.bulletController = bulletController;
+        this.platformController = platformController;
+        this.coinController = coinController;
+        this.enemyController = enemyController;
+        this.cloudController = cloudController;
+        this.powerUpController = powerUpController;
+        this.activePowerUpController = activePowerUpController;
+        this.checkpoint1 = false;
+        this.checkpoint2 = false;
+        this.addedScoreTimer = addedScoreTimer;
+    }
+
     public MapController(Map map){
         super(map);
         this.chellController = new ChellController(map);

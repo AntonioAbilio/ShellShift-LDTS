@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.annotations.VisibleForTesting;
+
 public class Database {
     private static Database instance;
 
@@ -31,6 +33,11 @@ public class Database {
             instance = new Database();
         }
         return instance;
+    }
+
+    @VisibleForTesting
+    public static void setInstance(Database database){
+        instance = database;
     }
 
     public FireStrategy getFiringStrategy() {
@@ -58,7 +65,10 @@ public class Database {
     }
 
     public void setNumCoins(int numCoins) {
-        this.numCoins = numCoins;
+        if (numCoins < 0) numCoins = 0;
+        if (numCoins > getMAXCOINS()) this.numCoins = 999;
+        else
+            this.numCoins = numCoins;
     }
 
     public int getMonstersKilled() {
@@ -66,6 +76,8 @@ public class Database {
     }
 
     public void addScore(int score) {
+        if (score < 0) score = 0;
+        if (score > getMAXSCORE()) score = getMAXSCORE();
         this.scores.add(score);
         this.scores.sort(Collections.reverseOrder());
         if (this.scores.size() > 3) {
@@ -94,8 +106,15 @@ public class Database {
     public int getMAXBULLETS() {
         return 200;
     }
+
+    public int getMAXMONSTERSKILLED() {
+        return 19999;
+    }
+
     public void addMonstersKilled(int monstersKilled) {
+        if (monstersKilled < 0) monstersKilled = 0;
         this.monstersKilled += monstersKilled;
+        if (this.monstersKilled > 19999) this.monstersKilled = 19999;
     }
 
     public int getCollectedCoins() {

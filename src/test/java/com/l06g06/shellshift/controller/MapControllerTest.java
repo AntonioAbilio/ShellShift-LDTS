@@ -9,29 +9,31 @@ import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
+
 import com.l06g06.shellshift.states.GameOverState;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.Mockito;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static net.jqwik.time.api.Times.times;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 public class MapControllerTest {
-    private MapController mapController;
-    private Map map;
+    // Things that happen before the actual game starts.
     private Game game;
     private List<Gui.PressedKey> action;
     private long addedScoreTimer = System.currentTimeMillis();
+
+    // Things that happen after
+    private Chell chell;
+    private Map map;
+
     private ChellController chellController;
     private BulletController bulletController;
     private PlatformController platformController;
@@ -39,45 +41,127 @@ public class MapControllerTest {
     private EnemyController enemyController;
     private CloudController cloudController;
     private PowerUpController powerUpController;
+    private ActivePowerUpController activePowerUpController;
+    private MapController mapController;
 
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
         this.addedScoreTimer = 0;
-        this.map = mock(Map.class);
-        when(map.getChell()).thenReturn(new Chell(new Position(0, 0)));
         this.game = mock(Game.class);
         this.action = new ArrayList<>();
-        this.chellController = new ChellController(map);
-        this.bulletController = new BulletController(map);
-        this.platformController = new PlatformController(map);
-        this.coinController = new CoinController(map);
-        this.enemyController = new EnemyController(map);
-        this.cloudController = new CloudController(map);
-        this.powerUpController = new PowerUpController(map);
-        this.mapController = new MapController(map);
+
+        this.chell = mock(Chell.class);
+        when(chell.getPosition()).thenReturn(new Position(50,50));
+
+        this.map = mock(Map.class);
+        when(map.getScore()).thenReturn(123);
+        when(map.getCoinsCollected()).thenReturn(123);
+        when(map.getMonstersKilled()).thenReturn(123);
+        when(map.getChell()).thenReturn(chell);
+
+        this.chellController = mock(ChellController.class);
+        this.bulletController = mock(BulletController.class);
+        this.platformController = mock(PlatformController.class);
+        this.coinController = mock(CoinController.class);
+        this.enemyController = mock(EnemyController.class);
+        this.cloudController = mock(CloudController.class);
+        this.powerUpController = mock(PowerUpController.class);
+        this.activePowerUpController = mock(ActivePowerUpController.class);
+
+        this.mapController = new MapController(map, chellController, bulletController, platformController,
+                coinController, enemyController, cloudController, powerUpController, activePowerUpController,
+                1000);
     }
-
-
-    /*@Test
-    public void stepCallTest() throws IOException {
-        //mapController.step(game, action, 0);
-        //verify(enemyController, Mockito.times(1)).step(game, action, 0);
-        // ToDo
-    }*/
 
     @Test
     public void updateAccelerationTest() {
+
         Assertions.assertEquals(false, mapController.isCheckpoint1());
         Assertions.assertEquals(false, mapController.isCheckpoint2());
+
         long elapsedTimeSinceGameStart = 30;
         mapController.updateAcceleration(elapsedTimeSinceGameStart);
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(false, mapController.isCheckpoint2());
+
         elapsedTimeSinceGameStart = 120;
         mapController.updateAcceleration(elapsedTimeSinceGameStart);
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(true, mapController.isCheckpoint2());
+    }
+
+    @Test
+    public void stepWithoutGameOver(){
+        try {
+            mapController.step(game, action, addedScoreTimer);
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    public void stepWithGameOver(){
+        when(chell.getLives()).thenReturn(0);
+        try {
+            mapController.step(game, action, addedScoreTimer);
+            verify(game).setState(any(GameOverState.class));
+        } catch (Exception e){
+            System.out.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Property
+    public void gameOverPositionDetectionTest(@ForAll @IntRange(max = 0) int x, @ForAll @IntRange(min = 150) int y){
+        Chell chell = mock(Chell.class);
+        when(chell.getPosition()).thenReturn(new Position(x,y));
+
+        Map map = new Map();
+        map.setChell(chell);
+
+        MapController mapContrl = new MapController(map);
+
+        Assertions.assertTrue(mapContrl.isGameOver());
+
+    }
+
+    @Property
+    public void gameOverLivesDetectionTest(@ForAll @IntRange(max = 0) int lives){
+        Chell chell = mock(Chell.class);
+        when(chell.getPosition()).thenReturn(new Position(50,50));
+        when(chell.getLives()).thenReturn(lives);
+
+        Map map = new Map();
+        map.setChell(chell);
+
+        MapController mapContrl = new MapController(map);
+
+        Assertions.assertTrue(mapContrl.isGameOver());
+
+    }
+
+    @Property
+    public void updateDatabaseTest(@ForAll @IntRange(max = 999999) int score, @ForAll @IntRange(max = 999) int coins, @ForAll @IntRange(max = 19999) int monstersKilled) {
+        this.chell = mock(Chell.class);
+        when(chell.getPosition()).thenReturn(new Position(50,50));
+
+        this.map = mock(Map.class);
+        when(map.getScore()).thenReturn(score);
+        when(map.getCoinsCollected()).thenReturn(coins);
+        when(map.getMonstersKilled()).thenReturn(monstersKilled);
+        when(map.getChell()).thenReturn(chell);
+
+        Database database = mock(Database.class);
+        Database.setInstance(database);
+
+        MapController mapCtrl = new MapController(map);
+        mapCtrl.updateDatabase();
+
+        verify(database).addScore(score);
+        verify(database).addCoins(coins);
+        verify(database).addMonstersKilled(monstersKilled);
     }
 
 }

@@ -1,34 +1,49 @@
 package com.l06g06.shellshift.controller;
 
+import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
+import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Coin;
+import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
+import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.mock;
 
 public class CoinControllerTest {
     private Map map ;
-    private Coin coin;
     private List<Coin> coins;
     private CoinController coinController;
+    private Game game;
+    private List<Gui.PressedKey> action;
+    private long timeMillis;
 
 
     @BeforeEach
     public void setup(){
         this.map = mock(Map.class);
-        this.coin = mock(Coin.class);
         this.coins = new ArrayList<>();
         Mockito.when(map.getCoins()).thenReturn(coins);
+        Mockito.when(map.getChell()).thenReturn(new Chell(new Position(50,45)));
+        Mockito.when(map.getPlatforms()).thenReturn(new ArrayList<>(List.of(new Platform(new Position(230, 50)))));
+        Mockito.when(map.getCoinSpawner()).thenReturn(Mockito.mock(CoinSpawner.class));
         this.coinController = new CoinController(map);
+
+        game = mock(Game.class);
+        this.action = new ArrayList<>();
+        timeMillis = 0;
 
         Coin coin1 = new Coin(new Position(1,  0));
         Coin coin2 = new Coin(new Position(5, 5));
@@ -66,25 +81,21 @@ public class CoinControllerTest {
         coinController.coinCollision();
         Assertions.assertEquals(2, coins.size());
 
-        // ToDo: remove
-        /*
-        int test_x_inf = -20;
-        int test_x_sup = 20;
-        int test_y_inf = -30;
-        int test_y_sup = 30;
-        boolean intersectionFound = false;
+    }
 
-        for (int i = test_x_inf; i <= test_x_sup && !intersectionFound; i++) {
-            for (int j = test_y_inf; j <= test_y_sup && !intersectionFound; j++) {
-                // Update Chell's position
-                chell.setPosition(new Position(i, j));
+    @Test
+    public void step(){
+        try {
+            CoinController spyCoinController = Mockito.spy(coinController);
+            spyCoinController.step(game, action, timeMillis);
+            Mockito.verify(spyCoinController, Mockito.times(1)).spawnOnPlatform();
+            Mockito.verify(spyCoinController, Mockito.times(1)).left_shift();
+            Mockito.verify(spyCoinController, Mockito.times(1)).coinCollision();
 
-                // Check for intersection
-                if (chell.getPolygon().intersects(coin1.getPolygon().getBounds2D())) {
-                    System.out.println("Intersection found at x: " + i + " y: " + j);
-                    intersectionFound = true;
-                }
-            }
-        }*/
+
+        } catch (IOException e){
+            System.out.println(e.getMessage());
+            fail();
+        }
     }
 }

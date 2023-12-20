@@ -1,13 +1,18 @@
 package com.l06g06.shellshift.controller;
 
+import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
+import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.map.Map;
+import net.jqwik.api.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +24,10 @@ public class PlatformControllerTest {
     private List<Platform>  platforms;
     private PlatformController platformController;
 
+    private Game game;
+    private List<Gui.PressedKey> action;
+    private long timeMillis;
+
 
     @BeforeEach
     public void setup(){
@@ -27,6 +36,10 @@ public class PlatformControllerTest {
         this.platforms = new ArrayList<>();
         Mockito.when(map.getPlatforms()).thenReturn(platforms);
         this.platformController = new PlatformController(map);
+
+        game = mock(Game.class);
+        this.action = new ArrayList<>();
+        timeMillis = 0;
 
         Platform platform1 = new Platform(new Position(1,  0));
         Platform platform2 = new Platform(new Position(5, 5));
@@ -48,4 +61,8 @@ public class PlatformControllerTest {
         Assertions.assertEquals(expectedPos3, platforms.get(2).getPosition());
     }
 
+    @Test
+    public void step(){
+
+    }
 }

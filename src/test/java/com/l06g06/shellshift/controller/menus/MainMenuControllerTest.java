@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.controller;
+package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.menus.MainMenuController;
