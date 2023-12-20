@@ -22,7 +22,6 @@ public class OptionsMenuController extends Controller<OptionsMenu> {
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
-        System.out.println(getModel().getOptionsSize());
         for (Gui.PressedKey gpk : action) {
             Game.sleepTimeMS(100);
 
