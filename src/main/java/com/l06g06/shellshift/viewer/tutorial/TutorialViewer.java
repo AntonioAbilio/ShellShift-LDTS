@@ -20,7 +20,6 @@ public class TutorialViewer extends View<TutorialMap> {
         gui.setBackground("#8ec4e8");
 
         drawElements(gui, getModel().getClouds(), new CloudViewer());
-
         drawElement(gui, getModel().getChell(), new ChellViewer());
         drawElement(gui, getModel().getPlatform(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
