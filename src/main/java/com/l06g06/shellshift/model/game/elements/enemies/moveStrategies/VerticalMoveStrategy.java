@@ -29,4 +29,11 @@ public class VerticalMoveStrategy implements MoveStrategy{
         }
     }
 
+    public int getDistToTop() {
+        return distToTop;
+    }
+
+    public boolean isMovingUp() {
+        return movingUp;
+    }
 }

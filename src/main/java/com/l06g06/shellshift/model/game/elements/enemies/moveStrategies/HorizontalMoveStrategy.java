@@ -23,4 +23,12 @@ public class HorizontalMoveStrategy implements MoveStrategy {
             return new Position(currentPos.getX() + 1, currentPos.getY());
         }
     }
+
+    public int getDistToLeft() {
+        return distToLeft;
+    }
+
+    public boolean isMovingLeft() {
+        return movingLeft;
+    }
 }

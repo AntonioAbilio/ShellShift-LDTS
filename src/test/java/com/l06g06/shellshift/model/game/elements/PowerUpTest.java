@@ -2,6 +2,7 @@ package com.l06g06.shellshift.model.game.elements;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
@@ -57,6 +58,21 @@ public class PowerUpTest {
         verify(map.getChell(), times(1)).activateInvincibilityTimer(10000);
         verify(map.getChell(), times(1)).setHorizontalSpeedWithTimer(2);
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 50, gun.getNumBullets());
+    }
+
+    @Test
+    public void hitboxTest(){
+        PowerUp powerUp = new BulletPowerUp(new Position(0, 0));
+        powerUp.setPosition(new Position(0, 0));
+        Assertions.assertEquals(1, powerUp.getPolygon().xpoints[0]);
+        Assertions.assertEquals(11, powerUp.getPolygon().xpoints[1]);
+        Assertions.assertEquals(1, powerUp.getPolygon().xpoints[2]);
+        Assertions.assertEquals(11, powerUp.getPolygon().xpoints[3]);
+
+        Assertions.assertEquals(1, powerUp.getPolygon().ypoints[0]);
+        Assertions.assertEquals(1, powerUp.getPolygon().ypoints[1]);
+        Assertions.assertEquals(11, powerUp.getPolygon().ypoints[2]);
+        Assertions.assertEquals(11, powerUp.getPolygon().ypoints[3]);
     }
 
 

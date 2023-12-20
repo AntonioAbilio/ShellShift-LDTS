@@ -18,10 +18,13 @@ public class HorizontalMoveStrategyTest {
     void moveLeftTest() {
         Position currentPos = new Position(10, 10);
         for (int i = 0; i < 20; i++) {
+            Assertions.assertTrue(horizontalMoveStrategy.isMovingLeft());
             currentPos = horizontalMoveStrategy.move(currentPos);
+            Assertions.assertEquals(i + 1, horizontalMoveStrategy.getDistToLeft());
             Assertions.assertEquals(10 - i - 1, currentPos.getX());
             Assertions.assertEquals(10, currentPos.getY());
         }
+        Assertions.assertFalse(horizontalMoveStrategy.isMovingLeft());
     }
 
     @Test
@@ -30,14 +33,19 @@ public class HorizontalMoveStrategyTest {
 
         // Move to the left first
         for (int i = 0; i < 20; i++) {
+            Assertions.assertTrue(horizontalMoveStrategy.isMovingLeft());
             currentPos = horizontalMoveStrategy.move(currentPos);
         }
 
         // Move right
         for (int i = 0; i < 20; i++) {
+            Assertions.assertFalse(horizontalMoveStrategy.isMovingLeft());
             currentPos = horizontalMoveStrategy.move(currentPos);
+            Assertions.assertEquals(20 - i - 1, horizontalMoveStrategy.getDistToLeft());
             Assertions.assertEquals(-10 + i + 1, currentPos.getX());
             Assertions.assertEquals(10, currentPos.getY());
         }
+
+        Assertions.assertTrue(horizontalMoveStrategy.isMovingLeft());
     }
 }
