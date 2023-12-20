@@ -23,9 +23,9 @@ public class MapController extends GameController{
     private final PowerUpController powerUpController;
     private static long gameStartTime;
     private static double shiftCooldown = 0.08;
-    private static int spawnCooldown = 5;
-    boolean checkpoint1 = false;
-    boolean checkpoint2 = false;
+    private static int spawnCooldown = 6;
+    private boolean checkpoint1;
+    private boolean checkpoint2;
 
     public MapController(Map map){
         super(map);
@@ -36,6 +36,10 @@ public class MapController extends GameController{
         this.enemyController = new EnemyController(map);
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
+        this.checkpoint1 = false;
+        this.checkpoint2 = false;
+        this.shiftCooldown = 0.08;
+        this.spawnCooldown = 6;
         gameStartTime = System.currentTimeMillis();
     }
 
@@ -48,13 +52,13 @@ public class MapController extends GameController{
         cloudController.step(game, action, time);
         powerUpController.step(game, action, time);
 
-        // adiciona 1 ponto a cada segundo
+        // adds 1 point per second
         if (System.currentTimeMillis() - addedScoreTimer >= 1000) {
             setAddedScoreTimer(System.currentTimeMillis());
             getModel().setScore(getModel().getScore() + 1);
         }
 
-        // game over conditions, com out of bounds, border a direita esta no moveRIGHT()
+        // Checks if game is over
         if (isGameOver()) {
             updateDatabase();
             getModel().stopCloudAddingTask();
@@ -69,18 +73,19 @@ public class MapController extends GameController{
 
     public void updateAcceleration(long elapsedTimeSinceGameStart){
         // Acceleration is divided in 3 levels
-        if (!checkpoint1 && elapsedTimeSinceGameStart >= 5){
+        if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             shiftCooldown = 0.05;
-            spawnCooldown = 3;
-        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 10){
+            spawnCooldown = 4;
+        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
             checkpoint2 = true;
             shiftCooldown = 0.03;
-            spawnCooldown = 2;
+            spawnCooldown = 3;
         }
     }
 
     public boolean isGameOver() {
+        // The game is over if Chell falls out of bounds, gets behind the left border or has no lives left
         return getModel().getChell().getPosition().getY() > 150 | getModel().getChell().getPosition().getX() < 0 | getModel().getChell().getLives() <= 0;
     }
 

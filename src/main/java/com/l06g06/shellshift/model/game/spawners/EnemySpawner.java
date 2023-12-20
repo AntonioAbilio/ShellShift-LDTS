@@ -20,8 +20,8 @@ public class EnemySpawner {
     }
 
     public void spawn(Position position){
-        //Enemy spawned_enemy = (Enemy) enemyCreator.create(position);
-        Enemy spawned_enemy = randomEnemyFactory.create(position);
+        Enemy spawned_enemy = (Enemy) enemyCreator.create(position);
+        //Enemy spawned_enemy = randomEnemyFactory.create(position);
         enemies.add(spawned_enemy);
         enemies.removeIf(enemy -> enemy.getPosition().getX() < -30);
     }

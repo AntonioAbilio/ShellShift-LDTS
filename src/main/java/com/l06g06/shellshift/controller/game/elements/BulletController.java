@@ -29,6 +29,7 @@ public class BulletController extends GameController {
         }
         bulletUpdate();
         bulletCollision();
+        removeOutOfBoundsBullets();
     }
 
     private void fire(long time) {
@@ -73,6 +74,17 @@ public class BulletController extends GameController {
                         getModel().setScore(getModel().getScore() + enemy.getScore());
                     }
                 }
+            }
+        }
+    }
+
+    public void removeOutOfBoundsBullets(){
+        List<Bullet> bullets = getModel().getBullets();
+        Iterator<Bullet> it = bullets.iterator();
+        while (it.hasNext()){
+            Bullet bullet = it.next();
+            if (bullet.getPosition().getX() < -5 || bullet.getPosition().getX() > 190){
+                it.remove();
             }
         }
     }

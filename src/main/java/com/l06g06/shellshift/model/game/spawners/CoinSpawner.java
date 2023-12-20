@@ -19,8 +19,8 @@ public class CoinSpawner {
     }
 
     public void spawn(Position position){
-        //Coin spawned_coin = (Coin) coinCreator.create(position);
-        Coin spawned_coin = (Coin) coinFactory.create(position);
+        Coin spawned_coin = (Coin) coinCreator.create(position);
+        //Coin spawned_coin = (Coin) coinFactory.create(position);
         coins.add(spawned_coin);
         coins.removeIf(coin -> coin.getPosition().getX() <= -30);
     }

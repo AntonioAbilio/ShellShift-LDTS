@@ -12,18 +12,15 @@ import java.util.Random;
 
 public class EnemyCreator extends Creator {
     public Element create(Position position) {
-        Random rn_enemy = new Random();
-        int i2 = rn_enemy.nextInt(2);
-
         MoveStrategy moveStrategy;
         Random rn_strategy = new Random();
-        int i3 = rn_strategy.nextInt(2);
-        if (i3 == 0) moveStrategy = new HorizontalMoveStrategy() ;
+        int i = rn_strategy.nextInt(2);
+        if (i == 0) moveStrategy = new HorizontalMoveStrategy();
         else moveStrategy = new VerticalMoveStrategy();
 
-
-        if (i2 == 0) return new HardMonster(new Position(position.getX(), position.getY()), moveStrategy);
-        return new SoftMonster(new Position(position.getX(), position.getY()), moveStrategy);
+        Random rn_enemy = new Random();
+        int i2 = rn_enemy.nextInt(2);
+        if (i2 == 0) return new HardMonster(position, moveStrategy);
+        return new SoftMonster(position, moveStrategy);
     }
-
 }

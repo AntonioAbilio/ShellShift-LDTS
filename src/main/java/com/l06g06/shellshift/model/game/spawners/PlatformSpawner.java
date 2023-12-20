@@ -18,7 +18,6 @@ public class PlatformSpawner {
 
     public void spawn(Position position){
         Platform spawned_platform = (Platform) platformCreator.create(position);
-
         platforms.add(spawned_platform);
         platforms.removeIf(platform -> platform.getPosition().getX() <= 0);
     }
