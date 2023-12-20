@@ -801,9 +801,9 @@ public enum Components {
     }, "OptionText"),
 
     HealthBar(new String[] {
-        " VVV",
-        " VVV",
-        " VVV"
+        " ",
+        " ZZZ",
+        " ZZZ",
     }, new String[]{}, "HealthBar");
 
     private final String[] image;
