@@ -33,7 +33,7 @@ public class TutorialViewerTest {
     }
 
     @Test
-    void drawBasicElements() {
+    void drawElementsSelected() {
         Position pos = new Position(0,0);
         Chell chell = new Chell(pos);
         Platform platform = new Platform(pos);
@@ -50,19 +50,19 @@ public class TutorialViewerTest {
         when(tutorial.isSelectedArrowLeft()).thenReturn(true);
         when(tutorial.isSelectedArrowRight()).thenReturn(true);
         when(tutorial.isSelectedSpace()).thenReturn(true);
-        //when(tutorial.getGun().getNumBullets()).thenReturn(10);
-        //when(tutorial.getCoinsCollected()).thenReturn(5);
 
         tutorialViewer.drawElements(gui);
 
         verify(gui, times(1)).setBackground(Mockito.any(String.class));
-        verify(gui, times(1)).drawImageASCII(Components.ArrowUp.getImageSelected(), Mockito.any(Position.class));
-        verify(gui, times(1)).drawImageASCII(Components.ArrowLeft.getImageSelected(), Mockito.any(Position.class));
-        verify(gui, times(1)).drawImageASCII(Components.ArrowRight.getImageSelected(), Mockito.any(Position.class));
-        verify(gui, times(1)).drawImageASCII(Components.SpaceBar.getImageSelected(), Mockito.any(Position.class));
-        verify(gui, times(1)).drawImageASCII(Components.Bullet.getImage(), Mockito.any(Position.class));
-        //verify(gui, times(1)).numToASCII(eq(10), eq(142), eq(90));
-        //verify(gui, times(1)).drawImageASCII(/* expected image for Coin */, eq(new Position(8, 90)));
-        //verify(gui, times(1)).numToASCII(eq(5), eq(16), eq(91));
+        verify(gui, times(1)).drawImageASCII(eq(Components.Chell.getImage()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.Platform.getImage()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.ArrowUp.getImageSelected()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.ArrowLeft.getImageSelected()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.ArrowRight.getImageSelected()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.SpaceBar.getImageSelected()), Mockito.any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.Bullet.getImage()), Mockito.any(Position.class));
+        verify(gui, times(1)).numToASCII(eq(tutorial.getGun().getNumBullets()), anyInt(), anyInt());
+        verify(gui, times(1)).drawImageASCII(eq(Components.Coin.getImageSelected()), Mockito.any(Position.class));
+        verify(gui, times(1)).numToASCII(eq(tutorial.getCoinsCollected()), anyInt(), anyInt());
     }
 }
