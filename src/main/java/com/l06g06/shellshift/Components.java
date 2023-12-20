@@ -826,7 +826,7 @@ public enum Components {
     HealthBar(ImmutableList.of(
             " ",
             " ZZZ",
-            " ZZZ",
+            " ZZZ"
             ), ImmutableList.of(""), "HealthBar"),
 
     SoundSliderButton(ImmutableList.of(

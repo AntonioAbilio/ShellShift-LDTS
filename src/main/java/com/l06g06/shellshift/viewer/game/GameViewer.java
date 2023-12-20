@@ -50,13 +50,13 @@ public class GameViewer extends View<Map> {
         int offsetY = 1;
         for (String powerUp : getModel().getActivePowerUp().getPowerUpsAndDuration().keySet()) {
             if (powerUp.equals("Speed")){
-                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(151, offsetY));
+                gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(70 + offsetY, 89));
             }
             if (powerUp.equals("Star")){
-                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(151, offsetY));
+                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(70 + offsetY, 89));
 
             }
-            offsetY += 8;
+            offsetY += 10;
         }
 
     }
