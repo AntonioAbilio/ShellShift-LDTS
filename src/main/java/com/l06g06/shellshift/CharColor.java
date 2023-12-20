@@ -24,6 +24,7 @@ public enum CharColor {
     Yellow("#FFD700", 'y'),
     VeryLightBlue("#ABF0F9", 'U'),
     Green("#00FF01", 'V'),
+    AnotherGreen("#4af547", 'Z'),
     CloudShadow("#C3E1FF", 'T'),
     DarkBlue("#192841", 'X');
 

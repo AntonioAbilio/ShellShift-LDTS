@@ -823,6 +823,12 @@ public enum Components {
             "HHHHH  "
     ), ImmutableList.of(""), "StarReduced"),
 
+    HealthBar(ImmutableList.of(
+            " ",
+            " ZZZ",
+            " ZZZ",
+            ), ImmutableList.of(""), "HealthBar"),
+
     SoundSliderButton(ImmutableList.of(
             "     ",
             "JJJJJ",

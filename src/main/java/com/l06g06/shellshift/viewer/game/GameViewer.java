@@ -24,10 +24,9 @@ public class GameViewer extends View<Map> {
         drawElements(gui, getModel().getPlatforms(), new PlatformViewer());
         drawElements(gui, getModel().getBullets(), new BulletViewer());
         drawElements(gui, getModel().getCoins(), new CoinViewer());
+        drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
         drawElements(gui, getModel().getEnemies(), new SoftMonsterViewer());
         drawElements(gui, getModel().getEnemies(), new HardMonsterViewer());
-        drawElements(gui, getModel().getPowerUps(), new PowerUpViewer());
-        /*drawElement(gui, getModel().getActivePowerUp(), new ActivePowerUpViewer());*/
 
         // HUD
         //Lives
