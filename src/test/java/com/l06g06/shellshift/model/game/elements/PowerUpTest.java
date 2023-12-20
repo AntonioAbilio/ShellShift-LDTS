@@ -1,10 +1,7 @@
 package com.l06g06.shellshift.model.game.elements;
 
 import com.l06g06.shellshift.Database;
-import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.*;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.map.Map;
@@ -34,6 +31,8 @@ public class PowerUpTest {
         Map map = mock(Map.class);
         Chell chell = mock(Chell.class);
         when(map.getChell()).thenReturn(chell);
+        ActivePowerUp activePowerUp = mock(ActivePowerUp.class);
+        when(map.getActivePowerUp()).thenReturn(activePowerUp);
 
         Position position = mock(Position.class);
         SpeedPowerUp speedPowerUp = new SpeedPowerUp(position);
@@ -49,6 +48,8 @@ public class PowerUpTest {
         when(map.getGun()).thenReturn(gun);
         Chell chell = mock(Chell.class);
         when(map.getChell()).thenReturn(chell);
+        ActivePowerUp activePowerUp = new ActivePowerUp();
+        when(map.getActivePowerUp()).thenReturn(activePowerUp);
 
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets(), gun.getNumBullets());
 

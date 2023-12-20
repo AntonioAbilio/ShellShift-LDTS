@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.gui;
 
+import com.google.common.collect.ImmutableList;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -63,14 +64,7 @@ public class LanternaGUI implements Gui {
     }
 
     public void removeButton(Integer button) {
-        Iterator<Integer> intIterator = this.buttons.iterator();
-        while(intIterator.hasNext()) {
-            Integer intg = intIterator.next();
-            if (intg.intValue() == button) {
-                intIterator.remove();
-            }
-        }
-        //this.buttons.remove(button);
+        this.buttons.removeIf(intg -> intg.intValue() == button);
     }
 
     public TerminalScreen getScreen() {

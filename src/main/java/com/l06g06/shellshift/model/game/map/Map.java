@@ -46,7 +46,7 @@ public class Map {
 
     private long gameStartTime;
     private double shiftCooldown = 0.08;
-    private int spawnCooldown = 5;
+    private int spawnCooldown = 6;
 
     // Sizes
     public Map() {

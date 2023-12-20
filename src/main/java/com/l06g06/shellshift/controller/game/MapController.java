@@ -23,11 +23,6 @@ public class MapController extends GameController{
     private final CloudController cloudController;
     private final PowerUpController powerUpController;
     private final ActivePowerUpController activePowerUpController;
-    boolean checkpoint1 = false;
-    boolean checkpoint2 = false;
-    private static long gameStartTime;
-    private static double shiftCooldown = 0.08;
-    private static int spawnCooldown = 6;
     private boolean checkpoint1;
     private boolean checkpoint2;
 
@@ -41,12 +36,9 @@ public class MapController extends GameController{
         this.cloudController = new CloudController(map);
         this.powerUpController = new PowerUpController(map);
         this.activePowerUpController = new ActivePowerUpController(map);
-        getModel().setGameStartTime(System.currentTimeMillis());
         this.checkpoint1 = false;
         this.checkpoint2 = false;
-        this.shiftCooldown = 0.08;
-        this.spawnCooldown = 6;
-        gameStartTime = System.currentTimeMillis();
+        getModel().setGameStartTime(System.currentTimeMillis());
     }
 
     @Override
@@ -84,11 +76,11 @@ public class MapController extends GameController{
         if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
             checkpoint1 = true;
             getModel().setShiftCooldown(0.05);
-            getModel().setSpawnCooldown(3);
-        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 10){
+            getModel().setSpawnCooldown(4);
+        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
             checkpoint2 = true;
             getModel().setShiftCooldown(0.03);
-            getModel().setSpawnCooldown(2);
+            getModel().setSpawnCooldown(3);
         }
     }
 
