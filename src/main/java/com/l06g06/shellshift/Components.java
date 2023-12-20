@@ -821,7 +821,26 @@ public enum Components {
             "HHHRH  ",
             "H**RH  ",
             "HHHHH  "
-    ), ImmutableList.of(""), "StarReduced");
+    ), ImmutableList.of(""), "StarReduced"),
+
+    SoundSliderButton(ImmutableList.of(
+            "     ",
+            "JJJJJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JOPOJ",
+            "JJJJJ"
+    ), ImmutableList.of(
+            "     ",
+            "JJJJJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JyyyJ",
+            "JJJJJ"
+    ), "SoundSliderButton")
+    ;
 
     private final ImmutableList<String> image;
     private final ImmutableList<String> imageSelected;
