@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
@@ -32,7 +33,7 @@ public class BulletController extends GameController {
         removeOutOfBoundsBullets();
     }
 
-    private void fire(long time) {
+    public void fire(long time) {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
@@ -89,4 +90,8 @@ public class BulletController extends GameController {
         }
     }
 
+    @VisibleForTesting
+    public void setReloadStartTime(long reloadStartTime) {
+        this.reloadStartTime = reloadStartTime;
+    }
 }

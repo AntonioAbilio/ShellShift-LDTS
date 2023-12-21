@@ -16,7 +16,7 @@ public class Chell extends Element {
     private float velocity = 250F;
     private int gravity = 1000;
     private int horizontalSpeed = 1;
-    private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
+    private boolean direction = true; // true = right, false = left
     private boolean invincible = false;
     private boolean blink = false; // true = show Chell, false = don't show Chell
 

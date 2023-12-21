@@ -6,17 +6,20 @@ import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.map.Map;
+import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
 import net.jqwik.api.*;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.annotation.meta.When;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 public class PlatformControllerTest {
     private Map map ;
@@ -62,7 +65,59 @@ public class PlatformControllerTest {
     }
 
     @Test
-    public void step(){
+    void stepShiftConditionTest(){
+        Position chellPosition = new Position(3, 1);
+        Chell chell = new Chell(chellPosition);
+        Mockito.when(map.getChell()).thenReturn(chell);
+        PlatformSpawner platformSpawner = mock(PlatformSpawner.class);
+        when(map.getPlatformSpawner()).thenReturn(platformSpawner);
+        long time1 = 79;
+        long time2 = 80;
+        long time3 = 81;
+        platformController.setLastShiftTime(0);
+        Mockito.when(map.getShiftCooldown()).thenReturn(0.08);
 
+        try {
+            platformController.step(game, action, time1);
+            Assertions.assertEquals(0, platformController.getLastShiftTime());
+            platformController.step(game, action, time2);
+            Assertions.assertEquals(0.08, platformController.getLastShiftTime());
+            PlatformController platformControllerSpy = spy(platformController);
+            platformControllerSpy.setLastShiftTime(0);
+            platformControllerSpy.step(game, action, time2);
+            verify(platformControllerSpy, times(1)).left_shift();
+            platformController.step(game, action, time3);
+            Assertions.assertEquals(0.08, platformController.getLastShiftTime());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void stepSpawnConditionTest(){
+        map = mock(Map.class);
+        platformController = new PlatformController(map);
+        Chell chell = new Chell(new Position(3, 1));
+        when(map.getChell()).thenReturn(chell);
+        PlatformSpawner platformSpawner = mock(PlatformSpawner.class);
+        when(map.getPlatformSpawner()).thenReturn(platformSpawner);
+        long time1 = 5999;
+        long time2 = 6000;
+        long time3 = 6001;
+        platformController.setLastSpawnTime(0);
+        when(map.getSpawnCooldown()).thenReturn(6);
+
+        try {
+            platformController.step(game, action, time1);
+            Assertions.assertEquals(0, platformController.getLastSpawnTime());
+            platformController.step(game, action, time2);
+            Assertions.assertEquals(6, platformController.getLastSpawnTime());
+            verify(platformSpawner, times(1)).spawn(any(Position.class));
+            platformController.step(game, action, time3);
+            Assertions.assertEquals(6, platformController.getLastSpawnTime());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

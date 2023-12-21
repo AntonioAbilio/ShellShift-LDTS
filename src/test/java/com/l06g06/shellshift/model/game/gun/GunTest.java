@@ -27,9 +27,9 @@ public class GunTest {
 
     @Test
     public void getReloadTimeTest(){
-        FireStrategy fireStrategy = new NormalFireStrategy();
+        /*FireStrategy fireStrategy = new NormalFireStrategy();
         gun = new Gun(fireStrategy);
-        Assertions.assertEquals(1000, gun.getReloadTime());
+        Assertions.assertEquals(1000, gun.getReloadTime());*/
 
         NormalFireStrategy normalFireStrategy = new NormalFireStrategy();
         gun = new Gun(normalFireStrategy);
