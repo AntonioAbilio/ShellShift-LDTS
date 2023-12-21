@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.*;
@@ -27,6 +28,7 @@ public class MapController extends GameController{
     private boolean checkpoint2;
 
     // Used for tests (dependencyInjection)
+    @VisibleForTesting
     public MapController(Map map,
                          ChellController chellController,
                          BulletController bulletController,

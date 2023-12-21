@@ -36,7 +36,6 @@ public class ShopController extends Controller<Shop> {
                     //SomAqui Sound.playSound(SoundsFx.OptionSelect);
                     Sound sound = Sound.getInstance();
                     sound.playSound(SoundsFx.OptionSelect);
-                    if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
                         int price = getModel().getPrice(Components.RapidFire);
 
@@ -57,7 +56,7 @@ public class ShopController extends Controller<Shop> {
                     }
                     if (getModel().isSelectedMoreBullets()) {
                         int price = getModel().getPrice(Components.MoreBullets);
-                        if (price <= Database.getInstance().getNumCoins()) {
+                        if (price <= Database.getInstance().getNumCoins() && Database.getInstance().getStartingNumBullets() < Database.getInstance().getMAXBULLETS()) {
                             Database.getInstance().addStartingBullets(10);
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
                             game.setState(new MainMenuState(new MainMenu()));

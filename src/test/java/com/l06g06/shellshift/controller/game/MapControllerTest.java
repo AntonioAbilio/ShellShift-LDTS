@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.controller;
+package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
@@ -17,6 +17,7 @@ import net.jqwik.api.constraints.IntRange;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +45,9 @@ public class MapControllerTest {
     private ActivePowerUpController activePowerUpController;
     private MapController mapController;
 
+    private int storeValueSpawn;
+    private double storeValueShift;
+
 
     @BeforeEach
     public void setup() {
@@ -59,6 +63,16 @@ public class MapControllerTest {
         when(map.getCoinsCollected()).thenReturn(123);
         when(map.getMonstersKilled()).thenReturn(123);
         when(map.getChell()).thenReturn(chell);
+
+        doAnswer(invocation -> {
+            storeValueShift = invocation.getArgument(0);
+            return null;
+        }).when(map).setShiftCooldown(anyDouble());
+
+        doAnswer(invocation -> {
+            storeValueSpawn = invocation.getArgument(0);
+            return null;
+        }).when(map).setSpawnCooldown(anyInt());
 
         this.chellController = mock(ChellController.class);
         this.bulletController = mock(BulletController.class);
@@ -84,29 +98,59 @@ public class MapControllerTest {
         mapController.updateAcceleration(elapsedTimeSinceGameStart);
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(false, mapController.isCheckpoint2());
+        Assertions.assertEquals(0.05, storeValueShift);
+        Assertions.assertEquals(4, storeValueSpawn);
 
         elapsedTimeSinceGameStart = 120;
         mapController.updateAcceleration(elapsedTimeSinceGameStart);
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(true, mapController.isCheckpoint2());
+        Assertions.assertEquals(0.03, storeValueShift);
+        Assertions.assertEquals(3, storeValueSpawn);
     }
 
+    @SuppressWarnings("DirectInvocationOnMock")
     @Test
     public void stepWithoutGameOver(){
+        when(chell.getLives()).thenReturn(5);
         try {
             mapController.step(game, action, addedScoreTimer);
+            verify(chellController).step(game, action, addedScoreTimer);
+            verify(bulletController).step(game, action, addedScoreTimer);
+            verify(platformController).step(game, action, addedScoreTimer);
+            verify(coinController).step(game, action, addedScoreTimer);
+            verify(enemyController).step(game, action, addedScoreTimer);
+            verify(cloudController).step(game, action, addedScoreTimer);
+            verify(powerUpController).step(game, action, addedScoreTimer);
+            verify(activePowerUpController).step(game, action, addedScoreTimer);
+            verify(map, Mockito.times(1)).getScore();
+            verify(map, Mockito.times(1)).setScore(eq(124));
+            verify(game, never()).setState(Mockito.any(GameOverState.class));
+            verify(map, never()).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();
         }
     }
 
+    @SuppressWarnings("DirectInvocationOnMock")
     @Test
     public void stepWithGameOver(){
         when(chell.getLives()).thenReturn(0);
         try {
             mapController.step(game, action, addedScoreTimer);
+            verify(chellController).step(game, action, addedScoreTimer);
+            verify(bulletController).step(game, action, addedScoreTimer);
+            verify(platformController).step(game, action, addedScoreTimer);
+            verify(coinController).step(game, action, addedScoreTimer);
+            verify(enemyController).step(game, action, addedScoreTimer);
+            verify(cloudController).step(game, action, addedScoreTimer);
+            verify(powerUpController).step(game, action, addedScoreTimer);
+            verify(activePowerUpController).step(game, action, addedScoreTimer);
+            verify(map, Mockito.times(2)).getScore();
+            verify(map, Mockito.times(1)).setScore(eq(124));
             verify(game).setState(any(GameOverState.class));
+            verify(map).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();

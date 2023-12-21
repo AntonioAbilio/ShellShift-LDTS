@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.controller;
+package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
@@ -36,7 +36,6 @@ public class CoinControllerTest {
         this.map = mock(Map.class);
         this.coins = new ArrayList<>();
         Mockito.when(map.getCoins()).thenReturn(coins);
-        Mockito.when(map.getChell()).thenReturn(new Chell(new Position(50,45)));
         Mockito.when(map.getPlatforms()).thenReturn(new ArrayList<>(List.of(new Platform(new Position(230, 50)))));
         Mockito.when(map.getCoinSpawner()).thenReturn(Mockito.mock(CoinSpawner.class));
         this.coinController = new CoinController(map);
@@ -86,6 +85,9 @@ public class CoinControllerTest {
     @Test
     public void step(){
         try {
+            Position chellPosition = new Position(3, 1);    // Chell intersects coin1 in this position
+            Chell chell = new Chell(chellPosition);
+            Mockito.when(map.getChell()).thenReturn(chell);
             CoinController spyCoinController = Mockito.spy(coinController);
             spyCoinController.step(game, action, timeMillis);
             Mockito.verify(spyCoinController, Mockito.times(1)).spawnOnPlatform();

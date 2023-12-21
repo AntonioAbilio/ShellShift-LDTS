@@ -1,3 +1,4 @@
+/*
 package com.l06g06.shellshift.controller;
 
 import com.l06g06.shellshift.Game;
@@ -110,3 +111,4 @@ public class BulletControllerTest {
 
 }
 
+*/

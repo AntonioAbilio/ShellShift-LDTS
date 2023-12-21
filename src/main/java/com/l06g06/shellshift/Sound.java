@@ -43,7 +43,7 @@ public class Sound implements LineListener, Runnable {
 
     @Override
     public void run() {
-        if (!OptionsMenu.soundOFF) {
+        if (false) {
             try {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.soundFile);
                 AudioFormat format = audioInputStream.getFormat();
