@@ -51,12 +51,8 @@ public class Shop {
         return this.icons;
     }
 
-    public boolean isSelectedQuit() {
-        return isSelected(this.options.size()-1);
-    }
-
     public boolean isSelectedMoreBullets() {
-        return isSelected(2);
+        return isSelected(this.options.size()-1);
     }
 
 

@@ -26,4 +26,11 @@ public class PositionTest {
         Assertions.assertTrue(position2.equals(position));
     }
 
+    @Test
+    void hashCodeTest() {
+        Position position1 = new Position(5, 10);
+        Position position2 = new Position(5, 10);
+        Assertions.assertEquals(position1.hashCode(), position2.hashCode());
+    }
+
 }

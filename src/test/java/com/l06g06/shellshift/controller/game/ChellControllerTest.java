@@ -1,4 +1,4 @@
-package com.l06g06.shellshift.controller;
+package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
@@ -14,6 +14,8 @@ import net.jqwik.api.Data;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.LongRange;
+import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,33 +47,44 @@ public class ChellControllerTest {
 
     @Test
     public void moveRightTest(){
-        Position position = new Position(0, 0);
-        Chell mockedChell = new Chell(position);
-        Mockito.when(map.getChell()).thenReturn(mockedChell);
+        Chell chell = new Chell(new Position(0, 0));
+        chell.setDirection(false);
+        Mockito.when(map.getChell()).thenReturn(chell);
         ChellController chellController = new ChellController(map);
         chellController.moveRIGHT();
 
         Position expected = new Position(1, 0);
-        assertEquals(expected, mockedChell.getPosition());
+        assertEquals(expected, chell.getPosition());
+        assertTrue(chell.isDirection());
+
+        chell.setPosition(new Position(159, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(160, 0), chell.getPosition());
+
+        chell.setPosition(new Position(160, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(160, 0), chell.getPosition());
+
+        chell.setPosition(new Position(161, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(161, 0), chell.getPosition());
     }
 
     @Test
     public void moveLeftTest(){
-        Position position = new Position(0, 0);
-        Chell mockedChell = new Chell(position);
-        Mockito.when(map.getChell()).thenReturn(mockedChell);
+        Chell chell = new Chell(new Position(0, 0));
+        Assertions.assertTrue(chell.isDirection());
+        Mockito.when(map.getChell()).thenReturn(chell);
         ChellController chellController = new ChellController(map);
         chellController.moveLEFT();
 
         Position expected = new Position(-1, 0);
-        assertEquals(expected, mockedChell.getPosition());
+        assertEquals(expected, chell.getPosition());
+        assertFalse(chell.isDirection());
     }
 
     @Property
     public void jumpTest(@ForAll int time){
-        OptionsMenu options = new OptionsMenu();
-        options.setSound(true);   // ToDo: uncomment
-
         this.chell = new Chell(new Position(0, 0));
         this.map = mock(Map.class);
         when(map.getChell()).thenReturn(chell);
@@ -86,7 +99,6 @@ public class ChellControllerTest {
 
     @Property
     void jumpUpdateTest(@ForAll @LongRange(min = 1, max = 665) long time)  {
-        // Arrange
         Map map = new Map();
         Chell chell = map.getChell();
         int initialX = chell.getPosition().getX();
@@ -98,10 +110,8 @@ public class ChellControllerTest {
         chellController = new ChellController(map);
         chellController.setJumpStartTime(jumpStartTime);
 
-        // Act
         chellController.jumpUpdate(time);
 
-        // Assert
         Assertions.assertEquals(initialX, chell.getPosition().getX());
         double elapsedTime = (time - jumpStartTime) / 1000.0;
         int expectedY = (int) (initialY - (velocity * elapsedTime - 0.5 * gravity * elapsedTime * elapsedTime));
@@ -133,42 +143,66 @@ public class ChellControllerTest {
 
         chellController = new ChellController(map);
 
-
-        System.out.println("is intersecting: " +  chellController.getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D()));
-
-        // ToDo: remove
-        /*
-        int test_x_inf = -20;
-        int test_x_sup = 20;
-        int test_y_inf = -30;
-        int test_y_sup = 30;
-
-        for (int i = test_x_inf; i <= test_x_sup; i++) {
-            for (int j = test_y_inf; j <= test_y_sup; j++) {
-                // Update Chell's position
-                chellController.getModel().getChell().setPosition(new Position(i, j));
-
-                // Check for intersection
-                if (chellController.getModel().getChell().getPolygon().intersects(chellController.getModel().getPlatforms().get(0).getPolygon().getBounds2D())) {
-                    System.out.println("Intersection found at x: " + i + " y: " + j);
-                }
-            }
-        }*/
-
         int groundY = (int) platform.getPolygon().getBounds().getMinY();
 
         chellController.lookForPlatformCollision();
         assertEquals(groundY - 2, map.getChell().getPosition().getY());
+        Assertions.assertFalse(chellController.isJumping());
     }
 
-    /*@Test
+    @Test
     void stepTest(){
         Game game = mock(Game.class);
         long time = System.currentTimeMillis();
 
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
-        chellController.step(game, actions, time);
+        List<Gui.PressedKey> actions = new ArrayList<>();
 
-    }*/
+        chellController.setJumping(true);
+        chellController.setCanJump(false);
+        chellController.step(game, actions, time);
+        Assertions.assertTrue(chellController.isCanJump());
+    }
+
+    @Test
+    void inputTest(){
+        Game game = mock(Game.class);
+        long time = System.currentTimeMillis();
+
+        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
+        chellController.setJumping(false);
+        chellController.setCanJump(true);
+        chellController.setGroundY(20);
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(20, chellController.getGroundY());
+        Assertions.assertFalse(chellController.isCanJump());
+
+        actions = Arrays.asList(Gui.PressedKey.LEFT);
+        chell.setPosition(new Position(40, 40));
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(40 - 1 - 1, chell.getPosition().getX()); // Chell moves and shifts to the left
+
+        actions = Arrays.asList(Gui.PressedKey.RIGHT);
+        chell.setPosition(new Position(40, 40));
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(40 + 1 - 1, chell.getPosition().getX()); // Chell moves to the right and shifts to the left
+    }
+
+    @Test
+    void checkLandingTest(){
+        map = new Map();
+        chell = new Chell(new Position(20, 20));
+        chellController = new ChellController(map);
+        chellController.setJumping(false);
+        chellController.setCanJump(true);
+        chellController.checkLanding();
+        map.setChell(chell);
+
+        ChellController chellControllerSpy = spy(chellController);
+        chellControllerSpy.checkLanding();
+        verify(chellControllerSpy, times(1)).lookForPlatformCollision();
+        int y = (int) (map.getChell().getPosition().getY() + (map.getChell().getVelocity() * 0.01 - 0.5 * map.getChell().getGravity() * 0.001));
+        Assertions.assertEquals(y - 2, chell.getPosition().getY());  // - 2 due to call to lookForPlatformCollision
+        Assertions.assertFalse(chellController.isCanJump());
+    }
 
 }

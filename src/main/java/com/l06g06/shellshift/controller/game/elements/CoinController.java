@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
@@ -54,17 +55,17 @@ public class CoinController extends GameController {
         int i = 0;
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
-            System.out.println("x: " + randomPlatform.getPosition().getX());
-            System.out.println("SEARCHING " + i);
+            /*System.out.println("x: " + randomPlatform.getPosition().getX());
+            System.out.println("SEARCHING " + i);*/
             i++;
         } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
-            System.out.println("NOT FOUND");
+            //System.out.println("NOT FOUND");
             return;
         }
 
-        System.out.println("FOUND");
+        //System.out.println("FOUND");
         int minY = 200;
         for (int y : randomPlatform.getPolygon().ypoints) {
             if (y < minY) minY = y;
@@ -100,5 +101,25 @@ public class CoinController extends GameController {
                 getModel().setScore(getModel().getScore() + coin.getValue());
             }
         }
+    }
+
+    @VisibleForTesting
+    public double getLastSpawnTime() {
+        return lastSpawnTime;
+    }
+
+    @VisibleForTesting
+    public void setLastSpawnTime(double lastSpawnTime) {
+        this.lastSpawnTime = lastSpawnTime;
+    }
+
+    @VisibleForTesting
+    public double getLastShiftTime() {
+        return lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public void setLastShiftTime(double lastShiftTime) {
+        this.lastShiftTime = lastShiftTime;
     }
 }

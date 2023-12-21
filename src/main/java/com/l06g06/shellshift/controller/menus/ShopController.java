@@ -36,7 +36,6 @@ public class ShopController extends Controller<Shop> {
                     //SomAqui Sound.playSound(SoundsFx.OptionSelect);
                     Sound sound = Sound.getInstance();
                     sound.playSound(SoundsFx.OptionSelect);
-                    if (getModel().isSelectedQuit()) game.setState(new MainMenuState(new MainMenu()));
                     if (getModel().isSelectedRapidFire()) {
                         int price = getModel().getPrice(Components.RapidFire);
 

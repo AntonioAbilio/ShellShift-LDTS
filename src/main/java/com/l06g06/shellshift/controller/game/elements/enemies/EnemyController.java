@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements.enemies;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
@@ -103,5 +104,35 @@ public class EnemyController extends GameController {
                 }
             }
         }
+    }
+
+    @VisibleForTesting
+    public double getLastSpawnTime() {
+        return lastSpawnTime;
+    }
+
+    @VisibleForTesting
+    public void setLastSpawnTime(double lastSpawnTime) {
+        this.lastSpawnTime = lastSpawnTime;
+    }
+
+    @VisibleForTesting
+    public double getLastShiftTime() {
+        return lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public void setLastShiftTime(double lastShiftTime) {
+        this.lastShiftTime = lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public void setSpawnOnPlatform(boolean spawnOnPlatform) {
+        this.spawnOnPlatform = spawnOnPlatform;
+    }
+
+    @VisibleForTesting
+    public boolean isSpawnOnPlatform() {
+        return spawnOnPlatform;
     }
 }

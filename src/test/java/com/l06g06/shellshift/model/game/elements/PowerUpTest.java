@@ -76,5 +76,11 @@ public class PowerUpTest {
         Assertions.assertEquals(11, powerUp.getPolygon().ypoints[3]);
     }
 
+    @Test
+    void typeTest(){
+        SpeedPowerUp speedPowerUp = new SpeedPowerUp(new Position(20, 20));
+        Assertions.assertEquals("Speed", speedPowerUp.getType());
+    }
+
 
 }

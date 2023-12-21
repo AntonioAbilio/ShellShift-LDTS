@@ -1,5 +1,6 @@
 package com.l06g06.shellshift;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.gui.ListenForKeys;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.gui.LanternaGUI;
@@ -13,19 +14,25 @@ import java.net.URISyntaxException;
 
 public class Game {
     private State state;
-    private final LanternaGUI gui;
+    private LanternaGUI gui;
 
     public Game() throws IOException, URISyntaxException, FontFormatException {
         this.gui = new LanternaGUI(160, 100);
         this.state = new MainMenuState(new MainMenu());
     }
 
+    @VisibleForTesting
+    public LanternaGUI getGui(){
+        return gui;
+    }
+
+    @VisibleForTesting
+    public void setGui(LanternaGUI gui){
+        this.gui = gui;
+    }
+
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
- /*       try {*/
             new Game().start();
-        /*} catch (Exception e){
-            e.printStackTrace();
-        }*/
     }
 
     public static void sleepTimeMS(long miliseconds){

@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import com.google.common.annotations.VisibleForTesting;
+
 public class Database {
     private static Database instance;
 
     private FireStrategy firingStrategy;
     private int numLives = 3;
     private int damageMultiplier = 1;
-    private int numCoins = 1000;
+    private int numCoins = 0;
     private int collectedCoins = 0;
     private int monstersKilled = 0;
     private int startingNumBullets = 30;
@@ -31,6 +33,11 @@ public class Database {
             instance = new Database();
         }
         return instance;
+    }
+
+    @VisibleForTesting
+    public static void setInstance(Database database){
+        instance = database;
     }
 
     public FireStrategy getFiringStrategy() {
@@ -59,7 +66,9 @@ public class Database {
     }
 
     public void setNumCoins(int numCoins) {
+        if (numCoins < 0) numCoins = 0;
         this.numCoins = numCoins;
+        if (numCoins > getMAXCOINS()) this.numCoins = getMAXCOINS();
     }
 
     public int getMonstersKilled() {
@@ -67,6 +76,8 @@ public class Database {
     }
 
     public void addScore(int score) {
+        if (score < 0) score = 0;
+        if (score > getMAXSCORE()) score = getMAXSCORE();
         this.scores.add(score);
         this.scores.sort(Collections.reverseOrder());
         if (this.scores.size() > 3) {
@@ -95,11 +106,18 @@ public class Database {
     public int getMAXBULLETS() {
         return 200;
     }
+
+    public int getMAXMONSTERSKILLED() {
+        return 19999;
+    }
+
     public int getMAXLIVES() {
         return 8;
     }
     public void addMonstersKilled(int monstersKilled) {
+        if (monstersKilled < 0) monstersKilled = 0;
         this.monstersKilled += monstersKilled;
+        if (this.monstersKilled > getMAXMONSTERSKILLED()) this.monstersKilled = getMAXMONSTERSKILLED();
     }
 
     public int getCollectedCoins() {

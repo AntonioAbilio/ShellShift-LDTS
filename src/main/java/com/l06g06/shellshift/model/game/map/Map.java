@@ -76,7 +76,7 @@ public class Map {
     @SuppressWarnings("FutureReturnValueIgnored")
     public void startCloudAddingTask() {
         Random rand = new Random();
-        executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
+        //executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
     }
     public void stopCloudAddingTask(){
         executorService.shutdown();
