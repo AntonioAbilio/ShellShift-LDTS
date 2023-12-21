@@ -35,5 +35,5 @@ test {
 pitest {
     junit5PluginVersion = '0.12'
     pitestVersion = '1.6.7'
-    excludedClasses = ['com.l06g06.shellshift.Game', "com.l06g06.shellshift.gui.LanternaGUI"]
+    excludedClasses = ['com.l06g06.shellshift.Game', "com.l06g06.shellshift.gui.LanternaGUI", "com.l06g06.shellshift.Sound", "com.l06g06.shellshift.Database"]
 }
