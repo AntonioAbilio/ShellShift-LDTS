@@ -13,7 +13,7 @@ public class Database {
     private FireStrategy firingStrategy;
     private int numLives = 3;
     private int damageMultiplier = 1;
-    private int numCoins = 0;
+    private int numCoins = 1000;
     private int collectedCoins = 0;
     private int monstersKilled = 0;
     private int startingNumBullets = 30;
@@ -47,6 +47,7 @@ public class Database {
 
     public void setNumLives(int numLives) {
         this.numLives = numLives;
+        if (this.numLives > getMAXLIVES()) this.numLives = getMAXLIVES();
     }
 
     public int getDamageMultiplier() {
@@ -93,6 +94,9 @@ public class Database {
 
     public int getMAXBULLETS() {
         return 200;
+    }
+    public int getMAXLIVES() {
+        return 8;
     }
     public void addMonstersKilled(int monstersKilled) {
         this.monstersKilled += monstersKilled;

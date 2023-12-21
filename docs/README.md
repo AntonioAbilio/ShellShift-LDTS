@@ -9,19 +9,35 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
 ### IMPLEMENTED FEATURES
 
 - **Main Menu** - When the game starts, a player will be prompted with options to the different menus available as well as starting a game or exiting the application. [Current Main Menu implemented](CurrentMainMenu.png)
-
-### PLANNED FEATURES
-
-- **Movement** - Chell will be able to move in every direction as well as jumping when the arrow keys are pressed.
-- **Shooting** - Chell carries a gun that can be shot using the space bar.
-- **Platforms** - Random platforms will appear throughout the infinite game.
-- **Monsters, Coins & PowerUps** - As you navigate through the endless platforms, different monsters, coins and powerups will appear on Chell's path. 
-- **Chell Colision** - If Chell collides with a monster she will be hurt and lose a percentage of HP.
+- **Movement** - Chell is free to move in every direction and to jump platform to platform.
+- **Shooting** - Chell carries a gun that can be shot using the space bar. 
+- **Platforms** - Platforms appear throughout the game in (semi-)random positions. Chell is guaranteed to always have a platform in her way, but watch out for the monsters...
+- **Monsters** - As the player navigates through the endless platforms, several monsters will challenge Chell's journey. Currently, there are two types of monsters with different HP and random moving strategies: Soft/Orange and Hard/Blue monsters. 
+- **Monsters movement** - Monsters are able to move with a *MoveStrategy*. Two strategies are implemented: *HorizontalMoveStrategy* and *VerticalMoveStrategy*.
+- **Coins** - Coins will appear on the platforms and can be collected by Chell to spend later on the shop.
+- **Powerups** - Powerups will appear on the platforms and can be collected by Chell. There are three different types implemented:
+  - Star: increased speed and invincibility for 10 seconds;
+  - Speed: increased speed for 10 seconds;
+  - Bullet: increase the number of available bullets.
+- **Score Counter** - Chell gains points for every coin collected (+10 points), monster defeated (up to +50 points), and second survived.
+- **HUD** - The *Score Counter* integrates a simple HUD with:
+  - *Lives*: each life Chell has, is displayed with a small heart icon on the top right.
+  - *Bullet Counter*: a counter of the number of bullets available is displayed on the bottom right of the screen.
+  - *Active Powerups*: if Chell is under the effects of a powerup, such as a *Star*, a small representative icon will be displayed on the bottom centre of the screen.
+  - *Coins Counter*: a counter of the number of coins obtained in the current playthrough is displayed on the bottom left of the screen.
 - **Screen Borders** - If Chell either falls off a platform or leaves the screen's left border, she will die.
-- **Collecting Coins** - Throughout the game there will appear coins, when Chell goes over them they will be added to her own coins.
-- **Shop** - Using the coins she gathered, Chell will be able to upgrade her equipment and buy extra-lives.
-- **Gun Upgrades** - After collecting enough coins, Chell will be able to buy different gun upgrades: *rapid fire*, *extra damage*, etc.
-- **Player Statistics** - A player can check Chell's statistics, such as *Coins Collected*, *Monsters Killed*, before and after each played game.
+- **Chell-Monsters Collisions** - If Chell collides with a monster, she will be hurt and the monster will die. She will also be invincible for a small period.
+- **Bullet-Monsters Collisions** - After shooting a bullet, if it collides with a monster, the monster will 25 health points.
+- **Shop** - Using the coins collected, the player is able to buy different upgrades:
+  - Rapid Fire: decreased gun reload time;
+  - Extra life: 1 more starting life (up to 8 lives);
+  - More Bullets: 10 more starting bullets (up to 200).
+- **Tutorial** - Play the tutorial to learn how to play *Shell Shift*, learn the inputs, how to collect coins, kill monsters and take a look at the HUD (bullet counter, lives, coins counter).
+- **Player Statistics** - A player can check Chell's statistics such as top 3 scores, coins collected, monsters killed and starting lives.
+- **Options** - In the options submenu, a player can change the sound's volume or even turn the sound off.
+
+### PLANNED FEATURES    
+
 - **"AI" Monsters** - Monsters will be able to follow Chell's movement as well as throw projectiles in her way.
 
 #### Mockups:

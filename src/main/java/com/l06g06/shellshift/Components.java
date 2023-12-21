@@ -806,7 +806,7 @@ public enum Components {
     ReducedStarComponent(ImmutableList.of(
             "   H   ",
             "  H*H  ",
-            "HHHy*HH",
+            "HHHyHHH",
             "Hyyyy*H",
             " HyyyH ",
             "Hy*Hy*H",
@@ -818,7 +818,7 @@ public enum Components {
             "  HHHGH",
             "  HRHNH",
             "  HRHH ",
-            "HHRRH  ",
+            "HHHRH  ",
             "H**RH  ",
             "HHHHH  "
     ), ImmutableList.of(""), "StarReduced"),

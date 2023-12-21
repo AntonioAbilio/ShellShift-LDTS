@@ -68,19 +68,25 @@ public class Sound implements LineListener, Runnable {
                 FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
                 gainControl.setValue(OptionsMenu.getSoundSliderValue());
                 clip.start();
+                /*
                 try {
                     sleep(SLEEP_DURATION);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
+
                 while (clip.isActive() && thread != null) {
                     try {
                         sleep(SLEEP_DURATION);
+                        System.out.println("sleeping... ZzZzz...");
                     } catch (Exception e) {
                         break;
                     }
                 }
 
+                 */
+                System.out.println("finish");
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

@@ -48,7 +48,7 @@ public class ShopController extends Controller<Shop> {
                     }
                     if (getModel().isSelectedExtraLife()) {
                         int price = getModel().getPrice(Components.ExtraLife);
-                        if (price <= Database.getInstance().getNumCoins() && Database.getInstance().getNumLives() < 8) {
+                        if (price <= Database.getInstance().getNumCoins() && Database.getInstance().getNumLives() < Database.getInstance().getMAXLIVES()) {
                             Database.getInstance().setNumLives(Database.getInstance().getNumLives()+1);
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins()- price);
                             game.setState(new MainMenuState(new MainMenu()));
@@ -57,7 +57,7 @@ public class ShopController extends Controller<Shop> {
                     }
                     if (getModel().isSelectedMoreBullets()) {
                         int price = getModel().getPrice(Components.MoreBullets);
-                        if (price <= Database.getInstance().getNumCoins()) {
+                        if (price <= Database.getInstance().getNumCoins()  && Database.getInstance().getStartingNumBullets() < Database.getInstance().getMAXBULLETS()) {
                             Database.getInstance().addStartingBullets(10);
                             Database.getInstance().setNumCoins(Database.getInstance().getNumCoins() - price);
                             game.setState(new MainMenuState(new MainMenu()));
