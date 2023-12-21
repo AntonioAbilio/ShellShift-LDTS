@@ -38,6 +38,7 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
 
 ### PLANNED FEATURES    
 
+- **Bullet Damage Multiplier** - A player will be able to buy a bullet damage increase.
 - **"AI" Monsters** - Monsters will be able to follow Chell's movement as well as throw projectiles in her way.
 
 #### Mockups:
