@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
+import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
@@ -15,6 +16,7 @@ import com.l06g06.shellshift.model.game.map.EnemySpawnerTest;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.EnemySpawner;
 import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
+import org.checkerframework.checker.units.qual.A;
 import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -181,4 +183,32 @@ public class EnemyControllerTest {
         }*/
     }
 
+    @Test
+    void stepSpawnConditionTest(){
+        Game game = mock(Game.class);
+        List<Gui.PressedKey> action = new ArrayList<>();
+        Map map = mock(Map.class);
+        enemyController = new EnemyController(map);
+        Chell chell = new Chell(new Position(3, 1));
+        when(map.getChell()).thenReturn(chell);
+        List<Platform> platforms = new ArrayList<>();
+        when(map.getPlatforms()).thenReturn(platforms);
+        EnemySpawner enemySpawner = mock(EnemySpawner.class);
+        when(map.getEnemySpawner()).thenReturn(enemySpawner);
+        long time1 = 4999;
+        long time2 = 5000;
+        long time3 = 5001;
+        enemyController.setLastSpawnTime(0);
+        when(map.getSpawnCooldown()).thenReturn(6);
+
+        enemyController.step(game, action, time1);
+        Assertions.assertEquals(0, enemyController.getLastSpawnTime());
+        enemyController.setSpawnOnPlatform(false);
+        enemyController.step(game, action, time2);
+        Assertions.assertEquals(5, enemyController.getLastSpawnTime());
+        verify(enemySpawner, times(1)).spawn(any(Position.class));
+        Assertions.assertTrue(enemyController.isSpawnOnPlatform());
+        enemyController.step(game, action, time3);
+        Assertions.assertEquals(5, enemyController.getLastSpawnTime());
+    }
 }

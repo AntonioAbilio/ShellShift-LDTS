@@ -47,26 +47,40 @@ public class ChellControllerTest {
 
     @Test
     public void moveRightTest(){
-        Position position = new Position(0, 0);
-        Chell mockedChell = new Chell(position);
-        Mockito.when(map.getChell()).thenReturn(mockedChell);
+        Chell chell = new Chell(new Position(0, 0));
+        chell.setDirection(false);
+        Mockito.when(map.getChell()).thenReturn(chell);
         ChellController chellController = new ChellController(map);
         chellController.moveRIGHT();
 
         Position expected = new Position(1, 0);
-        assertEquals(expected, mockedChell.getPosition());
+        assertEquals(expected, chell.getPosition());
+        assertTrue(chell.isDirection());
+
+        chell.setPosition(new Position(159, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(160, 0), chell.getPosition());
+
+        chell.setPosition(new Position(160, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(160, 0), chell.getPosition());
+
+        chell.setPosition(new Position(161, 0));
+        chellController.moveRIGHT();
+        Assertions.assertEquals(new Position(161, 0), chell.getPosition());
     }
 
     @Test
     public void moveLeftTest(){
-        Position position = new Position(0, 0);
-        Chell mockedChell = new Chell(position);
-        Mockito.when(map.getChell()).thenReturn(mockedChell);
+        Chell chell = new Chell(new Position(0, 0));
+        Assertions.assertTrue(chell.isDirection());
+        Mockito.when(map.getChell()).thenReturn(chell);
         ChellController chellController = new ChellController(map);
         chellController.moveLEFT();
 
         Position expected = new Position(-1, 0);
-        assertEquals(expected, mockedChell.getPosition());
+        assertEquals(expected, chell.getPosition());
+        assertFalse(chell.isDirection());
     }
 
     @Property
@@ -129,32 +143,11 @@ public class ChellControllerTest {
 
         chellController = new ChellController(map);
 
-
-        System.out.println("is intersecting: " +  chellController.getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D()));
-
-        // ToDo: remove
-        /*
-        int test_x_inf = -20;
-        int test_x_sup = 20;
-        int test_y_inf = -30;
-        int test_y_sup = 30;
-
-        for (int i = test_x_inf; i <= test_x_sup; i++) {
-            for (int j = test_y_inf; j <= test_y_sup; j++) {
-                // Update Chell's position
-                chellController.getModel().getChell().setPosition(new Position(i, j));
-
-                // Check for intersection
-                if (chellController.getModel().getChell().getPolygon().intersects(chellController.getModel().getPlatforms().get(0).getPolygon().getBounds2D())) {
-                    System.out.println("Intersection found at x: " + i + " y: " + j);
-                }
-            }
-        }*/
-
         int groundY = (int) platform.getPolygon().getBounds().getMinY();
 
         chellController.lookForPlatformCollision();
         assertEquals(groundY - 2, map.getChell().getPosition().getY());
+        Assertions.assertFalse(chellController.isJumping());
     }
 
     @Test
@@ -196,10 +189,19 @@ public class ChellControllerTest {
 
     @Test
     void checkLandingTest(){
+        map = new Map();
         chell = new Chell(new Position(20, 20));
+        chellController = new ChellController(map);
         chellController.setJumping(false);
         chellController.setCanJump(true);
         chellController.checkLanding();
+        map.setChell(chell);
+
+        ChellController chellControllerSpy = spy(chellController);
+        chellControllerSpy.checkLanding();
+        verify(chellControllerSpy, times(1)).lookForPlatformCollision();
+        int y = (int) (map.getChell().getPosition().getY() + (map.getChell().getVelocity() * 0.01 - 0.5 * map.getChell().getGravity() * 0.001));
+        Assertions.assertEquals(y - 2, chell.getPosition().getY());  // - 2 due to call to lookForPlatformCollision
         Assertions.assertFalse(chellController.isCanJump());
     }
 

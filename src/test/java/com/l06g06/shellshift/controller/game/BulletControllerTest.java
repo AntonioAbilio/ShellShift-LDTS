@@ -60,13 +60,17 @@ public class BulletControllerTest {
     @Test
     void stepTest(){
         Game game = mock(Game.class);
-        List<Gui.PressedKey> actions = Arrays.asList();
+        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.FIRE);
         long time = 1000;
         Position chellPosition = new Position(3, 1);
         Chell chell = new Chell(chellPosition);
         Mockito.when(map.getChell()).thenReturn(chell);
+        Gun gun = mock(Gun.class);
+        when(gun.getReloadTime()).thenReturn(1000.0);
+        when(map.getGun()).thenReturn(gun);
         BulletController bulletControllerSpy = Mockito.spy(bulletController);
         bulletControllerSpy.step(game, actions, time);
+        Mockito.verify(bulletControllerSpy, Mockito.times(1)).fire(eq(time));
         Mockito.verify(bulletControllerSpy, Mockito.times(1)).bulletUpdate();
         Mockito.verify(bulletControllerSpy, Mockito.times(1)).bulletCollision();
         Mockito.verify(bulletControllerSpy, Mockito.times(1)).removeOutOfBoundsBullets();
@@ -105,11 +109,6 @@ public class BulletControllerTest {
         assertEquals(20, map.getScore());
     }
 
-    /*@Test
-    void stepInputTest(){
-
-    }*/
-
     @Test
     void fireWithReloadTimeTest() {
         long time = 1000;
@@ -121,6 +120,37 @@ public class BulletControllerTest {
         when(map.getChell()).thenReturn(chell);
         bulletController.fire(time);
         verify(gun, times(1)).decreaseNumBullet();
+    }
+
+    @Test
+    void fireConditionTest(){
+        map = new Map();
+        bulletController = new BulletController(map);
+        Gun gun = mock(Gun.class);
+        when(gun.getReloadTime()).thenReturn(500.0);
+        when(gun.getNumBullets()).thenReturn(1);
+        map.setGun(gun);
+        Chell chell = new Chell(new Position(16, 6));
+        map.setChell(chell);
+        long time = 1000;
+        when(gun.getReloadTime()).thenReturn(800.0);
+
+        bulletController.setReloadStartTime(201);
+        bulletController.fire(time);
+        assertEquals(0, map.getBullets().size());
+
+        bulletController.setReloadStartTime(200);
+        bulletController.fire(time);
+        assertEquals(1, map.getBullets().size());
+
+        bulletController.setReloadStartTime(199);
+        bulletController.fire(time);
+        assertEquals(2, map.getBullets().size());
+
+        bulletController.setReloadStartTime(199);
+        when(gun.getNumBullets()).thenReturn(0);
+        bulletController.fire(time);
+        assertEquals(2, map.getBullets().size());   // waited enough time, but no bullets
     }
 
     @Test

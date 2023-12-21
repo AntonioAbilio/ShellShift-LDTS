@@ -2,6 +2,7 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
+import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Coin;
@@ -9,6 +10,7 @@ import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
+import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +22,8 @@ import java.util.Collection;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 public class CoinControllerTest {
     private Map map ;
@@ -112,6 +115,63 @@ public class CoinControllerTest {
             coinController.step(game, action, time);
             Assertions.assertEquals(time / 1000, coinController.getLastSpawnTime());
             Assertions.assertEquals(time / 1000, coinController.getLastShiftTime());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void stepShiftConditionTest(){
+        Position chellPosition = new Position(3, 1);
+        Chell chell = new Chell(chellPosition);
+        Mockito.when(map.getChell()).thenReturn(chell);
+        long time1 = 79;
+        long time2 = 80;
+        long time3 = 81;
+        coinController.setLastShiftTime(0);
+        Mockito.when(map.getShiftCooldown()).thenReturn(0.08);
+
+        try {
+            coinController.step(game, action, time1);
+            Assertions.assertEquals(0, coinController.getLastShiftTime());
+            coinController.step(game, action, time2);
+            Assertions.assertEquals(0.08, coinController.getLastShiftTime());
+            CoinController coinControllerSpy = spy(coinController);
+            coinControllerSpy.setLastShiftTime(0);
+            coinControllerSpy.step(game, action, time2);
+            verify(coinControllerSpy, times(1)).left_shift();
+            coinController.step(game, action, time3);
+            Assertions.assertEquals(0.08, coinController.getLastShiftTime());
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void stepSpawnConditionTest(){
+        map = mock(Map.class);
+        coinController = new CoinController(map);
+        Chell chell = new Chell(new Position(3, 1));
+        when(map.getChell()).thenReturn(chell);
+        List<Platform> platforms = new ArrayList<>();
+        Platform platform1 = new Platform(new Position(2, 2));
+        platforms.add(platform1);
+        when(map.getPlatforms()).thenReturn(platforms);
+
+        long time1 = 5999;
+        long time2 = 6000;
+        long time3 = 6001;
+        coinController.setLastSpawnTime(0);
+        when(map.getSpawnCooldown()).thenReturn(6);
+
+        try {
+            coinController.step(game, action, time1);
+            Assertions.assertEquals(0, coinController.getLastSpawnTime());
+            coinController.step(game, action, time2);
+            Assertions.assertEquals(6, coinController.getLastSpawnTime());
+            coinController.step(game, action, time3);
+            Assertions.assertEquals(6, coinController.getLastSpawnTime());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

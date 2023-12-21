@@ -100,11 +100,7 @@ public class PlatformControllerTest {
         platformController = new PlatformController(map);
         Chell chell = new Chell(new Position(3, 1));
         when(map.getChell()).thenReturn(chell);
-        List<Platform> platforms = new ArrayList<>();
-        Platform platform1 = new Platform(new Position(2, 2));
-        platforms.add(platform1);
-        when(map.getPlatforms()).thenReturn(platforms);
-        PlatformSpawner platformSpawner = new PlatformSpawner(platforms);
+        PlatformSpawner platformSpawner = mock(PlatformSpawner.class);
         when(map.getPlatformSpawner()).thenReturn(platformSpawner);
         long time1 = 5999;
         long time2 = 6000;
@@ -117,7 +113,7 @@ public class PlatformControllerTest {
             Assertions.assertEquals(0, platformController.getLastSpawnTime());
             platformController.step(game, action, time2);
             Assertions.assertEquals(6, platformController.getLastSpawnTime());
-            //verify(map, times(1)).getPlatformSpawner().spawn(any(Position.class));
+            verify(platformSpawner, times(1)).spawn(any(Position.class));
             platformController.step(game, action, time3);
             Assertions.assertEquals(6, platformController.getLastSpawnTime());
         } catch (IOException e) {

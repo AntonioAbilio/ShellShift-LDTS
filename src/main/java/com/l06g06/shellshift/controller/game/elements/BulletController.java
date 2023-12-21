@@ -90,4 +90,8 @@ public class BulletController extends GameController {
         }
     }
 
+    @VisibleForTesting
+    public void setReloadStartTime(long reloadStartTime) {
+        this.reloadStartTime = reloadStartTime;
+    }
 }

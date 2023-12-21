@@ -126,4 +126,14 @@ public class EnemyController extends GameController {
     public void setLastShiftTime(double lastShiftTime) {
         this.lastShiftTime = lastShiftTime;
     }
+
+    @VisibleForTesting
+    public void setSpawnOnPlatform(boolean spawnOnPlatform) {
+        this.spawnOnPlatform = spawnOnPlatform;
+    }
+
+    @VisibleForTesting
+    public boolean isSpawnOnPlatform() {
+        return spawnOnPlatform;
+    }
 }
