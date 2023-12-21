@@ -12,7 +12,6 @@ import com.l06g06.shellshift.states.MainMenuState;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class OptionsMenuController extends Controller<OptionsMenu> {
@@ -45,7 +44,7 @@ public class OptionsMenuController extends Controller<OptionsMenu> {
                     Sound sound = Sound.getInstance();
                     sound.playSound(SoundsFx.OptionSelect);
                     if (getModel().isSelectedONorOFF()) {
-                        getModel().setSound(!getModel().isSoundOFF());
+                        getModel().setSoundOFF(!getModel().isSoundOFF());
                         List<Components> opts = new ArrayList<>(getModel().getOptions());
                         opts.removeIf(component -> component.equals(Components.SoundSliderButton));
 

@@ -1,16 +1,11 @@
 package com.l06g06.shellshift.controller.game;
 
-import com.l06g06.shellshift.Database;
-import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.elements.ChellController;
-import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
-import net.jqwik.api.Data;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.LongRange;
@@ -20,10 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 
-import javax.swing.text.html.Option;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -70,7 +62,7 @@ public class ChellControllerTest {
     @Property
     public void jumpTest(@ForAll int time){
         OptionsMenu options = new OptionsMenu();
-        options.setSound(true);   // ToDo: uncomment
+        options.setSoundOFF(true);   // ToDo: uncomment
 
         this.chell = new Chell(new Position(0, 0));
         this.map = mock(Map.class);

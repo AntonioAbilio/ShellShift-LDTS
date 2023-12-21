@@ -1,5 +1,6 @@
 package com.l06g06.shellshift;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
 
 import javax.sound.sampled.*;
@@ -23,10 +24,36 @@ public class Sound implements LineListener, Runnable {
     private Sound() {
     }
 
+    @VisibleForTesting
+    public static void setInstance(Sound soundPlayer){
+        Sound.soundPlayer = soundPlayer;
+    }
+
     public void playSound(SoundsFx soundsFx) {
         Sound p = getInstance();
         p.playSoundFx(soundsFx);
     }
+
+    @VisibleForTesting
+    public void playPrivateSoundFx(SoundsFx soundsFx){
+        playSoundFx(soundsFx);
+    }
+
+    @VisibleForTesting
+    public Thread getThread(){
+        return this.thread;
+    }
+
+    @VisibleForTesting
+    public Clip getClip(){
+        return this.clip;
+    }
+
+    @VisibleForTesting
+    public void setClip(Clip clip){
+        this.clip = clip;
+    }
+
 
     private void playSoundFx(SoundsFx soundsFx) {
         URL resource = Sound.class.getClassLoader().getResource(soundsFx.getPath());
@@ -43,7 +70,7 @@ public class Sound implements LineListener, Runnable {
 
     @Override
     public void run() {
-        if (false) {
+        if (!OptionsMenu.soundOFF) {
             try {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.soundFile);
                 AudioFormat format = audioInputStream.getFormat();

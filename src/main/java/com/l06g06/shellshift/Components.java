@@ -871,16 +871,6 @@ public enum Components {
         return imageSelected;
     }
 
-    public ImmutableList<String> getImage(String name) {
-        for (Components c : Components.values()) {
-            if (c.getName().equals(name)) {
-                return c.getImage();
-            }
-        }
-        return ImmutableList.of("não funcionou");
-    }
-
-
     public static List<Components> getNumbers() {
         return numbers;
     }
