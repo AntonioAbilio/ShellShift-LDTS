@@ -14,6 +14,8 @@ import net.jqwik.api.Data;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.LongRange;
+import org.checkerframework.checker.units.qual.A;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -69,9 +71,6 @@ public class ChellControllerTest {
 
     @Property
     public void jumpTest(@ForAll int time){
-        OptionsMenu options = new OptionsMenu();
-        options.setSound(true);   // ToDo: uncomment
-
         this.chell = new Chell(new Position(0, 0));
         this.map = mock(Map.class);
         when(map.getChell()).thenReturn(chell);
@@ -86,7 +85,6 @@ public class ChellControllerTest {
 
     @Property
     void jumpUpdateTest(@ForAll @LongRange(min = 1, max = 665) long time)  {
-        // Arrange
         Map map = new Map();
         Chell chell = map.getChell();
         int initialX = chell.getPosition().getX();
@@ -98,10 +96,8 @@ public class ChellControllerTest {
         chellController = new ChellController(map);
         chellController.setJumpStartTime(jumpStartTime);
 
-        // Act
         chellController.jumpUpdate(time);
 
-        // Assert
         Assertions.assertEquals(initialX, chell.getPosition().getX());
         double elapsedTime = (time - jumpStartTime) / 1000.0;
         int expectedY = (int) (initialY - (velocity * elapsedTime - 0.5 * gravity * elapsedTime * elapsedTime));
@@ -161,14 +157,50 @@ public class ChellControllerTest {
         assertEquals(groundY - 2, map.getChell().getPosition().getY());
     }
 
-    /*@Test
+    @Test
     void stepTest(){
         Game game = mock(Game.class);
         long time = System.currentTimeMillis();
 
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
-        chellController.step(game, actions, time);
+        List<Gui.PressedKey> actions = new ArrayList<>();
 
-    }*/
+        chellController.setJumping(true);
+        chellController.setCanJump(false);
+        chellController.step(game, actions, time);
+        Assertions.assertTrue(chellController.isCanJump());
+    }
+
+    @Test
+    void inputTest(){
+        Game game = mock(Game.class);
+        long time = System.currentTimeMillis();
+
+        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
+        chellController.setJumping(false);
+        chellController.setCanJump(true);
+        chellController.setGroundY(20);
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(20, chellController.getGroundY());
+        Assertions.assertFalse(chellController.isCanJump());
+
+        actions = Arrays.asList(Gui.PressedKey.LEFT);
+        chell.setPosition(new Position(40, 40));
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(40 - 1 - 1, chell.getPosition().getX()); // Chell moves and shifts to the left
+
+        actions = Arrays.asList(Gui.PressedKey.RIGHT);
+        chell.setPosition(new Position(40, 40));
+        chellController.step(game, actions, time);
+        Assertions.assertEquals(40 + 1 - 1, chell.getPosition().getX()); // Chell moves to the right and shifts to the left
+    }
+
+    @Test
+    void checkLandingTest(){
+        chell = new Chell(new Position(20, 20));
+        chellController.setJumping(false);
+        chellController.setCanJump(true);
+        chellController.checkLanding();
+        Assertions.assertFalse(chellController.isCanJump());
+    }
 
 }

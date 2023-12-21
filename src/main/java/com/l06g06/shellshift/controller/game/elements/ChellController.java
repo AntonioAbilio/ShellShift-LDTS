@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
@@ -32,14 +33,8 @@ public class ChellController extends GameController {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) {
         // Check where Chell will land.
-        if (!isJumping){
-            canJump = false;
-            lookForPlatformCollision();
-            int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
-            getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
-        } else {
-            canJump = true;
-        }
+        if (!isJumping) checkLanding();
+        else canJump = true;
 
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
@@ -79,6 +74,13 @@ public class ChellController extends GameController {
                 break; // Exit the loop after the first collision
             }
         }
+    }
+
+    public void checkLanding(){
+        canJump = false;
+        lookForPlatformCollision();
+        int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
+        getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
     }
 
     public void jump(long time){
@@ -149,6 +151,21 @@ public class ChellController extends GameController {
 
     public void setJumpStartTime(long jumpStartTime) {
         this.jumpStartTime = jumpStartTime;
+    }
+
+    @VisibleForTesting
+    public void setJumping(boolean jumping) {
+        isJumping = jumping;
+    }
+
+    @VisibleForTesting
+    public void setCanJump(boolean canJump) {
+        this.canJump = canJump;
+    }
+
+    @VisibleForTesting
+    public void setGroundY(int groundY) {
+        this.groundY = groundY;
     }
 }
 
