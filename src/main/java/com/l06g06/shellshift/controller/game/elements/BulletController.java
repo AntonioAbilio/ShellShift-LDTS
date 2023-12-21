@@ -33,7 +33,7 @@ public class BulletController extends GameController {
         removeOutOfBoundsBullets();
     }
 
-    private void fire(long time) {
+    public void fire(long time) {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
@@ -90,13 +90,4 @@ public class BulletController extends GameController {
         }
     }
 
-    @VisibleForTesting
-    public void setReloadStartTime(long reloadStartTime) {
-        this.reloadStartTime = reloadStartTime;
-    }
-
-    @VisibleForTesting
-    public long getReloadStartTime() {
-        return reloadStartTime;
-    }
 }
