@@ -12,6 +12,7 @@ import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
+import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.CharColor;
@@ -130,7 +131,7 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public synchronized List<PressedKey> getNextAction() throws ConcurrentModificationException {
+    public synchronized List<PressedKey> getNextAction() throws ConcurrentModificationException, NullPointerException {
 
         List<PressedKey> pressedKeyList = new ArrayList<>();
 
@@ -166,7 +167,7 @@ public class LanternaGUI implements Gui {
                         return pressedKeyList;
                 }
             }
-        } catch (ConcurrentModificationException e){
+        } catch (ConcurrentModificationException | NullPointerException e){
             e.printStackTrace();
         }
 

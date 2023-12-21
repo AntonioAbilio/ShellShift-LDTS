@@ -26,10 +26,10 @@ public class PowerUpCreator extends Creator {
         Random random = new Random();
         PowerUp powerUp = availablePowerUps.get(random.nextInt(availablePowerUps.size()));
         if (powerUp instanceof SpeedPowerUp) {
-            return new SpeedPowerUp(position);
+            return new StarPowerUp(position);
         }
         if (powerUp instanceof BulletPowerUp) {
-            return new BulletPowerUp(position);
+            return new StarPowerUp(position);
         }
         if (powerUp instanceof StarPowerUp) {
             return new StarPowerUp(position);

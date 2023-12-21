@@ -4,7 +4,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -100,7 +99,7 @@ public class EnemyController extends GameController {
                     getModel().getChell().decreaseLives();
                     Sound.getInstance().playSound(SoundsFx.MonsterCollision);
                     getModel().getChell().activateBlink(1000);
-                    getModel().getChell().activateInvincibilityTimer(2000);
+                    getModel().getChell().setInvincibilityEndTime(2000);
                 }
             }
         }

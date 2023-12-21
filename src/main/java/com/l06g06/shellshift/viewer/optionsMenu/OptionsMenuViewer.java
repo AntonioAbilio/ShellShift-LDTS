@@ -19,9 +19,5 @@ public class OptionsMenuViewer extends View<OptionsMenu> {
             gui.drawImageASCII(Components.Platform.getImageSelected(), new Position(80,10));
             gui.drawImageASCII(getModel().isSelectedSoundSlider() ?  Components.SoundSliderButton.getImageSelected() : Components.SoundSliderButton.getImage(), new Position(OptionsMenu.getSoundSliderX(),8)); // 115, 8
         }
-
-
-
-
     }
 }

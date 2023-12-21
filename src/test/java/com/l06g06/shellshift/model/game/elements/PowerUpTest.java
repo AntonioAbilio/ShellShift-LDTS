@@ -56,7 +56,7 @@ public class PowerUpTest {
         Position position = mock(Position.class);
         StarPowerUp starPowerUp = new StarPowerUp(position);
         starPowerUp.activate(map);
-        verify(map.getChell(), times(1)).activateInvincibilityTimer(10000);
+        verify(map.getChell(), times(1)).setInvincibilityEndTime(10000);
         verify(map.getChell(), times(1)).setHorizontalSpeedWithTimer(2);
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 50, gun.getNumBullets());
     }

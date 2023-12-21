@@ -17,9 +17,9 @@ public class Chell extends Element {
     private int gravity = 1000;
     private int horizontalSpeed = 1;
     private boolean direction = true; // true = anda pa direita, false = anda pa esquerda
-    private boolean invincible = false;
     private boolean blink = false; // true = show Chell, false = don't show Chell
-
+    private long invincibilityEndTime = 0;
+    private long horizontalSpeedUpEndTime = 0;
     private final static int height = 15;
     private final static int width = 15;
 
@@ -103,34 +103,24 @@ public class Chell extends Element {
         return horizontalSpeed;
     }
 
-    public void setHorizontalSpeedWithTimer(int speed) {
+    public void setHorizontalSpeedWithTimer(long milliseconds, int speed) {
+        this.horizontalSpeedUpEndTime = System.currentTimeMillis() + milliseconds;
         this.horizontalSpeed = speed;
-        // Schedule a task to reset speed after 3 seconds
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                resetToDefaultSpeed();
-                timer.cancel(); // Stop the timer after resetting speed
-            }
-        }, 10000);
+        ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+        executorService.scheduleAtFixedRate(this::resetHorizontalSpeed, 0, milliseconds, TimeUnit.MILLISECONDS);
     }
 
-    private void resetToDefaultSpeed() {
-        this.horizontalSpeed = 1;
+    public boolean isHorizontalSpeedTimerOver() {
+        return System.currentTimeMillis() >= horizontalSpeedUpEndTime;
     }
-    public void activateInvincibilityTimer(long milliseconds) {
-        this.invincible = true;
-        // Schedule a task to deactivate invincibility after 10 seconds
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                deactivateInvincibility();
 
-                timer.cancel(); // Stop the timer after deactivating invincibility
-            }
-        }, milliseconds);
+    public void resetHorizontalSpeed() {
+        if (isHorizontalSpeedTimerOver())
+            this.horizontalSpeed = 1;
+    }
+
+    public void setInvincibilityEndTime(long milliseconds) {
+        this.invincibilityEndTime = System.currentTimeMillis() + milliseconds;
     }
 
     @SuppressWarnings("FutureReturnValueIgnored")
@@ -154,12 +144,9 @@ public class Chell extends Element {
     public void stopBlinking(){
         blink = false;
     }
-    public void deactivateInvincibility() {
-        this.invincible = false;
-    }
 
     public boolean isInvincible() {
-        return invincible;
+        return System.currentTimeMillis() < invincibilityEndTime;
     }
 
     public boolean getBlink() {
