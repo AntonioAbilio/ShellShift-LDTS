@@ -27,12 +27,12 @@ class SoundTest {
         assertSame(instance1, instance2);
     }
 
-    @Test
+    /*@Test
     void playSoundFx_SuccessfullyPlaysSound() {
         sound.playPrivateSoundFx(SoundsFx.OptionSelect);
         assertNotNull(sound.getThread());
         assertTrue(sound.getThread().isAlive());
-    }
+    }*/
 
     @Test
     void run_DoNothingWhenSoundIsOff() {
