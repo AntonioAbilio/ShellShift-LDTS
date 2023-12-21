@@ -9,3 +9,6 @@ gradle/
 # MacOS
 
 .DS_Store
+
+# jqwik
+.jqwik-database
