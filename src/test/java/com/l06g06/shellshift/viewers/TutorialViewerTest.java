@@ -38,7 +38,6 @@ public class TutorialViewerTest {
         Platform platform = new Platform(pos);
         Gun gun = new Gun(new NormalFireStrategy());
 
-        when(tutorial.getClouds()).thenReturn(Collections.emptyList());
         when(tutorial.getChell()).thenReturn(chell);
         when(tutorial.getGun()).thenReturn(gun);
         when(tutorial.getPlatform()).thenReturn(platform);
