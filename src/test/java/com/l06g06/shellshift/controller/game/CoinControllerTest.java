@@ -32,7 +32,7 @@ public class CoinControllerTest {
 
 
     @BeforeEach
-    public void setup(){
+    void setup(){
         this.map = mock(Map.class);
         this.coins = new ArrayList<>();
         Mockito.when(map.getCoins()).thenReturn(coins);
@@ -53,7 +53,7 @@ public class CoinControllerTest {
     }
 
     @Test
-    public void leftShiftTest(){
+    void leftShiftTest(){
         // Check if coin is left shifting correctly
         coinController.left_shift();
         Position expectedPos = new Position(0, 0);
@@ -61,7 +61,7 @@ public class CoinControllerTest {
     }
 
     @Test
-    public void coinCollisionTest(){
+    void coinCollisionTest(){
         // Chell intersects coin1
         Position chellPosition = new Position(3, 1);    // Chell intersects coin1 in this position
         Chell chell = new Chell(chellPosition);
@@ -79,11 +79,10 @@ public class CoinControllerTest {
         Assertions.assertEquals(2, coins.size());
         coinController.coinCollision();
         Assertions.assertEquals(2, coins.size());
-
     }
 
     @Test
-    public void step(){
+    void stepTest(){
         try {
             Position chellPosition = new Position(3, 1);    // Chell intersects coin1 in this position
             Chell chell = new Chell(chellPosition);
@@ -93,11 +92,29 @@ public class CoinControllerTest {
             Mockito.verify(spyCoinController, Mockito.times(1)).spawnOnPlatform();
             Mockito.verify(spyCoinController, Mockito.times(1)).left_shift();
             Mockito.verify(spyCoinController, Mockito.times(1)).coinCollision();
-
-
         } catch (IOException e){
             System.out.println(e.getMessage());
             fail();
         }
     }
+
+    @Test
+    void stepConditionTest(){
+        Position chellPosition = new Position(3, 1);    // Chell intersects coin1 in this position
+        Chell chell = new Chell(chellPosition);
+        Mockito.when(map.getChell()).thenReturn(chell);
+        long time = 6000; // 6 seconds
+        coinController.setLastSpawnTime(0);
+        Mockito.when(map.getSpawnCooldown()).thenReturn(2);
+        coinController.setLastShiftTime(0);
+
+        try {
+            coinController.step(game, action, time);
+            Assertions.assertEquals(time / 1000, coinController.getLastSpawnTime());
+            Assertions.assertEquals(time / 1000, coinController.getLastShiftTime());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
