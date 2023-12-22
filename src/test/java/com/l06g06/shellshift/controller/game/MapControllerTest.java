@@ -126,7 +126,6 @@ public class MapControllerTest {
             verify(map, Mockito.times(1)).getScore();
             verify(map, Mockito.times(1)).setScore(eq(124));
             verify(game, never()).setState(Mockito.any(GameOverState.class));
-            verify(map, never()).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();
@@ -150,7 +149,6 @@ public class MapControllerTest {
             verify(map, Mockito.times(2)).getScore();
             verify(map, Mockito.times(1)).setScore(eq(124));
             verify(game).setState(any(GameOverState.class));
-            verify(map).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();
@@ -180,9 +178,9 @@ public class MapControllerTest {
         Map map = new Map();
         map.setChell(chell);
 
-        MapController mapContrl = new MapController(map);
+        MapController mapControl = new MapController(map);
 
-        Assertions.assertTrue(mapContrl.isGameOver());
+        Assertions.assertTrue(mapControl.isGameOver());
 
     }
 

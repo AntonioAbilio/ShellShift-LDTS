@@ -14,6 +14,6 @@ public class StarPowerUp extends PowerUp{
         map.getActivePowerUp().addOrUpdateActivePowerUp(this.getType(), 10000L);
         map.getChell().setInvincibilityEndTime(10000);
         map.getChell().setHorizontalSpeedWithTimer(10000,2);
-        map.getGun().setNumBullets(map.getGun().getNumBullets() + 50);
+        //map.getGun().setNumBullets(map.getGun().getNumBullets() + 50);
     }
 }

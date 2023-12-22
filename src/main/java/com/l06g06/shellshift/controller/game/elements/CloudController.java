@@ -14,6 +14,7 @@ import java.util.List;
 
 public class CloudController extends GameController {
     private double lastShiftTime = 0;
+    private double lastSpawnTime = 0;
 
     public CloudController(Map map) {
         super(map);
@@ -23,23 +24,27 @@ public class CloudController extends GameController {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= getModel().getShiftCooldown() + 0.2){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown() + 0.15){
             lastShiftTime = currentTime;
             left_shift();
         }
-    }
 
-    public void left_shift(){
-        List<Cloud> clouds = getModel().getClouds();
-        Iterator<Cloud> cloudIterator = clouds.iterator();
-        while (cloudIterator.hasNext()) {
-            Cloud cloud = cloudIterator.next();
-            if (cloud.getPosition().getX() < -50) {
-                cloudIterator.remove();
-            } else cloud.setPosition(new Position(cloud.getPosition().getX() - 1, cloud.getPosition().getY()));
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 15){
+            lastSpawnTime = currentTime;
+            spawn();
         }
 
 
+    }
 
+    private void spawn() {
+        getModel().getCloudSpawner().spawn(new Position(200,40));
+        System.out.println(getModel().getClouds().size());
+    }
+
+    public void left_shift(){
+        for (Cloud c : getModel().getClouds()) {
+            c.setPosition(new Position(c.getPosition().getX()-1, c.getPosition().getY()));
+        }
     }
 }

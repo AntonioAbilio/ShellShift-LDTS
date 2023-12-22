@@ -33,7 +33,7 @@ public class EnemyController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn enemy logic
-        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() - 1){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()-0.5){
             lastSpawnTime = currentTime;
             if (spawnOnPlatform){
                 spawnOnPlatform();
