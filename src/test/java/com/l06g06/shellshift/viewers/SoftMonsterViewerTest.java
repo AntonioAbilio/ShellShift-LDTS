@@ -14,7 +14,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class SoftMonsterViewerTest {
     private SoftMonster softMonster;
@@ -33,5 +36,6 @@ public class SoftMonsterViewerTest {
     void drawSoftMonster(){
         softMonsterViewer.draw(softMonster, gui);
         Mockito.verify(gui, Mockito.times(1)).drawImageASCII(eq(Components.SoftMonster.getImage()), eq(softMonster.getPosition()));
+        verify(gui, times(softMonster.getHP()/25)).drawImageASCII(eq(Components.HealthBar.getImage()), any(Position.class));
     }
 }

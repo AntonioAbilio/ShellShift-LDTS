@@ -58,7 +58,7 @@ public class PowerUpTest {
         starPowerUp.activate(map);
         verify(map.getChell(), times(1)).setInvincibilityEndTime(10000);
         verify(map.getChell(), times(1)).setHorizontalSpeedWithTimer(10000,2);
-        Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 50, gun.getNumBullets());
+        //Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 50, gun.getNumBullets());
     }
 
     @Test

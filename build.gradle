@@ -17,10 +17,10 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    testImplementation 'org.mockito:mockito-core:3.7.7'
-    testImplementation 'net.jqwik:jqwik:1.5.1'
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+        testImplementation 'org.mockito:mockito-core:3.7.7'
+        testImplementation 'net.jqwik:jqwik:1.5.1'
 
     implementation group: 'com.googlecode.lanterna', name: 'lanterna', version: '3.1.1'
     implementation 'com.google.errorprone:error_prone_core:2.23.0'
@@ -35,5 +35,5 @@ test {
 pitest {
     junit5PluginVersion = '0.12'
     pitestVersion = '1.6.7'
-    excludedClasses = ['com.l06g06.shellshift.Game', "com.l06g06.shellshift.gui.LanternaGUI", "com.l06g06.shellshift.Sound", "com.l06g06.shellshift.Database"]
+    excludedClasses =   ['com.l06g06.shellshift.Game', "com.l06g06.shellshift.gui.LanternaGUI", "com.l06g06.shellshift.Sound", "com.l06g06.shellshift.Database"]
 }

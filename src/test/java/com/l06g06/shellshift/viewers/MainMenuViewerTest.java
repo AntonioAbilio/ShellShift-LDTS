@@ -51,7 +51,6 @@ public class MainMenuViewerTest {
 
         mainMenuViewer.drawElements(gui);
 
-
         for (Components c : mainMenu.getOptions()) {
             verify(gui, times(1)).drawImageASCII(eq(c.getImage()), any(Position.class));
         }
@@ -68,9 +67,23 @@ public class MainMenuViewerTest {
 
         mainMenuViewer.drawElements(gui);
 
-
         for (Components c : mainMenu.getOptions()) {
             verify(gui, times(1)).drawImageASCII(eq(c.getImageSelected()), any(Position.class));
         }
+    }
+
+    @Test
+    void testYIncrement() {
+        List<Components> mockComponents = new ArrayList<>();
+        mockComponents.add(Components.Start);
+        mockComponents.add(Components.Statistics);
+        when(mainMenu.getOptions()).thenReturn(mockComponents);
+        when(mainMenu.isSelected(anyInt())).thenReturn(false);
+
+
+        mainMenuViewer.drawElements(gui);
+
+        verify(gui, times(1)).drawImageASCII(eq(Components.Start.getImage()), eq(new Position(15,28)));
+        verify(gui, times(1)).drawImageASCII(eq(Components.Statistics.getImage()), eq(new Position(15,40)));
     }
 }

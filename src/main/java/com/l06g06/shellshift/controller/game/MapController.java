@@ -93,19 +93,17 @@ public class MapController extends GameController{
         }
 
         long elapsedTimeSinceGameStart =  (time - getModel().getGameStartTime()) / 1000;
-        updateAcceleration(elapsedTimeSinceGameStart);
+        updateAcceleration();
 
     }
 
-    public void updateAcceleration(long elapsedTimeSinceGameStart){
+    public void updateAcceleration(){
         // Acceleration is divided in 3 levels
-        //if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
-        if (getModel().getScore() > 300 && getModel().getScore() <= 500) {
+        if (getModel().getScore() > 300 && getModel().getScore() <= 800 && !checkpoint1) {
             checkpoint1 = true;
             getModel().setShiftCooldown(0.05);
             getModel().setSpawnCooldown(5);
-        } //else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
-        else if (getModel().getScore() > 500) {
+        } else if (getModel().getScore() > 800 && !checkpoint2) {
             checkpoint2 = true;
             getModel().setShiftCooldown(0.03);
             getModel().setSpawnCooldown(2);

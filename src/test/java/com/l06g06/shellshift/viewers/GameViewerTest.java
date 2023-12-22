@@ -2,17 +2,24 @@ package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.Chell;
-import com.l06g06.shellshift.model.game.elements.Position;
+import com.l06g06.shellshift.model.game.elements.*;
+import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
+import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
 import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
-import com.l06g06.shellshift.viewer.game.GameViewer;
+import com.l06g06.shellshift.viewer.game.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 
@@ -43,7 +50,6 @@ public class GameViewerTest {
 
         verify(gui, times(1)).setBackground(any(String.class));
 
-        //acho q e preciso por @SuppressWarnings("DirectInvocationOnMock") nao acho q isto seja error prone neste caso
         verify(gui, times(numLives)).drawImageASCII(eq(Components.HeartIcon.getImageSelected()), any(Position.class));
 
         verify(gui, times(1)).drawImageASCII(eq(Components.Score.getImage()), any(Position.class));
@@ -76,16 +82,59 @@ public class GameViewerTest {
 
     @Test
     void drawActiveStarAndSpeedPowerUp() {
-        ActivePowerUp activePowerUp = new ActivePowerUp();
-        activePowerUp.addOrUpdateActivePowerUp("Speed", 10000L);
-        activePowerUp.addOrUpdateActivePowerUp("Star", 10000L);
-        when(map.getActivePowerUp()).thenReturn(activePowerUp);
+        ActivePowerUp mockActivePowerUp = new ActivePowerUp();
+        mockActivePowerUp.addOrUpdateActivePowerUp("Speed", 10000L);
+        mockActivePowerUp.addOrUpdateActivePowerUp("Star", 10000L);
+        when(map.getActivePowerUp()).thenReturn(mockActivePowerUp);
 
         gameViewer.drawElements(gui);
 
-        verify(gui, times(1)).drawImageASCII(eq(Components.ReducedStarComponent.getImage()), any(Position.class));
-        verify(gui, times(1)).drawImageASCII(eq(Components.ReducedSpeedComponent.getImage()), any(Position.class));
+        // Tiago Monteiro was here...
+        verify(gui, times(1)).drawImageASCII(eq(Components.ReducedSpeedComponent.getImage()), eq(new Position(71,89)));
+        verify(gui, times(1)).drawImageASCII(eq(Components.ReducedStarComponent.getImage()),  eq(new Position(81,89)));
+
     }
 
+    @Test
+    void testDrawElements() {
+        Position position = new Position(10, 10);
+        Chell chell = new Chell(position);
+        List<Cloud> clouds = Arrays.asList(new Cloud(position));
+        List<Platform> platforms = Arrays.asList(new Platform(position));
+        List<Bullet> bullets = Arrays.asList(new Bullet(position));
+        List<Coin> coins = Arrays.asList(new Coin(position));
+        List<PowerUp> powerUps = Arrays.asList(new StarPowerUp(position));
+        List<Enemy> enemies = Arrays.asList(new SoftMonster(position, new HorizontalMoveStrategy()));
+
+        ChellViewer chellViewer = mock(ChellViewer.class);
+        when(chellViewer.draw(any(Chell.class),any(Gui.class))).thenReturn()
+        CloudViewer cloudViewer = mock(CloudViewer.class);
+        PlatformViewer platformViewer = mock(PlatformViewer.class);
+        BulletViewer bulletViewer = mock(BulletViewer.class);
+        CoinViewer coinViewer = mock(CoinViewer.class);
+        PowerUpViewer powerUpViewer = mock(PowerUpViewer.class);
+        SoftMonsterViewer softMonsterViewer = mock(SoftMonsterViewer.class);
+        HardMonsterViewer hardMonsterViewer = mock(HardMonsterViewer.class);
+
+        when(map.getChell()).thenReturn(chell);
+        when(map.getClouds()).thenReturn(clouds);
+        when(map.getPlatforms()).thenReturn(platforms);
+        when(map.getBullets()).thenReturn(bullets);
+        when(map.getCoins()).thenReturn(coins);
+        when(map.getPowerUps()).thenReturn(powerUps);
+        when(map.getEnemies()).thenReturn(enemies);
+
+        gameViewer.drawElements(gui);
+
+        verify(chellViewer).draw(chell,gui);
+        //verify(cloudViewer, times(1)).draw(any(Cloud.class), eq(gui));
+        //verify(platformViewer, times(1)).draw(any(Platform.class), eq(gui));
+        //verify(bulletViewer, times(1)).draw(any(Bullet.class), eq(gui));
+        //verify(coinViewer, times(1)).draw(any(Coin.class), eq(gui));
+        //verify(powerUpViewer, times(1)).draw(any(PowerUp.class), eq(gui));
+        //verify(softMonsterViewer, times(1)).draw(any(Enemy.class), eq(gui));
+        //verify(hardMonsterViewer, times(1)).draw(any(Enemy.class), eq(gui));
+
+    }
 }
 

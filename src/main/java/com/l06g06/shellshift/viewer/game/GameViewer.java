@@ -53,7 +53,7 @@ public class GameViewer extends View<Map> {
                 gui.drawImageASCII(Components.ReducedSpeedComponent.getImage(), new Position(70 + offsetX, 89));
             }
             if (powerUp.equals("Star")){
-                    gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(70 + offsetX, 89));
+                gui.drawImageASCII(Components.ReducedStarComponent.getImage(), new Position(70 + offsetX, 89));
 
             }
             offsetX += 10;

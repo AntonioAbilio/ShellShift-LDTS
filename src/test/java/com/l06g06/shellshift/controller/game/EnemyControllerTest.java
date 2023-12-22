@@ -193,22 +193,27 @@ public class EnemyControllerTest {
         when(map.getChell()).thenReturn(chell);
         List<Platform> platforms = new ArrayList<>();
         when(map.getPlatforms()).thenReturn(platforms);
+
         EnemySpawner enemySpawner = mock(EnemySpawner.class);
         when(map.getEnemySpawner()).thenReturn(enemySpawner);
-        long time1 = 4999;
-        long time2 = 5000;
-        long time3 = 5001;
+
+        long time1 = 5499;
+        long time2 = 5500;
+        long time3 = 5501;
+
         enemyController.setLastSpawnTime(0);
         when(map.getSpawnCooldown()).thenReturn(6);
 
         enemyController.step(game, action, time1);
         Assertions.assertEquals(0, enemyController.getLastSpawnTime());
+
         enemyController.setSpawnOnPlatform(false);
         enemyController.step(game, action, time2);
-        Assertions.assertEquals(5, enemyController.getLastSpawnTime());
+        Assertions.assertEquals(5.5, enemyController.getLastSpawnTime());
         verify(enemySpawner, times(1)).spawn(any(Position.class));
         Assertions.assertTrue(enemyController.isSpawnOnPlatform());
+
         enemyController.step(game, action, time3);
-        Assertions.assertEquals(5, enemyController.getLastSpawnTime());
+        Assertions.assertEquals(5.5, enemyController.getLastSpawnTime());
     }
 }
