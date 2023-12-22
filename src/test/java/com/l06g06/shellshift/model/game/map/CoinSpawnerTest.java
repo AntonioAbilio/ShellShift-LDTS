@@ -3,7 +3,10 @@ package com.l06g06.shellshift.model.game.map;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
+import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
+import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,8 +35,16 @@ public class CoinSpawnerTest {
 
     @Test
     void removeTest() {
-        Position position = new Position(-30, 40);
-        coinSpawner.spawn(position);
-        assertEquals(0, coins.size());
+        coins.add(new Coin(new Position(-31, 40)));  // should be removed
+        coinSpawner.spawn(new Position(10, 10));
+        assertEquals(1, coins.size());
+
+        coins.add(new Coin(new Position(-30, 40)));  // should be removed
+        coinSpawner.spawn(new Position(10, 10));
+        assertEquals(2, coins.size());
+
+        coins.add(new Coin(new Position(-29, 40)));  // should not be removed
+        coinSpawner.spawn(new Position(10, 10));
+        assertEquals(4, coins.size());
     }
 }

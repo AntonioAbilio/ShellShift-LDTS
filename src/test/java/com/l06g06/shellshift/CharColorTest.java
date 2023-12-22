@@ -22,5 +22,13 @@ class CharColorTest {
         char inputChar = 'H';
         CharColor charColor = CharColor.getCharColor(inputChar);
         assertEquals(CharColor.Black, charColor);
+        assertNotNull(charColor);
+    }
+
+    @Test
+    void KnownCharCharColor() {
+        char inputChar = 'A';
+        CharColor charColor = CharColor.getCharColor(inputChar);
+        assertEquals(CharColor.DarkBrown, charColor);
     }
 }

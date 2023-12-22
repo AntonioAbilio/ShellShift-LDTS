@@ -34,5 +34,13 @@ public class EnemySpawnerTest {
         Position position = new Position(-31, 40);
         enemySpawner.spawn(position);
         assertEquals(0, enemies.size());
+
+        position = new Position(-30, 40);
+        enemySpawner.spawn(position);
+        assertEquals(1, enemies.size());
+
+        position = new Position(-29, 40);
+        enemySpawner.spawn(position);
+        assertEquals(2, enemies.size());
     }
 }

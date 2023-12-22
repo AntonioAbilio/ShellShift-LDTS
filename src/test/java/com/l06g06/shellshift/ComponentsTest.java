@@ -14,4 +14,9 @@ public class ComponentsTest {
     public void testNames(){
         Assertions.assertEquals("HealthBar", Components.valueOf(Components.class, "HealthBar").getName());
     }
+
+    @Test
+    void getOrdinalNumbersTest(){
+        Assertions.assertEquals(Components.First, Components.getOrdinalNumbers().get(0));
+    }
 }
