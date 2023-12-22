@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
@@ -23,26 +24,22 @@ import static org.mockito.Mockito.*;
 
 public class PlatformControllerTest {
     private Map map ;
-    private Platform platform;
     private List<Platform>  platforms;
     private PlatformController platformController;
 
     private Game game;
     private List<Gui.PressedKey> action;
-    private long timeMillis;
-
 
     @BeforeEach
     public void setup(){
+        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
         this.map = mock(Map.class);
-        this.platform = mock(Platform.class);
         this.platforms = new ArrayList<>();
         Mockito.when(map.getPlatforms()).thenReturn(platforms);
         this.platformController = new PlatformController(map);
 
         game = mock(Game.class);
         this.action = new ArrayList<>();
-        timeMillis = 0;
 
         Platform platform1 = new Platform(new Position(1,  0));
         Platform platform2 = new Platform(new Position(5, 5));

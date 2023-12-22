@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.BulletController;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
@@ -38,6 +39,7 @@ public class BulletControllerTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
         this.map = mock(Map.class);
         this.bullets = new ArrayList<>();
         this.bulletController = new BulletController(map);

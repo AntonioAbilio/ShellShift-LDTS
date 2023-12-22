@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.map;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
@@ -211,5 +212,15 @@ public class Map {
 
     public ActivePowerUp getActivePowerUp() {
         return activePowerUp;
+    }
+
+    @VisibleForTesting
+    public void setCoins(List<Coin> coins) {
+        this.coins = coins;
+    }
+
+    @VisibleForTesting
+    public void setCoinsCollected(int coinsCollected) {
+        this.coinsCollected = coinsCollected;
     }
 }

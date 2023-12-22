@@ -1,6 +1,8 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.controller.game.elements.ChellController;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
@@ -23,6 +25,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import javax.swing.plaf.IconUIResource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,20 +35,17 @@ import static org.mockito.Mockito.*;
 
 public class EnemyControllerTest {
     private Map mockedMap ;
-    private Enemy mockedEnemy;
     private List<Enemy> enemies;
     private MoveStrategy mockedMoveStrategy;
     private EnemyController enemyController;
-    private int distBetweenEnemy;
 
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
         this.mockedMap = mock(Map.class);
-        this.mockedEnemy = mock(Enemy.class);
         this.enemies = new ArrayList<>();
         this.mockedMoveStrategy = mock(MoveStrategy.class);
-        this.distBetweenEnemy = 15;
         Mockito.when(mockedMap.getEnemies()).thenReturn(enemies);
         this.enemyController = new EnemyController(mockedMap);
     }
@@ -83,8 +83,8 @@ public class EnemyControllerTest {
         enemyController.setLastShiftTime(0);
 
         enemyController.step(game, action, time);
-        Assertions.assertEquals(time / 1000, enemyController.getLastSpawnTime());
-        Assertions.assertEquals(time / 1000, enemyController.getLastShiftTime());
+        Assertions.assertEquals((double) time / 1000, enemyController.getLastSpawnTime());
+        Assertions.assertEquals((double) time / 1000, enemyController.getLastShiftTime());
     }
 
     @Test
@@ -144,12 +144,13 @@ public class EnemyControllerTest {
 
         enemyController.spawnOnPlatform();
 
-        verify(mockedMap.getEnemySpawner(), times(1)).spawn(any(Position.class));
+        verify(enemySpawner, times(1)).spawn(any(Position.class));
     }
 
     @Test
     void enemyChellCollisionTest(){
         Chell chell = new Chell(new Position(3, 1));
+        chell.setLives(3);
         when(mockedMap.getChell()).thenReturn(chell);
         Enemy enemy1 = new SoftMonster(new Position(1,  0), mockedMoveStrategy);
         Enemy enemy2 = new HardMonster(new Position(16, 5), mockedMoveStrategy);
@@ -158,33 +159,43 @@ public class EnemyControllerTest {
         enemies.add(enemy2);
         enemies.add(enemy3);
 
-        Assertions.assertEquals(3, mockedMap.getEnemies().size());
+        Assertions.assertEquals(3, enemies.size());
+        Assertions.assertEquals(3, chell.getLives());
         enemyController.enemyChellCollision();
-        Assertions.assertEquals(2, mockedMap.getEnemies().size());
+        Assertions.assertEquals(2, enemies.size());
+        Assertions.assertEquals(2, chell.getLives());
+        Assertions.assertTrue(chell.getBlink());
+    }
 
+    @Test
+    void enemyChellCollisionInvincibleTest(){
+        Chell chell = new Chell(new Position(3, 1));
+        chell.toggleBlink();
+        long time = System.currentTimeMillis();
+        chell.setInvincibilityEndTime(time);
+        chell.setLives(3);
+        when(mockedMap.getChell()).thenReturn(chell);
+        enemyController = new EnemyController(mockedMap);
+        Enemy enemy1 = new SoftMonster(new Position(1,  0), mockedMoveStrategy);
+        Enemy enemy2 = new HardMonster(new Position(16, 5), mockedMoveStrategy);
+        Enemy enemy3 = new HardMonster(new Position(32, 9), mockedMoveStrategy);
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        enemies.add(enemy3);
 
-        // ToDo: remove
-        /*int test_x_inf = -20;
-        int test_x_sup = 20;
-        int test_y_inf = -30;
-        int test_y_sup = 30;
-
-        System.out.println("Enemy 1 has x: " + enemyController.getModel().getEnemies().get(0).getPosition().getX() + " y: " + enemyController.getModel().getEnemies().get(0).getPosition().getY());
-        for (int i = test_x_inf; i <= test_x_sup; i++) {
-            for (int j = test_y_inf; j <= test_y_sup; j++) {
-                // Update Chell's position
-                enemyController.getModel().getChell().setPosition(new Position(i, j));
-
-                // Check for intersection
-                if (enemyController.getModel().getChell().getPolygon().intersects(enemyController.getModel().getEnemies().get(0).getPolygon().getBounds2D())) {
-                    System.out.println("Intersection found at Chell x: " + i + " y: " + j);
-                }
-            }
-        }*/
+        Assertions.assertEquals(3, enemies.size());
+        Assertions.assertEquals(3, chell.getLives());
+        enemyController.enemyChellCollision();
+        Assertions.assertEquals(2, enemies.size());
+        Assertions.assertEquals(3, chell.getLives());
     }
 
     @Test
     void stepSpawnConditionTest(){
+        enemyController.setSpawnOnPlatform(false);
+        Assertions.assertFalse(enemyController.isSpawnOnPlatform());   // for killing a mutation
+        enemyController.setSpawnOnPlatform(true);
+
         Game game = mock(Game.class);
         List<Gui.PressedKey> action = new ArrayList<>();
         Map map = mock(Map.class);
@@ -211,4 +222,33 @@ public class EnemyControllerTest {
         enemyController.step(game, action, time3);
         Assertions.assertEquals(5, enemyController.getLastSpawnTime());
     }
+
+    @Test
+    void stepShiftConditionTest(){
+        Game game = mock(Game.class);
+        List<Gui.PressedKey> actions = new ArrayList<>();
+        Position chellPosition = new Position(3, 1);
+        Chell chell = new Chell(chellPosition);
+        Mockito.when(mockedMap.getChell()).thenReturn(chell);
+        EnemySpawner enemySpawner = mock(EnemySpawner.class);
+        when(mockedMap.getEnemySpawner()).thenReturn(enemySpawner);
+        long time1 = 79;
+        long time2 = 80;
+        long time3 = 81;
+        enemyController.setLastShiftTime(0);
+        Mockito.when(mockedMap.getShiftCooldown()).thenReturn(0.08);
+
+        enemyController.step(game, actions, time1);
+        Assertions.assertEquals(0, enemyController.getLastShiftTime());
+        enemyController.step(game, actions, time2);
+        Assertions.assertEquals(0.08, enemyController.getLastShiftTime());
+        EnemyController enemyControllerSpy = spy(enemyController);
+        enemyControllerSpy.setLastShiftTime(0);
+        enemyControllerSpy.step(game, actions, time2);
+        verify(enemyControllerSpy, times(1)).left_shift();
+        enemyController.step(game, actions, time3);
+        Assertions.assertEquals(0.08, enemyController.getLastShiftTime());
+    }
+
+
 }

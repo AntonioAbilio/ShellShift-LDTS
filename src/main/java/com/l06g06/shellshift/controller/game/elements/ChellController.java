@@ -167,5 +167,15 @@ public class ChellController extends GameController {
     public void setGroundY(int groundY) {
         this.groundY = groundY;
     }
+
+    @VisibleForTesting
+    public void setLastShiftTime(double lastShiftTime) {
+        this.lastShiftTime = lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public double getLastShiftTime() {
+        return lastShiftTime;
+    }
 }
 
