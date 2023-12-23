@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Controller.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.l06g06.shellshift.controller;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.l06g06.shellshift.Game;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.l06g06.shellshift.gui.Gui;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.io.IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.util.List;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public abstract class Controller&#60;T&#62; {</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private final T model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    public Controller(T model) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.model = model;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public T getModel() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_18'/>
+18
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_18'>1</a>
+<span>
+1. getModel : replaced return value with null for com/l06g06/shellshift/controller/Controller::getModel &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return model;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public abstract void step(Game game, List&#60;Gui.PressedKey&#62; action, long time) throws IOException;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@79b7c350_22'/>
+22
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_22'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@79b7c350_18'>18</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@79b7c350_18'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getModel<br/><b>Killed by : </b>com.l06g06.shellshift.controller.game.CloudControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CloudControllerTest]/[method:testSpawn()]</span></span> replaced return value with null for com/l06g06/shellshift/controller/Controller::getModel &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>NULL_RETURN_VALUES</li>
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireConditionTest()] (3 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:stepTest()] (11 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:stepShiftConditionTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.menus.GameOverControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.GameOverControllerTest]/[method:stepSelectTest()] (111 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[method:stepWithGameOver()] (223 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:spawnOnPlatformNoPlatformFoundTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireConditionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:enemyChellCollisionTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:spawnOnPlatformTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:selectRapidFireTest()] (242 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:stepShiftConditionTest()] (10 ms)</li><li>com.l06g06.shellshift.controller.game.PowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PowerUpControllerTest]/[method:testLeftShift()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:enemyChellCollisionInvincibleTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectOptionsTest()] (119 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[property:jumpUpdateTest(long)] (79 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:moveRightTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:spawnOnPlatformTest()] (3 ms)</li><li>com.l06g06.shellshift.controller.game.PowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PowerUpControllerTest]/[method:testStepSpawnCondition()] (11 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithoutBulletsTest()] (8 ms)</li><li>com.l06g06.shellshift.CharColorTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.CharColorTest]/[method:Color()] (26 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireWithDirectionTest()] (10 ms)</li><li>com.l06g06.shellshift.controller.game.PowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PowerUpControllerTest]/[method:testSpawnOnPlatform()] (43 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:stepUpTest()] (114 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:moveLeftTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.game.CloudControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CloudControllerTest]/[method:testSpawnConditionStep()] (3 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:stepSelectTest()] (119 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:bulletUpdateTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:stepConditionTest()] (9 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithDirectionTest()] (3 ms)</li><li>com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest]/[method:testTurnOFF()] (125 ms)</li><li>com.l06g06.shellshift.controller.game.PlatformControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PlatformControllerTest]/[method:leftShiftTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:moveLeftTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[method:updateAccelerationTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:selectExtraLifesTest()] (650 ms)</li><li>com.l06g06.shellshift.controller.game.PowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PowerUpControllerTest]/[method:testPowerUpCollision()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.ActivePowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ActivePowerUpControllerTest]/[method:testStep_UpdateDuration()] (10 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireTest()] (5 ms)</li><li>com.l06g06.shellshift.states.GameStateTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.states.GameStateTest]/[method:getControllerTest()] (11 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:leftShiftTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:lookForPlatformCollisionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.GameOverControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.GameOverControllerTest]/[method:stepUpTest()] (107 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:stepSpawnConditionTest()] (7 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectStartTest()] (126 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:jumpTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:stepJumpTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:stepCallTest()] (117 ms)</li><li>com.l06g06.shellshift.controller.game.PowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PowerUpControllerTest]/[method:testShiftConditionTest()] (24 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:stepDownTest()] (108 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:stepFireTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:enemyInPosTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest]/[property:testSelectSoundSliderRight(java.util.List)] (239 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:bulletUpdateTest()] (9 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectStatisticsTest()] (116 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:stepShiftConditionTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.CloudControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CloudControllerTest]/[method:testShiftConditionStep()] (8 ms)</li><li>com.l06g06.shellshift.controller.game.ActivePowerUpControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ActivePowerUpControllerTest]/[method:testStep_Remove()] (12 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:stepCallTest()] (7 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:stepSpawnConditionTest()] (9 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:checkLandingTest()] (19 ms)</li><li>com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest]/[method:testPreviousOption()] (116 ms)</li><li>com.l06g06.shellshift.controller.menus.GameOverControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.GameOverControllerTest]/[method:selectMainMenuTest()] (116 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectQuitTest()] (116 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:leftShiftTest()] (4 ms)</li><li>com.l06g06.shellshift.states.GameStateTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.states.GameStateTest]/[method:getViewerTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.GameOverControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.GameOverControllerTest]/[method:selectRestartTest()] (111 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:stepSelectTest()] (110 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[method:stepWithoutGameOver()] (13 ms)</li><li>com.l06g06.shellshift.controller.game.CloudControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CloudControllerTest]/[method:testLeftShift()] (12 ms)</li><li>com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest]/[method:testNextOption()] (117 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[property:updateDatabaseTest(int, int, int)] (1167 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:leftShiftTest()] (2 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:moveRightTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.GameOverControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.GameOverControllerTest]/[method:stepDownTest()] (109 ms)</li><li>com.l06g06.shellshift.controller.game.PlatformControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PlatformControllerTest]/[method:stepShiftConditionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.EnemyControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.EnemyControllerTest]/[method:stepConditionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectShopTest()] (112 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:bulletCollisionTest()] (16 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:stepShiftConditionTest()] (7 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:bulletCollisionTest()] (9 ms)</li><li>com.l06g06.shellshift.controller.game.PlatformControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.PlatformControllerTest]/[method:stepSpawnConditionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[property:gameOverPositionDetectionTest(int, int)] (200 ms)</li><li>com.l06g06.shellshift.controller.game.MapControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.game.MapControllerTest]/[property:gameOverLivesDetectionTest(int)] (24 ms)</li><li>com.l06g06.shellshift.controller.game.CloudControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CloudControllerTest]/[method:testSpawn()] (4 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:removeOutOfBoundsBulletsTest()] (16 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithReloadTimeTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:jumpUpdateTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:coinCollisionTest()] (7 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:stepUpTest()] (115 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:stepTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:coinCollisionTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.MainMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.MainMenuControllerTest]/[method:selectTutorialTest()] (128 ms)</li><li>com.l06g06.shellshift.controller.game.CoinControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.CoinControllerTest]/[method:leftShiftTest()] (6 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[method:inputTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:stepDownTest()] (137 ms)</li><li>com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.OptionsMenuControllerTest]/[method:testTurnON()] (125 ms)</li><li>com.l06g06.shellshift.controller.game.ChellControllerTest.[engine:jqwik]/[class:com.l06g06.shellshift.controller.game.ChellControllerTest]/[property:jumpTest(int)] (403 ms)</li><li>com.l06g06.shellshift.controller.menus.ShopControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.ShopControllerTest]/[method:selectMoreBulletsTest()] (1937 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:stepTest()] (9 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.7
+
+</body>
+</html>

@@ -6,9 +6,13 @@ After navigating the dangerous Aperture Science facility, Chell stumbles upon a 
 
 This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Queirós* (*up202207919@up.pt*) and *Vasco Costa* (*up202109923@up.pt*) for LDTS 23/24.
 
+<div style="display: flex; justify-content: center;">
+  <img src="ShellShiftDemo.gif" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
 ### IMPLEMENTED FEATURES
 
-- **Main Menu** - When the game starts, a player will be prompted with options to the different menus available as well as starting a game or exiting the application. [Current Main Menu implemented](CurrentMainMenu.png)
+- **Main Menu** - When the game starts, a player will be prompted with options to the different menus available as well as starting a game or exiting the application. 
 - **Movement** - Chell is free to move in every direction and to jump platform to platform.
 - **Shooting** - Chell carries a gun that can be shot using the space bar. 
 - **Platforms** - Platforms appear throughout the game in (semi-)random positions. Chell is guaranteed to always have a platform in her way, but watch out for the monsters...
@@ -28,42 +32,53 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
 - **Screen Borders** - If Chell either falls off a platform or leaves the screen's left border, she will die.
 - **Chell-Monsters Collisions** - If Chell collides with a monster, she will be hurt and the monster will die. She will also be invincible for a small period.
 - **Bullet-Monsters Collisions** - After shooting a bullet, if it collides with a monster, the monster will 25 health points.
+- **Sound** - Moving, shooting, colliding with an element or enemy, dying and menu interactions have different sound effects. 
 - **Shop** - Using the coins collected, the player is able to buy different upgrades:
   - Rapid Fire: decreased gun reload time;
   - Extra life: 1 more starting life (up to 8 lives);
   - More Bullets: 10 more starting bullets (up to 200).
-- **Tutorial** - Play the tutorial to learn how to play *Shell Shift*, learn the inputs, how to collect coins, kill monsters and take a look at the HUD (bullet counter, lives, coins counter).
+- **Tutorial** - Play the tutorial to learn how to play *Shell Shift*, learn the inputs, how to collect coins, kill monsters and take a look at the HUD (bullet counter, lives, coins counter) to know how you are doing.
 - **Player Statistics** - A player can check Chell's statistics such as top 3 scores, coins collected, monsters killed and starting lives.
 - **Options** - In the options submenu, a player can change the sound's volume or even turn the sound off.
 
 ### PLANNED FEATURES    
 
-- **Bullet Damage Multiplier** - A player will be able to buy a bullet damage increase.
+- **Bullet Damage Multiplier** - A player will be able to buy a bullet damage increase. 
 - **"AI" Monsters** - Monsters will be able to follow Chell's movement as well as throw projectiles in her way.
 
-#### Mockups:
-- [Main Menu](MainMenuMockUp.jpg)
-- [Gameplay](InGameMockUp.jpg)
-- [Shop](ShopMockUp.jpg)
-- [Player Statistics](StatisticsMockUp.jpg)
+#### In-Game Screenshots:
 
+- [Main Menu](MainMenu.png)
+- [Shop](Shop.png)
+- [Tutorial](Tutorial.png)
+- [Statistics](Statistics.png)
+- [Options](Options.png)
+- [Game Over](GameOver.png)
+- [Gameplay](InGame.png)
 
-# Model-View-Controller Pattern
+---
+
+## Design
+
+## Model-View-Controller Pattern
 
 In the initial design of our game, there was a lack of clear separation between the user interface, game logic, and data. This made it challenging to maintain and extend the codebase, while maintaining code readibility. 
 
 MVC separates the application into three interconnected components:
 
-1. **Model (Data):** Represents the game data, including Chell (with lives and a gun), the gun (with bullets and a `FireStrategy`), different enemies, platforms, coins, and bullets (with an associated `damageMultiplier`). The model encapsulates the game's data and logic, managing the state of the game and interactions between different elements.
+1. **Model (Data):** Represents the game data, including Chell (with lives and a gun), the gun (with bullets and a `FireStrategy`), different enemies, platforms, coins, and bullets. The model encapsulates the game's data and logic, managing the state of the game and interactions between different elements.
 2. **View (User Interface):** Manages the presentation of the game and its various menus to the player. This includes rendering Chell, enemies, platforms, coins, and other visual elements. The view interacts with the model to obtain necessary data for display.
 3. **Controller (User Input):** Handles user input and translates it into actions that the model and view can understand. This involves managing player movements and interactions between different game elements, such as collisions. The controller communicates with the model to update the game state based on user input.
 
-![](MVC.png)
-- [Models Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/model)
-- [Viewers Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/viewer)
-- [Controllers Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/controller)
+<div style="display: flex; justify-content: center;">
+  <img src="MVC.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
 
-# State Pattern
+- [Models Implementation]()
+- [Viewers Implementation]()
+- [Controllers Implementation]()
+
+## State Pattern
 
 While designing the UML we noticed that our game would have issues transitioning from menu to menu and from menu to the actual game. We noticed these issues because we had planned to use if conditions to determine if a certain condition was met. 
 
@@ -75,26 +90,78 @@ So to solve this issue we decided to implement the State Pattern. This allows fo
 
 This way Game would only require a single loop ( containing `step` ) and we would also not have to worry about other if conditions, loops or goto statements as these are handled by the respective state.
 
-![](StateDiagram.png)
-# Strategy Pattern
+<div style="display: flex; justify-content: center;">
+  <img src="StateDiagram.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+## Strategy Pattern
 
 Soon in the development process, we decided that having multiple types of enemies/monsters aswell as different types of guns, would make the gameplay more interesting and engaging. 
 
 To achieve this we decided to implement two different Strategy Pattern:
 - **EnemyStrategy**: This interface defines a method `move()`  used by two different moving strategies for enemies, `VerticalEnemyStrategy` blocking movement on the x axis and `HorizontalEnemyStrategy` blocking movement on the y axis.
 
-![](EnemyStrategyUML.png)
+<div style="display: flex; justify-content: center;">
+  <img src="EnemyStrategyUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
 
-- **FireStrategy**: Chell's gun has a different firing strategy allowing not only to diversify the shooting mechanics but also to simplify the process of adding new mechanics in the future. Every class that implements `FireStrategy`has a `fire()` method that will make the bullets behave in different ways. For example, `SpreeFireStrategy`, will make the gun similar to a shotgun, with 3 bullets shot at the same time with different angles.
+- **FireStrategy**: Chell's gun has a different firing strategy allowing not only to diversify the shooting mechanics but also to simplify the process of adding new mechanics in the future. A gun must have a `FireStrategy` with a `getReloadTime()` method that will make the gun slower or faster. For example, `RapidFireStrategy`, will make the gun shoot significantly faster, but this comes with both advantages and disadvantages to the player: although killing enemies is easier, a player will have to be careful with the number of bullets spent. 
 
-![](FireStrategyUML.png)
+<div style="display: flex; justify-content: center;">
+  <img src="FireStrategyUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
 
-# Adapter Pattern
+## Adapter Pattern
 Although we are only using Lanterna on our game, there could be an instance where it would be interesting to use a different library to handle the graphical parts of the Game.
-To achieve this goal, we have an interface `GUI` with the methods that we have found relevant to process graphics in our game, such as `drawText` or `drawChell`, that are implemented using Lanterna in `LanternaGui` and used by `Viewer<T>`.
+To achieve this goal, we have an interface `GUI` with the methods that we have found relevant to process graphics in our game, such as `drawImageASCII` or `numToASCII`, that are implemented using Lanterna in `LanternaGui` and used by `Viewer<T>`.
 
-![](AdapterUML.png)
+<div style="display: flex; justify-content: center;">
+  <img src="AdapterUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
 - [GUI Wrapper implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/gui)
+
+## Singleton Pattern
+
+Although the *State Pattern* has many advantages, there are also disadvantages that we came across while developing *Shell Shift*. We designed a *Shop* where a player would buy different upgrades to Chell and her gun, and a *Statistics* page where a player can check gameplay-related statistics. However, this meant that these states must be able to communicate with the game state even after transitioning to the game over state. Therefore, a *Database* was needed to store data which could be then read by the *Statistics* page and altered by the *Shop* menu. 
+
+Making the Database a singleton was an obvious choice because it ensures a single, global point of access to the database instance throughout the application and  facilitates efficient coordination among various components, such as the Statistics page and the Shop menu, eliminating potential data inconsistencies.
+
+<div style="display: flex; justify-content: center;">
+  <img src="SingletonDatabaseUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+## Factory Method
+
+The adoption of the Factory Method pattern in our game development is driven by the need for a flexible and extensible way to create *Elements*. By employing this pattern, we aim to encapsulate the instantiation logic of diverse game elements, such as *Enemies*, *Powerups* or *Coins*, within dedicated factories, enhancing code maintainability and ease of extension.
+
+<div style="display: flex; justify-content: center;">
+  <img src="FactoryMethodUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+## Code Smells
+
+### Sound
+
+Following extensive testing, we identified certain sound-related issues. On Windows machines, sometimes sound effects would not be played when they should or would loop for 2 or 3 times in a row when they should not be played at all. On Linux Machines, initially after playing the game for a certain amount of time, too many concurrent sounds would freeze and crash the game. 
+
+Currently, our implementation is somewhat botched with many `try-catch` blocks and `sleep` calls, indicating potential areas for improvement in terms of robustness and efficiency.
+
+---
+
+## Testing
+
+### [Mutation Testing Report]()
+
+<div style="display: flex; justify-content: center;">
+  <img src="PitestTesting.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+### Coverage Report
+
+<div style="display: flex; justify-content: center;">
+  <img src="CoverageReport.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
 
 ---
 
