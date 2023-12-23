@@ -7,7 +7,7 @@ import java.util.List;
 
 public class GameOver{
     private List<Components> options;
-    private int currOption = 0; // e tp onde estas na lista que dps vai alterar a cor da opcao
+    private int currOption = 0;
     public GameOver() {
         this.options = Arrays.asList(Components.Restart, Components.MainMenu);
     }
@@ -24,7 +24,7 @@ public class GameOver{
 
     public boolean isSelected(int i) {
         return i == currOption;
-    } // funcao que testa onde tas
+    }
 
     public boolean isSelectedRestart() {
         return isSelected(0);

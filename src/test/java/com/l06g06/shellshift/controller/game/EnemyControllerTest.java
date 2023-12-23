@@ -163,8 +163,6 @@ public class EnemyControllerTest {
         Assertions.assertEquals(3, chell.getLives());
         enemyController.enemyChellCollision();
         Assertions.assertEquals(2, enemies.size());
-        //Assertions.assertEquals(2, chell.getLives());
-        //Assertions.assertTrue(chell.getBlink());
     }
 
     @Test
