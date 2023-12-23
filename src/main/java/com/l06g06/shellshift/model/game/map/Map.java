@@ -142,11 +142,6 @@ public class Map {
         this.powerUps = ppowerUp;
     }
 
-    @VisibleForTesting
-    public void setCoins(List<Coin> coins){
-        this.coins = coins;
-    }
-
     // Coins
     public List<Coin> getCoins(){
         return coins;
