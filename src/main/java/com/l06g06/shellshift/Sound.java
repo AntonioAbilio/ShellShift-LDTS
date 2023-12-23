@@ -110,6 +110,7 @@ public class Sound implements LineListener, Runnable {
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
+                System.out.println("Audio Format: " + clip.getFormat().toString());
             }
         }
     }

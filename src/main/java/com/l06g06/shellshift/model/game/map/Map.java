@@ -64,7 +64,7 @@ public class Map {
 
         Random random = new Random();
         this.clouds.add(new Cloud(new Position(40 + random.nextInt(120), 5 + random.nextInt(60))));
-
+    }
 
 
 
