@@ -171,7 +171,12 @@ After implementating Chell's jump, we noticed some problems regarding the jump's
 
 Even though we were able to identify where the problem is located (Chell falling from a jump or Chell falling from a platform), we could not fix it in time.
 
-There is also a small bug, when two platforms are very close together. After Chell begins a jump, she will jump without an animation to the platform above her and then begin another jump from that *higher* platform. Despite not being fixed, we made sure that there is little to no chance of two platforms spawning in such proximity to minimize the occurrence of this issue. 
+There is also a small bug, when two platforms are very close together. After Chell begins a jump, she will jump without an animation to the platform above her and then begin another jump from that *higher* platform. Despite not being fixed, we made sure that there is little to no chance of two platforms spawning in such proximity to minimize the occurrence of this issue.
+
+
+## JDK Version
+
+*Shell Shift* was thoroughly played and tested using JDK Version 16 so we **strongly** recommend using it.
 
 ---
 
@@ -190,6 +195,8 @@ There is also a small bug, when two platforms are very close together. After Che
 </div>
 
 ---
+
+
 
 ### SELF-EVALUATION
 
