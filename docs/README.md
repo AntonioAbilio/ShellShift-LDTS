@@ -74,9 +74,9 @@ MVC separates the application into three interconnected components:
   <img src="MVC.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-- [Models Implementation]()
-- [Viewers Implementation]()
-- [Controllers Implementation]()
+- [Models Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/model)
+- [Viewers Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/viewer)
+- [Controllers Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/controller)
 
 ## State Pattern
 
@@ -90,6 +90,8 @@ So to solve this issue we decided to implement the State Pattern. This allows fo
 
 This way Game would only require a single loop ( containing `step` ) and we would also not have to worry about other if conditions, loops or goto statements as these are handled by the respective state.
 
+- [States Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/states)
+
 <div style="display: flex; justify-content: center;">
   <img src="StateDiagram.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
@@ -99,13 +101,13 @@ This way Game would only require a single loop ( containing `step` ) and we woul
 Soon in the development process, we decided that having multiple types of enemies/monsters aswell as different types of guns, would make the gameplay more interesting and engaging. 
 
 To achieve this we decided to implement two different Strategy Pattern:
-- **EnemyStrategy**: This interface defines a method `move()`  used by two different moving strategies for enemies, `VerticalEnemyStrategy` blocking movement on the x axis and `HorizontalEnemyStrategy` blocking movement on the y axis.
+- **MoveStrategy**: This interface defines a method `move()`  used by two different moving strategies for enemies, `VerticalEnemyStrategy` blocking movement on the x-axis and `HorizontalEnemyStrategy` blocking movement on the y-axis. [MoveStrategy implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/model/game/elements/enemies/moveStrategies).
 
 <div style="display: flex; justify-content: center;">
   <img src="EnemyStrategyUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-- **FireStrategy**: Chell's gun has a different firing strategy allowing not only to diversify the shooting mechanics but also to simplify the process of adding new mechanics in the future. A gun must have a `FireStrategy` with a `getReloadTime()` method that will make the gun slower or faster. For example, `RapidFireStrategy`, will make the gun shoot significantly faster, but this comes with both advantages and disadvantages to the player: although killing enemies is easier, a player will have to be careful with the number of bullets spent. 
+- **FireStrategy**: Chell's gun has a different firing strategy allowing not only to diversify the shooting mechanics but also to simplify the process of adding new mechanics in the future. A gun must have a `FireStrategy` with a `getReloadTime()` method that will make the gun slower or faster. For example, `RapidFireStrategy`, will make the gun shoot significantly faster, but this comes with both advantages and disadvantages to the player: although killing enemies is easier, a player will have to be careful with the number of bullets spent. [FireStrategy Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/model/game/gun).
 
 <div style="display: flex; justify-content: center;">
   <img src="FireStrategyUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
@@ -115,17 +117,21 @@ To achieve this we decided to implement two different Strategy Pattern:
 Although we are only using Lanterna on our game, there could be an instance where it would be interesting to use a different library to handle the graphical parts of the Game.
 To achieve this goal, we have an interface `GUI` with the methods that we have found relevant to process graphics in our game, such as `drawImageASCII` or `numToASCII`, that are implemented using Lanterna in `LanternaGui` and used by `Viewer<T>`.
 
+- [GUI Wrapper implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/blob/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/gui/LanternaGUI.java)
+
+
 <div style="display: flex; justify-content: center;">
   <img src="AdapterUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-- [GUI Wrapper implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/gui)
 
 ## Singleton Pattern
 
 Although the *State Pattern* has many advantages, there are also disadvantages that we came across while developing *Shell Shift*. We designed a *Shop* where a player would buy different upgrades to Chell and her gun, and a *Statistics* page where a player can check gameplay-related statistics. However, this meant that these states must be able to communicate with the game state even after transitioning to the game over state. Therefore, a *Database* was needed to store data which could be then read by the *Statistics* page and altered by the *Shop* menu. 
 
 Making the Database a singleton was an obvious choice because it ensures a single, global point of access to the database instance throughout the application and  facilitates efficient coordination among various components, such as the Statistics page and the Shop menu, eliminating potential data inconsistencies.
+
+- [Database Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/blob/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/Database.java)
 
 <div style="display: flex; justify-content: center;">
   <img src="SingletonDatabaseUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
@@ -135,6 +141,8 @@ Making the Database a singleton was an obvious choice because it ensures a singl
 
 The adoption of the Factory Method pattern in our game development is driven by the need for a flexible and extensible way to create *Elements*. By employing this pattern, we aim to encapsulate the instantiation logic of diverse game elements, such as *Enemies*, *Powerups* or *Coins*, within dedicated factories, enhancing code maintainability and ease of extension.
 
+- [Factories/Creators Implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/src/main/java/com/l06g06/shellshift/model/creators)
+
 <div style="display: flex; justify-content: center;">
   <img src="FactoryMethodUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
@@ -143,15 +151,27 @@ The adoption of the Factory Method pattern in our game development is driven by 
 
 ### Sound
 
-Following extensive testing, we identified certain sound-related issues. On Windows machines, sometimes sound effects would not be played when they should or would loop for 2 or 3 times in a row when they should not be played at all. On Linux Machines, initially after playing the game for a certain amount of time, too many concurrent sounds would freeze and crash the game. 
+Following extensive testing, we identified certain sound-related issues. On some Linux Machines, we found some bugs that were able to be fixed:
+- Initially after playing the game for a certain amount of time, too many concurrent sounds would freeze and crash the game. 
 
-Currently, our implementation is somewhat botched with many `try-catch` blocks and `sleep` calls, indicating potential areas for improvement in terms of robustness and efficiency.
+and some others that proved to be unfixable:
+- After running Shell Shift, on the first play-through there exists a small delay until any sound effect plays.  
+
+Currently, our implementation has many `try-catch` blocks and `sleep` calls, indicating potential areas for improvement in terms of robustness and efficiency.
+
+### Chell's Jump Mechanic
+
+After implementating Chell's jump, we noticed some problems regarding the jump's gravity, which in some cases would lead to Chell falling at a constant rate and in other cases accelerating, according to the correct movement equation implemented. 
+
+Even though we were able to identify where the problem is located (Chell falling from a jump or Chell falling from a platform), we could not fix it in time.
+
+There is also a small bug, when two platforms are very close together. After Chell begins a jump, she will jump without an animation to the platform above her and then begin another jump from that *higher* platform. Despite not being fixed, we made sure that there is little to no chance of two platforms spawning in such proximity to minimize the occurrence of this issue. 
 
 ---
 
 ## Testing
 
-### [Mutation Testing Report]()
+### [Mutation Testing Report](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/e63ad44e0b9597721db0582b4acf656450d67718/docs/PitestMutationTesting-202312232203)
 
 <div style="display: flex; justify-content: center;">
   <img src="PitestTesting.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
