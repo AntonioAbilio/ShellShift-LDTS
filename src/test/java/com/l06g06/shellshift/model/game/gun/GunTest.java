@@ -2,6 +2,11 @@ package com.l06g06.shellshift.model.game.gun;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Sound;
+import com.l06g06.shellshift.SoundsFx;
+import net.jqwik.api.ForAll;
+import net.jqwik.api.Property;
+import net.jqwik.api.constraints.IntRange;
+import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +32,6 @@ public class GunTest {
 
     @Test
     public void getReloadTimeTest(){
-        /*FireStrategy fireStrategy = new NormalFireStrategy();
-        gun = new Gun(fireStrategy);
-        Assertions.assertEquals(1000, gun.getReloadTime());*/
-
         NormalFireStrategy normalFireStrategy = new NormalFireStrategy();
         gun = new Gun(normalFireStrategy);
         Assertions.assertEquals(1000, normalFireStrategy.getReloadTime());
@@ -38,6 +39,19 @@ public class GunTest {
         RapidFireStrategy rapidFireStrategy = new RapidFireStrategy();
         gun = new Gun(rapidFireStrategy);
         Assertions.assertEquals(300, rapidFireStrategy.getReloadTime());
+    }
+
+    @Property
+    public void getReloadTimeTestFromGun(@ForAll @Positive int bullets){
+        NormalFireStrategy normalFireStrategy = new NormalFireStrategy();
+        gun = new Gun(normalFireStrategy,bullets);
+        Assertions.assertEquals(1000, gun.getReloadTime());
+        Assertions.assertEquals(bullets, gun.getNumBullets());
+
+        RapidFireStrategy rapidFireStrategy = new RapidFireStrategy();
+        gun = new Gun(rapidFireStrategy,bullets);
+        Assertions.assertEquals(300, gun.getReloadTime());
+        Assertions.assertEquals(bullets, gun.getNumBullets());
     }
 
 }

@@ -55,6 +55,7 @@ public class Game {
         Sound sound = Sound.getInstance();
 
         while (this.state != null) {
+            System.out.println(this.state);
             long startTime = System.currentTimeMillis();
 
             state.step(this, gui, startTime);

@@ -1,14 +1,18 @@
 package com.l06g06.shellshift.model.game.elements;
 
 import java.util.Objects;
+import java.util.Random;
+import java.time.Instant;
 
 public class Position {
+    Random random;
     private final int x;
     private final int y;
 
     public Position(int x, int y) {
         this.x = x;
         this.y = y;
+        random = new Random();
     }
 
     public int getX() {
@@ -29,7 +33,8 @@ public class Position {
 
     @Override
     public int hashCode() {
-        return Objects.hash(x, y);
+        int rand = (int) (Instant.now().getEpochSecond());
+        return (Objects.hash(x, y) + rand) % 1333;
     }
 
 }

@@ -1,15 +1,18 @@
 package com.l06g06.shellshift.model.game.elements;
 
-import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
-import com.l06g06.shellshift.model.game.elements.Position;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class ChellTest {
 
@@ -106,6 +109,80 @@ public class ChellTest {
         Assertions.assertEquals(-14, chell.getPolygon().ypoints[1]);
         Assertions.assertEquals(1, chell.getPolygon().ypoints[2]);
         Assertions.assertEquals(1, chell.getPolygon().ypoints[3]);
+    }
+
+    /*@Test
+    public void getHorizontalSpeedTest(){
+        Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
+        Assertions.assertEquals(1, chell.getHorizontalSpeed());
+    }*/
+
+    @Test
+    public void invencibilityTimerTest(){
+        chell.setInvincibilityEndTime(100);
+        Assertions.assertTrue(chell.isInvincible());
+        long currentTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - currentTime <= 1200);
+        Assertions.assertFalse(chell.isInvincible());
+    }
+    @Test
+    public void blink() {
+        Assertions.assertFalse(chell.getBlink());
+        chell.toggleBlink();
+        Assertions.assertTrue(chell.getBlink());
+        chell.toggleBlink();
+        Assertions.assertFalse(chell.getBlink());
+
+        chell.activateBlink(1000);
+        Assertions.assertTrue(chell.getBlink());
+
+        long startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime <= 2000) {
+            Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
+            for (Thread thread : allThreads.keySet()) {
+                if (thread.getName().equals("BlinkThread")) {
+                    break;
+                }
+            }
+        }
+
+        startTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - startTime <= 2000) {
+            Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
+            for (Thread thread : allThreads.keySet()) {
+                if (thread.getName().equals("BlinkThread")) {
+                    fail();
+                    Assertions.assertFalse(chell.getBlink());
+                }
+            }
+            Assertions.assertFalse(chell.isInvincible());
+        }
+    }
+
+    @Test
+    public void getHorizontalSpeedTest(){
+        Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
+        Assertions.assertEquals(1, chell.getHorizontalSpeed());
+
+        chell.setHorizontalSpeedWithTimer(1000, 3);
+
+        Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
+        boolean wasActivated = false;
+        for (Thread thread : allThreads.keySet()){
+            if (thread.getName().equals("HorizontalThread")) wasActivated = true;
+        }
+
+        Assertions.assertEquals(3, chell.getActualHorizontalSpeed());
+        Assertions.assertEquals(3, chell.getHorizontalSpeed());
+
+        long currentTime = System.currentTimeMillis();
+        while (System.currentTimeMillis() - currentTime <= 1200);
+
+        Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
+        Assertions.assertEquals(1, chell.getHorizontalSpeed());
+
+        if (!wasActivated) fail();
+
     }
 
 }

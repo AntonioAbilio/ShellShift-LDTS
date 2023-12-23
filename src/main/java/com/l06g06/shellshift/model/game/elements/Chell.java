@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.gun.Gun;
 
@@ -26,6 +27,11 @@ public class Chell extends Element {
 
     public static int getHeight(){
         return Chell.height;
+    }
+
+    @VisibleForTesting
+    public int getActualHorizontalSpeed(){
+        return this.horizontalSpeed;
     }
 
     public static int getWidth(){
@@ -108,7 +114,11 @@ public class Chell extends Element {
         this.horizontalSpeedUpEndTime = System.currentTimeMillis() + milliseconds;
         this.horizontalSpeed = speed;
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleAtFixedRate(this::resetHorizontalSpeed, 0, milliseconds, TimeUnit.MILLISECONDS);
+        executorService.scheduleAtFixedRate(() -> {
+            Thread.currentThread().setName("HorizontalThread");
+            resetHorizontalSpeed();
+        }, 0, milliseconds, TimeUnit.MILLISECONDS);
+
     }
 
     public boolean isHorizontalSpeedTimerOver() {
@@ -127,7 +137,10 @@ public class Chell extends Element {
     @SuppressWarnings("FutureReturnValueIgnored")
     public void activateBlink(long delay) {
         ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
-        executorService.scheduleAtFixedRate(this::toggleBlink, 0, 150, TimeUnit.MILLISECONDS);
+        executorService.scheduleAtFixedRate(() -> {
+            Thread.currentThread().setName("BlinkThread");
+            toggleBlink();
+        }, 0, 150, TimeUnit.MILLISECONDS);
 
         Timer timer = new Timer();
         timer.schedule(new TimerTask() {

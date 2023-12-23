@@ -83,6 +83,11 @@ public class Map {
         executorService.shutdown();
     }
 
+    @VisibleForTesting
+    public void addCloudSkipTask(){
+        addCloud();
+    }
+
     private void addCloud() {
         Random rand = new Random();
         Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(70)));
@@ -130,6 +135,16 @@ public class Map {
     // PowerUps
     public List<PowerUp> getPowerUps(){
         return powerUps;
+    }
+
+    @VisibleForTesting
+    public void setPowerUps(List<PowerUp> ppowerUp){
+        this.powerUps = ppowerUp;
+    }
+
+    @VisibleForTesting
+    public void setCoins(List<Coin> coins){
+        this.coins = coins;
     }
 
     // Coins

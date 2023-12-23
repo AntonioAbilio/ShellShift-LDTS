@@ -10,6 +10,9 @@ import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.Vertical
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.util.Random;
 
 
 public class EnemyCreatorTests {
@@ -18,7 +21,22 @@ public class EnemyCreatorTests {
     @Property
     void testCreateMethod(@ForAll int x, @ForAll int y) {
         enemycreator = new EnemyCreator();
+        Random rn = new Random();
+        long seed = rn.nextInt();
+        rn = new Random(seed);
+        enemycreator.setRandomSeed(seed);
+
         Element enemy = enemycreator.create(new Position(x, y));
+
+        int detemineTypeOfMonster = rn.nextInt(2);
+        detemineTypeOfMonster = rn.nextInt(2);
+        if (detemineTypeOfMonster == 0){
+            Assertions.assertEquals(50, ((Enemy) enemy).getScore());
+        } else {
+            Assertions.assertEquals(20, ((Enemy) enemy).getScore());
+        }
+
+
         Assertions.assertNotNull(enemy);
         Assertions.assertTrue((enemy instanceof SoftMonster) || (enemy instanceof HardMonster));
         Assertions.assertEquals(x, enemy.getPosition().getX());
@@ -28,8 +46,19 @@ public class EnemyCreatorTests {
     @Property
     void testMoveStrategiesOfAllMonsters(@ForAll int x, @ForAll int y) {
         enemycreator = new EnemyCreator();
+        Random rn = new Random();
+        long seed = rn.nextInt();
+        rn.setSeed(seed);
+        enemycreator.setRandomSeed(seed);
+
         Element enemy = enemycreator.create(new Position(x, y));
-        Assertions.assertTrue((((Enemy) enemy).getMoveStrategy() instanceof VerticalMoveStrategy) || ((Enemy) enemy).getMoveStrategy() instanceof HorizontalMoveStrategy);
+
+        int detemineTypeOfMoveStrategy = rn.nextInt(2);
+        if (detemineTypeOfMoveStrategy == 0){
+            Assertions.assertTrue(((Enemy) enemy).getMoveStrategy() instanceof HorizontalMoveStrategy);
+        } else {
+            Assertions.assertTrue((((Enemy) enemy).getMoveStrategy() instanceof VerticalMoveStrategy));
+        }
     }
 
 }

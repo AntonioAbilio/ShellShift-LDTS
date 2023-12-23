@@ -24,6 +24,7 @@ public class PowerUpTest {
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets(), gun.getNumBullets());
         bulletPowerUp.activate(map);
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 20, gun.getNumBullets());
+        Assertions.assertEquals("Bullet", bulletPowerUp.getType());
     }
 
     @Test
@@ -33,11 +34,12 @@ public class PowerUpTest {
         when(map.getChell()).thenReturn(chell);
         ActivePowerUp activePowerUp = mock(ActivePowerUp.class);
         when(map.getActivePowerUp()).thenReturn(activePowerUp);
-
         Position position = mock(Position.class);
         SpeedPowerUp speedPowerUp = new SpeedPowerUp(position);
         speedPowerUp.activate(map);
         verify(map.getChell(), times(1)).setHorizontalSpeedWithTimer(10000,2);
+        Assertions.assertEquals("Speed", speedPowerUp.getType());
+        verify(activePowerUp).addOrUpdateActivePowerUp("Speed", 10000L);
     }
 
     @Test
@@ -48,17 +50,17 @@ public class PowerUpTest {
         when(map.getGun()).thenReturn(gun);
         Chell chell = mock(Chell.class);
         when(map.getChell()).thenReturn(chell);
-        ActivePowerUp activePowerUp = new ActivePowerUp();
+        ActivePowerUp activePowerUp = mock(ActivePowerUp.class);
         when(map.getActivePowerUp()).thenReturn(activePowerUp);
-
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets(), gun.getNumBullets());
-
         Position position = mock(Position.class);
         StarPowerUp starPowerUp = new StarPowerUp(position);
         starPowerUp.activate(map);
         verify(map.getChell(), times(1)).setInvincibilityEndTime(10000);
         verify(map.getChell(), times(1)).setHorizontalSpeedWithTimer(10000,2);
         Assertions.assertEquals(Database.getInstance().getStartingNumBullets() + 50, gun.getNumBullets());
+        Assertions.assertEquals("Star", starPowerUp.getType());
+        verify(activePowerUp).addOrUpdateActivePowerUp("Star", 10000L);
     }
 
     @Test
