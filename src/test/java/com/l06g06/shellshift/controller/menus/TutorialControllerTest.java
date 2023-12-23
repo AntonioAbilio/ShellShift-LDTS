@@ -302,11 +302,7 @@ class TutorialControllerTest {
 
     @Test
     void stepShiftConditionTest() throws IOException {
-        TutorialMap mockedTutorialMap = mock(TutorialMap.class);
         List<Gui.PressedKey> actions = new ArrayList<>();
-        Position chellPosition = new Position(3, 1);
-        Chell chell = new Chell(chellPosition);
-        Mockito.when(mockedTutorialMap.getChell()).thenReturn(chell);
         long time1 = 79;
         long time2 = 80;
         long time3 = 81;

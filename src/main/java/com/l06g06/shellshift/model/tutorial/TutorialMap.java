@@ -164,4 +164,9 @@ public class TutorialMap {
     public void setGun(Gun gun) {
         this.gun = gun;
     }
+
+    @VisibleForTesting
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
 }
