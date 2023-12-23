@@ -28,6 +28,7 @@ public class PowerUpTest {
     }
 
     @Test
+    @SuppressWarnings("DirectInvocationOnMock")
     public void activateSpeedPowerUpTest() {
         Map map = mock(Map.class);
         Chell chell = mock(Chell.class);
@@ -43,6 +44,7 @@ public class PowerUpTest {
     }
 
     @Test
+    @SuppressWarnings("DirectInvocationOnMock")
     public void activateStarPowerUpTest() {
         Map map = mock(Map.class);
         FireStrategy fireStrategy = mock(FireStrategy.class);

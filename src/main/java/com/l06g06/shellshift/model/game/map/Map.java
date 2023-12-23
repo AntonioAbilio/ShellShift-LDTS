@@ -57,13 +57,6 @@ public class Map {
         //plataforma inicial
         this.platforms.add(new Platform(new Position(140, 55)));
         this.platforms.add(new Platform(new Position(210, 35)));
-
-        //ToDo Remover adições de powerups.
-        this.powerUps.add(new SpeedPowerUp(new Position(130,53)));
-        this.powerUps.add(new StarPowerUp(new Position(130,53)));
-        this.powerUps.add(new SpeedPowerUp(new Position(130,53)));
-        this.powerUps.add(new StarPowerUp(new Position(130,53)));
-
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         this.enemySpawner = new EnemySpawner(enemies);

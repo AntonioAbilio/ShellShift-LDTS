@@ -228,12 +228,14 @@ public class MapTest {
     }
 
     @Test
+    @SuppressWarnings("BadInstanceof")
     void testGetPowerUpSpawner() {
         assertNotNull(map.getPowerUpSpawner());
         assertTrue(map.getPowerUpSpawner() instanceof PowerUpSpawner);
     }
 
     @Test
+    @SuppressWarnings("BadInstanceof")
     void testGetActivePowerUp() {
         assertNotNull(map.getActivePowerUp());
         assertTrue(map.getActivePowerUp() instanceof ActivePowerUp);

@@ -31,12 +31,8 @@ public class GameStateTest {
     @BeforeEach
     void setup(){
         map = Mockito.mock(Map.class);
-
         chell = new Chell(new Position(0,0));
-        map.setChell(chell);
-
         when(map.getChell()).thenReturn(chell);
-
         gameState = new GameState(map);
     }
 

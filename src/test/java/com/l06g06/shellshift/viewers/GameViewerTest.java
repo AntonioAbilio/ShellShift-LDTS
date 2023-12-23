@@ -37,6 +37,7 @@ public class GameViewerTest {
     }
 
     @Test
+    @SuppressWarnings("DirectInvocationOnMock")
     void drawHUD() {
         gameViewer.drawElements(gui);
         int numLives = map.getChell().getLives();
