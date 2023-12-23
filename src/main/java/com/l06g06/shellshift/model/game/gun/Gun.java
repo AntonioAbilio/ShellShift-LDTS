@@ -20,7 +20,6 @@ public class Gun {
         this.numBullets = Database.getInstance().getStartingNumBullets();
     }
     public void decreaseNumBullet() {
-        //SomAqui Sound.playSound(SoundsFx.BulletFired);
         Sound sound = Sound.getInstance();
         sound.playSound(SoundsFx.BulletFired);
         this.numBullets--;

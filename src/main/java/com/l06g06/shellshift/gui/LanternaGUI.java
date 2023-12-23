@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.gui;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
@@ -10,6 +11,7 @@ import com.googlecode.lanterna.screen.Screen;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
+import com.googlecode.lanterna.terminal.swing.AWTTerminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
 import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
@@ -215,6 +217,7 @@ public class LanternaGUI implements Gui {
     @Override
     public void close() throws IOException {
         screen.close();
+        System.exit(0);
     }
 
     @Override

@@ -1,4 +1,3 @@
-/*
 package com.l06g06.shellshift.gui;
 
 import com.google.common.collect.ImmutableList;
@@ -6,16 +5,13 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.l06g06.shellshift.model.game.elements.Position;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,30 +21,14 @@ import static org.mockito.Mockito.*;
 public class LanternaGUITest {
     private TerminalScreen screen;
     private LanternaGUI gui;
-    private TextGraphics graphics;
 
     @BeforeEach
     void setUp() {
         screen = Mockito.mock(TerminalScreen.class);
-        graphics = Mockito.mock(TextGraphics.class);
+        TextGraphics graphics = Mockito.mock(TextGraphics.class);
         when(screen.newTextGraphics()).thenReturn(graphics);
 
         gui = new LanternaGUI(screen);
-    }
-
-    @Test
-    void testLanternaGUIConstructor() throws IOException {
-        int width = 1;
-        int height = 1;
-
-        try {
-            gui = new LanternaGUI(width, height);
-            assertNotNull(gui.getScreen());
-            Assertions.assertEquals(width, gui.getScreen().getTerminalSize().getColumns());
-            Assertions.assertEquals(height + 1, gui.getScreen().getTerminalSize().getRows());
-        } catch (IOException | URISyntaxException | FontFormatException e) {
-            System.out.println(e.getMessage());
-        }
     }
 
     @Test
@@ -93,6 +73,19 @@ public class LanternaGUITest {
         verify(textGraphics, times(1)).putString(0,0, " ");
     }
 
+    @Test
+    public void testNumToASCII() {
+        LanternaGUI guiSpy = spy(gui);
+        guiSpy.numToASCII(1, 0, 0);
+        verify(guiSpy, times(1)).drawImageASCII(eq(ImmutableList.of(
+                " GG ",
+                "G G",
+                "  G",
+                "  G",
+                "GGGG"
+        )), any(Position.class));
+    }
+
     @SuppressWarnings("DirectInvocationOnMock")
     @Test
     void testSetBackground() {
@@ -128,33 +121,36 @@ public class LanternaGUITest {
 
     @Test
     void testClear() {
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
-        LanternaGUI gui = new LanternaGUI(screen);
-
         gui.clear();
-
         verify(screen).clear();
     }
 
     @Test
     void testRefresh() throws IOException {
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
-        LanternaGUI gui = new LanternaGUI(screen);
-
         gui.refresh();
-
         verify(screen).refresh();
     }
 
     @Test
-    void testClose() throws IOException {
-        TerminalScreen screen = Mockito.mock(TerminalScreen.class);
-        LanternaGUI gui = new LanternaGUI(screen);
+    void keyListenerTest(){
+        gui = mock(LanternaGUI.class);
+        class MockKeyListener implements KeyListener{
 
-        gui.close();
+            @Override
+            public void keyTyped(KeyEvent e) {}
 
-        verify(screen).close();
+            @Override
+            public void keyPressed(KeyEvent e) {
+                gui.addButton(1);
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                gui.removeButton(1);
+            }
+        }
+        MockKeyListener mockKeyListener = new MockKeyListener();
+        gui.addKeyListener(mockKeyListener);
+        verify(gui).addKeyListener(mockKeyListener);
     }
-
-
-}*/
+}

@@ -1,18 +1,47 @@
 package com.l06g06.shellshift.model.creators;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 
+import javax.annotation.processing.Generated;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class PlatformCreator extends Creator {
     private Position lastPosition = new Position(-1,-1);
+    SecureRandom rn = new SecureRandom();
     private int last_level = 4;
     private int nextLevel = 0;
+
+    public PlatformCreator(){
+      lastPosition = new Position(-1,-1);
+      rn = new SecureRandom();
+      last_level = 4;
+      nextLevel = 0;
+    }
+
+    @VisibleForTesting
+    public void setLastLevel(int lastLevel){
+        this.last_level = lastLevel;
+    }
+
+    @VisibleForTesting
+    public int getLastLevel(){
+        return this.last_level;
+    }
+
+    @VisibleForTesting
+    public int getNextLevel(){
+        return nextLevel;
+    }
+
+    @VisibleForTesting
+    public void setSecureRandom(SecureRandom secureRandom){
+        this.rn = secureRandom;
+    }
 
     @Override
     public Element create(Position position) {
@@ -47,9 +76,8 @@ public class PlatformCreator extends Creator {
         int x = 300;
 
         // maximum distance between a lower level to a higher level
-        SecureRandom rn = new SecureRandom();
         nextLevel = rn.nextInt(last_level + 2);
-        if (nextLevel >= 4) nextLevel = rn.nextInt(last_level + 1);
+        if (nextLevel > 4) nextLevel = rn.nextInt(last_level + 1);
 
         if (last_level == nextLevel && nextLevel != 4){
             nextLevel++;
