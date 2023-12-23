@@ -2,7 +2,7 @@
 
 Shell Shift is an endless platformer where the player tries to survive for the longest time by dodging or killing enemies or by avoiding falling outside the map borders. Collect coins along the way to enhance Chell's strength and upgrade her weaponry through the in-game Shop.
 
-After navigating the dangerous Aperture Science facility, Chell stumbles upon a mysterious portal that transports her not to another testing chamber, but to an unfamiliar and surreal realm – the Linux Shell. Now your mission is to get Chell through the unstable Shell and all its unique bugs. Gather coins and eliminate every bug you encounter, all while maintaining a careful balance and ensuring Chell doesn't succumb to the lethal consequences of the Shell's coding abyss.
+After navigating the dangerous Aperture Science facility, Chell stumbles upon a mysterious portal that transports her not to another testing chamber, but to an unfamiliar and surreal realm – the Linux Shell. Now your mission is to get Chell through the unstable Shell and all its unique enemies. Gather coins and eliminate every enemy you encounter, all while maintaining a careful balance and ensuring Chell doesn't succumb to the lethal consequences of the Shell's coding abyss.
 
 This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Queirós* (*up202207919@up.pt*) and *Vasco Costa* (*up202109923@up.pt*) for LDTS 23/24.
 
@@ -31,7 +31,7 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
   - *Coins Counter*: a counter of the number of coins obtained in the current playthrough is displayed on the bottom left of the screen.
 - **Screen Borders** - If Chell either falls off a platform or leaves the screen's left border, she will die.
 - **Chell-Monsters Collisions** - If Chell collides with a monster, she will be hurt and the monster will die. She will also be invincible for a small period.
-- **Bullet-Monsters Collisions** - After shooting a bullet, if it collides with a monster, the monster will 25 health points.
+- **Bullet-Monsters Collisions** - After shooting a bullet, if it collides with a monster, the monster will lose 25 health points.
 - **Sound** - Moving, shooting, colliding with an element or enemy, dying and menu interactions have different sound effects. 
 - **Shop** - Using the coins collected, the player is able to buy different upgrades:
   - Rapid Fire: decreased gun reload time;
@@ -55,6 +55,12 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
 - [Options](Options.png)
 - [Game Over](GameOver.png)
 - [Gameplay](InGame.png)
+
+#### Complete UML's:
+
+- [SVG](diagram.svg)
+- [PNG](completeUMLDiagram.png)
+- [Draw.io](completeUMLdrawio)
 
 ---
 
@@ -127,7 +133,7 @@ To achieve this goal, we have an interface `GUI` with the methods that we have f
 
 ## Singleton Pattern
 
-Although the *State Pattern* has many advantages, there are also disadvantages that we came across while developing *Shell Shift*. We designed a *Shop* where a player would buy different upgrades to Chell and her gun, and a *Statistics* page where a player can check gameplay-related statistics. However, this meant that these states must be able to communicate with the game state even after transitioning to the game over state. Therefore, a *Database* was needed to store data which could be then read by the *Statistics* page and altered by the *Shop* menu. 
+Although the *State Pattern* has many advantages, there are also disadvantages that we came across while developing *Shell Shift*. We designed a *Shop* where a player will be able to buy different upgrades to Chell and her gun, and a *Statistics* page where a player can check gameplay-related statistics. However, this meant that these states must be able to communicate with the game state even after transitioning to the game over state. Therefore, a *Database* was needed to store data which could be then read by the *Statistics* page and altered by the *Shop* menu. 
 
 Making the Database a singleton was an obvious choice because it ensures a single, global point of access to the database instance throughout the application and  facilitates efficient coordination among various components, such as the Statistics page and the Shop menu, eliminating potential data inconsistencies.
 
