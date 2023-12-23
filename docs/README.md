@@ -56,8 +56,11 @@ This project is developed by *António Santos* (*up202205469@up.pt*), *Vanessa Q
 - [Game Over](GameOver.png)
 - [Gameplay](InGame.png)
 
+---
 
-# Model-View-Controller Pattern
+## Design
+
+## Model-View-Controller Pattern
 
 In the initial design of our game, there was a lack of clear separation between the user interface, game logic, and data. This made it challenging to maintain and extend the codebase, while maintaining code readibility. 
 
@@ -75,7 +78,7 @@ MVC separates the application into three interconnected components:
 - [Viewers Implementation]()
 - [Controllers Implementation]()
 
-# State Pattern
+## State Pattern
 
 While designing the UML we noticed that our game would have issues transitioning from menu to menu and from menu to the actual game. We noticed these issues because we had planned to use if conditions to determine if a certain condition was met. 
 
@@ -91,7 +94,7 @@ This way Game would only require a single loop ( containing `step` ) and we woul
   <img src="StateDiagram.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-# Strategy Pattern
+## Strategy Pattern
 
 Soon in the development process, we decided that having multiple types of enemies/monsters aswell as different types of guns, would make the gameplay more interesting and engaging. 
 
@@ -108,7 +111,7 @@ To achieve this we decided to implement two different Strategy Pattern:
   <img src="FireStrategyUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-# Adapter Pattern
+## Adapter Pattern
 Although we are only using Lanterna on our game, there could be an instance where it would be interesting to use a different library to handle the graphical parts of the Game.
 To achieve this goal, we have an interface `GUI` with the methods that we have found relevant to process graphics in our game, such as `drawImageASCII` or `numToASCII`, that are implemented using Lanterna in `LanternaGui` and used by `Viewer<T>`.
 
@@ -118,7 +121,7 @@ To achieve this goal, we have an interface `GUI` with the methods that we have f
 
 - [GUI Wrapper implementation](https://github.com/FEUP-LDTS-2023/project-l06gr06/tree/bb562b88bc7733ae005f4d3ad7aadc0dbc0a4ef2/src/main/java/com/l06g06/shellshift/gui)
 
-# Singleton Pattern
+## Singleton Pattern
 
 Although the *State Pattern* has many advantages, there are also disadvantages that we came across while developing *Shell Shift*. We designed a *Shop* where a player would buy different upgrades to Chell and her gun, and a *Statistics* page where a player can check gameplay-related statistics. However, this meant that these states must be able to communicate with the game state even after transitioning to the game over state. Therefore, a *Database* was needed to store data which could be then read by the *Statistics* page and altered by the *Shop* menu. 
 
@@ -128,12 +131,36 @@ Making the Database a singleton was an obvious choice because it ensures a singl
   <img src="SingletonDatabaseUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
-# Factory Method
+## Factory Method
 
 The adoption of the Factory Method pattern in our game development is driven by the need for a flexible and extensible way to create *Elements*. By employing this pattern, we aim to encapsulate the instantiation logic of diverse game elements, such as *Enemies*, *Powerups* or *Coins*, within dedicated factories, enhancing code maintainability and ease of extension.
 
 <div style="display: flex; justify-content: center;">
   <img src="FactoryMethodUML.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+## Code Smells
+
+### Sound
+
+Following extensive testing, we identified certain sound-related issues. On Windows machines, sometimes sound effects would not be played when they should or would loop for 2 or 3 times in a row when they should not be played at all. On Linux Machines, initially after playing the game for a certain amount of time, too many concurrent sounds would freeze and crash the game. 
+
+Currently, our implementation is somewhat botched with many `try-catch` blocks and `sleep` calls, indicating potential areas for improvement in terms of robustness and efficiency.
+
+---
+
+## Testing
+
+### [Mutation Testing Report]()
+
+<div style="display: flex; justify-content: center;">
+  <img src="PitestTesting.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
+</div>
+
+### Coverage Report
+
+<div style="display: flex; justify-content: center;">
+  <img src="CoverageReport.png" alt="Shell Shift Demo" style="max-width: 60%; height: auto;">
 </div>
 
 ---

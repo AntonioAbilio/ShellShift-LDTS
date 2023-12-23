@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="../style.css">
+</head>
+<body>
+
+
+<h1>Bullet.java</h1>
+
+<table class="src">
+
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_1'/>
+1
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_1'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>package com.l06g06.shellshift.model.game.elements;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_2'/>
+2
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_2'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_3'/>
+3
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_3'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import com.l06g06.shellshift.Database;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_4'/>
+4
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_4'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_5'/>
+5
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_5'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>import java.awt.*;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_6'/>
+6
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_6'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_7'/>
+7
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_7'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>public class Bullet extends Element {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_8'/>
+8
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_8'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private final int damage = 50;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_9'/>
+9
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_9'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private int damageMultiplier;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_10'/>
+10
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_10'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    private boolean direction = true; // true = right, false = left</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_11'/>
+11
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_11'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_12'/>
+12
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_12'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private final static int height = 4;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_13'/>
+13
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_13'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    private final static int width = 4;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_14'/>
+14
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_14'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_15'/>
+15
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_15'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public Bullet(Position position) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_16'/>
+16
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_16'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        super(position);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_17'/>
+17
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_17'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.damageMultiplier = Database.getInstance().getDamageMultiplier();</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_18'/>
+18
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_18'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_19'/>
+19
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_19'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        Polygon bulletHitbox = new Polygon();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_20'/>
+20
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_20'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        int x = position.getX();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_21'/>
+21
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_21'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        int y = position.getY();</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_22'/>
+22
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_22'>1</a>
+<span>
+1. &#60;init&#62; : removed call to java/awt/Polygon::addPoint &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        bulletHitbox.addPoint(x, y);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_23'/>
+23
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_23'>3</a>
+<span>
+1. &#60;init&#62; : Replaced integer addition with subtraction &rarr; KILLED<br/>
+2. &#60;init&#62; : Replaced integer subtraction with addition &rarr; KILLED<br/>
+3. &#60;init&#62; : removed call to java/awt/Polygon::addPoint &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        bulletHitbox.addPoint(x + width - 1, y);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_24'/>
+24
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_24'>3</a>
+<span>
+1. &#60;init&#62; : Replaced integer addition with subtraction &rarr; KILLED<br/>
+2. &#60;init&#62; : Replaced integer subtraction with addition &rarr; KILLED<br/>
+3. &#60;init&#62; : removed call to java/awt/Polygon::addPoint &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        bulletHitbox.addPoint(x, y + height - 1);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_25'/>
+25
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_25'>5</a>
+<span>
+1. &#60;init&#62; : Replaced integer addition with subtraction &rarr; KILLED<br/>
+2. &#60;init&#62; : Replaced integer subtraction with addition &rarr; KILLED<br/>
+3. &#60;init&#62; : Replaced integer addition with subtraction &rarr; KILLED<br/>
+4. &#60;init&#62; : Replaced integer subtraction with addition &rarr; KILLED<br/>
+5. &#60;init&#62; : removed call to java/awt/Polygon::addPoint &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        bulletHitbox.addPoint(x + width - 1, y + height - 1);</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_26'/>
+26
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_26'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.hitbox = bulletHitbox;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_27'/>
+27
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_27'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_28'/>
+28
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_28'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_29'/>
+29
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_29'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setDamageMultiplier(int damageMultiplier) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_30'/>
+30
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_30'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.damageMultiplier = damageMultiplier;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_31'/>
+31
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_31'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_32'/>
+32
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_32'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_33'/>
+33
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_33'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getDamageMultiplier() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_34'/>
+34
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_34'>1</a>
+<span>
+1. getDamageMultiplier : replaced int return with 0 for com/l06g06/shellshift/model/game/elements/Bullet::getDamageMultiplier &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return damageMultiplier;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_35'/>
+35
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_35'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_36'/>
+36
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_36'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_37'/>
+37
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_37'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public boolean isDirection() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_38'/>
+38
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_38'>2</a>
+<span>
+1. isDirection : replaced boolean return with false for com/l06g06/shellshift/model/game/elements/Bullet::isDirection &rarr; KILLED<br/>
+2. isDirection : replaced boolean return with true for com/l06g06/shellshift/model/game/elements/Bullet::isDirection &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return direction;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_39'/>
+39
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_39'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_40'/>
+40
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_40'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_41'/>
+41
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_41'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public void setDirection(boolean direction) {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_42'/>
+42
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_42'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>        this.direction = direction;</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_43'/>
+43
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_43'></a>
+<span>
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_44'/>
+44
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_44'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''></span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_45'/>
+45
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_45'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    public int getDamage() {</span></pre></td></tr>
+
+
+<tr>
+<td class='covered'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_46'/>
+46
+</td>
+<td class='killed'>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_46'>2</a>
+<span>
+1. getDamage : Replaced integer multiplication with division &rarr; KILLED<br/>
+2. getDamage : replaced int return with 0 for com/l06g06/shellshift/model/game/elements/Bullet::getDamage &rarr; KILLED<br/>
+
+</span>
+</span>
+</td>
+<td class='covered'><pre><span  class='killed'>        return damage * damageMultiplier;</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_47'/>
+47
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_47'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>    }</span></pre></td></tr>
+
+
+<tr>
+<td class='na'>
+<a name='org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_48'/>
+48
+</td>
+<td class=''>
+<span class='pop'>
+<a href='#grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_48'></a>
+<span>
+</span>
+</span>
+</td>
+<td class=''><pre><span  class=''>}</span></pre></td></tr>
+
+
+
+<tr><td></td><td></td><td><h2>Mutations</h2></td></tr>
+
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_22'>22</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_22'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> removed call to java/awt/Polygon::addPoint &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_23'>23</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_23'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer subtraction with addition &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> removed call to java/awt/Polygon::addPoint &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_24'>24</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_24'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer subtraction with addition &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> removed call to java/awt/Polygon::addPoint &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_25'>25</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_25'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer subtraction with addition &rarr; KILLED</p> <p class='KILLED'><span class='pop'>3.<span><b>3</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer addition with subtraction &rarr; KILLED</p> <p class='KILLED'><span class='pop'>4.<span><b>4</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> Replaced integer subtraction with addition &rarr; KILLED</p> <p class='KILLED'><span class='pop'>5.<span><b>5</b><br/><b>Location : </b>&#60;init&#62;<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()]</span></span> removed call to java/awt/Polygon::addPoint &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_34'>34</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_34'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDamageMultiplier<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:setGetDamageMultiplierTest()]</span></span> replaced int return with 0 for com/l06g06/shellshift/model/game/elements/Bullet::getDamageMultiplier &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_38'>38</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_38'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>isDirection<br/><b>Killed by : </b>com.l06g06.shellshift.viewers.BulletViewerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.viewers.BulletViewerTest]/[method:drawBullet()]</span></span> replaced boolean return with false for com/l06g06/shellshift/model/game/elements/Bullet::isDirection &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>isDirection<br/><b>Killed by : </b>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:bulletUpdateTest()]</span></span> replaced boolean return with true for com/l06g06/shellshift/model/game/elements/Bullet::isDirection &rarr; KILLED</p> 
+</td>
+</tr>
+<tr>
+<td><a href='#org.pitest.mutationtest.report.html.SourceFile@1d1cfe4_46'>46</a></td> 
+<td></td>
+<td>
+
+<a name='grouporg.pitest.mutationtest.report.html.SourceFile@1d1cfe4_46'/> 
+
+<p class='KILLED'><span class='pop'>1.<span><b>1</b><br/><b>Location : </b>getDamage<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:setGetDamageMultiplierTest()]</span></span> Replaced integer multiplication with division &rarr; KILLED</p> <p class='KILLED'><span class='pop'>2.<span><b>2</b><br/><b>Location : </b>getDamage<br/><b>Killed by : </b>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:setGetDamageMultiplierTest()]</span></span> replaced int return with 0 for com/l06g06/shellshift/model/game/elements/Bullet::getDamage &rarr; KILLED</p> 
+</td>
+</tr>
+
+</table>
+
+
+<h2>Active mutators</h2>
+<ul>
+<li class='mutator'>BOOLEAN_FALSE_RETURN</li>
+<li class='mutator'>BOOLEAN_TRUE_RETURN</li>
+<li class='mutator'>CONDITIONALS_BOUNDARY_MUTATOR</li>
+<li class='mutator'>EMPTY_RETURN_VALUES</li>
+<li class='mutator'>INCREMENTS_MUTATOR</li>
+<li class='mutator'>INVERT_NEGS_MUTATOR</li>
+<li class='mutator'>MATH_MUTATOR</li>
+<li class='mutator'>NEGATE_CONDITIONALS_MUTATOR</li>
+<li class='mutator'>NULL_RETURN_VALUES</li>
+<li class='mutator'>PRIMITIVE_RETURN_VALS_MUTATOR</li>
+<li class='mutator'>VOID_METHOD_CALL_MUTATOR</li>
+
+</ul>
+
+<h2>Tests examined</h2>
+<ul>
+<li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireTest()] (5 ms)</li><li>com.l06g06.shellshift.model.game.map.MapTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.map.MapTest]/[method:addBulletTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireConditionTest()] (3 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithReloadTimeTest()] (4 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:bulletCollisionTest()] (16 ms)</li><li>com.l06g06.shellshift.viewers.BulletViewerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.viewers.BulletViewerTest]/[method:drawBullet()] (5 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:bulletUpdateTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithDirectionTest()] (3 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:bulletCollisionTest()] (9 ms)</li><li>com.l06g06.shellshift.viewers.GameViewerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.viewers.GameViewerTest]/[method:testDrawElements()] (7 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:stepFireTest()] (6 ms)</li><li>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:hitboxTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireWithoutBulletsTest()] (8 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:bulletUpdateTest()] (9 ms)</li><li>com.l06g06.shellshift.model.game.elements.BulletTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.model.game.elements.BulletTest]/[method:setGetDamageMultiplierTest()] (3 ms)</li><li>com.l06g06.shellshift.CharColorTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.CharColorTest]/[method:Color()] (26 ms)</li><li>com.l06g06.shellshift.controller.menus.TutorialControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.menus.TutorialControllerTest]/[method:fireWithDirectionTest()] (10 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:fireConditionTest()] (5 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:removeOutOfBoundsBulletsTest()] (16 ms)</li><li>com.l06g06.shellshift.controller.game.BulletControllerTest.[engine:junit-jupiter]/[class:com.l06g06.shellshift.controller.game.BulletControllerTest]/[method:stepTest()] (9 ms)</li>
+</ul>
+
+<br/>
+
+Report generated by <a href='http://pitest.org'>PIT</a> 1.6.7
+
+</body>
+</html>
