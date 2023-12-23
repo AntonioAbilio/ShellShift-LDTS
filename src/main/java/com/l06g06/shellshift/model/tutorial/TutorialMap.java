@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.tutorial;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
@@ -132,5 +133,35 @@ public class TutorialMap {
 
     public void addCoin() {
         this.coinsCollected++;
+    }
+
+    @VisibleForTesting
+    public void setEnemies(List<Enemy> enemies) {
+        this.enemies = enemies;
+    }
+
+    @VisibleForTesting
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
+    }
+
+    @VisibleForTesting
+    public void setClouds(List<Cloud> clouds) {
+        this.clouds = clouds;
+    }
+
+    @VisibleForTesting
+    public void setCoins(List<Coin> coins) {
+        this.coins = coins;
+    }
+
+    @VisibleForTesting
+    public void setChell(Chell chell) {
+        this.chell = chell;
+    }
+
+    @VisibleForTesting
+    public void setGun(Gun gun) {
+        this.gun = gun;
     }
 }

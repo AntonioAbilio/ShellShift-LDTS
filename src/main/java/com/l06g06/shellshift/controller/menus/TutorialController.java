@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.menus;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
@@ -22,7 +23,6 @@ public class TutorialController extends Controller<TutorialMap> {
     boolean isJumping;
     long jumpStartTime=0;
     int groundY;
-    int previousY;
     long reloadStartTime = 0;
     double lastShiftTime = 0;
     double shiftCooldown = 0.08;
@@ -90,7 +90,6 @@ public class TutorialController extends Controller<TutorialMap> {
         groundY = getModel().getChell().getPosition().getY();
         Sound sound = Sound.getInstance();
         sound.playSound(SoundsFx.Jump);
-        //SomAqui Sound.playSound(SoundsFx.Jump);
     }
 
     public void jumpUpdate(long time) {
@@ -102,23 +101,11 @@ public class TutorialController extends Controller<TutorialMap> {
         // Calculate the new position using the updated elapsed time
         int y = (int) (groundY - (getModel().getChell().getVelocity() * elapsedTime - 0.5 * getModel().getChell().getGravity() * elapsedTime * elapsedTime));
 
-        System.out.println(y);
-
         // Update Chell's position;
         getModel().getChell().setPosition(new Position(x, y));
 
-        // Check if Chell is moving up or down based on the change in position
-        if (y < previousY) {
-            System.out.println("Chell is going up");
-        } else if (y > previousY) {
-            System.out.println("Chell is falling");
-        }
-
-        previousY = y; // Update the previous Y position
-
         // Check if ground already reached
         if (getModel().getChell().getPosition().getY() >= groundY + 1) {
-            System.out.println("True");
             isJumping = false;
             getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY)); // Ensure Chell is exactly at the ground level
         }
@@ -140,7 +127,7 @@ public class TutorialController extends Controller<TutorialMap> {
             getModel().getChell().setPosition(new Position(x+1,y));
     }
 
-    private void fire(long time) {
+    public void fire(long time) {
         if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0) {
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
@@ -228,11 +215,40 @@ public class TutorialController extends Controller<TutorialMap> {
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D()) || coin.getPosition().getX() < -10) {
                 coinsIterator.remove();
                 getModel().addCoin();
-                //SomAqui Sound.playSound(SoundsFx.Coin);
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.Coin);
                 this.coinCheckpoint = true;
             }
         }
+    }
+
+    @VisibleForTesting
+    public void setCoinCheckpoint(boolean coinCheckpoint) {
+        this.coinCheckpoint = coinCheckpoint;
+    }
+
+    @VisibleForTesting
+    public void setDelayBackground(boolean delayBackground) {
+        this.delayBackground = delayBackground;
+    }
+
+    @VisibleForTesting
+    public void setReloadStartTime(long reloadStartTime) {
+        this.reloadStartTime = reloadStartTime;
+    }
+
+    @VisibleForTesting
+    public double getLastShiftTime() {
+        return lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public void setLastShiftTime(double lastShiftTime) {
+        this.lastShiftTime = lastShiftTime;
+    }
+
+    @VisibleForTesting
+    public void setJumpStartTime(long jumpStartTime) {
+        this.jumpStartTime = jumpStartTime;
     }
 }
