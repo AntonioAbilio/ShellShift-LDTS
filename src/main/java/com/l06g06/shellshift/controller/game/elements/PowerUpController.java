@@ -57,6 +57,7 @@ public class PowerUpController extends GameController {
     }
 
     public void spawnOnPlatform() {
+        //TODO : remover sout's
         List<Platform> platforms = getModel().getPlatforms();
 
         Platform randomPlatform;
@@ -95,7 +96,6 @@ public class PowerUpController extends GameController {
                 powerUpIterator.remove();
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.PowerUP);
-                //SomAqui Sound.playSound(SoundsFx.PowerUP);
             }
         }
     }

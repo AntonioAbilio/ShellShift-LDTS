@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.MapController;
@@ -33,18 +34,24 @@ public class CloudController extends GameController {
             lastSpawnTime = currentTime;
             spawn();
         }
-
-
     }
 
-    private void spawn() {
+    public void spawn() {
         getModel().getCloudSpawner().spawn(new Position(200,40));
-        System.out.println(getModel().getClouds().size());
     }
 
     public void left_shift(){
         for (Cloud c : getModel().getClouds()) {
             c.setPosition(new Position(c.getPosition().getX()-1, c.getPosition().getY()));
         }
+    }
+
+    @VisibleForTesting
+    public void setLastShiftTime(double time) {
+        this.lastShiftTime = time;
+    }
+    @VisibleForTesting
+    public void setLastSpawnTime(double time) {
+        this.lastSpawnTime = time;
     }
 }

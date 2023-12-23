@@ -133,4 +133,7 @@ public class MapController extends GameController{
         return checkpoint2;
     }
 
+    public long getAddedScoreTimer() {
+        return addedScoreTimer;
+    }
 }

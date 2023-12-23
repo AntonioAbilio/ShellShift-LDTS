@@ -190,7 +190,6 @@ public class MapControllerTest {
         MapController mapControl = new MapController(map);
 
         Assertions.assertTrue(mapControl.isGameOver());
-
     }
 
     @Property
@@ -213,6 +212,13 @@ public class MapControllerTest {
         verify(database).addScore(score);
         verify(database).addCoins(coins);
         verify(database).addMonstersKilled(monstersKilled);
+    }
+
+    @Test
+    public void testAddedScoreTimer() {
+        long time = System.currentTimeMillis();
+        mapController.setAddedScoreTimer(time);
+        Assertions.assertEquals(time, mapController.getAddedScoreTimer());
     }
 
 }
