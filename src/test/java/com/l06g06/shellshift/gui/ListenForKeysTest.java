@@ -1,7 +1,9 @@
 package com.l06g06.shellshift.gui;
 
+import com.l06g06.shellshift.Database;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import java.awt.event.KeyEvent;
 
 import static org.mockito.Mockito.*;
@@ -13,6 +15,7 @@ public class ListenForKeysTest {
 
     @BeforeEach
     public void setUp() {
+        Database.getInstance().setSound(true);
         lanterna_gui = mock(LanternaGUI.class);
         listenForKeys = new ListenForKeys(lanterna_gui);
         keyEvent = mock(KeyEvent.class);

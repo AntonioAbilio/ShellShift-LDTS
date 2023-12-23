@@ -2,14 +2,12 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
-
 import com.l06g06.shellshift.states.GameOverState;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
@@ -51,6 +49,7 @@ public class MapControllerTest {
 
     @BeforeEach
     public void setup() {
+        Database.getInstance().setSound(true);
         this.addedScoreTimer = 0;
         this.game = mock(Game.class);
         this.action = new ArrayList<>();
@@ -92,30 +91,30 @@ public class MapControllerTest {
     public void updateAccelerationTest() {
         when(map.getScore()).thenReturn(299);
         mapController.updateAcceleration();
-        Assertions.assertEquals(false, mapController.isCheckpoint1());
-        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        Assertions.assertFalse(mapController.isCheckpoint1());
+        Assertions.assertFalse(mapController.isCheckpoint2());
 
         when(map.getScore()).thenReturn(300);
         mapController.updateAcceleration();
-        Assertions.assertEquals(false, mapController.isCheckpoint1());
-        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        Assertions.assertFalse(mapController.isCheckpoint1());
+        Assertions.assertFalse(mapController.isCheckpoint2());
 
         when(map.getScore()).thenReturn(301);
         mapController.updateAcceleration();
-        Assertions.assertEquals(true, mapController.isCheckpoint1());
-        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        Assertions.assertTrue(mapController.isCheckpoint1());
+        Assertions.assertFalse(mapController.isCheckpoint2());
         Assertions.assertEquals(0.05, storeValueShift);
         Assertions.assertEquals(5, storeValueSpawn);
 
         when(map.getScore()).thenReturn(800);
         mapController.updateAcceleration();
-        Assertions.assertEquals(true, mapController.isCheckpoint1());
-        Assertions.assertEquals(false, mapController.isCheckpoint2());
+        Assertions.assertTrue(mapController.isCheckpoint1());
+        Assertions.assertFalse(mapController.isCheckpoint2());
 
         when(map.getScore()).thenReturn(801);
         mapController.updateAcceleration();
-        Assertions.assertEquals(true, mapController.isCheckpoint1());
-        Assertions.assertEquals(true, mapController.isCheckpoint2());
+        Assertions.assertTrue(mapController.isCheckpoint1());
+        Assertions.assertTrue(mapController.isCheckpoint2());
         Assertions.assertEquals(0.03, storeValueShift);
         Assertions.assertEquals(2, storeValueSpawn);
     }
@@ -166,6 +165,7 @@ public class MapControllerTest {
 
     @Property
     public void gameOverPositionDetectionTest(@ForAll @IntRange(max = 0) int x, @ForAll @IntRange(min = 150) int y){
+        Database.getInstance().setSound(true);
         Chell chell = mock(Chell.class);
         when(chell.getPosition()).thenReturn(new Position(x,y));
 
@@ -180,6 +180,7 @@ public class MapControllerTest {
 
     @Property
     public void gameOverLivesDetectionTest(@ForAll @IntRange(max = 0) int lives){
+        Database.getInstance().setSound(true);
         Chell chell = mock(Chell.class);
         when(chell.getPosition()).thenReturn(new Position(50,50));
         when(chell.getLives()).thenReturn(lives);
@@ -194,6 +195,7 @@ public class MapControllerTest {
 
     @Property
     public void updateDatabaseTest(@ForAll @IntRange(max = 999999) int score, @ForAll @IntRange(max = 999) int coins, @ForAll @IntRange(max = 19999) int monstersKilled) {
+        Database.getInstance().setSound(true);
         this.chell = mock(Chell.class);
         when(chell.getPosition()).thenReturn(new Position(50,50));
 

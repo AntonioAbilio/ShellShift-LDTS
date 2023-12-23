@@ -8,13 +8,23 @@ import java.util.List;
 
 public interface Gui {
     List<PressedKey> getNextAction();
+
     void drawASCII(Position position, String color);
+
     void drawImageASCII(ImmutableList<String> image, Position position);
+
     void clear();
+
     void refresh() throws IOException;
+
     void close() throws IOException;
+
     void setGradientBackground(String innerColor, String outerColor);
+
     void setBackground(String color);
+
     void numToASCII(int num, int x, int y);
-    enum PressedKey{UP,DOWN,LEFT,RIGHT,SELECT,FIRE,EXIT,NONE};
+
+    enum PressedKey {UP, DOWN, LEFT, RIGHT, SELECT, FIRE, EXIT, NONE}
+
 }

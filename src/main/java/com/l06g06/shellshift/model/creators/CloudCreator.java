@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.game.elements.Position;
 
 import java.util.Random;
 
-public class CloudCreator extends Creator{
+public class CloudCreator extends Creator {
     @Override
     public Element create(Position position) {
         Random random = new Random();

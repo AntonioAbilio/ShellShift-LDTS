@@ -20,7 +20,7 @@ public class StatisticsController extends Controller<Statistics> {
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
-            switch(gpk){
+            switch (gpk) {
                 case EXIT:
                     game.setState(new MainMenuState(new MainMenu()));
                     break;

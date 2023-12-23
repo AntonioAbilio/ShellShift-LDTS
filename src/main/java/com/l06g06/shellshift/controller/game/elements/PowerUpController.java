@@ -5,7 +5,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -21,7 +20,7 @@ public class PowerUpController extends GameController {
 
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
-    private Random random;
+    private final Random random;
 
     public PowerUpController(Map map) {
         super(map);
@@ -34,13 +33,13 @@ public class PowerUpController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn power up logic
-        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 10){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 10) {
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift power up logic
-        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()) {
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -49,8 +48,8 @@ public class PowerUpController extends GameController {
 
     }
 
-    public void left_shift(){
-        for (PowerUp powerUp : getModel().getPowerUps()){
+    public void left_shift() {
+        for (PowerUp powerUp : getModel().getPowerUps()) {
             int x = powerUp.getPosition().getX();
             int y = powerUp.getPosition().getY();
             powerUp.setPosition(new Position(x - 1, y));
@@ -58,24 +57,19 @@ public class PowerUpController extends GameController {
     }
 
     public void spawnOnPlatform() {
-        //TODO : remover sout's
         List<Platform> platforms = getModel().getPlatforms();
 
         Platform randomPlatform;
         int i = 0;
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
-            System.out.println("x: " + randomPlatform.getPosition().getX());
-            System.out.println("SEARCHING " + i);
             i++;
         } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
-            System.out.println("NOT FOUND");
             return;
         }
 
-        System.out.println("FOUND");
         int minY = 200;
         for (int y : randomPlatform.getPolygon().ypoints) {
             if (y < minY) minY = y;
@@ -90,19 +84,17 @@ public class PowerUpController extends GameController {
     public void powerUpCollision() {
         List<PowerUp> powerUps = getModel().getPowerUps();
         Iterator<PowerUp> powerUpIterator = powerUps.iterator();
-        while(powerUpIterator.hasNext()) {
+        while (powerUpIterator.hasNext()) {
             PowerUp powerUp = powerUpIterator.next();
             if (getModel().getChell().getPolygon().intersects(powerUp.getPolygon().getBounds2D())) {
                 powerUp.activate(getModel());
-                System.out.println("CHELL : X = " + getModel().getChell().getPosition().getX() + " Y = " + getModel().getChell().getPosition().getY());
-                System.out.println("POWERUP : X = " + powerUp.getPosition().getX() + " Y = " + powerUp.getPosition().getY());
-
                 powerUpIterator.remove();
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.PowerUP);
             }
         }
     }
+
     @VisibleForTesting
     public void setLastShiftTime(double lastShiftTime) {
         this.lastShiftTime = lastShiftTime;

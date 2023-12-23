@@ -6,7 +6,7 @@ public class HorizontalMoveStrategy implements MoveStrategy {
     private int distToLeft;
     private boolean movingLeft;
 
-    public HorizontalMoveStrategy(){
+    public HorizontalMoveStrategy() {
         this.distToLeft = 0;
         this.movingLeft = true;
     }

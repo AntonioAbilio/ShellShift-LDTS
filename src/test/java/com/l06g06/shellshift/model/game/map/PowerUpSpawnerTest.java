@@ -1,12 +1,10 @@
 package com.l06g06.shellshift.model.game.map;
 
-import com.l06g06.shellshift.model.game.elements.Coin;
-import com.l06g06.shellshift.model.game.elements.Platform;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
-import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
 import com.l06g06.shellshift.model.game.spawners.PowerUpSpawner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +20,7 @@ public class PowerUpSpawnerTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         this.powerUps = new ArrayList<>();
         this.powerUpSpawner = new PowerUpSpawner(powerUps);
     }

@@ -1,12 +1,11 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
-import com.l06g06.shellshift.viewer.game.EnemyViewer;
 import com.l06g06.shellshift.viewer.game.HardMonsterViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,6 +21,7 @@ public class HardMonsterViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         this.moveStrategy = mock(MoveStrategy.class);
         this.hardMonster = new HardMonster(new Position(10, 10), moveStrategy);
         hardMonsterViewer = new HardMonsterViewer();

@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.creators;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
@@ -10,7 +11,6 @@ import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.Vertical
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 import java.util.Random;
 
@@ -20,6 +20,7 @@ public class EnemyCreatorTests {
 
     @Property
     void testCreateMethod(@ForAll int x, @ForAll int y) {
+        Database.getInstance().setSound(true);
         enemycreator = new EnemyCreator();
         Random rn = new Random();
         long seed = rn.nextInt();
@@ -45,6 +46,7 @@ public class EnemyCreatorTests {
 
     @Property
     void testMoveStrategiesOfAllMonsters(@ForAll int x, @ForAll int y) {
+        Database.getInstance().setSound(true);
         enemycreator = new EnemyCreator();
         Random rn = new Random();
         long seed = rn.nextInt();

@@ -14,8 +14,9 @@ import java.util.Random;
 public class EnemyCreator extends Creator {
 
     private Random rn = new Random();
+
     @VisibleForTesting
-    public void setRandomSeed(long seed){
+    public void setRandomSeed(long seed) {
         rn = new Random(seed);
     }
 

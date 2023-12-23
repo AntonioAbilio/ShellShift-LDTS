@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
@@ -13,13 +14,11 @@ import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
-import com.l06g06.shellshift.viewer.game.*;
+import com.l06g06.shellshift.viewer.game.GameViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.mockito.Mockito.*;
@@ -30,6 +29,7 @@ public class GameViewerTest {
     private Gui gui;
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         map = mock(Map.class);
         gui = mock(Gui.class);
 
@@ -100,11 +100,11 @@ public class GameViewerTest {
     void testDrawElements() {
         Position position = new Position(10, 10);
         Chell chell = new Chell(position);
-        List<Cloud> clouds = Arrays.asList(new Cloud(position));
-        List<Platform> platforms = Arrays.asList(new Platform(position));
-        List<Bullet> bullets = Arrays.asList(new Bullet(position));
-        List<Coin> coins = Arrays.asList(new Coin(position));
-        List<PowerUp> powerUps = Arrays.asList(new StarPowerUp(position));
+        List<Cloud> clouds = List.of(new Cloud(position));
+        List<Platform> platforms = List.of(new Platform(position));
+        List<Bullet> bullets = List.of(new Bullet(position));
+        List<Coin> coins = List.of(new Coin(position));
+        List<PowerUp> powerUps = List.of(new StarPowerUp(position));
         List<Enemy> enemies = Arrays.asList(new SoftMonster(position, new HorizontalMoveStrategy()), new HardMonster(position, new HorizontalMoveStrategy()));
 
         when(map.getChell()).thenReturn(chell);

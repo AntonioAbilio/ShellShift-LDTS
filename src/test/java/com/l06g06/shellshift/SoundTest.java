@@ -4,10 +4,12 @@ import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.sound.sampled.*;
+import javax.sound.sampled.Clip;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 class SoundTest {
 
@@ -15,9 +17,9 @@ class SoundTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         Sound.setInstance(sound);
         sound = Sound.getInstance();
-
     }
 
     @Test
@@ -26,13 +28,6 @@ class SoundTest {
         Sound instance2 = Sound.getInstance();
         assertSame(instance1, instance2);
     }
-
-    /*@Test
-    void playSoundFx_SuccessfullyPlaysSound() {
-        sound.playPrivateSoundFx(SoundsFx.OptionSelect);
-        assertNotNull(sound.getThread());
-        assertTrue(sound.getThread().isAlive());
-    }*/
 
     @Test
     void run_DoNothingWhenSoundIsOff() {

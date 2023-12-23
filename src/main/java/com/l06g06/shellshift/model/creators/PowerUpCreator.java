@@ -18,7 +18,7 @@ public class PowerUpCreator extends Creator {
 
     public PowerUpCreator() {
         availablePowerUps = new HashMap<>();
-        Position pos = new Position(0,0);
+        Position pos = new Position(0, 0);
         availablePowerUps.put(0, new BulletPowerUp(pos));
         availablePowerUps.put(1, new SpeedPowerUp(pos));
         availablePowerUps.put(2, new StarPowerUp(pos));
@@ -26,7 +26,7 @@ public class PowerUpCreator extends Creator {
     }
 
     @VisibleForTesting
-    public void setRandomSeed(int seed){
+    public void setRandomSeed(int seed) {
         random = new Random(seed);
     }
 

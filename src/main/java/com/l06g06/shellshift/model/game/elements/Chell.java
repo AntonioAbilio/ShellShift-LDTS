@@ -18,23 +18,22 @@ public class Chell extends Element {
     private int gravity = 1000;
     private int horizontalSpeed = 1;
     private boolean direction = true; // true = right, false = left
-    private boolean invincible = false;
     private boolean blink = false; // true = show Chell, false = don't show Chell
     private long invincibilityEndTime = 0;
     private long horizontalSpeedUpEndTime = 0;
     private final static int height = 15;
     private final static int width = 15;
 
-    public static int getHeight(){
+    public static int getHeight() {
         return Chell.height;
     }
 
     @VisibleForTesting
-    public int getActualHorizontalSpeed(){
+    public int getActualHorizontalSpeed() {
         return this.horizontalSpeed;
     }
 
-    public static int getWidth(){
+    public static int getWidth() {
         return Chell.width;
     }
 
@@ -62,10 +61,10 @@ public class Chell extends Element {
         int x = position.getX();
         int y = position.getY();
 
-        chellHitbox.addPoint(x-14,y-14);
-        chellHitbox.addPoint(x,y-14);
-        chellHitbox.addPoint(x-14, y+1);
-        chellHitbox.addPoint(x, y+1);
+        chellHitbox.addPoint(x - 14, y - 14);
+        chellHitbox.addPoint(x, y - 14);
+        chellHitbox.addPoint(x - 14, y + 1);
+        chellHitbox.addPoint(x, y + 1);
         this.hitbox = chellHitbox;
 
     }
@@ -89,6 +88,7 @@ public class Chell extends Element {
     public Gun getGun() {
         return this.gun;
     }
+
     public void setGun(Gun gun) {
         this.gun = gun;
     }
@@ -103,13 +103,14 @@ public class Chell extends Element {
 
     @Override
     public void setPosition(Position position) {
-        super.setPosition(new Position(position.getX(), position.getY()/* - 15*/));
+        super.setPosition(new Position(position.getX(), position.getY()));
     }
 
     public int getHorizontalSpeed() {
         return horizontalSpeed;
     }
 
+    @SuppressWarnings("FutureReturnValueIgnored")
     public void setHorizontalSpeedWithTimer(long milliseconds, int speed) {
         this.horizontalSpeedUpEndTime = System.currentTimeMillis() + milliseconds;
         this.horizontalSpeed = speed;
@@ -152,10 +153,12 @@ public class Chell extends Element {
             }
         }, delay);
     }
+
     public void toggleBlink() {
         this.blink = !this.blink;
     }
-    public void stopBlinking(){
+
+    public void stopBlinking() {
         blink = false;
     }
 

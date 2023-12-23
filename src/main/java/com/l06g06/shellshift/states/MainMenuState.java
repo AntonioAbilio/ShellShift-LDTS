@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.viewer.mainMenu.MainMenuViewer;
 
-public class MainMenuState extends State<MainMenu>{
+public class MainMenuState extends State<MainMenu> {
     public MainMenuState(MainMenu model) {
         super(model);
     }
@@ -15,6 +15,7 @@ public class MainMenuState extends State<MainMenu>{
     protected View<MainMenu> getViewer() {
         return new MainMenuViewer(getModel());
     }
+
     @Override
     protected Controller<MainMenu> getController() {
         return new MainMenuController(getModel());

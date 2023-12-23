@@ -21,7 +21,7 @@ import java.util.List;
 
 public class TutorialController extends Controller<TutorialMap> {
     boolean isJumping;
-    long jumpStartTime=0;
+    long jumpStartTime = 0;
     int groundY;
     long reloadStartTime = 0;
     double lastShiftTime = 0;
@@ -32,6 +32,7 @@ public class TutorialController extends Controller<TutorialMap> {
     public TutorialController(TutorialMap model) {
         super(model);
     }
+
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         for (Gui.PressedKey gpk : action) {
@@ -61,7 +62,7 @@ public class TutorialController extends Controller<TutorialMap> {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= shiftCooldown){
+        if (currentTime - lastShiftTime >= shiftCooldown) {
             lastShiftTime = currentTime;
             leftShift();
         }
@@ -78,13 +79,14 @@ public class TutorialController extends Controller<TutorialMap> {
             bulletCollision();
         }
 
-        if (getModel().getEnemies().size() <= 0){
+        if (getModel().getEnemies().size() <= 0) {
             getModel().stopCloudAddingTask();
             Game.sleepTimeMS(100);
             game.setState(new MainMenuState(new MainMenu()));
         }
     }
-    public void jump(long time){
+
+    public void jump(long time) {
         isJumping = true;
         jumpStartTime = time;
         groundY = getModel().getChell().getPosition().getY();
@@ -111,20 +113,20 @@ public class TutorialController extends Controller<TutorialMap> {
         }
     }
 
-    public void moveLeft(){
+    public void moveLeft() {
         getModel().getChell().setDirection(false);
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         if (x > 25)
-            getModel().getChell().setPosition(new Position(x-1,y));
+            getModel().getChell().setPosition(new Position(x - 1, y));
     }
 
-    public void moveRight(){
+    public void moveRight() {
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         getModel().getChell().setDirection(true);
         if (x < 81)
-            getModel().getChell().setPosition(new Position(x+1,y));
+            getModel().getChell().setPosition(new Position(x + 1, y));
     }
 
     public void fire(long time) {
@@ -140,8 +142,8 @@ public class TutorialController extends Controller<TutorialMap> {
         }
     }
 
-    public void bulletUpdate(){
-        for (Bullet bullet : getModel().getBullets()){
+    public void bulletUpdate() {
+        for (Bullet bullet : getModel().getBullets()) {
             int x = bullet.getPosition().getX();
             int y = bullet.getPosition().getY();
 
@@ -164,7 +166,7 @@ public class TutorialController extends Controller<TutorialMap> {
                     bulletIterator.remove();
                     enemy.decreaseHP(bullet.getDamage());
                     if (enemy.getHP() <= 0) {
-                       enemyIterator.remove();
+                        enemyIterator.remove();
                     }
                 }
             }
@@ -180,8 +182,7 @@ public class TutorialController extends Controller<TutorialMap> {
                 Cloud cloud = cloudIterator.next();
                 if (cloud.getPosition().getX() < -30) {
                     cloudIterator.remove();
-                }
-                else cloud.setPosition(new Position(cloud.getPosition().getX()-1,cloud.getPosition().getY()));
+                } else cloud.setPosition(new Position(cloud.getPosition().getX() - 1, cloud.getPosition().getY()));
             }
 
             delayBackground = false;
@@ -196,7 +197,7 @@ public class TutorialController extends Controller<TutorialMap> {
         if (coinCheckpoint) {
             List<Enemy> enemies = getModel().getEnemies();
             Iterator<Enemy> enemiesIterator = enemies.iterator();
-            while(enemiesIterator.hasNext()) {
+            while (enemiesIterator.hasNext()) {
                 Enemy enemy = enemiesIterator.next();
                 int x = enemy.getPosition().getX();
                 int y = enemy.getPosition().getY();

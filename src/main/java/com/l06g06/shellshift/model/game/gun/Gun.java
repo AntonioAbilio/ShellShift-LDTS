@@ -7,7 +7,7 @@ import com.l06g06.shellshift.SoundsFx;
 
 public class Gun {
     private int numBullets;
-    private FireStrategy strategy;
+    private final FireStrategy strategy;
 
     @VisibleForTesting
     public Gun(FireStrategy strategy, int numBullets) {
@@ -19,6 +19,7 @@ public class Gun {
         this.strategy = Database.getInstance().getFiringStrategy();
         this.numBullets = Database.getInstance().getStartingNumBullets();
     }
+
     public void decreaseNumBullet() {
         Sound sound = Sound.getInstance();
         sound.playSound(SoundsFx.BulletFired);

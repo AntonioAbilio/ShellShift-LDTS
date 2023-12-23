@@ -36,6 +36,7 @@ public class ShopControllerTest {
 
         Database.setInstance(this.database);
         database = Database.getInstance();
+        database.setSound(true);
     }
 
     @Test
@@ -188,9 +189,7 @@ public class ShopControllerTest {
         expectedNumberOfCoins = 10;
 
         try {
-            //System.out.println(database.getStartingNumBullets());
             shopController.step(game, actions, 0);
-            //System.out.println(database.getStartingNumBullets());
         } catch (IOException e) {
             System.out.println(e.getMessage());
             fail();

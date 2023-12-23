@@ -17,6 +17,7 @@ import java.util.Objects;
 public class BulletController extends GameController {
 
     long reloadStartTime = 0;
+
     public BulletController(Map map) {
         super(map);
     }
@@ -34,7 +35,7 @@ public class BulletController extends GameController {
     }
 
     public void fire(long time) {
-        if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0){
+        if (time - reloadStartTime >= getModel().getGun().getReloadTime() && getModel().getGun().getNumBullets() > 0) {
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
             Bullet bullet = new Bullet(new Position(getModel().getChell().isDirection() ? x : x - 16, y - 6));
@@ -46,8 +47,8 @@ public class BulletController extends GameController {
         }
     }
 
-    public void bulletUpdate(){
-        for (Bullet bullet : getModel().getBullets()){
+    public void bulletUpdate() {
+        for (Bullet bullet : getModel().getBullets()) {
             int x = bullet.getPosition().getX();
             int y = bullet.getPosition().getY();
 
@@ -79,12 +80,12 @@ public class BulletController extends GameController {
         }
     }
 
-    public void removeOutOfBoundsBullets(){
+    public void removeOutOfBoundsBullets() {
         List<Bullet> bullets = getModel().getBullets();
         Iterator<Bullet> it = bullets.iterator();
-        while (it.hasNext()){
+        while (it.hasNext()) {
             Bullet bullet = it.next();
-            if (bullet.getPosition().getX() < -5 || bullet.getPosition().getX() > 190){
+            if (bullet.getPosition().getX() < -5 || bullet.getPosition().getX() > 190) {
                 it.remove();
             }
         }

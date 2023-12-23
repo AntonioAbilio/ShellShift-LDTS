@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -17,6 +18,7 @@ public class CloudViewerTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         cloudViewer = new CloudViewer();
         gui = Mockito.mock(Gui.class);
     }

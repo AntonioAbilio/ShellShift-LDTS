@@ -12,8 +12,8 @@ public class SoftMonsterViewer extends EnemyViewer {
     public void draw(Enemy enemy, Gui gui) {
         if (enemy instanceof SoftMonster) {
             gui.drawImageASCII(Components.SoftMonster.getImage(), enemy.getPosition());
-            for (int i = 0; i < enemy.getHP()/25; i++)
-                gui.drawImageASCII(Components.HealthBar.getImage(), new Position(enemy.getPosition().getX() + 3 + i*3, enemy.getPosition().getY()-6));
+            for (int i = 0; i < enemy.getHP() / 25; i++)
+                gui.drawImageASCII(Components.HealthBar.getImage(), new Position(enemy.getPosition().getX() + 3 + i * 3, enemy.getPosition().getY() - 6));
 
         }
     }

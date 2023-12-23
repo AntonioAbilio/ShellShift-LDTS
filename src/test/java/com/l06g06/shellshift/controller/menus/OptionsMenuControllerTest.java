@@ -5,7 +5,7 @@ import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
-import com.l06g06.shellshift.states.*;
+import com.l06g06.shellshift.states.MainMenuState;
 import net.jqwik.api.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
@@ -34,6 +36,7 @@ public class OptionsMenuControllerTest {
 
         Database.setInstance(this.database);
         database = Database.getInstance();
+        database.setSound(true);
     }
 
     @Test

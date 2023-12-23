@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.creators;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -10,11 +11,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -26,6 +25,7 @@ public class PlatformCreatorTests {
 
     @Property
     void testCreateMethodWithAllSeeds(@ForAll int x, @ForAll int y) {
+        Database.getInstance().setSound(true);
         platformCreator = new PlatformCreator();
         Element platform = platformCreator.create(new Position(x, y));
         Assertions.assertNotNull(platform);
@@ -39,6 +39,7 @@ public class PlatformCreatorTests {
 
     @BeforeEach
     public void setUp(){
+        Database.getInstance().setSound(true);
         platformCreator = new PlatformCreator();
     }
 

@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
@@ -22,8 +23,8 @@ public class MainMenuViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         mainMenu = Mockito.mock(MainMenu.class);
-
         mainMenuViewer = new MainMenuViewer(mainMenu);
         gui = Mockito.mock(Gui.class);
     }

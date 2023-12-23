@@ -3,14 +3,12 @@ package com.l06g06.shellshift.controller.game.elements;
 import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.GameController;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 public class CloudController extends GameController {
@@ -25,24 +23,24 @@ public class CloudController extends GameController {
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= getModel().getShiftCooldown() + 0.15){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown() + 0.15) {
             lastShiftTime = currentTime;
             left_shift();
         }
 
-        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 15){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 15) {
             lastSpawnTime = currentTime;
             spawn();
         }
     }
 
     public void spawn() {
-        getModel().getCloudSpawner().spawn(new Position(200,40));
+        getModel().getCloudSpawner().spawn(new Position(200, 40));
     }
 
-    public void left_shift(){
+    public void left_shift() {
         for (Cloud c : getModel().getClouds()) {
-            c.setPosition(new Position(c.getPosition().getX()-1, c.getPosition().getY()));
+            c.setPosition(new Position(c.getPosition().getX() - 1, c.getPosition().getY()));
         }
     }
 
@@ -50,6 +48,7 @@ public class CloudController extends GameController {
     public void setLastShiftTime(double time) {
         this.lastShiftTime = time;
     }
+
     @VisibleForTesting
     public void setLastSpawnTime(double time) {
         this.lastSpawnTime = time;

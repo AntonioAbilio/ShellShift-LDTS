@@ -12,7 +12,6 @@ import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.spawners.PowerUpSpawner;
-import net.jqwik.api.Data;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.Positive;
@@ -32,6 +31,7 @@ public class MapTest {
 
     @BeforeEach
     public void setUp() {
+        Database.getInstance().setSound(true);
         map = new Map();
     }
 
@@ -234,6 +234,7 @@ public class MapTest {
 
     @Property
     void testSetPlatforms(@ForAll @Positive int x, @ForAll @Positive int y) {
+        Database.getInstance().setSound(true);
         map = new Map();
         List<Platform> expectedPlatforms = Arrays.asList(new Platform(new Position(x,y)), new Platform(new Position(y,y)));
         map.setPlatforms(expectedPlatforms);

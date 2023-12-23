@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -18,6 +19,7 @@ public class PlatformViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         platform = new Platform(new Position(10,10));
         viewer = new PlatformViewer();
         gui = Mockito.mock(Gui.class);

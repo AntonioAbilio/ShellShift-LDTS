@@ -6,7 +6,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.*;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.GameOverState;
@@ -14,7 +13,7 @@ import com.l06g06.shellshift.states.GameOverState;
 import java.io.IOException;
 import java.util.List;
 
-public class MapController extends GameController{
+public class MapController extends GameController {
     private long addedScoreTimer = System.currentTimeMillis();
     private final ChellController chellController;
     private final BulletController bulletController;
@@ -38,7 +37,7 @@ public class MapController extends GameController{
                          CloudController cloudController,
                          PowerUpController powerUpController,
                          ActivePowerUpController activePowerUpController,
-                         long addedScoreTimer){
+                         long addedScoreTimer) {
         super(map);
         this.chellController = chellController;
         this.bulletController = bulletController;
@@ -53,7 +52,7 @@ public class MapController extends GameController{
         this.addedScoreTimer = addedScoreTimer;
     }
 
-    public MapController(Map map){
+    public MapController(Map map) {
         super(map);
         this.chellController = new ChellController(map);
         this.bulletController = new BulletController(map);
@@ -91,13 +90,10 @@ public class MapController extends GameController{
             Game.sleepTimeMS(200);
             game.setState(new GameOverState(new GameOver()));
         }
-
-        long elapsedTimeSinceGameStart =  (time - getModel().getGameStartTime()) / 1000;
         updateAcceleration();
-
     }
 
-    public void updateAcceleration(){
+    public void updateAcceleration() {
         // Acceleration is divided in 3 levels
         if (getModel().getScore() > 300 && getModel().getScore() <= 800 && !checkpoint1) {
             checkpoint1 = true;

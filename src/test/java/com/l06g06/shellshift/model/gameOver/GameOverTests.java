@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.gameOver;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ public class GameOverTests {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         gameOver = new GameOver();
     }
 
@@ -58,6 +60,6 @@ public class GameOverTests {
         List<Components> componentsList = new ArrayList<>(0);
         componentsList.add(Components.Restart);
         componentsList.add(Components.MainMenu);
-        Assertions.assertTrue(componentsList.equals(gameOver.getOptions()));
+        Assertions.assertEquals(componentsList, gameOver.getOptions());
     }
 }

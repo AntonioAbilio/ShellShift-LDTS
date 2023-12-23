@@ -13,7 +13,7 @@ public class GameOverViewer extends View<GameOver> {
     }
 
     @Override
-    public void drawElements(Gui gui){
+    public void drawElements(Gui gui) {
         gui.drawImageASCII(Components.GameOver.getImage(), new Position(25, 10));
 
         int i = 0;

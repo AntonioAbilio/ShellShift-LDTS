@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.ActivePowerUpController;
 import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
@@ -8,10 +9,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.io.IOException;
 import java.util.Collections;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class ActivePowerUpControllerTest {
     private Map map;
@@ -19,6 +20,7 @@ public class ActivePowerUpControllerTest {
 
     @BeforeEach
     void setup() {
+        Database.getInstance().setSound(true);
         this.map = mock(Map.class);
         this.activePowerUpController = new ActivePowerUpController(map);
     }

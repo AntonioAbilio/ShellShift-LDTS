@@ -13,10 +13,6 @@ import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.PowerUpSpawner;
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
-import net.jqwik.api.constraints.IntRange;
-import org.checkerframework.errorprone.checker.units.qual.N;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,7 +22,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class PowerUpControllerTest {
     private Map map;
@@ -40,6 +37,7 @@ public class PowerUpControllerTest {
 
         Database.setInstance(this.database);
         database = Database.getInstance();
+        database.setSound(true);
     }
 
     @Test

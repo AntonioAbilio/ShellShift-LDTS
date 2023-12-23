@@ -1,6 +1,6 @@
 package com.l06g06.shellshift;
 
-public enum SoundsFx{
+public enum SoundsFx {
     Coin("sounds/coin.wav"),
     PowerUP("sounds/powerup.wav"),
     Death("sounds/death.wav"),

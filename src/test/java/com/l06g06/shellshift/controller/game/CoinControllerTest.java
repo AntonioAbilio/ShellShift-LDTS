@@ -3,12 +3,13 @@ package com.l06g06.shellshift.controller.game;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CoinController;
-import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.*;
+import com.l06g06.shellshift.model.game.elements.Chell;
+import com.l06g06.shellshift.model.game.elements.Coin;
+import com.l06g06.shellshift.model.game.elements.Platform;
+import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
-import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,13 +18,11 @@ import org.mockito.Mockito;
 import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.when;
 
 public class CoinControllerTest {
     private Map mockedMap;
@@ -36,7 +35,7 @@ public class CoinControllerTest {
 
     @BeforeEach
     void setup(){
-        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.mockedMap = mock(Map.class);
         this.coins = new ArrayList<>();
         Mockito.when(mockedMap.getCoins()).thenReturn(coins);
@@ -192,7 +191,7 @@ public class CoinControllerTest {
     void spawnOnPlatformTest(){
         Platform platform = mock(Platform.class);
         CoinSpawner coinSpawner = mock(CoinSpawner.class);
-        when(mockedMap.getPlatforms()).thenReturn(Arrays.asList(platform));
+        when(mockedMap.getPlatforms()).thenReturn(Collections.singletonList(platform));
         when(mockedMap.getCoinSpawner()).thenReturn(coinSpawner);
         when(platform.getPosition()).thenReturn(new Position(300, 200));
         when(platform.getPolygon()).thenReturn(new Polygon(new int[]{0, 1, 2}, new int[]{0, 1, 2}, 3));
@@ -206,7 +205,7 @@ public class CoinControllerTest {
     public void spawnOnPlatformNoPlatformFoundTest() {
         Platform platform = mock(Platform.class);
         CoinSpawner coinSpawner = mock(CoinSpawner.class);
-        when(mockedMap.getPlatforms()).thenReturn(Arrays.asList(platform));
+        when(mockedMap.getPlatforms()).thenReturn(Collections.singletonList(platform));
         when(mockedMap.getCoinSpawner()).thenReturn(coinSpawner);
         when(platform.getPosition()).thenReturn(new Position(100, 200));
         when(platform.getPolygon()).thenReturn(new Polygon(new int[]{0, 1, 2}, new int[]{0, 1, 2}, 3));

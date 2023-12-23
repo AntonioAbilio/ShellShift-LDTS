@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -11,6 +12,7 @@ public class ActivePowerUpTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         activePowerUp = new ActivePowerUp();
     }
 

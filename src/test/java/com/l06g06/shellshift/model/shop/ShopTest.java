@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.shop;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ public class ShopTest {
 
     @BeforeEach
     public void setUp(){
+        Database.getInstance().setSound(true);
         shop = new Shop();
     }
 

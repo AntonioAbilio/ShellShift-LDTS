@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
@@ -9,16 +10,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.SimpleTimeZone;
-
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verifyNoInteractions;
 
 public class EnemyTest {
     private Position position;
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         this.position = mock(Position.class);
     }
 

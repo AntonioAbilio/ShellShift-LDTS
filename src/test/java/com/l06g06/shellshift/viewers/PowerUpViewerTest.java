@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.viewers;
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
@@ -19,6 +20,7 @@ public class PowerUpViewerTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         powerUpViewer = new PowerUpViewer();
         gui = Mockito.mock(Gui.class);
     }

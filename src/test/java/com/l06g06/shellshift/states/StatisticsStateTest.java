@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.states;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.controller.menus.StatisticsController;
 import com.l06g06.shellshift.model.statistics.Statistics;
@@ -16,6 +17,7 @@ public class StatisticsStateTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         statistics = Mockito.mock(Statistics.class);
         statisticsState = new StatisticsState(statistics);
     }

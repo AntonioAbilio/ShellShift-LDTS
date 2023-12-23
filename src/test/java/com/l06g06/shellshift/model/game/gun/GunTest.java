@@ -1,17 +1,14 @@
 package com.l06g06.shellshift.model.game.gun;
 
 import com.l06g06.shellshift.Database;
-import com.l06g06.shellshift.Sound;
-import com.l06g06.shellshift.SoundsFx;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
-import net.jqwik.api.constraints.IntRange;
 import net.jqwik.api.constraints.Positive;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
 
 public class GunTest {
 
@@ -19,6 +16,7 @@ public class GunTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         FireStrategy fireStrategy = mock(FireStrategy.class);
         this.gun = new Gun(fireStrategy);
     }
@@ -43,6 +41,7 @@ public class GunTest {
 
     @Property
     public void getReloadTimeTestFromGun(@ForAll @Positive int bullets){
+        Database.getInstance().setSound(true);
         NormalFireStrategy normalFireStrategy = new NormalFireStrategy();
         gun = new Gun(normalFireStrategy,bullets);
         Assertions.assertEquals(1000, gun.getReloadTime());

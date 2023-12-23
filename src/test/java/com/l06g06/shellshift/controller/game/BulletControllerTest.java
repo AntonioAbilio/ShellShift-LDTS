@@ -3,7 +3,6 @@ package com.l06g06.shellshift.controller.game;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.BulletController;
-import com.l06g06.shellshift.controller.game.elements.CoinController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Bullet;
 import com.l06g06.shellshift.model.game.elements.Chell;
@@ -12,21 +11,14 @@ import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
-import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
-import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.map.Map;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import javax.xml.crypto.Data;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,7 +31,7 @@ public class BulletControllerTest {
 
     @BeforeEach
     void setup(){
-        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.mockedMap = mock(Map.class);
         this.bullets = new ArrayList<>();
         this.bulletController = new BulletController(mockedMap);
@@ -62,7 +54,7 @@ public class BulletControllerTest {
     @Test
     void stepTest(){
         Game game = mock(Game.class);
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.FIRE);
+        List<Gui.PressedKey> actions = List.of(Gui.PressedKey.FIRE);
         long time = 1000;
         Position chellPosition = new Position(3, 1);
         Chell chell = new Chell(chellPosition);

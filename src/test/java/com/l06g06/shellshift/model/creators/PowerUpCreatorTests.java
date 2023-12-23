@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.creators;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.powerups.BulletPowerUp;
@@ -11,14 +12,13 @@ import net.jqwik.api.Property;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Random;
-
 public class PowerUpCreatorTests {
 
     private PowerUpCreator powerUpCreator;
 
     @Property
     void testCreateMethod(@ForAll int x, @ForAll int y) {
+        Database.getInstance().setSound(true);
         powerUpCreator = new PowerUpCreator();
         Element powerup = powerUpCreator.create(new Position(x, y));
         Assertions.assertNotNull(powerup);

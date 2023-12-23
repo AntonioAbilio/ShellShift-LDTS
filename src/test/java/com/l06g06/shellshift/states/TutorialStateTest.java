@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.states;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.controller.menus.TutorialController;
 import com.l06g06.shellshift.model.tutorial.TutorialMap;
@@ -18,6 +19,7 @@ public class TutorialStateTest {
 
     @BeforeEach
     public void setUp(){
+        Database.getInstance().setSound(true);
         tutorialMap = mock(TutorialMap.class);
         tutorialState = new TutorialState(tutorialMap);
     }

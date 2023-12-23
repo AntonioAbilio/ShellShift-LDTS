@@ -1,14 +1,11 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
-import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
-import com.l06g06.shellshift.viewer.game.EnemyViewer;
-import com.l06g06.shellshift.viewer.game.HardMonsterViewer;
 import com.l06g06.shellshift.viewer.game.SoftMonsterViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,6 +24,7 @@ public class SoftMonsterViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         softMonster = new SoftMonster(new Position(10, 10), moveStrategy);
         softMonsterViewer = new SoftMonsterViewer();
         gui = Mockito.mock(Gui.class);

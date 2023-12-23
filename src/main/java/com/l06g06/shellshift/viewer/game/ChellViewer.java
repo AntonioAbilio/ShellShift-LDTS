@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Position;
 
 
-public class ChellViewer implements ElementViewer<Chell>{
+public class ChellViewer implements ElementViewer<Chell> {
     @Override
     public void draw(Chell chell, Gui gui) {
         if (!chell.getBlink())

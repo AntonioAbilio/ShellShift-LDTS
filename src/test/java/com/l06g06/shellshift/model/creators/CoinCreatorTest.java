@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.creators;
 
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Element;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -13,6 +14,7 @@ public class CoinCreatorTest {
 
     @Property
     void testCreateMethodWithAllSeeds(@ForAll int x, @ForAll int y) {
+        Database.getInstance().setSound(true);
         coinCreator = new CoinCreator();
         Element coin = coinCreator.create(new Position(x, y));
         Assertions.assertNotNull(coin);

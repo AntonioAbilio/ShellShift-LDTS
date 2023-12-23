@@ -2,12 +2,10 @@ package com.l06g06.shellshift.controller.game.elements;
 
 import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 

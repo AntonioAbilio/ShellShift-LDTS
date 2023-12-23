@@ -1,23 +1,18 @@
 package com.l06g06.shellshift.gui;
 
-import com.google.common.annotations.VisibleForTesting;
 import com.google.common.collect.ImmutableList;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
-
-
 import com.googlecode.lanterna.screen.TerminalScreen;
 import com.googlecode.lanterna.terminal.DefaultTerminalFactory;
 import com.googlecode.lanterna.terminal.Terminal;
-import com.googlecode.lanterna.terminal.swing.AWTTerminal;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFontConfiguration;
 import com.googlecode.lanterna.terminal.swing.AWTTerminalFrame;
-import com.googlecode.lanterna.terminal.swing.TerminalScrollController;
+import com.l06g06.shellshift.CharColor;
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.model.game.elements.Position;
-import com.l06g06.shellshift.CharColor;
 
 import java.awt.*;
 import java.awt.event.KeyListener;
@@ -31,10 +26,10 @@ import java.util.List;
 
 public class LanternaGUI implements Gui {
     protected final TerminalScreen screen;
-    private List<Integer> buttons = new ArrayList<>();
+    private final List<Integer> buttons = new ArrayList<>();
 
     // Constructor for tests
-    public LanternaGUI(TerminalScreen screen){
+    public LanternaGUI(TerminalScreen screen) {
         this.screen = screen;
     }
 
@@ -74,8 +69,8 @@ public class LanternaGUI implements Gui {
         return screen;
     }
 
-    public void addKeyListener(KeyListener keyListener){
-        ((AWTTerminalFrame)getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
+    public void addKeyListener(KeyListener keyListener) {
+        ((AWTTerminalFrame) getScreen().getTerminal()).getComponent(0).addKeyListener(keyListener);
     }
 
     private AWTTerminalFontConfiguration loadFont() throws URISyntaxException, FontFormatException, IOException, NullPointerException {
@@ -113,9 +108,7 @@ public class LanternaGUI implements Gui {
         tg.setBackgroundColor(textColor);
         tg.setForegroundColor(textColor);
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(" ".repeat(Math.max(0, this.screen.getTerminalSize().getColumns())));
-        String row = sb.toString();
+        String row = " ".repeat(Math.max(0, this.screen.getTerminalSize().getColumns()));
 
         TerminalSize terminalSize = this.screen.getTerminalSize();
         for (int y = 0; y < terminalSize.getRows(); y++) {
@@ -128,7 +121,7 @@ public class LanternaGUI implements Gui {
         String numString = Integer.toString(num);
         for (int i = 0; i < numString.length(); i++) {
             char digit = numString.charAt(i);
-            drawImageASCII(Components.getNumbers().get(Character.digit(digit,10)).getImage(), new Position( x + i * 6, y));
+            drawImageASCII(Components.getNumbers().get(Character.digit(digit, 10)).getImage(), new Position(x + i * 6, y));
         }
     }
 
@@ -169,8 +162,8 @@ public class LanternaGUI implements Gui {
                         return pressedKeyList;
                 }
             }
-        } catch (ConcurrentModificationException | NullPointerException e){
-            e.printStackTrace();
+        } catch (ConcurrentModificationException | NullPointerException e) {
+            System.out.println(e.getMessage());
         }
 
         return pressedKeyList;
@@ -189,15 +182,15 @@ public class LanternaGUI implements Gui {
         int y = position.getY();
 
         // Iterate over the horizontal line of characters.
-        for (String horizontalPixelMatrix : image){
+        for (String horizontalPixelMatrix : image) {
 
             int x = position.getX();
-            for (int i = 0; i < horizontalPixelMatrix.length(); i++){
+            for (int i = 0; i < horizontalPixelMatrix.length(); i++) {
                 char Pixel = horizontalPixelMatrix.charAt(i);
                 // Get the corresponding color of the character.
                 CharColor paint = CharColor.getCharColor(Pixel);
                 if (Pixel != ' ')
-                    drawASCII(new Position(x,y), paint.getColor());
+                    drawASCII(new Position(x, y), paint.getColor());
                 x++;
             }
             y++;
@@ -205,7 +198,7 @@ public class LanternaGUI implements Gui {
     }
 
     @Override
-    public void clear(){
+    public void clear() {
         this.screen.clear();
     }
 

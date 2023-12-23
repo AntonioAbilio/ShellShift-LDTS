@@ -1,10 +1,10 @@
 package com.l06g06.shellshift.controller.menus;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.gameOver.GameOver;
 import com.l06g06.shellshift.states.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -23,9 +23,9 @@ public class GameOverControllerTest {
 
     @BeforeEach
     public void setup(){
+        Database.getInstance().setSound(true);
         game = mock(Game.class);
         gameOver = mock(GameOver.class);
-
         gameOverController = new GameOverController(gameOver);
     }
 

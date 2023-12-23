@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.TerminalScreen;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +15,8 @@ import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
@@ -24,10 +26,10 @@ public class LanternaGUITest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         screen = Mockito.mock(TerminalScreen.class);
         TextGraphics graphics = Mockito.mock(TextGraphics.class);
         when(screen.newTextGraphics()).thenReturn(graphics);
-
         gui = new LanternaGUI(screen);
     }
 

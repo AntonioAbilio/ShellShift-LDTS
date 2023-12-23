@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.Database;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,6 +14,7 @@ public class PlatformTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         this.position = mock(Position.class);
         this.platform = new Platform(position);
     }

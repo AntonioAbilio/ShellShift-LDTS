@@ -6,8 +6,6 @@ import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.PowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
-import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.game.spawners.*;
@@ -15,22 +13,19 @@ import com.l06g06.shellshift.model.game.spawners.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 public class Map {
     private int score = 0;
 
     // DEBUG
-    private Chell chell = new Chell(new Position(120,0));
+    private Chell chell = new Chell(new Position(120, 0));
     private Gun gun;
     private List<Enemy> enemies = new ArrayList<>(0);
     private List<Platform> platforms = new ArrayList<>(0);
     private List<Bullet> bullets = new ArrayList<>(0);
     private List<PowerUp> powerUps = new ArrayList<>(0);
     private List<Coin> coins = new ArrayList<>(0);
-    private List<Cloud> clouds = new ArrayList<>(0);
+    private final List<Cloud> clouds = new ArrayList<>(0);
 
     private final PlatformSpawner platformSpawner;
     private final CoinSpawner coinSpawner;
@@ -67,11 +62,11 @@ public class Map {
     }
 
 
-
     // Chell
     public Chell getChell() {
         return this.chell;
     }
+
     public void setChell(Chell chell) {
         this.chell = chell;
     }
@@ -80,6 +75,7 @@ public class Map {
     public Gun getGun() {
         return this.gun;
     }
+
     public void setGun(Gun gun) {
         this.gun = gun;
     }
@@ -88,6 +84,7 @@ public class Map {
     public List<Enemy> getEnemies() {
         return enemies;
     }
+
     public void setEnemies(List<Enemy> enemies) {
         this.enemies = enemies;
     }
@@ -107,17 +104,17 @@ public class Map {
     }
 
     // PowerUps
-    public List<PowerUp> getPowerUps(){
+    public List<PowerUp> getPowerUps() {
         return powerUps;
     }
 
     @VisibleForTesting
-    public void setPowerUps(List<PowerUp> ppowerUp){
+    public void setPowerUps(List<PowerUp> ppowerUp) {
         this.powerUps = ppowerUp;
     }
 
     // Coins
-    public List<Coin> getCoins(){
+    public List<Coin> getCoins() {
         return coins;
     }
 
@@ -154,7 +151,7 @@ public class Map {
         return monstersKilled;
     }
 
-    public void addMonsterKilled(){
+    public void addMonsterKilled() {
         monstersKilled++;
     }
 
@@ -170,11 +167,11 @@ public class Map {
         this.platforms = platforms;
     }
 
-    public long getGameStartTime(){
+    public long getGameStartTime() {
         return gameStartTime;
     }
 
-    public double getShiftCooldown(){
+    public double getShiftCooldown() {
         return shiftCooldown;
     }
 
@@ -186,7 +183,7 @@ public class Map {
         gameStartTime = gst;
     }
 
-    public void setShiftCooldown(double ssc){
+    public void setShiftCooldown(double ssc) {
         shiftCooldown = ssc;
     }
 

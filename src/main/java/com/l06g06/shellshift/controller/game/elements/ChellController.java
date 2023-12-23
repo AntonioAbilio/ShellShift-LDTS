@@ -5,7 +5,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
@@ -40,7 +39,7 @@ public class ChellController extends GameController {
             switch (gpk) {
                 case UP:
                     if (!isJumping && canJump) {
-                        getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-1));
+                        getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY - 1));
                         jump(time);
                     }
                     break;
@@ -58,17 +57,17 @@ public class ChellController extends GameController {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()) {
             lastShiftTime = currentTime;
             left_shift();
         }
     }
 
-    public void lookForPlatformCollision(){
+    public void lookForPlatformCollision() {
         for (Platform platform : getModel().getPlatforms()) {
             if (getModel().getChell().getPolygon().intersects(platform.getPolygon().getBounds2D())) {
                 groundY = (int) platform.getPolygon().getBounds().getMinY();
-                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY-2));
+                getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), groundY - 2));
                 isJumping = false;
                 canJump = true;
                 break; // Exit the loop after the first collision
@@ -76,14 +75,14 @@ public class ChellController extends GameController {
         }
     }
 
-    public void checkLanding(){
+    public void checkLanding() {
         canJump = false;
         lookForPlatformCollision();
-        int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001 ));
+        int y = (int) (getModel().getChell().getPosition().getY() + (getModel().getChell().getVelocity() * 0.01 - 0.5 * getModel().getChell().getGravity() * 0.001));
         getModel().getChell().setPosition(new Position(getModel().getChell().getPosition().getX(), y));
     }
 
-    public void jump(long time){
+    public void jump(long time) {
         //SomAqui Sound.playSound(SoundsFx.Jump);
         Sound sound = Sound.getInstance();
         sound.playSound(SoundsFx.Jump);
@@ -110,14 +109,14 @@ public class ChellController extends GameController {
 
     }
 
-    public void moveLEFT(){
+    public void moveLEFT() {
         getModel().getChell().setDirection(false);
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
-        getModel().getChell().setPosition(new Position(x- getModel().getChell().getHorizontalSpeed(),y));
+        getModel().getChell().setPosition(new Position(x - getModel().getChell().getHorizontalSpeed(), y));
     }
 
-    public void moveRIGHT(){
+    public void moveRIGHT() {
         if (getModel().getChell().getPosition().getX() < 160) {
             int x = getModel().getChell().getPosition().getX();
             int y = getModel().getChell().getPosition().getY();
@@ -126,7 +125,7 @@ public class ChellController extends GameController {
         }
     }
 
-    public void left_shift(){
+    public void left_shift() {
         int x = getModel().getChell().getPosition().getX();
         int y = getModel().getChell().getPosition().getY();
         getModel().getChell().setPosition(new Position(x - 1, y));

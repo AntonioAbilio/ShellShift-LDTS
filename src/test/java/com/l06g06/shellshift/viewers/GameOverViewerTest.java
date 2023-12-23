@@ -1,22 +1,19 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.gameOver.GameOver;
-import com.l06g06.shellshift.model.gameOver.GameOverTests;
 import com.l06g06.shellshift.viewer.gameOver.GameOverViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.ArgumentMatchers.eq;
-
 import static org.mockito.Mockito.*;
 
 
@@ -27,6 +24,7 @@ public class GameOverViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         gameOver = Mockito.mock(GameOver.class);
 
         List<Components> mockOptions = Arrays.asList(Components.Restart, Components.MainMenu);
@@ -43,6 +41,7 @@ public class GameOverViewerTest {
     }
 
     @Test
+    @SuppressWarnings("DirectInvocationOnMock")
     void drawSelectedOptions() {
         when(gameOver.isSelected(anyInt())).thenReturn(true);
         gameOverViewer.drawElements(gui);
@@ -50,12 +49,14 @@ public class GameOverViewerTest {
             verify(gui, times(1)).drawImageASCII(eq(c.getImageSelected()), any(Position.class));
         }
     }
+
+    @Test
+    @SuppressWarnings("DirectInvocationOnMock")
     void drawUnselectedOptions() {
         when(gameOver.isSelected(anyInt())).thenReturn(true);
         gameOverViewer.drawElements(gui);
-        for (Components c : gameOver.getOptions()) {
-            verify(gui, times(1)).drawImageASCII(eq(c.getImage()), any(Position.class));
-        }
+        verify(gui, times(1)).drawImageASCII(eq(gameOver.getOptions().get(0).getImageSelected()), any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(gameOver.getOptions().get(1).getImageSelected()), any(Position.class));
     }
 
     @Test

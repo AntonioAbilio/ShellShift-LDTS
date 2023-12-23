@@ -2,9 +2,6 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.game.elements.ChellController;
-import com.l06g06.shellshift.controller.game.elements.CoinController;
-import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.controller.game.elements.enemies.EnemyController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
@@ -14,23 +11,16 @@ import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
-import com.l06g06.shellshift.model.game.map.EnemySpawnerTest;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.EnemySpawner;
-import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import javax.swing.plaf.IconUIResource;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 public class EnemyControllerTest {
@@ -42,7 +32,7 @@ public class EnemyControllerTest {
 
     @BeforeEach
     void setup(){
-        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.mockedMap = mock(Map.class);
         this.enemies = new ArrayList<>();
         this.mockedMoveStrategy = mock(MoveStrategy.class);

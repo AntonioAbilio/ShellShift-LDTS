@@ -19,10 +19,10 @@ public class Bullet extends Element {
         Polygon bulletHitbox = new Polygon();
         int x = position.getX();
         int y = position.getY();
-        bulletHitbox.addPoint(x,y);
-        bulletHitbox.addPoint(x+width-1,y);
-        bulletHitbox.addPoint(x, y+height-1);
-        bulletHitbox.addPoint(x+width-1, y+height-1);
+        bulletHitbox.addPoint(x, y);
+        bulletHitbox.addPoint(x + width - 1, y);
+        bulletHitbox.addPoint(x, y + height - 1);
+        bulletHitbox.addPoint(x + width - 1, y + height - 1);
         this.hitbox = bulletHitbox;
     }
 

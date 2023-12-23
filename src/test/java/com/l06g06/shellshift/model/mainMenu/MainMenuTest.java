@@ -1,6 +1,7 @@
 package com.l06g06.shellshift.model.mainMenu;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ class MainMenuTest {
 
     @BeforeEach
     public void setUp() {
+        Database.getInstance().setSound(true);
         mainMenu = new MainMenu();
     }
 

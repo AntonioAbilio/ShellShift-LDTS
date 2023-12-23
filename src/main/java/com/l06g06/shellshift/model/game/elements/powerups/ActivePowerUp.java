@@ -10,15 +10,15 @@ public class ActivePowerUp {
         powerUpsAndDuration = new HashMap<>();
     }
 
-    public void removePowerUp(String powerUp){
+    public void removePowerUp(String powerUp) {
         powerUpsAndDuration.remove(powerUp);
     }
 
-    public long getDuration(String powerUp){
+    public long getDuration(String powerUp) {
         return powerUpsAndDuration.get(powerUp);
     }
 
-    public void addOrUpdateActivePowerUp(String powerUp, Long duration){
+    public void addOrUpdateActivePowerUp(String powerUp, Long duration) {
         powerUpsAndDuration.put(powerUp, duration);
     }
 

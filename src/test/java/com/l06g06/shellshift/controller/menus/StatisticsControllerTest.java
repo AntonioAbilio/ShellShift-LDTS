@@ -1,8 +1,8 @@
 package com.l06g06.shellshift.controller.menus;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.mainmenu.MainMenu;
 import com.l06g06.shellshift.model.statistics.Statistics;
 import com.l06g06.shellshift.states.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,9 +23,9 @@ public class StatisticsControllerTest {
 
     @BeforeEach
     public void setUp(){
+        Database.getInstance().setSound(true);
         game = mock(Game.class);
         statistics = mock(Statistics.class);
-
         statisticsController = new StatisticsController(statistics);
     }
 

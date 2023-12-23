@@ -1,5 +1,6 @@
 package com.l06g06.shellshift;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 
@@ -7,14 +8,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import com.google.common.annotations.VisibleForTesting;
-
 public class Database {
     private static Database instance;
 
     private FireStrategy firingStrategy;
     private int numLives = 3;
-    private int damageMultiplier = 1;
+    private final int damageMultiplier = 1;
     private int numCoins = 0;
     private int collectedCoins = 0;
     private int monstersKilled = 0;
@@ -23,9 +22,10 @@ public class Database {
     private float soundVolume = -14F; // -60F maxminmax
     private int soundSliderX = 115;
     private List<Integer> scores = new ArrayList<>(0);
+
     private Database() {
         this.firingStrategy = new NormalFireStrategy();
-        for (int i = 0 ; i < 3; i++)  addScore(0);
+        for (int i = 0; i < 3; i++) addScore(0);
     }
 
     public static Database getInstance() {
@@ -36,7 +36,7 @@ public class Database {
     }
 
     @VisibleForTesting
-    public static void setInstance(Database database){
+    public static void setInstance(Database database) {
         instance = database;
     }
 
@@ -81,7 +81,7 @@ public class Database {
         this.scores.add(score);
         this.scores.sort(Collections.reverseOrder());
         if (this.scores.size() > 3) {
-            this.scores = this.scores.subList(0,3);
+            this.scores = this.scores.subList(0, 3);
         }
     }
 
@@ -114,6 +114,7 @@ public class Database {
     public int getMAXLIVES() {
         return 8;
     }
+
     public void addMonstersKilled(int monstersKilled) {
         if (monstersKilled < 0) monstersKilled = 0;
         this.monstersKilled += monstersKilled;
@@ -138,7 +139,7 @@ public class Database {
         return this.startingNumBullets;
     }
 
-    public void setSound(boolean option){
+    public void setSound(boolean option) {
         this.soundIsOn = option;
     }
 

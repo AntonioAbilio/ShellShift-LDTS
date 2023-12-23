@@ -2,36 +2,22 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.Sound;
-import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.controller.game.elements.ChellController;
-import com.l06g06.shellshift.controller.game.elements.PlatformController;
-import com.l06g06.shellshift.controller.menus.OptionsMenuController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Chell;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
-import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
-import net.jqwik.api.Data;
 import net.jqwik.api.ForAll;
 import net.jqwik.api.Property;
 import net.jqwik.api.constraints.LongRange;
-import org.checkerframework.checker.units.qual.A;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-
-import javax.swing.text.html.Option;
-import java.io.IOException;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -44,7 +30,7 @@ public class ChellControllerTest {
 
     @BeforeEach
     public void setup(){
-        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.chell = new Chell(new Position(0, 0));
         this.mockedMap = mock(Map.class);
         when(mockedMap.getChell()).thenReturn(chell);
@@ -91,7 +77,7 @@ public class ChellControllerTest {
 
     @Property
     public void jumpTest(@ForAll int time){
-        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.chell = new Chell(new Position(0, 0));
         this.mockedMap = mock(Map.class);
         when(mockedMap.getChell()).thenReturn(chell);
@@ -108,6 +94,7 @@ public class ChellControllerTest {
 
     @Property
     void jumpUpdateTest(@ForAll @LongRange(min = 1, max = 665) long time)  {
+        Database.getInstance().setSound(true);
         Map map = new Map();
         Chell chell = map.getChell();
         int initialX = chell.getPosition().getX();
@@ -157,38 +144,16 @@ public class ChellControllerTest {
         chellController.lookForPlatformCollision();
         assertEquals(groundY - 2, map.getChell().getPosition().getY());
         Assertions.assertFalse(chellController.isJumping());
-
-        // ToDo: remove
-        /*int test_x_inf = -20;
-        int test_x_sup = 20;
-        int test_y_inf = -30;
-        int test_y_sup = 30;
-
-        System.out.println("Enemy 1 has x: " + enemyController.getModel().getEnemies().get(0).getPosition().getX() + " y: " + enemyController.getModel().getEnemies().get(0).getPosition().getY());
-        for (int i = test_x_inf; i <= test_x_sup; i++) {
-            for (int j = test_y_inf; j <= test_y_sup; j++) {
-                // Update Chell's position
-                enemyController.getModel().getChell().setPosition(new Position(i, j));
-
-                // Check for intersection
-                if (enemyController.getModel().getChell().getPolygon().intersects(enemyController.getModel().getEnemies().get(0).getPolygon().getBounds2D())) {
-                    System.out.println("Intersection found at Chell x: " + i + " y: " + j);
-                }
-            }
-        }*/
     }
 
     @Test
     void stepTest(){
         Game game = mock(Game.class);
         long time = System.currentTimeMillis();
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
+        List<Gui.PressedKey> actions = List.of(Gui.PressedKey.UP);
         ChellController chellControllerSpy = spy(chellController);
         chellControllerSpy.setJumping(true);
         chellControllerSpy.setCanJump(true);
-        System.out.println(chellControllerSpy.isJumping());
-        System.out.println(chellControllerSpy.isCanJump());
-
         chellControllerSpy.step(game, actions, time);
         verify(chellControllerSpy).jumpUpdate(anyLong());
     }
@@ -225,7 +190,7 @@ public class ChellControllerTest {
         Game game = mock(Game.class);
         long time = System.currentTimeMillis();
 
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.UP);
+        List<Gui.PressedKey> actions = List.of(Gui.PressedKey.UP);
         chellController.setJumping(false);
         chellController.setCanJump(true);
         chellController.setGroundY(20);
@@ -233,12 +198,12 @@ public class ChellControllerTest {
         Assertions.assertEquals(20, chellController.getGroundY());
         Assertions.assertFalse(chellController.isCanJump());
 
-        actions = Arrays.asList(Gui.PressedKey.LEFT);
+        actions = List.of(Gui.PressedKey.LEFT);
         chell.setPosition(new Position(40, 40));
         chellController.step(game, actions, time);
         Assertions.assertEquals(40 - 1 - 1, chell.getPosition().getX()); // Chell moves and shifts to the left
 
-        actions = Arrays.asList(Gui.PressedKey.RIGHT);
+        actions = List.of(Gui.PressedKey.RIGHT);
         chell.setPosition(new Position(40, 40));
         chellController.step(game, actions, time);
         Assertions.assertEquals(40 + 1 - 1, chell.getPosition().getX()); // Chell moves to the right and shifts to the left

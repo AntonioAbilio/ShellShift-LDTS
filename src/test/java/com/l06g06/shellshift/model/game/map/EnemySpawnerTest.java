@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.map;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.spawners.EnemySpawner;
@@ -17,6 +18,7 @@ public class EnemySpawnerTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         enemies = new ArrayList<>();
         enemySpawner = new EnemySpawner(enemies);
     }

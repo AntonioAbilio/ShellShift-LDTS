@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.gun.FireStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import net.jqwik.api.ForAll;
@@ -9,11 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import static org.junit.jupiter.api.Assertions.fail;
-
 public class ChellTest {
 
     private Chell chell;
@@ -21,11 +17,10 @@ public class ChellTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         mockpos = Mockito.mock(Position.class);
-
         Mockito.when(mockpos.getX()).thenReturn(5);
         Mockito.when(mockpos.getY()).thenReturn(5);
-
         chell = new Chell(mockpos);
     }
 
@@ -40,7 +35,6 @@ public class ChellTest {
         }
 
         Gun gun = new Gun(new mockFireStrategy());
-
         chell.setGun(gun);
         Assertions.assertEquals(gun,chell.getGun());
     }
@@ -53,6 +47,7 @@ public class ChellTest {
 
     @Property
     void settersGettersVelocityTest(@ForAll int velocity){
+        Database.getInstance().setSound(true);
         mockpos = Mockito.mock(Position.class);
         chell = new Chell(mockpos);
         chell.setVelocity(velocity);
@@ -61,6 +56,7 @@ public class ChellTest {
 
     @Property
     void settersGettersGravityTest(@ForAll int gravity) {
+        Database.getInstance().setSound(true);
         mockpos = Mockito.mock(Position.class);
         chell = new Chell(mockpos);
         chell.setGravity(gravity);
@@ -69,6 +65,7 @@ public class ChellTest {
 
     @Property
     void settersGettersDirectionTest(@ForAll boolean direction) {
+        Database.getInstance().setSound(true);
         mockpos = Mockito.mock(Position.class);
         chell = new Chell(mockpos);
         chell.setDirection(direction);
@@ -77,6 +74,7 @@ public class ChellTest {
 
     @Property
     void chell_lives(@ForAll int lives) {
+        Database.getInstance().setSound(true);
         mockpos = Mockito.mock(Position.class);
         Mockito.when(mockpos.getX()).thenReturn(5);
         Mockito.when(mockpos.getY()).thenReturn(5);
@@ -111,12 +109,6 @@ public class ChellTest {
         Assertions.assertEquals(1, chell.getPolygon().ypoints[3]);
     }
 
-    /*@Test
-    public void getHorizontalSpeedTest(){
-        Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
-        Assertions.assertEquals(1, chell.getHorizontalSpeed());
-    }*/
-
     @Test
     public void invencibilityTimerTest(){
         chell.setInvincibilityEndTime(100);
@@ -126,7 +118,6 @@ public class ChellTest {
         Assertions.assertFalse(chell.isInvincible());
     }
 
-    // ToDo: remove
     @Test
     public void blink() {
         Assertions.assertFalse(chell.getBlink());
@@ -134,58 +125,12 @@ public class ChellTest {
         Assertions.assertTrue(chell.getBlink());
         chell.toggleBlink();
         Assertions.assertFalse(chell.getBlink());
-
-        /*chell.activateBlink(1000);
-        Assertions.assertTrue(chell.getBlink());*/
-
-        /*long startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime <= 2000) {
-            Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
-            for (Thread thread : allThreads.keySet()) {
-                if (thread.getName().equals("BlinkThread")) {
-                    break;
-                }
-            }
-        }
-
-        startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - startTime <= 2000) {
-            Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
-            for (Thread thread : allThreads.keySet()) {
-                if (thread.getName().equals("BlinkThread")) {
-                    fail();
-                    Assertions.assertFalse(chell.getBlink());
-                }
-            }
-            Assertions.assertFalse(chell.isInvincible());
-        }*/
     }
 
     @Test
     public void getHorizontalSpeedTest(){
         Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
         Assertions.assertEquals(1, chell.getHorizontalSpeed());
-
-        // ToDo: fix or remove
-        /*chell.setHorizontalSpeedWithTimer(1000, 3);
-
-        Map<Thread, StackTraceElement[]> allThreads = Thread.getAllStackTraces();
-        boolean wasActivated = false;
-        for (Thread thread : allThreads.keySet()){
-            if (thread.getName().equals("HorizontalThread")) wasActivated = true;
-        }
-
-        Assertions.assertEquals(3, chell.getActualHorizontalSpeed());
-        Assertions.assertEquals(3, chell.getHorizontalSpeed());
-
-        long currentTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() - currentTime <= 1200);
-
-        Assertions.assertEquals(1, chell.getActualHorizontalSpeed());
-        Assertions.assertEquals(1, chell.getHorizontalSpeed());
-
-        if (!wasActivated) fail();*/
-
     }
 
 }

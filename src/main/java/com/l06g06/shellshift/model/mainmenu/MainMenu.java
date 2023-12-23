@@ -13,7 +13,7 @@ public class MainMenu {
         this.options = Arrays.asList(Components.Start, Components.Shop, Components.Tutorial, Components.Statistics, Components.Options, Components.Quit);
     }
 
-    public List<Components> getOptions(){
+    public List<Components> getOptions() {
         return options;
     }
 
@@ -29,7 +29,9 @@ public class MainMenu {
             currOption = 0;
     }
 
-    public int getCurrOption() { return currOption; }
+    public int getCurrOption() {
+        return currOption;
+    }
 
     public boolean isSelected(int i) {
         return i == currOption;
@@ -59,7 +61,7 @@ public class MainMenu {
         return isSelected(3);
     }
 
-    public boolean isSelectedOptions(){
+    public boolean isSelectedOptions() {
         return isSelected(4);
     }
 

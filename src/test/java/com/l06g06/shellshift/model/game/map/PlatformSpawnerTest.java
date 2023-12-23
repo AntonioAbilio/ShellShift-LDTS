@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.map;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Platform;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
@@ -17,6 +18,7 @@ public class PlatformSpawnerTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         platforms = new ArrayList<>();
         platformSpawner = new PlatformSpawner(platforms);
     }

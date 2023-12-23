@@ -18,14 +18,13 @@ public class Sound implements LineListener, Runnable {
 
     private File soundFile;
     private Clip clip;
-    //private Sound audio;
     private static Sound soundPlayer;
 
     private Sound() {
     }
 
     @VisibleForTesting
-    public static void setInstance(Sound soundPlayer){
+    public static void setInstance(Sound soundPlayer) {
         Sound.soundPlayer = soundPlayer;
     }
 
@@ -35,22 +34,22 @@ public class Sound implements LineListener, Runnable {
     }
 
     @VisibleForTesting
-    public void playPrivateSoundFx(SoundsFx soundsFx){
+    public void playPrivateSoundFx(SoundsFx soundsFx) {
         playSoundFx(soundsFx);
     }
 
     @VisibleForTesting
-    public Thread getThread(){
+    public Thread getThread() {
         return this.thread;
     }
 
     @VisibleForTesting
-    public Clip getClip(){
+    public Clip getClip() {
         return this.clip;
     }
 
     @VisibleForTesting
-    public void setClip(Clip clip){
+    public void setClip(Clip clip) {
         this.clip = clip;
     }
 
@@ -75,7 +74,7 @@ public class Sound implements LineListener, Runnable {
                 AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(this.soundFile);
                 AudioFormat format = audioInputStream.getFormat();
 
-                if ((format.getEncoding().equals(AudioFormat.Encoding.ULAW)) || (format.getEncoding().equals(AudioFormat.Encoding.ALAW))) {
+                if (format.getEncoding().equals(AudioFormat.Encoding.ULAW) || format.getEncoding().equals(AudioFormat.Encoding.ALAW)) {
                     AudioFormat tmp = new AudioFormat(AudioFormat.Encoding.PCM_SIGNED, format.getSampleRate(), format.getSampleSizeInBits() * 2, format.getChannels(), format.getFrameSize() * 2, format.getFrameRate(), true);
                     audioInputStream = AudioSystem.getAudioInputStream(tmp, audioInputStream);
                     format = tmp;
@@ -98,7 +97,7 @@ public class Sound implements LineListener, Runnable {
                 try {
                     sleep(SLEEP_DURATION);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    System.out.println(e.getMessage());
                 }
 
                 while (clip.isActive() && thread != null) {
@@ -115,27 +114,22 @@ public class Sound implements LineListener, Runnable {
         }
     }
 
-    public static Sound getInstance()
-    {
-        if (soundPlayer == null)
-        {
+    public static Sound getInstance() {
+        if (soundPlayer == null) {
             soundPlayer = new Sound();
         }
         return soundPlayer;
     }
 
-    public void stopClip()
-    {
+    public void stopClip() {
         clip.stop();
     }
 
-    public void closeClip()
-    {
+    public void closeClip() {
         clip.close();
     }
 
-    public void startClip()
-    {
+    public void startClip() {
         clip.start();
     }
 }

@@ -18,10 +18,10 @@ public abstract class PowerUp extends Element {
         int x = position.getX();
         int y = position.getY();
 
-        powerUpHitbox.addPoint(x+1,y+1);
-        powerUpHitbox.addPoint(x+size-1,y+1);
-        powerUpHitbox.addPoint(x+1, y+size-1);
-        powerUpHitbox.addPoint(x+size-1, y+size-1);
+        powerUpHitbox.addPoint(x + 1, y + 1);
+        powerUpHitbox.addPoint(x + size - 1, y + 1);
+        powerUpHitbox.addPoint(x + 1, y + size - 1);
+        powerUpHitbox.addPoint(x + size - 1, y + size - 1);
         this.hitbox = powerUpHitbox;
     }
 

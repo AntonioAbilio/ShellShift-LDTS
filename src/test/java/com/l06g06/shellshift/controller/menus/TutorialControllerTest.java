@@ -1,34 +1,25 @@
 package com.l06g06.shellshift.controller.menus;
 
 import com.l06g06.shellshift.Database;
-import com.l06g06.shellshift.controller.game.elements.BulletController;
-import com.l06g06.shellshift.controller.game.elements.ChellController;
-import com.l06g06.shellshift.controller.game.elements.CloudController;
+import com.l06g06.shellshift.Game;
+import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
 import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.MoveStrategy;
 import com.l06g06.shellshift.model.game.gun.Gun;
-import com.l06g06.shellshift.model.game.map.Map;
-import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
 import com.l06g06.shellshift.model.tutorial.TutorialMap;
-import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.Game;
-import net.jqwik.api.ForAll;
-import net.jqwik.api.Property;
-import net.jqwik.api.constraints.LongRange;
-import org.checkerframework.checker.units.qual.C;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
@@ -41,6 +32,7 @@ class TutorialControllerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         tutorialMap = new TutorialMap();
         tutorialController = new TutorialController(tutorialMap);
         game = mock(Game.class);
@@ -228,7 +220,7 @@ class TutorialControllerTest {
         clouds.add(cloud2);
         tutorialMap.setClouds(clouds);
         tutorialController.setDelayBackground(true);
-        List<Coin> coins = Arrays.asList(new Coin(new Position(10, 20)));
+        List<Coin> coins = List.of(new Coin(new Position(10, 20)));
         tutorialMap.setCoins(coins);
         tutorialController.leftShift();
         assertEquals(9, tutorialMap.getCoins().get(0).getPosition().getX());
@@ -273,7 +265,7 @@ class TutorialControllerTest {
     @Test
     void stepFireTest() throws IOException {
         tutorialController.setCoinCheckpoint(true);
-        List<Gui.PressedKey> actions = Arrays.asList(Gui.PressedKey.FIRE);
+        List<Gui.PressedKey> actions = List.of(Gui.PressedKey.FIRE);
         long time = 1000;
         TutorialController tutorialControllerSpy = Mockito.spy(tutorialController);
         tutorialControllerSpy.step(game, actions, time);

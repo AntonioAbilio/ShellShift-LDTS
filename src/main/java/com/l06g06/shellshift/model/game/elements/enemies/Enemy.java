@@ -14,7 +14,7 @@ public abstract class Enemy extends Element {
     private final static int height = 15;
     private final MoveStrategy moveStrategy;
 
-    public Enemy(Position position, int HP, MoveStrategy moveStrategy,  int score) {
+    public Enemy(Position position, int HP, MoveStrategy moveStrategy, int score) {
         super(position);
         this.HP = HP;
         this.moveStrategy = moveStrategy;
@@ -25,10 +25,10 @@ public abstract class Enemy extends Element {
         int x = position.getX();
         int y = position.getY();
 
-        enemyHitbox.addPoint(x+1,y+1);
-        enemyHitbox.addPoint(x+width-1,y+1);
-        enemyHitbox.addPoint(x+1, y+height-1);
-        enemyHitbox.addPoint(x+width-1, y+height-1);
+        enemyHitbox.addPoint(x + 1, y + 1);
+        enemyHitbox.addPoint(x + width - 1, y + 1);
+        enemyHitbox.addPoint(x + 1, y + height - 1);
+        enemyHitbox.addPoint(x + width - 1, y + height - 1);
         this.hitbox = enemyHitbox;
     }
 
@@ -40,7 +40,7 @@ public abstract class Enemy extends Element {
         this.HP -= damage;
     }
 
-    public int getScore(){
+    public int getScore() {
         return this.score;
     }
 

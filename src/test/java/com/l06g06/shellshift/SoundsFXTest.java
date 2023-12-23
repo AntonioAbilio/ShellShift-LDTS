@@ -8,8 +8,8 @@ public class SoundsFXTest {
 
     @Test
     public void setUp(){
+        Database.getInstance().setSound(true);
         Assertions.assertEquals(7, SoundsFx.values().length);
-
         Assertions.assertEquals("sounds/coin.wav",SoundsFx.Coin.getPath());
         Assertions.assertEquals("sounds/powerup.wav",SoundsFx.PowerUP.getPath());
         Assertions.assertEquals("sounds/death.wav",SoundsFx.Death.getPath());

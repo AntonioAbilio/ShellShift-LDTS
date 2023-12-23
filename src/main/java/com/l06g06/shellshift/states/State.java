@@ -10,8 +10,8 @@ import java.util.List;
 
 public abstract class State<T> {
     private final T model;
-    private View<T> viewer;
-    private Controller<T> controller;
+    private final View<T> viewer;
+    private final Controller<T> controller;
 
     public State(T model) {
         this.model = model;
@@ -31,5 +31,6 @@ public abstract class State<T> {
     }
 
     protected abstract View<T> getViewer();
+
     protected abstract Controller<T> getController();
 }

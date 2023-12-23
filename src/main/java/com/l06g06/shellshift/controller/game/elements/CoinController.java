@@ -5,7 +5,6 @@ import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
 import com.l06g06.shellshift.controller.game.GameController;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Coin;
 import com.l06g06.shellshift.model.game.elements.Platform;
@@ -21,7 +20,7 @@ public class CoinController extends GameController {
 
     private double lastSpawnTime = 0;
     private double lastShiftTime = 0;
-    private Random random;
+    private final Random random;
 
 
     public CoinController(Map map) {
@@ -35,13 +34,13 @@ public class CoinController extends GameController {
         double currentTime = time / 1000.0; // Convert to seconds
 
         // Spawn coin logic
-        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()){
+        if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown()) {
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
         // Shift coin logic
-        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
+        if (currentTime - lastShiftTime >= getModel().getShiftCooldown()) {
             lastShiftTime = currentTime;
             left_shift();
         }
@@ -55,17 +54,13 @@ public class CoinController extends GameController {
         int i = 0;
         do {
             randomPlatform = platforms.get(random.nextInt(platforms.size()));
-            /*System.out.println("x: " + randomPlatform.getPosition().getX());
-            System.out.println("SEARCHING " + i);*/
             i++;
         } while (randomPlatform.getPosition().getX() < 200 && i < 30);
 
         if (i >= 30) {
-            //System.out.println("NOT FOUND");
             return;
         }
 
-        //System.out.println("FOUND");
         int minY = 200;
         for (int y : randomPlatform.getPolygon().ypoints) {
             if (y < minY) minY = y;
@@ -77,8 +72,8 @@ public class CoinController extends GameController {
         getModel().getCoinSpawner().spawn(coinPosition);
     }
 
-    public void left_shift(){
-        for (Coin coin : getModel().getCoins()){
+    public void left_shift() {
+        for (Coin coin : getModel().getCoins()) {
             int x = coin.getPosition().getX();
             int y = coin.getPosition().getY();
             coin.setPosition(new Position(x - 1, y));
@@ -93,8 +88,6 @@ public class CoinController extends GameController {
 
             if (getModel().getChell().getPolygon().intersects(coin.getPolygon().getBounds2D())) {
                 coinsIterator.remove();
-
-                //SomAqui Sound.playSound(SoundsFx.Coin);
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.Coin);
                 getModel().addCoin();

@@ -1,8 +1,8 @@
 package com.l06g06.shellshift.model.game.elements;
 
+import java.time.Instant;
 import java.util.Objects;
 import java.util.Random;
-import java.time.Instant;
 
 public class Position {
     Random random;
@@ -24,16 +24,15 @@ public class Position {
     }
 
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || !(o instanceof Position)) return false;
-        Position position = (Position) o;
+        if (o == null || !(o instanceof Position position)) return false;
         return x == position.x && y == position.y;
     }
 
     @Override
     public int hashCode() {
-        int rand = (int) (Instant.now().getEpochSecond());
+        int rand = (int) Instant.now().getEpochSecond();
         return (Objects.hash(x, y) + rand) % 1333;
     }
 

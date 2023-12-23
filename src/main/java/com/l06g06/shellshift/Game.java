@@ -1,9 +1,9 @@
 package com.l06g06.shellshift;
 
 import com.google.common.annotations.VisibleForTesting;
+import com.l06g06.shellshift.gui.LanternaGUI;
 import com.l06g06.shellshift.gui.ListenForKeys;
 import com.l06g06.shellshift.model.mainmenu.MainMenu;
-import com.l06g06.shellshift.gui.LanternaGUI;
 import com.l06g06.shellshift.states.MainMenuState;
 import com.l06g06.shellshift.states.State;
 
@@ -22,23 +22,23 @@ public class Game {
     }
 
     @VisibleForTesting
-    public LanternaGUI getGui(){
+    public LanternaGUI getGui() {
         return gui;
     }
 
     @VisibleForTesting
-    public void setGui(LanternaGUI gui){
+    public void setGui(LanternaGUI gui) {
         this.gui = gui;
     }
 
     public static void main(String[] args) throws IOException, URISyntaxException, FontFormatException {
-            new Game().start();
+        new Game().start();
     }
 
-    public static void sleepTimeMS(long miliseconds){
-        try{
+    public static void sleepTimeMS(long miliseconds) {
+        try {
             Thread.sleep(miliseconds);
-        } catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }

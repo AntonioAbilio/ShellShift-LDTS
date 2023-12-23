@@ -3,12 +3,10 @@ package com.l06g06.shellshift.model.tutorial;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Cloud;
 import com.l06g06.shellshift.model.game.elements.Platform;
-import com.l06g06.shellshift.model.game.elements.PlatformTest;
 import com.l06g06.shellshift.model.game.elements.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +22,7 @@ public class TutorialMapTest {
 
     @Test
     void getterTest(){
-        List<Cloud> clouds = Arrays.asList(new Cloud(new Position(20, 20)));
+        List<Cloud> clouds = List.of(new Cloud(new Position(20, 20)));
         tutorialMap.setClouds(clouds);
         assertEquals(clouds, tutorialMap.getClouds());
 

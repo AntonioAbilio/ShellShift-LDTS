@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.states;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.controller.menus.OptionsMenuController;
 import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
@@ -18,6 +19,7 @@ public class OptionMenuStateTest {
 
     @BeforeEach
     public void setUp(){
+        Database.getInstance().setSound(true);
         optionsMenu = mock(OptionsMenu.class);
         optionsMenuState = new OptionsMenuState(optionsMenu);
     }

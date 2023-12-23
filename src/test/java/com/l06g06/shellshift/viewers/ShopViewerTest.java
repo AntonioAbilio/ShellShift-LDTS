@@ -1,4 +1,5 @@
 package com.l06g06.shellshift.viewers;
+
 import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
@@ -7,7 +8,6 @@ import com.l06g06.shellshift.model.shop.Shop;
 import com.l06g06.shellshift.viewer.shop.ShopViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +22,7 @@ public class ShopViewerTest {
     private Gui gui;
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         shop = mock(Shop.class);
         gui = mock(Gui.class);
 

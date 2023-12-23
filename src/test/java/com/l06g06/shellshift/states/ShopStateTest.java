@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.states;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.controller.Controller;
 import com.l06g06.shellshift.controller.menus.ShopController;
 import com.l06g06.shellshift.model.shop.Shop;
@@ -16,6 +17,7 @@ public class ShopStateTest {
 
     @BeforeEach
     void setup(){
+        Database.getInstance().setSound(true);
         shop = Mockito.mock(Shop.class);
         shopState = new ShopState(shop);
     }

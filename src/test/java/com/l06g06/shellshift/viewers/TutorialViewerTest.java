@@ -1,25 +1,18 @@
 package com.l06g06.shellshift.viewers;
 
 import com.l06g06.shellshift.Components;
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.*;
-import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
-import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
-import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
-import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
-import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.VerticalMoveStrategy;
+import com.l06g06.shellshift.model.game.elements.Chell;
+import com.l06g06.shellshift.model.game.elements.Platform;
+import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
 import com.l06g06.shellshift.model.tutorial.TutorialMap;
 import com.l06g06.shellshift.viewer.tutorial.TutorialViewer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import static org.mockito.Mockito.*;
 public class TutorialViewerTest {
@@ -29,6 +22,7 @@ public class TutorialViewerTest {
 
     @BeforeEach
     void setUp(){
+        Database.getInstance().setSound(true);
         tutorial = Mockito.mock(TutorialMap.class);
         tutorialViewer = new TutorialViewer(tutorial);
         gui = Mockito.mock(Gui.class);
@@ -55,7 +49,6 @@ public class TutorialViewerTest {
         verify(gui, times(2)).numToASCII(anyInt(), anyInt(), anyInt());
 
         verify(gui, times(1)).drawImageASCII(eq(Components.Coin.getImageSelected()), Mockito.any(Position.class));
-        //verify(gui, times(1)).numToASCII(eq(tutorial.getCoinsCollected()), anyInt(), anyInt());
     }
 
     @Test

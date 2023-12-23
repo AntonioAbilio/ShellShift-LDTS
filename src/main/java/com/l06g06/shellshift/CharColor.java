@@ -31,7 +31,7 @@ public enum CharColor {
     private final String color;
     private final char c;
 
-    CharColor(String color, char c){
+    CharColor(String color, char c) {
         this.color = color;
         this.c = c;
     }
@@ -40,12 +40,12 @@ public enum CharColor {
         return c;
     }
 
-    public String getColor(){
+    public String getColor() {
         return color;
     }
 
-    public static CharColor getCharColor(char c){
-        for (CharColor color : CharColor.values()){
+    public static CharColor getCharColor(char c) {
+        for (CharColor color : CharColor.values()) {
             if (c == color.getChar()) return color;
         }
         return Black; // If the color isn't in the enum, return Black

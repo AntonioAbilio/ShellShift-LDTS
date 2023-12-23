@@ -28,7 +28,7 @@ public enum Components {
             " HH                    H                                 HH                    H                             ",
             "                      H                                                       H                              ",
             "                     H                                                       H                               "
-    ), ImmutableList.of("") ,"Title"),
+    ), ImmutableList.of(""), "Title"),
 
     Start(ImmutableList.of(
             " HHHHH                           ",
@@ -121,21 +121,21 @@ public enum Components {
     ), "Rapid Fire"),
 
     ExtraLife(ImmutableList.of(
-        "HHHHHHH                               H                      ",
-        "H       H    H HHHHH HHHHH    HH      H       H HHHHHH HHHHHH",
-        "H        H  H    H   H    H  H  H     H       H H      H     ",
-        "HHHHH     HH     H   H    H H    H    H       H HHHHH  HHHHH ",
-        "H         HH     H   HHHHH  HHHHHH    H       H H      H     ",
-        "H        H  H    H   H   H  H    H    H       H H      H     ",
-        "HHHHHHH H    H   H   H    H H    H    HHHHHHH H H      HHHHHH"
+            "HHHHHHH                               H                      ",
+            "H       H    H HHHHH HHHHH    HH      H       H HHHHHH HHHHHH",
+            "H        H  H    H   H    H  H  H     H       H H      H     ",
+            "HHHHH     HH     H   H    H H    H    H       H HHHHH  HHHHH ",
+            "H         HH     H   HHHHH  HHHHHH    H       H H      H     ",
+            "H        H  H    H   H   H  H    H    H       H H      H     ",
+            "HHHHHHH H    H   H   H    H H    H    HHHHHHH H H      HHHHHH"
     ), ImmutableList.of(
-        "yyyyyyy                               y                      ",
-        "y       y    y yyyyy yyyyy    yy      y       y yyyyyy yyyyyy",
-        "y        y  y    y   y    y  y  y     y       y y      y     ",
-        "yyyyy     yy     y   y    y y    y    y       y yyyyy  yyyyy ",
-        "y         yy     y   yyyyy  yyyyyy    y       y y      y     ",
-        "y        y  y    y   y   y  y    y    y       y y      y     ",
-        "yyyyyyy y    y   y   y    y y    y    yyyyyyy y y      yyyyyy"
+            "yyyyyyy                               y                      ",
+            "y       y    y yyyyy yyyyy    yy      y       y yyyyyy yyyyyy",
+            "y        y  y    y   y    y  y  y     y       y y      y     ",
+            "yyyyy     yy     y   y    y y    y    y       y yyyyy  yyyyy ",
+            "y         yy     y   yyyyy  yyyyyy    y       y y      y     ",
+            "y        y  y    y   y   y  y    y    y       y y      y     ",
+            "yyyyyyy y    y   y   y    y y    y    yyyyyyy y y      yyyyyy"
     ), "Extra Life"),
 
     RapidFireIcon(ImmutableList.of(
@@ -177,19 +177,19 @@ public enum Components {
     ), "Bullet"),
 
     HeartIcon(ImmutableList.of(
-        "  RRRR   RRRR ",
-        " RQQQQR R****R",
-        "RQQGGQQRQQQQ**R",
-        "RQGQQQQQQQQQ**R",
-        "RQGQQQQQQQQQ**R",
-        "RQQQQQQQQQQQ**R",
-        " RQQQQQQQQQ**R ",
-        "  RQQQQQQQ**R  ",
-        "   RQQQQ***R   ",
-        "    RQQ***R    ",
-        "     R***R     ",
-        "      R*R      ",
-        "       R"
+            "  RRRR   RRRR ",
+            " RQQQQR R****R",
+            "RQQGGQQRQQQQ**R",
+            "RQGQQQQQQQQQ**R",
+            "RQGQQQQQQQQQ**R",
+            "RQQQQQQQQQQQ**R",
+            " RQQQQQQQQQ**R ",
+            "  RQQQQQQQ**R  ",
+            "   RQQQQ***R   ",
+            "    RQQ***R    ",
+            "     R***R     ",
+            "      R*R      ",
+            "       R"
     ), ImmutableList.of(
             "  RR  RR",
             " RQQRRQ*R",
@@ -201,57 +201,57 @@ public enum Components {
     ), "Icon"),
 
     Chell(ImmutableList.of(
-        " AAAA          ",
-        "ABBDCAAAAAAAA  ",
-        "ABBDDCCCCCCCCA ",
-        "ABBBDDDDDDDDDCA",
-        " ABBACCCCCCCCCA",
-        "ABBABBBBBBBBBBA",
-        "ABBABBJJIBBJJBA",
-        "ABBABJGEIIBGEJA",
-        " AAAKIGFIIIGFIA",
-        "   MLIIIIIIIIL ",
-        "  MONLLLLLLLL  ",
-        " MGPMNGGGGPNMJJ",
-        " MIMOPGGGGGPIJ ",
-        "  M***JJJJ**J  ",
-        "   JJJ    JJJ  "
+            " AAAA          ",
+            "ABBDCAAAAAAAA  ",
+            "ABBDDCCCCCCCCA ",
+            "ABBBDDDDDDDDDCA",
+            " ABBACCCCCCCCCA",
+            "ABBABBBBBBBBBBA",
+            "ABBABBJJIBBJJBA",
+            "ABBABJGEIIBGEJA",
+            " AAAKIGFIIIGFIA",
+            "   MLIIIIIIIIL ",
+            "  MONLLLLLLLL  ",
+            " MGPMNGGGGPNMJJ",
+            " MIMOPGGGGGPIJ ",
+            "  M***JJJJ**J  ",
+            "   JJJ    JJJ  "
     ), ImmutableList.of(
-        "          AAAA ",
-        "  AAAAAAAACDBBA",
-        " ACCCCCCCCDDBBA",
-        "ACDDDDDDDDDBBBA",
-        "ACCCCCCCCCABBA ",
-        "ABBBBBBBBBBABBA",
-        "ABJJBBIJJBBABBA",
-        "AJEGBIIEGJBABBA",
-        "AIFGIIIFGIKAAA ",
-        " LIIIIIIIILM   ",
-        "  LLLLLLLLNOM  ",
-        "JJMNPGGGGNMPGM ",
-        " JIPGGGGGPOMIM ",
-        "  J**JJJJ***M  ",
-        "  JJJ    JJJ   "
+            "          AAAA ",
+            "  AAAAAAAACDBBA",
+            " ACCCCCCCCDDBBA",
+            "ACDDDDDDDDDBBBA",
+            "ACCCCCCCCCABBA ",
+            "ABBBBBBBBBBABBA",
+            "ABJJBBIJJBBABBA",
+            "AJEGBIIEGJBABBA",
+            "AIFGIIIFGIKAAA ",
+            " LIIIIIIIILM   ",
+            "  LLLLLLLLNOM  ",
+            "JJMNPGGGGNMPGM ",
+            " JIPGGGGGPOMIM ",
+            "  J**JJJJ***M  ",
+            "  JJJ    JJJ   "
     ), "Chell Model"),
 
     GameOver(ImmutableList.of(
-        "      S SSS                                                     S SSS                                       ",
-        "    S  SSSS  S                                                S  SSSS                                       ",
-        "   S  S  SSSS                                                S  S  SSS   SS                                 ",
-        "  S  SS   SS                                                S  SS   SSS  SS                                 ",
-        " S  SSS                                                    S  SSS    SSS  SS    SSS             SSS  SSSS   ",
-        "SS   SS             SSSS    SSS SSSS SSSS       SSS       SS   SS     SS   SS    SSS     SSS     SSSS SSSS S",
-        "SS   SS   SSS      S SSS  S  SSS SSSS SSS  S   S SSS      SS   SS     SS   SS     SSS   S SSS     SS   SSSS ",
-        "SS   SS  SSSS  S  S   SSSS    SS  SSSS SSSS   S   SSS     SS   SS     SS   SS      SS  S   SSS    SS        ",
-        "SS   SS S  SSSS  SS    SS     SS   SS   SS   SS    SSS    SS   SS     SS   SS      SS SS    SSS   SS        ",
-        "SS   SSS    SS   SS    SS     SS   SS   SS   SSSSSSSS     SS   SS     SS   SS      SS SSSSSSSS    SS        ",
-        " SS  SS     S    SS    SS     SS   SS   SS   SSSSSSS       SS  SS     SS   SS      SS SSSSSSS     SS        ",
-        "  SS S      S    SS    SS     SS   SS   SS   SS             SS S      S    SS      S  SS          SS        ",
-        "   SSS     S     SS    SS     SS   SS   SS   SSSS    S       SSS     S      SSSSSSS   SSSS    S   SSS       ",
-        "    SSSSSSS       SSSSS SS    SSS  SSS  SSS   SSSSSSS         SSSSSSS        SSSSS     SSSSSSS     SSS      ",
-        "      SSS          SSS   SS    SSS  SSS  SSS   SSSSS            SSS                     SSSSS               ",
-        "                                                                                                            ",
-        "                                                                                                            "
+            "      S SSS                                                     S SSS                                       ",
+            "    S  SSSS  S                                                S  SSSS                                       ",
+            "   S  S  SSSS                                                S  S  SSS   SS                                 ",
+            "  S  SS   SS                                                S  SS   SSS  SS                                 ",
+            " S  SSS                                                    S  SSS    SSS  SS    SSS             SSS  SSSS   ",
+            "SS   SS             SSSS    SSS SSSS SSSS       SSS       SS   SS     SS   SS    SSS     SSS     SSSS SSSS S",
+            "SS   SS   SSS      S SSS  S  SSS SSSS SSS  S   S SSS      SS   SS     SS   SS     SSS   S SSS     SS   SSSS ",
+            "SS   SS  SSSS  S  S   SSSS    SS  SSSS SSSS   S   SSS     SS   SS     SS   SS      SS  S   SSS    SS        ",
+            "SS   SS S  SSSS  SS    SS     SS   SS   SS   SS    SSS    SS   SS     SS   SS      SS SS    SSS   SS        ",
+            "SS   SSS    SS   SS    SS     SS   SS   SS   SSSSSSSS     SS   SS     SS   SS      SS SSSSSSSS    SS        ",
+            " SS  SS     S    SS    SS     SS   SS   SS   SSSSSSS       SS  SS     SS   SS      SS SSSSSSS     SS        ",
+            "  SS S      S    SS    SS     SS   SS   SS   SS             SS S      S    SS      S  SS          SS        ",
+            "   SSS     S     SS    SS     SS   SS   SS   SSSS    S       SSS     S      SSSSSSS   SSSS    S   SSS       ",
+            "    SSSSSSS       SSSSS SS    SSS  SSS  SSS   SSSSSSS         SSSSSSS        SSSSS     SSSSSSS     SSS      ",
+            "      SSS          SSS   SS    SSS  SSS  SSS   SSSSS            SSS                     SSSSS               ",
+            "                                                                                                            ",
+            "                                                                                                            "
     ), ImmutableList.of(), "Game Over"),
 
     Restart(ImmutableList.of(
@@ -273,29 +273,29 @@ public enum Components {
     ), "Restart"),
 
     MainMenu(ImmutableList.of(
-        "G     G                    G     G                     ",
-        "GG   GG   GG   G G    G    GG   GG GGGGGG G    G G    G",
-        "G G G G  G  G  G GG   G    G G G G G      GG   G G    G",
-        "G  G  G G    G G G G  G    G  G  G GGGGG  G G  G G    G",
-        "G     G GGGGGG G G  G G    G     G G      G  G G G    G",
-        "G     G G    G G G   GG    G     G G      G   GG G    G",
-        "G     G G    G G G    G    G     G GGGGGG G    G  GGGG "
+            "G     G                    G     G                     ",
+            "GG   GG   GG   G G    G    GG   GG GGGGGG G    G G    G",
+            "G G G G  G  G  G GG   G    G G G G G      GG   G G    G",
+            "G  G  G G    G G G G  G    G  G  G GGGGG  G G  G G    G",
+            "G     G GGGGGG G G  G G    G     G G      G  G G G    G",
+            "G     G G    G G G   GG    G     G G      G   GG G    G",
+            "G     G G    G G G    G    G     G GGGGGG G    G  GGGG "
     ), ImmutableList.of(
-        "y     y                    y     y                     ",
-        "yy   yy   yy   y y    y    yy   yy yyyyyy y    y y    y",
-        "y y y y  y  y  y yy   y    y y y y y      yy   y y    y",
-        "y  y  y y    y y y y  y    y  y  y yyyyy  y y  y y    y",
-        "y     y yyyyyy y y  y y    y     y y      y  y y y    y",
-        "y     y y    y y y   yy    y     y y      y   yy y    y",
-        "y     y y    y y y    y    y     y yyyyyy y    y  yyyy "
+            "y     y                    y     y                     ",
+            "yy   yy   yy   y y    y    yy   yy yyyyyy y    y y    y",
+            "y y y y  y  y  y yy   y    y y y y y      yy   y y    y",
+            "y  y  y y    y y y y  y    y  y  y yyyyy  y y  y y    y",
+            "y     y yyyyyy y y  y y    y     y y      y  y y y    y",
+            "y     y y    y y y   yy    y     y y      y   yy y    y",
+            "y     y y    y y y    y    y     y yyyyyy y    y  yyyy "
     ), "Main Menu"),
 
     Score(ImmutableList.of(
-        " GGG  GGG  GGG  GGG  GGG  ",
-        "G    G    G   G G  G G   G ",
-        " GG  G    G   G GGG  GG   ",
-        "   G G    G   G G G  G   G ",
-        "GGG   GGG  GGG  G  G GGG  "
+            " GGG  GGG  GGG  GGG  GGG  ",
+            "G    G    G   G G  G G   G ",
+            " GG  G    G   G GGG  GG   ",
+            "   G G    G   G G G  G   G ",
+            "GGG   GGG  GGG  G  G GGG  "
     ), ImmutableList.of(""), "Score"),
 
     Coin(ImmutableList.of(
@@ -323,7 +323,7 @@ public enum Components {
             "  HH"
     ), "Coin"),
 
-    SoftMonster( ImmutableList.of(
+    SoftMonster(ImmutableList.of(
             "   JJJ   JJJ   ",
             "   JQJ   JQJ   ",
             "    JQJJJQJ    ",
@@ -341,7 +341,7 @@ public enum Components {
             " JJ         JJ "
     ), ImmutableList.of(), "SoftMonster"),
 
-    HardMonster( ImmutableList.of(
+    HardMonster(ImmutableList.of(
             "   JJJ   JJJ   ",
             "   JUJ   JUJ   ",
             "    JUJJJUJ    ",
@@ -373,7 +373,7 @@ public enum Components {
             "  G",
             "  G",
             "GGGG"
-    ), ImmutableList.of(),"1"),
+    ), ImmutableList.of(), "1"),
 
     Two(ImmutableList.of(
             " GG ",
@@ -481,7 +481,7 @@ public enum Components {
             " HQQ***RRH",
             " H***RRRRH ",
             "  HHHHHHH"
-     ), ImmutableList.of( ), "SpeedPowerUp"),
+    ), ImmutableList.of(), "SpeedPowerUp"),
     Tutorial(ImmutableList.of(
             "HHHHHHH                                           ",
             "   H    H    H HHHHH  HHHH  HHHHH  H   HH   H     ",
@@ -490,7 +490,7 @@ public enum Components {
             "   H    H    H   H   H    H HHHHH  H HHHHHH H     ",
             "   H    H    H   H   H    H H   H  H H    H H     ",
             "   H     HHHH    H    HHHH  H    H H H    H HHHHHH"
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "yyyyyyy                                           ",
             "   y    y    y yyyyy  yyyy  yyyyy  y   yy   y     ",
             "   y    y    y   y   y    y y    y y  y  y  y     ",
@@ -498,7 +498,7 @@ public enum Components {
             "   y    y    y   y   y    y yyyyy  y yyyyyy y     ",
             "   y    y    y   y   y    y y   y  y y    y y     ",
             "   y     yyyy    y    yyyy  y    y y y    y yyyyyy"
-     ), "Tutorial"),
+    ), "Tutorial"),
 
     ArrowUp(ImmutableList.of(
             "GGGGGGGGGGGGG",
@@ -513,7 +513,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -526,7 +526,7 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-     ), "ArrowUp"),
+    ), "ArrowUp"),
 
     ArrowLeft(ImmutableList.of(
             "GGGGGGGGGGGGG",
@@ -541,7 +541,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -554,7 +554,7 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-     ), "ArrowLeft"),
+    ), "ArrowLeft"),
     ArrowRight(ImmutableList.of(
             "GGGGGGGGGGGGG",
             "G           G",
@@ -568,7 +568,7 @@ public enum Components {
             "G           G",
             "G           G",
             "GGGGGGGGGGGGG"
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "yyyyyyyyyyyyy",
             "y           y",
             "y           y",
@@ -581,7 +581,7 @@ public enum Components {
             "y           y",
             "y           y",
             "yyyyyyyyyyyyy"
-     ), "ArrowRight"),
+    ), "ArrowRight"),
     SpaceBar(ImmutableList.of(
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG",
             "G                            G",
@@ -595,7 +595,7 @@ public enum Components {
             "G                            G",
             "GGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
 
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy",
             "y                            y",
             "y                            y",
@@ -607,7 +607,7 @@ public enum Components {
             "y                            y",
             "y                            y",
             "yyyyyyyyyyyyyyyyyyyyyyyyyyyyyy"
-     ), "SpaceBar"),
+    ), "SpaceBar"),
 
     Cloud(ImmutableList.of(
             "         HHHHH",
@@ -620,19 +620,19 @@ public enum Components {
             "HTTGGGGTTTTTTTTGGGGGGTH",
             " HTTTTTTTTTTTTTTTTTTTTH",
             "  HHHHHHHHHHHHHHHHHHHH"
-     ), ImmutableList.of( ), "Cloud"),
+    ), ImmutableList.of(), "Cloud"),
 
     Platform(ImmutableList.of(
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "MNOPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPONM",
             "JJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJJ"
-     ), "Platform"),
+    ), "Platform"),
 
     MonstersKilled(ImmutableList.of(
             "H     H                                                                                        ",
@@ -643,27 +643,27 @@ public enum Components {
             "H     H H    H H   HH H    H   H   H      H   H  H    H    H   H  H H      H      H      H    H  H",
             "H     H  HHHH  H    H  HHHH    H   HHHHHH H    H  HHHH     H    H H HHHHHH HHHHHH HHHHHH HHHHH "
 
-     ), ImmutableList.of( ), "MonstersKilled"),
+    ), ImmutableList.of(), "MonstersKilled"),
 
     NumLives(ImmutableList.of(
             "H                            ",
             "H       H H    H HHHHHH  HHHH",
-            "H       H H    H H      H" ,
+            "H       H H    H H      H",
             "H       H H    H HHHHH   HHHH   H",
             "H       H H    H H           H",
             "H       H  H  H  H      H    H  H",
             "HHHHHHH H   HH   HHHHHH  HHHH"
-     ), ImmutableList.of( ), "NumLives"),
+    ), ImmutableList.of(), "NumLives"),
 
     CoinsCollected(ImmutableList.of(
-          " HHHHH                                                                                         ",
-          "H     H  HHHH  H H    H  HHHH      HHHH   HHHH  H      H      HHHHHH  HHHH  HHHHH HHHHHH HHHHH ",
-          "H       H    H H HH   H H         H    H H    H H      H      H      H    H   H   H      H    H",
-          "H       H    H H H H  H  HHHH     H      H    H H      H      HHHHH  H        H   HHHHH  H    H  H",
-          "H       H    H H H  H H      H    H      H    H H      H      H      H        H   H      H    H",
-          "H     H H    H H H   HH H    H    H    H H    H H      H      H      H    H   H   H      H    H  H",
-          " HHHHH   HHHH  H H    H  HHHH      HHHH   HHHH  HHHHHH HHHHHH HHHHHH  HHHH    H   HHHHHH HHHHH "
-     ), ImmutableList.of( ), "CoinsCollected"),
+            " HHHHH                                                                                         ",
+            "H     H  HHHH  H H    H  HHHH      HHHH   HHHH  H      H      HHHHHH  HHHH  HHHHH HHHHHH HHHHH ",
+            "H       H    H H HH   H H         H    H H    H H      H      H      H    H   H   H      H    H",
+            "H       H    H H H H  H  HHHH     H      H    H H      H      HHHHH  H        H   HHHHH  H    H  H",
+            "H       H    H H H  H H      H    H      H    H H      H      H      H        H   H      H    H",
+            "H     H H    H H H   HH H    H    H    H H    H H      H      H      H    H   H   H      H    H  H",
+            " HHHHH   HHHH  H H    H  HHHH      HHHH   HHHH  HHHHHH HHHHHH HHHHHH  HHHH    H   HHHHHH HHHHH "
+    ), ImmutableList.of(), "CoinsCollected"),
 
     Highscores(ImmutableList.of(
             "H     H                                                          ",
@@ -673,14 +673,14 @@ public enum Components {
             "H     H H H  HHH H    H      H H      H    H HHHHH  H           H",
             "H     H H H    H H    H H    H H    H H    H H   H  H      H    H",
             "H     H H  HHHH  H    H  HHHH   HHHH   HHHH  H    H HHHHHH  HHHH "
-     ), ImmutableList.of( ), "Highscores"),
+    ), ImmutableList.of(), "Highscores"),
     First(ImmutableList.of(
             " HH    HHH HHHHH",
             "H H   H      H",
             "  H    HH    H",
             "  H      H   H",
             "HHHH  HHH    H"
-     ), ImmutableList.of( ), "First"),
+    ), ImmutableList.of(), "First"),
 
     Second(ImmutableList.of(
             " HH   H   H HHH",
@@ -688,7 +688,7 @@ public enum Components {
             "  H   H H H H  H",
             " H    H  HH H  H",
             "HHHH  H   H HHH"
-     ), ImmutableList.of( ), "Second"),
+    ), ImmutableList.of(), "Second"),
 
     Third(ImmutableList.of(
             " HH   HHH  HHH  ",
@@ -696,7 +696,7 @@ public enum Components {
             "  HH  HHH  H  H",
             "H  H  H  H H  H  ",
             " HH   H  H HHH "
-     ), ImmutableList.of( ), "Third"),
+    ), ImmutableList.of(), "Third"),
 
     Fourth(ImmutableList.of(
             "H  H  HHHHH H  H",
@@ -704,7 +704,7 @@ public enum Components {
             "HHHH    H   HHHH",
             "   H    H   H  H",
             "   H    H   H  H"
-     ), ImmutableList.of( ), "Fourth"),
+    ), ImmutableList.of(), "Fourth"),
 
     Fifth(ImmutableList.of(
             "HHHH  HHHHH H  H",
@@ -712,7 +712,7 @@ public enum Components {
             "HHH     H   HHHH",
             "   H    H   H  H",
             "HHH     H   H  H"
-     ), ImmutableList.of( ), "Fifth"),
+    ), ImmutableList.of(), "Fifth"),
     MoreBullets(ImmutableList.of(
 
 
@@ -725,7 +725,7 @@ public enum Components {
             "H     H  HHHH  H    H HHHHHH    HHHHH   HHHH  HHHHHH HHHHHH HHHHHH   H    HHHH "
 
 
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             "y     y",
             "yy   yy  yyyy  yyyyy  yyyyyy    yyyyy  y    y y      y      yyyyyy yyyyy  yyyy",
             "y y y y y    y y    y y         y    y y    y y      y      y        y   y",
@@ -733,7 +733,7 @@ public enum Components {
             "y     y y    y yyyyy  y         y    y y    y y      y      y        y        y",
             "y     y y    y y   y  y         y    y y    y y      y      y        y   y    y",
             "y     y  yyyy  y    y yyyyyy    yyyyy   yyyy  yyyyyy yyyyyy yyyyyy   y    yyyy "
-     ), "MoreBullets"),
+    ), "MoreBullets"),
 
     MoreBulletsIcon(ImmutableList.of(
             " ",
@@ -744,7 +744,7 @@ public enum Components {
             "     *QGR     ",
             "     **QR     ",
             "     RRR      "
-     ), ImmutableList.of( ), "MoreBullets"),
+    ), ImmutableList.of(), "MoreBullets"),
 
     SoundOFF(ImmutableList.of(
             " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH HHHHHHH HHHHHHH",
@@ -754,7 +754,7 @@ public enum Components {
             "      H H     H H     H H   H H H     H    H     H H       H      ",
             "H     H H     H H     H H    HH H     H    H     H H       H      ",
             " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H       H      "
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy yyyyyyy yyyyyyy",
             "y     y y     y y     y yy    y y     y    y     y y       y      ",
             "y       y     y y     y y y   y y     y    y     y y       y      ",
@@ -762,7 +762,7 @@ public enum Components {
             "      y y     y y     y y   y y y     y    y     y y       y      ",
             "y     y y     y y     y y    yy y     y    y     y y       y      ",
             " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y       y      "
-     ), "SoundOFF"),
+    ), "SoundOFF"),
 
     SoundON(ImmutableList.of(
             " HHHHH  HHHHHHH H     H H     H HHHHHH     HHHHHHH H     H",
@@ -773,7 +773,7 @@ public enum Components {
             "H     H H     H H     H H    HH H     H    H     H H    HH",
             " HHHHH  HHHHHHH  HHHHH  H     H HHHHHH     HHHHHHH H     H"
 
-     ), ImmutableList.of(
+    ), ImmutableList.of(
             " yyyyy  yyyyyyy y     y y     y yyyyyy     yyyyyyy y     y",
             "y     y y     y y     y yy    y y     y    y     y yy    y",
             "y       y     y y     y y y   y y     y    y     y y y   y",
@@ -782,8 +782,8 @@ public enum Components {
             "y     y y     y y     y y    yy y     y    y     y y    yy",
             " yyyyy  yyyyyyy  yyyyy  y     y yyyyyy     yyyyyyy y     y"
 
-     ), "SoundON"),
-    
+    ), "SoundON"),
+
     Options(ImmutableList.of(
             " HHHHH                                    ",
             "H     H HHHHH  HHHHH H  HHHH  H    H  HHHH ",
@@ -792,8 +792,8 @@ public enum Components {
             "H     H HHHHH    H   H H    H H  H H      H",
             "H     H H        H   H H    H H   HH H    H",
             " HHHHH  H        H   H  HHHH  H    H  HHHH "
-       
-     ), ImmutableList.of(
+
+    ), ImmutableList.of(
             " yyyyy                                    ",
             "y     y yyyyy  yyyyy y  yyyy  y    y  yyyy ",
             "y     y y    y   y   y y    y yy   y y     ",
@@ -801,7 +801,7 @@ public enum Components {
             "y     y yyyyy    y   y y    y y  y y      y",
             "y     y y        y   y y    y y   yy y    y",
             " yyyyy  y        y   y  yyyy  y    y  yyyy "
-     ), "OptionText"),
+    ), "OptionText"),
 
     ReducedStarComponent(ImmutableList.of(
             "   H   ",
@@ -827,7 +827,7 @@ public enum Components {
             " ",
             " ZZZ",
             " ZZZ"
-            ), ImmutableList.of(""), "HealthBar"),
+    ), ImmutableList.of(""), "HealthBar"),
 
     SoundSliderButton(ImmutableList.of(
             "     ",
@@ -845,14 +845,14 @@ public enum Components {
             "JyyyJ",
             "JyyyJ",
             "JJJJJ"
-    ), "SoundSliderButton")
-    ;
+    ), "SoundSliderButton");
 
     private final ImmutableList<String> image;
     private final ImmutableList<String> imageSelected;
     private final String name;
     private static final List<Components> numbers = Arrays.asList(Zero, One, Two, Three, Four, Five, Six, Seven, Eight, Nine);
     private static final List<Components> ordinalNumbers = Arrays.asList(First, Second, Third, Fourth, Fifth);
+
     Components(ImmutableList<String> image, ImmutableList<String> imageSelected, String name) {
         this.image = image;
         this.imageSelected = imageSelected;

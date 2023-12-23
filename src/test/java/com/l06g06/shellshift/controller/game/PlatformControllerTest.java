@@ -2,20 +2,18 @@ package com.l06g06.shellshift.controller.game;
 
 import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
-import com.l06g06.shellshift.controller.game.MapController;
 import com.l06g06.shellshift.controller.game.elements.PlatformController;
 import com.l06g06.shellshift.gui.Gui;
-import com.l06g06.shellshift.model.game.elements.*;
+import com.l06g06.shellshift.model.game.elements.Chell;
+import com.l06g06.shellshift.model.game.elements.Platform;
+import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.map.Map;
 import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
-import net.jqwik.api.*;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import javax.annotation.meta.When;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +30,7 @@ public class PlatformControllerTest {
 
     @BeforeEach
     public void setup(){
-        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);
         this.map = mock(Map.class);
         this.platforms = new ArrayList<>();
         Mockito.when(map.getPlatforms()).thenReturn(platforms);

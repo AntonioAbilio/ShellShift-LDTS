@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.optionsMenu.OptionsMenu;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.viewer.optionsMenu.OptionsMenuViewer;
 
-public class OptionsMenuState extends State<OptionsMenu>{
+public class OptionsMenuState extends State<OptionsMenu> {
 
     public OptionsMenuState(OptionsMenu model) {
         super(model);

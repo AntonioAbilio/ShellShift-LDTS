@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.mockito.Mockito.*;
 
 class OptionsMenuTest {
@@ -21,16 +22,16 @@ class OptionsMenuTest {
     void setUp() {
         mockDatabase = mock(Database.class);
         Database.setInstance(mockDatabase);
+        mockDatabase.setSound(true);
         when(mockDatabase.isSoundIsOn()).thenReturn(true);
         when(mockDatabase.getSoundSliderX()).thenReturn(78);
         when(mockDatabase.getSoundVolume()).thenReturn(-60F);
-
         optionsMenu = new OptionsMenu();
     }
 
     @Test
     public void isSoundONTest(){
-        Assertions.assertTrue(!optionsMenu.isSoundOFF());
+        assertFalse(optionsMenu.isSoundOFF());
     }
 
     @Test

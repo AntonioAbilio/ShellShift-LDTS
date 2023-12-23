@@ -37,12 +37,12 @@ public class TutorialMap {
         this.gun = new Gun(new NormalFireStrategy());
         this.gun.setNumBullets(50);
         this.bullets = new ArrayList<>();
-        this.chell = new Chell(new Position(55,60));
+        this.chell = new Chell(new Position(55, 60));
         this.platform = new Platform(new Position(80, 60));
         this.coins.add(new Coin(new Position(180, 20)));
         this.enemies.add(new SoftMonster(new Position(200, 30), new HorizontalMoveStrategy()));
         this.enemies.add(new HardMonster(new Position(250, 30), new VerticalMoveStrategy()));
-        this.clouds.add(new Cloud(new Position(60,20)));
+        this.clouds.add(new Cloud(new Position(60, 20)));
         startCloudAddingTask();
 
     }
@@ -52,7 +52,8 @@ public class TutorialMap {
         Random rand = new Random();
         executorService.scheduleAtFixedRate(this::addCloud, 0, 5 + rand.nextInt(15) + 5, TimeUnit.SECONDS);
     }
-    public void stopCloudAddingTask(){
+
+    public void stopCloudAddingTask() {
         executorService.shutdown();
     }
 

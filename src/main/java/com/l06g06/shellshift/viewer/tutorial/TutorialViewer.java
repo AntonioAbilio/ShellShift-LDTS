@@ -34,11 +34,11 @@ public class TutorialViewer extends View<TutorialMap> {
 
         //Bullet Counter
         gui.drawImageASCII(Components.Bullet.getImage(), new Position(135, 91));
-        gui.numToASCII(getModel().getGun().getNumBullets(), 142,90);
+        gui.numToASCII(getModel().getGun().getNumBullets(), 142, 90);
 
         //Coins Collected Counter
-        gui.drawImageASCII(Components.Coin.getImageSelected(),new Position(8, 90));
-        gui.numToASCII(getModel().getCoinsCollected(),16,91);
+        gui.drawImageASCII(Components.Coin.getImageSelected(), new Position(8, 90));
+        gui.numToASCII(getModel().getCoinsCollected(), 16, 91);
 
     }
 

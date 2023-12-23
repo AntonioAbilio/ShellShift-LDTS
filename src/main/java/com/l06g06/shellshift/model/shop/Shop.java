@@ -2,7 +2,10 @@ package com.l06g06.shellshift.model.shop;
 
 import com.l06g06.shellshift.Components;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Shop {
     private final Map<Components, Integer> options = new LinkedHashMap<>();
@@ -13,7 +16,7 @@ public class Shop {
         this.options.put(Components.RapidFire, 50);
         this.options.put(Components.ExtraLife, 20);
         this.options.put(Components.MoreBullets, 10);
-        this.icons = Arrays.asList(Components.RapidFireIcon ,Components.HeartIcon, Components.MoreBulletsIcon);
+        this.icons = Arrays.asList(Components.RapidFireIcon, Components.HeartIcon, Components.MoreBulletsIcon);
     }
 
     public void nextOption() {
@@ -32,9 +35,11 @@ public class Shop {
     public boolean isSelected(int i) {
         return i == currOption;
     }
+
     public int getPrice(Components component) {
         return options.get(component);
     }
+
     public boolean isSelectedRapidFire() {
         return isSelected(0);
     }
@@ -52,7 +57,7 @@ public class Shop {
     }
 
     public boolean isSelectedMoreBullets() {
-        return isSelected(this.options.size()-1);
+        return isSelected(this.options.size() - 1);
     }
 
 

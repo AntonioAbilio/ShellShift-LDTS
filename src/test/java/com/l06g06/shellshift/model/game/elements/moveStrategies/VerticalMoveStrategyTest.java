@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.model.game.elements.moveStrategies;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.VerticalMoveStrategy;
 import org.junit.jupiter.api.Assertions;
@@ -13,6 +14,7 @@ public class VerticalMoveStrategyTest {
 
     @BeforeEach
     void setUp() {
+        Database.getInstance().setSound(true);
         verticalMoveStrategy = new VerticalMoveStrategy();
     }
 

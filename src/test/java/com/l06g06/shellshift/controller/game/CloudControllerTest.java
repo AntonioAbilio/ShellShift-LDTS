@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game;
 
+import com.l06g06.shellshift.Database;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.game.elements.CloudController;
 import com.l06g06.shellshift.model.game.elements.Cloud;
@@ -12,17 +13,18 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CloudControllerTest {
     private Map map;
     private CloudController cloudController;
     @BeforeEach
     void setup() {
+        Database.getInstance().setSound(true);
         this.map = mock(Map.class);
         this.cloudController = new CloudController(map);
     }
@@ -30,7 +32,7 @@ public class CloudControllerTest {
     @Test
     void testLeftShift() {
         Position position = new Position(10, 10);
-        List<Cloud> clouds = Arrays.asList(new Cloud(position));
+        List<Cloud> clouds = List.of(new Cloud(position));
         when(map.getClouds()).thenReturn(clouds);
 
         cloudController.left_shift();

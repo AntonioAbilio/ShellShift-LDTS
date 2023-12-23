@@ -6,7 +6,7 @@ import com.l06g06.shellshift.model.tutorial.TutorialMap;
 import com.l06g06.shellshift.viewer.View;
 import com.l06g06.shellshift.viewer.tutorial.TutorialViewer;
 
-public class TutorialState extends State<TutorialMap>{
+public class TutorialState extends State<TutorialMap> {
     public TutorialState(TutorialMap model) {
         super(model);
     }

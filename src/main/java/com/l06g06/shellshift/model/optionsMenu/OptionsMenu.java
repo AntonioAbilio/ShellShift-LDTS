@@ -9,7 +9,7 @@ import java.util.List;
 
 public class OptionsMenu {
     private List<Components> options;
-    public static boolean soundOFF = Database.getInstance().isSoundIsOn();;
+    public static boolean soundOFF = Database.getInstance().isSoundIsOn();
     int currOption = 0;
 
     static int soundSliderX = Database.getInstance().getSoundSliderX();
@@ -17,7 +17,7 @@ public class OptionsMenu {
 
     public OptionsMenu() {
         this.options = Arrays.asList(Components.SoundON, Components.SoundSliderButton);
-        if (isSoundOFF()){
+        if (isSoundOFF()) {
             List<Components> opts = new ArrayList<>(getOptions());
             opts.removeIf(component -> component.equals(Components.SoundSliderButton));
             setOptions(opts);
@@ -36,8 +36,8 @@ public class OptionsMenu {
             currOption = 0;
     }
 
-    public static void incrementSound(){
-        if (soundSliderValue >= -14F){
+    public static void incrementSound() {
+        if (soundSliderValue >= -14F) {
             soundSliderValue = -14F;
             soundSliderX = 115;
         } else {
@@ -47,8 +47,9 @@ public class OptionsMenu {
         Database.getInstance().setSoundVolume(soundSliderValue);
         Database.getInstance().setSoundSliderX(soundSliderX);
     }
-    public static void dencrementSound(){
-        if (soundSliderValue <= -60F){
+
+    public static void dencrementSound() {
+        if (soundSliderValue <= -60F) {
             soundSliderValue = -60F;
             soundSliderX = 78;
         } else {
@@ -67,18 +68,20 @@ public class OptionsMenu {
         return soundSliderX;
     }
 
-    public int getCurrOption() { return currOption; }
+    public int getCurrOption() {
+        return currOption;
+    }
+
     public boolean isSelected(int i) {
         return i == currOption;
     }
 
 
-
-    public List<Components> getOptions(){
+    public List<Components> getOptions() {
         return options;
     }
 
-    public void setOptions(List<Components> opts){
+    public void setOptions(List<Components> opts) {
         this.options = opts;
     }
 
@@ -90,15 +93,15 @@ public class OptionsMenu {
         return soundOFF;
     }
 
-    public boolean isSelectedONorOFF(){
+    public boolean isSelectedONorOFF() {
         return isSelected(0);
     }
 
-    public boolean isSelectedSoundSlider(){
-        return (isSelected(options.size()-1) && !OptionsMenu.soundOFF);
+    public boolean isSelectedSoundSlider() {
+        return (isSelected(options.size() - 1) && !OptionsMenu.soundOFF);
     }
 
-    public void setSoundOFF(boolean soundState){
+    public void setSoundOFF(boolean soundState) {
         soundOFF = soundState;
         Database database = Database.getInstance();
         database.setSound(soundState);

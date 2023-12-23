@@ -14,6 +14,7 @@ public class PowerUpTest {
 
     @Test
     public void activateBulletPowerUpTest(){
+        Database.getInstance().setSound(true);
         Position position = mock(Position.class);
         Map map = mock(Map.class);
         FireStrategy fireStrategy = mock(FireStrategy.class);
@@ -30,6 +31,7 @@ public class PowerUpTest {
     @Test
     @SuppressWarnings("DirectInvocationOnMock")
     public void activateSpeedPowerUpTest() {
+        Database.getInstance().setSound(true);
         Map map = mock(Map.class);
         Chell chell = mock(Chell.class);
         when(map.getChell()).thenReturn(chell);
@@ -46,6 +48,7 @@ public class PowerUpTest {
     @Test
     @SuppressWarnings("DirectInvocationOnMock")
     public void activateStarPowerUpTest() {
+        Database.getInstance().setSound(true);
         Map map = mock(Map.class);
         FireStrategy fireStrategy = mock(FireStrategy.class);
         Gun gun = new Gun(fireStrategy);
@@ -67,6 +70,7 @@ public class PowerUpTest {
 
     @Test
     public void hitboxTest(){
+        Database.getInstance().setSound(true);
         PowerUp powerUp = new BulletPowerUp(new Position(0, 0));
         powerUp.setPosition(new Position(0, 0));
         Assertions.assertEquals(1, powerUp.getPolygon().xpoints[0]);
@@ -82,6 +86,7 @@ public class PowerUpTest {
 
     @Test
     void typeTest(){
+        Database.getInstance().setSound(true);
         SpeedPowerUp speedPowerUp = new SpeedPowerUp(new Position(20, 20));
         Assertions.assertEquals("Speed", speedPowerUp.getType());
     }

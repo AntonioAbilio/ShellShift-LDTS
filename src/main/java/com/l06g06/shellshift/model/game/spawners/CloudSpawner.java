@@ -7,8 +7,8 @@ import com.l06g06.shellshift.model.game.elements.Position;
 import java.util.List;
 
 public class CloudSpawner {
-    private CloudCreator cloudCreator;
-    private List<Cloud> clouds;
+    private final CloudCreator cloudCreator;
+    private final List<Cloud> clouds;
 
     public CloudSpawner(List<Cloud> clouds) {
         this.clouds = clouds;

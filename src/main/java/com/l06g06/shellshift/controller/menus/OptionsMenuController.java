@@ -35,10 +35,10 @@ public class OptionsMenuController extends Controller<OptionsMenu> {
                     getModel().prevOption();
                     break;
                 case LEFT:
-                    if(getModel().isSelectedSoundSlider() && !getModel().isSoundOFF()) OptionsMenu.dencrementSound();
+                    if (getModel().isSelectedSoundSlider() && !getModel().isSoundOFF()) OptionsMenu.dencrementSound();
                     break;
                 case RIGHT:
-                    if(getModel().isSelectedSoundSlider() && !getModel().isSoundOFF()) OptionsMenu.incrementSound();
+                    if (getModel().isSelectedSoundSlider() && !getModel().isSoundOFF()) OptionsMenu.incrementSound();
                     break;
                 case SELECT:
                     Sound sound = Sound.getInstance();
