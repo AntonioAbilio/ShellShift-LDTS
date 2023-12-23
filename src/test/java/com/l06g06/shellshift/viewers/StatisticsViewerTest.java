@@ -26,14 +26,27 @@ public class StatisticsViewerTest {
 
     @Test
     void drawStatistics() {
+        /*
+                gui.setGradientBackground("#ABF0F9", "#457da8");
+        gui.drawImageASCII(Components.Highscores.getImage(), new Position(8,10));
 
-        try {
-            viewer.drawTest(gui);
-            // Extra info: Commented because method does not exist anymore.
-            //Mockito.verify(gui, Mockito.times(1)).drawText(Mockito.any(Position.class), Mockito.eq("Ranking"), Mockito.eq("#FFFFF"));
-        } catch (IOException ioe) {
-            fail("Caught the IOException: " + ioe.getMessage());
+        List<Integer> scores = Database.getInstance().getScores();
+        for (int i = 0; i < scores.size(); i++) {
+            gui.drawImageASCII(Components.getOrdinalNumbers().get(i).getImage(), new Position(10,25 + i * 10));
+            gui.numToASCII(scores.get(i), 30, 25 + i * 10);
         }
+
+        gui.drawImageASCII(Components.MonstersKilled.getImage(), new Position(8, 58));
+        gui.numToASCII(Database.getInstance().getMonstersKilled(), 110, 60);
+
+        gui.drawImageASCII(Components.NumLives.getImage(), new Position(8, 70));
+        gui.numToASCII(Database.getInstance().getNumLives(), 45, 72);
+
+        gui.drawImageASCII(Components.CoinsCollected.getImage(), new Position(8, 83));
+        gui.numToASCII(Database.getInstance().getCollectedCoins(), 110 ,85);
+         */
+        viewer.drawElements(gui);
+
 
     }
 }
