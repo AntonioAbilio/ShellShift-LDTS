@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.IOException;
+
 import static org.mockito.Mockito.*;
 
 public class OptionsMenuViewerTest {
@@ -79,6 +81,15 @@ public class OptionsMenuViewerTest {
         verify(gui, times(1)).drawImageASCII(eq(Components.Platform.getImageSelected()), any(Position.class));
         verify(gui, times(1)).drawImageASCII(eq(Components.SoundSliderButton.getImage()), any(Position.class));
         verify(gui, times(0)).drawImageASCII(eq(Components.SoundSliderButton.getImageSelected()), any(Position.class));
+    }
+
+    @Test
+    void testAbstractView() throws IOException {
+        optionsMenuViewer.draw(gui);
+
+        verify(gui, times(1)).clear();
+        verify(gui,times(1)).refresh();
+        verify(gui, times(1)).drawImageASCII(eq(Components.SoundON.getImage()), any(Position.class));
     }
 }
 

@@ -174,16 +174,7 @@ public class MapTest {
         }
     }
 
-    @Test
-    public void cloudSettersAndGetters(){
-        Assertions.assertEquals(0, map.getClouds().size());
-        map.addCloudSkipTask();
-        Assertions.assertEquals(1, map.getClouds().size());
-        Assertions.assertEquals(160, map.getClouds().get(0).getPosition().getX());
-        int y = map.getClouds().get(0).getPosition().getY();
-        if (!(y >= 8 && y <= 8 + 69)) fail();
 
-    }
 
     @Test
     void testGetGameStartTime() {

@@ -1,5 +1,7 @@
 package com.l06g06.shellshift.viewers;
 
+import com.google.common.collect.ImmutableList;
+import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.Position;
 import com.l06g06.shellshift.model.statistics.Statistics;
@@ -10,7 +12,7 @@ import org.mockito.Mockito;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.mockito.Mockito.*;
 
 public class StatisticsViewerTest {
     private Statistics stats;
@@ -26,27 +28,24 @@ public class StatisticsViewerTest {
 
     @Test
     void drawStatistics() {
-        /*
-                gui.setGradientBackground("#ABF0F9", "#457da8");
-        gui.drawImageASCII(Components.Highscores.getImage(), new Position(8,10));
-
-        List<Integer> scores = Database.getInstance().getScores();
-        for (int i = 0; i < scores.size(); i++) {
-            gui.drawImageASCII(Components.getOrdinalNumbers().get(i).getImage(), new Position(10,25 + i * 10));
-            gui.numToASCII(scores.get(i), 30, 25 + i * 10);
-        }
-
-        gui.drawImageASCII(Components.MonstersKilled.getImage(), new Position(8, 58));
-        gui.numToASCII(Database.getInstance().getMonstersKilled(), 110, 60);
-
-        gui.drawImageASCII(Components.NumLives.getImage(), new Position(8, 70));
-        gui.numToASCII(Database.getInstance().getNumLives(), 45, 72);
-
-        gui.drawImageASCII(Components.CoinsCollected.getImage(), new Position(8, 83));
-        gui.numToASCII(Database.getInstance().getCollectedCoins(), 110 ,85);
-         */
         viewer.drawElements(gui);
+        verify(gui, times(1)).setGradientBackground(anyString(), anyString());
+        verify(gui, times(1)).drawImageASCII(eq(Components.Highscores.getImage()), any(Position.class));
+
+        for (int i = 0; i < 3; i++) {
+            verify(gui, times(1)).numToASCII(anyInt(), eq(30), eq(25 + i * 10));
+        }
+        int i = 0;
+        verify(gui, times(1)).drawImageASCII(any(), eq(new Position(10, 25 + i++ * 10)));
+        verify(gui, times(1)).drawImageASCII(any(), eq(new Position(10, 25 + i++ * 10)));
+        verify(gui, times(1)).drawImageASCII(any(), eq(new Position(10, 25 + i * 10)));
 
 
+        verify(gui, times(1)).drawImageASCII(eq(Components.MonstersKilled.getImage()), any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.NumLives.getImage()), any(Position.class));
+        verify(gui, times(1)).drawImageASCII(eq(Components.CoinsCollected.getImage()), any(Position.class));
+
+        verify(gui, times(6)).numToASCII(anyInt(),anyInt(),anyInt());
     }
+
 }
