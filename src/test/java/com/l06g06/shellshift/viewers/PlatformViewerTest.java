@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.Mockito.*;
 
 public class PlatformViewerTest {
     private Platform platform;
@@ -26,8 +26,7 @@ public class PlatformViewerTest {
     @Test
     void drawPlatform(){
         viewer.draw(platform, gui);
-        // Method does not exist.
-        //Mockito.verify(gui, Mockito.times(1)).drawPlatform(platform.getPosition());
+        verify(gui, times(1)).drawImageASCII(eq(Components.Platform.getImage()), eq(new Position(10 - Platform.getWidth(), 10)));
     }
 
 

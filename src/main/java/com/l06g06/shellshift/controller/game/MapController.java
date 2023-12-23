@@ -88,26 +88,25 @@ public class MapController extends GameController{
         // Checks if game is over
         if (isGameOver()) {
             updateDatabase();
-            getModel().stopCloudAddingTask();
             Game.sleepTimeMS(200);
             game.setState(new GameOverState(new GameOver()));
         }
 
         long elapsedTimeSinceGameStart =  (time - getModel().getGameStartTime()) / 1000;
-        updateAcceleration(elapsedTimeSinceGameStart);
+        updateAcceleration();
 
     }
 
-    public void updateAcceleration(long elapsedTimeSinceGameStart){
+    public void updateAcceleration(){
         // Acceleration is divided in 3 levels
-        if (!checkpoint1 && elapsedTimeSinceGameStart >= 30){
+        if (getModel().getScore() > 300 && getModel().getScore() <= 800 && !checkpoint1) {
             checkpoint1 = true;
             getModel().setShiftCooldown(0.05);
-            getModel().setSpawnCooldown(4);
-        } else if (!checkpoint2 && elapsedTimeSinceGameStart >= 120){
+            getModel().setSpawnCooldown(5);
+        } else if (getModel().getScore() > 800 && !checkpoint2) {
             checkpoint2 = true;
             getModel().setShiftCooldown(0.03);
-            getModel().setSpawnCooldown(3);
+            getModel().setSpawnCooldown(2);
         }
     }
 
@@ -134,4 +133,7 @@ public class MapController extends GameController{
         return checkpoint2;
     }
 
+    public long getAddedScoreTimer() {
+        return addedScoreTimer;
+    }
 }

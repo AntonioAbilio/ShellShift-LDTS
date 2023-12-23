@@ -22,11 +22,9 @@ public class ShopViewerTest {
     private Gui gui;
     @BeforeEach
     void setUp() {
-        // Initialize mock objects
         shop = mock(Shop.class);
         gui = mock(Gui.class);
 
-        // Set up mock behavior for Shop
         Map<Components, Integer> options = new HashMap<>();
         options.put(Components.RapidFire, 50);
         options.put(Components.ExtraLife, 20);
@@ -36,7 +34,6 @@ public class ShopViewerTest {
         List<Components> icons = Arrays.asList(Components.RapidFireIcon, Components.HeartIcon, Components.MoreBulletsIcon);
         when(shop.getIcons()).thenReturn(icons);
 
-        // Initialize ShopViewer after setting up mocks
         shopViewer = new ShopViewer(shop);
     }
 

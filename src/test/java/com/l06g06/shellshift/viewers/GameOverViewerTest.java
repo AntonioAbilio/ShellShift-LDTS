@@ -29,8 +29,8 @@ public class GameOverViewerTest {
     void setUp(){
         gameOver = Mockito.mock(GameOver.class);
 
-        List<Components> options = Arrays.asList(Components.Restart, Components.MainMenu);
-        when(gameOver.getOptions()).thenReturn(options);
+        List<Components> mockOptions = Arrays.asList(Components.Restart, Components.MainMenu);
+        when(gameOver.getOptions()).thenReturn(mockOptions);
 
         gameOverViewer = new GameOverViewer(gameOver);
         gui = Mockito.mock(Gui.class);
@@ -40,18 +40,29 @@ public class GameOverViewerTest {
     void drawGameOver() {
         gameOverViewer.drawElements(gui);
         verify(gui, times(1)).drawImageASCII(eq(Components.GameOver.getImage()), any(Position.class));
+    }
+
+    @Test
+    void drawSelectedOptions() {
+        when(gameOver.isSelected(anyInt())).thenReturn(true);
+        gameOverViewer.drawElements(gui);
+        for (Components c : gameOver.getOptions()) {
+            verify(gui, times(1)).drawImageASCII(eq(c.getImageSelected()), any(Position.class));
+        }
+    }
+    void drawUnselectedOptions() {
+        when(gameOver.isSelected(anyInt())).thenReturn(true);
+        gameOverViewer.drawElements(gui);
         for (Components c : gameOver.getOptions()) {
             verify(gui, times(1)).drawImageASCII(eq(c.getImage()), any(Position.class));
         }
     }
 
     @Test
-    void drawSelected() {
-        when(gameOver.isSelected(anyInt())).thenReturn(true);
+    void testYIncrement() {
         gameOverViewer.drawElements(gui);
-        for (Components c : gameOver.getOptions()) {
-            verify(gui, times(1)).drawImageASCII(eq(c.getImageSelected()), any(Position.class));
-        }
+        verify(gui, times(1)).drawImageASCII(eq(Components.Restart.getImage()),eq(new Position(15, 45)));
+        verify(gui, times(1)).drawImageASCII(eq(Components.MainMenu.getImage()),eq(new Position(15, 57)));
     }
 
 }

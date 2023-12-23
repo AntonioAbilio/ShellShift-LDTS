@@ -10,10 +10,7 @@ import com.l06g06.shellshift.model.game.elements.powerups.SpeedPowerUp;
 import com.l06g06.shellshift.model.game.elements.powerups.StarPowerUp;
 import com.l06g06.shellshift.model.game.gun.Gun;
 import com.l06g06.shellshift.model.game.gun.NormalFireStrategy;
-import com.l06g06.shellshift.model.game.spawners.CoinSpawner;
-import com.l06g06.shellshift.model.game.spawners.EnemySpawner;
-import com.l06g06.shellshift.model.game.spawners.PlatformSpawner;
-import com.l06g06.shellshift.model.game.spawners.PowerUpSpawner;
+import com.l06g06.shellshift.model.game.spawners.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +36,7 @@ public class Map {
     private final CoinSpawner coinSpawner;
     private final EnemySpawner enemySpawner;
     private final PowerUpSpawner powerUpSpawner;
-    private final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
+    private final CloudSpawner cloudSpawner;
     private final ActivePowerUp activePowerUp;
 
     private int coinsCollected = 0;
@@ -54,38 +51,22 @@ public class Map {
         this.gun = new Gun(new NormalFireStrategy());
         this.bullets = new ArrayList<>();
 
-        //plataforma inicial
+        //plataformas iniciais
         this.platforms.add(new Platform(new Position(140, 55)));
-        this.platforms.add(new Platform(new Position(210, 35)));
+        this.platforms.add(new Platform(new Position(215, 35)));
+
         this.platformSpawner = new PlatformSpawner(platforms);
         this.coinSpawner = new CoinSpawner(coins);
         this.enemySpawner = new EnemySpawner(enemies);
         this.powerUpSpawner = new PowerUpSpawner(powerUps);
+        this.cloudSpawner = new CloudSpawner(clouds);
         this.activePowerUp = new ActivePowerUp();
 
-        startCloudAddingTask();
+        Random random = new Random();
+        this.clouds.add(new Cloud(new Position(40 + random.nextInt(120), 5 + random.nextInt(60))));
 
-    }
 
-    @SuppressWarnings("FutureReturnValueIgnored")
-    public void startCloudAddingTask() {
-        Random rand = new Random();
-        //executorService.scheduleAtFixedRate(this::addCloud, 0, 10 + rand.nextInt(15), TimeUnit.SECONDS);
-    }
-    public void stopCloudAddingTask(){
-        executorService.shutdown();
-    }
 
-    @VisibleForTesting
-    public void addCloudSkipTask(){
-        addCloud();
-    }
-
-    private void addCloud() {
-        Random rand = new Random();
-        Cloud newCloud = new Cloud(new Position(160, 8 + rand.nextInt(70)));
-        this.clouds.add(newCloud);
-    }
 
     // Chell
     public Chell getChell() {
@@ -230,5 +211,9 @@ public class Map {
     @VisibleForTesting
     public void setBullets(List<Bullet> bullets) {
         this.bullets = bullets;
+    }
+
+    public CloudSpawner getCloudSpawner() {
+        return cloudSpawner;
     }
 }

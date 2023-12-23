@@ -90,23 +90,34 @@ public class MapControllerTest {
 
     @Test
     public void updateAccelerationTest() {
-
+        when(map.getScore()).thenReturn(299);
+        mapController.updateAcceleration();
         Assertions.assertEquals(false, mapController.isCheckpoint1());
         Assertions.assertEquals(false, mapController.isCheckpoint2());
 
-        long elapsedTimeSinceGameStart = 30;
-        mapController.updateAcceleration(elapsedTimeSinceGameStart);
+        when(map.getScore()).thenReturn(300);
+        mapController.updateAcceleration();
+        Assertions.assertEquals(false, mapController.isCheckpoint1());
+        Assertions.assertEquals(false, mapController.isCheckpoint2());
+
+        when(map.getScore()).thenReturn(301);
+        mapController.updateAcceleration();
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(false, mapController.isCheckpoint2());
         Assertions.assertEquals(0.05, storeValueShift);
-        Assertions.assertEquals(4, storeValueSpawn);
+        Assertions.assertEquals(5, storeValueSpawn);
 
-        elapsedTimeSinceGameStart = 120;
-        mapController.updateAcceleration(elapsedTimeSinceGameStart);
+        when(map.getScore()).thenReturn(800);
+        mapController.updateAcceleration();
+        Assertions.assertEquals(true, mapController.isCheckpoint1());
+        Assertions.assertEquals(false, mapController.isCheckpoint2());
+
+        when(map.getScore()).thenReturn(801);
+        mapController.updateAcceleration();
         Assertions.assertEquals(true, mapController.isCheckpoint1());
         Assertions.assertEquals(true, mapController.isCheckpoint2());
         Assertions.assertEquals(0.03, storeValueShift);
-        Assertions.assertEquals(3, storeValueSpawn);
+        Assertions.assertEquals(2, storeValueSpawn);
     }
 
     @SuppressWarnings("DirectInvocationOnMock")
@@ -123,10 +134,8 @@ public class MapControllerTest {
             verify(cloudController).step(game, action, addedScoreTimer);
             verify(powerUpController).step(game, action, addedScoreTimer);
             verify(activePowerUpController).step(game, action, addedScoreTimer);
-            verify(map, Mockito.times(1)).getScore();
             verify(map, Mockito.times(1)).setScore(eq(124));
             verify(game, never()).setState(Mockito.any(GameOverState.class));
-            verify(map, never()).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();
@@ -147,10 +156,8 @@ public class MapControllerTest {
             verify(cloudController).step(game, action, addedScoreTimer);
             verify(powerUpController).step(game, action, addedScoreTimer);
             verify(activePowerUpController).step(game, action, addedScoreTimer);
-            verify(map, Mockito.times(2)).getScore();
             verify(map, Mockito.times(1)).setScore(eq(124));
             verify(game).setState(any(GameOverState.class));
-            verify(map).stopCloudAddingTask();
         } catch (Exception e){
             System.out.println(e.getMessage());
             fail();
@@ -180,10 +187,9 @@ public class MapControllerTest {
         Map map = new Map();
         map.setChell(chell);
 
-        MapController mapContrl = new MapController(map);
+        MapController mapControl = new MapController(map);
 
-        Assertions.assertTrue(mapContrl.isGameOver());
-
+        Assertions.assertTrue(mapControl.isGameOver());
     }
 
     @Property
@@ -206,6 +212,13 @@ public class MapControllerTest {
         verify(database).addScore(score);
         verify(database).addCoins(coins);
         verify(database).addMonstersKilled(monstersKilled);
+    }
+
+    @Test
+    public void testAddedScoreTimer() {
+        long time = System.currentTimeMillis();
+        mapController.setAddedScoreTimer(time);
+        Assertions.assertEquals(time, mapController.getAddedScoreTimer());
     }
 
 }

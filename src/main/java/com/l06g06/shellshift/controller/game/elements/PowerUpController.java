@@ -1,5 +1,6 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.Sound;
 import com.l06g06.shellshift.SoundsFx;
@@ -57,6 +58,7 @@ public class PowerUpController extends GameController {
     }
 
     public void spawnOnPlatform() {
+        //TODO : remover sout's
         List<Platform> platforms = getModel().getPlatforms();
 
         Platform randomPlatform;
@@ -92,11 +94,22 @@ public class PowerUpController extends GameController {
             PowerUp powerUp = powerUpIterator.next();
             if (getModel().getChell().getPolygon().intersects(powerUp.getPolygon().getBounds2D())) {
                 powerUp.activate(getModel());
+                System.out.println("CHELL : X = " + getModel().getChell().getPosition().getX() + " Y = " + getModel().getChell().getPosition().getY());
+                System.out.println("POWERUP : X = " + powerUp.getPosition().getX() + " Y = " + powerUp.getPosition().getY());
+
                 powerUpIterator.remove();
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.PowerUP);
             }
         }
     }
+    @VisibleForTesting
+    public void setLastShiftTime(double lastShiftTime) {
+        this.lastShiftTime = lastShiftTime;
+    }
 
+    @VisibleForTesting
+    public void setLastSpawnTime(double lastSpawnTime) {
+        this.lastSpawnTime = lastSpawnTime;
+    }
 }
