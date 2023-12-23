@@ -4,6 +4,7 @@ import com.l06g06.shellshift.Components;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.elements.*;
 import com.l06g06.shellshift.model.game.elements.enemies.Enemy;
+import com.l06g06.shellshift.model.game.elements.enemies.HardMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.SoftMonster;
 import com.l06g06.shellshift.model.game.elements.enemies.moveStrategies.HorizontalMoveStrategy;
 import com.l06g06.shellshift.model.game.elements.powerups.ActivePowerUp;
@@ -89,7 +90,6 @@ public class GameViewerTest {
 
         gameViewer.drawElements(gui);
 
-        // Tiago Monteiro was here...
         verify(gui, times(1)).drawImageASCII(eq(Components.ReducedSpeedComponent.getImage()), eq(new Position(71,89)));
         verify(gui, times(1)).drawImageASCII(eq(Components.ReducedStarComponent.getImage()),  eq(new Position(81,89)));
 
@@ -104,17 +104,7 @@ public class GameViewerTest {
         List<Bullet> bullets = Arrays.asList(new Bullet(position));
         List<Coin> coins = Arrays.asList(new Coin(position));
         List<PowerUp> powerUps = Arrays.asList(new StarPowerUp(position));
-        List<Enemy> enemies = Arrays.asList(new SoftMonster(position, new HorizontalMoveStrategy()));
-
-        ChellViewer chellViewer = mock(ChellViewer.class);
-        when(chellViewer.draw(any(Chell.class),any(Gui.class))).thenReturn()
-        CloudViewer cloudViewer = mock(CloudViewer.class);
-        PlatformViewer platformViewer = mock(PlatformViewer.class);
-        BulletViewer bulletViewer = mock(BulletViewer.class);
-        CoinViewer coinViewer = mock(CoinViewer.class);
-        PowerUpViewer powerUpViewer = mock(PowerUpViewer.class);
-        SoftMonsterViewer softMonsterViewer = mock(SoftMonsterViewer.class);
-        HardMonsterViewer hardMonsterViewer = mock(HardMonsterViewer.class);
+        List<Enemy> enemies = Arrays.asList(new SoftMonster(position, new HorizontalMoveStrategy()), new HardMonster(position, new HorizontalMoveStrategy()));
 
         when(map.getChell()).thenReturn(chell);
         when(map.getClouds()).thenReturn(clouds);
@@ -126,15 +116,14 @@ public class GameViewerTest {
 
         gameViewer.drawElements(gui);
 
-        verify(chellViewer).draw(chell,gui);
-        //verify(cloudViewer, times(1)).draw(any(Cloud.class), eq(gui));
-        //verify(platformViewer, times(1)).draw(any(Platform.class), eq(gui));
-        //verify(bulletViewer, times(1)).draw(any(Bullet.class), eq(gui));
-        //verify(coinViewer, times(1)).draw(any(Coin.class), eq(gui));
-        //verify(powerUpViewer, times(1)).draw(any(PowerUp.class), eq(gui));
-        //verify(softMonsterViewer, times(1)).draw(any(Enemy.class), eq(gui));
-        //verify(hardMonsterViewer, times(1)).draw(any(Enemy.class), eq(gui));
-
+        verify(gui,times(1)).drawImageASCII(eq(Components.Chell.getImage()), any(Position.class));
+        verify(gui,times(1)).drawImageASCII(eq(Components.Cloud.getImage()), any(Position.class));
+        verify(gui,times(1)).drawImageASCII(eq(Components.Platform.getImage()), any(Position.class));
+        verify(gui,times(2)).drawImageASCII(eq(Components.Bullet.getImage()), any(Position.class)); // bullet adicionada + bullet counter
+        verify(gui,times(1)).drawImageASCII(eq(Components.Coin.getImage()), any(Position.class));
+        verify(gui,times(1)).drawImageASCII(eq(Components.StarPowerUp.getImage()), any(Position.class));
+        verify(gui,times(1)).drawImageASCII(eq(Components.SoftMonster.getImage()), any(Position.class));
+        verify(gui,times(1)).drawImageASCII(eq(Components.HardMonster.getImage()), any(Position.class));
     }
 }
 

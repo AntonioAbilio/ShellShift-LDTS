@@ -1,7 +1,9 @@
 package com.l06g06.shellshift.controller.game.elements;
 
+import com.google.common.annotations.VisibleForTesting;
 import com.l06g06.shellshift.Game;
 import com.l06g06.shellshift.controller.Controller;
+import com.l06g06.shellshift.controller.game.GameController;
 import com.l06g06.shellshift.gui.Gui;
 import com.l06g06.shellshift.model.game.map.Map;
 
@@ -9,7 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivePowerUpController extends Controller<Map> {
+public class ActivePowerUpController extends GameController {
     private long lastTimeCalled;
 
     public ActivePowerUpController(Map map) {
@@ -18,7 +20,7 @@ public class ActivePowerUpController extends Controller<Map> {
     }
 
     @Override
-    public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
+    public void step(Game game, List<Gui.PressedKey> action, long time) {
         if (time - lastTimeCalled >= 1000) {
             List<String> toBeRemoved = new ArrayList<>();
 
@@ -39,4 +41,10 @@ public class ActivePowerUpController extends Controller<Map> {
             lastTimeCalled = time;
         }
     }
+
+    @VisibleForTesting
+    public void setLastTimeCalled(long time) {
+        lastTimeCalled = time;
+    }
+
 }
