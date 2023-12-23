@@ -19,12 +19,10 @@ public class GameOverController extends Controller<GameOver> {
     public GameOverController(GameOver gameOver) {
         super(gameOver);
         Sound.getInstance().playSound(SoundsFx.Death);
-        //SomAqui Sound.playSound(SoundsFx.Death);
     }
 
     @Override
     public void step(Game game, List<Gui.PressedKey> action, long time) throws IOException {
-        //funciona como um controller de menu basicamente, duas opcoes restart e main menu
         for (Gui.PressedKey gpk : action) {
             switch (gpk) {
                 case UP:
@@ -34,14 +32,13 @@ public class GameOverController extends Controller<GameOver> {
                     getModel().nextOption();
                     break;
                 case SELECT:
-                    //SomAqui Sound.playSound(SoundsFx.OptionSelect);
                     Sound.getInstance().playSound(SoundsFx.OptionSelect);
                     if (getModel().isSelectedRestart()) game.setState(new GameState(new Map()));
                     if (getModel().isSelectedMainMenu()) game.setState(new MainMenuState(new MainMenu()));
                     break;
                 default:
             }
-            Game.sleepTimeMS(100); // isto aqui e so para os inputs nao serem tao sensiveis
+            Game.sleepTimeMS(100); // To decrease sensitivity
         }
     }
 

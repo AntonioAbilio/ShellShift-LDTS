@@ -23,26 +23,26 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class BulletControllerTest {
-    private Map map ;
+    private Map mockedMap ;
     private List<Bullet> bullets;
     private BulletController bulletController;
 
     @BeforeEach
     void setup(){
-        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
-        this.map = mock(Map.class);
+        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
+        this.mockedMap = mock(Map.class);
         this.bullets = new ArrayList<>();
-        this.bulletController = new BulletController(map);
+        this.bulletController = new BulletController(mockedMap);
 
         Bullet bullet1 = new Bullet(new Position(1,  0));
         Bullet bullet2 = new Bullet(new Position(5, 5));
@@ -56,7 +56,7 @@ public class BulletControllerTest {
         bullets.add(bullet1);
         bullets.add(bullet2);
         bullets.add(bullet3);
-        Mockito.when(map.getBullets()).thenReturn(bullets);
+        Mockito.when(mockedMap.getBullets()).thenReturn(bullets);
     }
 
     @Test
@@ -66,10 +66,10 @@ public class BulletControllerTest {
         long time = 1000;
         Position chellPosition = new Position(3, 1);
         Chell chell = new Chell(chellPosition);
-        Mockito.when(map.getChell()).thenReturn(chell);
+        Mockito.when(mockedMap.getChell()).thenReturn(chell);
         Gun gun = mock(Gun.class);
         when(gun.getReloadTime()).thenReturn(1000.0);
-        when(map.getGun()).thenReturn(gun);
+        when(mockedMap.getGun()).thenReturn(gun);
         BulletController bulletControllerSpy = Mockito.spy(bulletController);
         bulletControllerSpy.step(game, actions, time);
         Mockito.verify(bulletControllerSpy, Mockito.times(1)).fire(eq(time));
@@ -89,6 +89,10 @@ public class BulletControllerTest {
 
     @Test
     void bulletCollisionTest(){
+        Map map = new Map();
+        map.setScore(0);
+        map.setBullets(bullets);
+        bulletController = new BulletController(map);
         List<Enemy> enemies = new ArrayList<>();
         MoveStrategy mockedMoveStrategy = mock(MoveStrategy.class);
         Enemy enemy1 = new SoftMonster(new Position(-12,  -13), mockedMoveStrategy);
@@ -97,18 +101,14 @@ public class BulletControllerTest {
         enemies.add(enemy1);
         enemies.add(enemy2);
         enemies.add(enemy3);
-        Mockito.when(map.getEnemies()).thenReturn(enemies);
+        map.setEnemies(enemies);
 
         Assertions.assertEquals(3, bullets.size());
         Assertions.assertEquals(3, enemies.size());
         bulletController.bulletCollision();
         Assertions.assertEquals(2, bullets.size());
         Assertions.assertEquals(2, enemies.size());
-
-        verify(map, times(1)).addMonsterKilled();
-        when(map.getScore()).thenReturn(20);
-        verify(map, times(1)).setScore(eq(20));
-        assertEquals(20, map.getScore());
+        Assertions.assertEquals(1, map.getMonstersKilled());
     }
 
     @Test
@@ -117,16 +117,16 @@ public class BulletControllerTest {
         Gun gun = mock(Gun.class);
         when(gun.getReloadTime()).thenReturn(500.0);
         when(gun.getNumBullets()).thenReturn(1);
-        when(map.getGun()).thenReturn(gun);
+        when(mockedMap.getGun()).thenReturn(gun);
         Chell chell = new Chell(new Position(4, 4));
-        when(map.getChell()).thenReturn(chell);
+        when(mockedMap.getChell()).thenReturn(chell);
         bulletController.fire(time);
         verify(gun, times(1)).decreaseNumBullet();
     }
 
     @Test
     void fireConditionTest(){
-        map = new Map();
+        Map map = new Map();
         bulletController = new BulletController(map);
         Gun gun = mock(Gun.class);
         when(gun.getReloadTime()).thenReturn(500.0);
@@ -161,14 +161,14 @@ public class BulletControllerTest {
         Gun gun = mock(Gun.class);
         when(gun.getReloadTime()).thenReturn(500.0);
         when(gun.getNumBullets()).thenReturn(0);
-        when(map.getGun()).thenReturn(gun);
+        when(mockedMap.getGun()).thenReturn(gun);
         bulletController.fire(time);
         verify(gun, times(0)).decreaseNumBullet();
     }
 
     @Test
     void fireWithDirectionTest() {
-        map = new Map();
+        Map map = new Map();
         bulletController = new BulletController(map);
         long time = 1000;
         Gun gun = mock(Gun.class);
@@ -182,16 +182,21 @@ public class BulletControllerTest {
         assertEquals(0, map.getBullets().size());
         bulletController.fire(time);
         assertEquals(1, map.getBullets().size());
-        assertEquals(0, map.getBullets().get(0).getPosition().getX());
+        assertEquals(new Position(0, 0), map.getBullets().get(0).getPosition());
+        assertFalse(map.getBullets().get(0).isDirection());
 
         chell.setDirection(true); // Chell is looking to the right
         bulletController.fire(time + 1000);
         assertEquals(2, map.getBullets().size());
-        assertEquals(16, map.getBullets().get(1).getPosition().getX());
+        assertEquals(new Position(16, 0), map.getBullets().get(1).getPosition());
+        assertTrue(map.getBullets().get(1).isDirection());
     }
 
     @Test
     void removeOutOfBoundsBulletsTest(){
+        Map map = new Map();
+        bulletController = new BulletController(map);
+        map.setBullets(bullets);
         bullets.add(new Bullet(new Position(-400, 5)));
         bullets.add(new Bullet(new Position(-4, 5)));
         bullets.add(new Bullet(new Position(-5, 8)));

@@ -32,13 +32,13 @@ public class PowerUpController extends GameController {
 
         double currentTime = time / 1000.0; // Convert to seconds
 
-        // Spawn platforms logic
+        // Spawn power up logic
         if (currentTime - lastSpawnTime >= getModel().getSpawnCooldown() + 10){
             lastSpawnTime = currentTime;
             spawnOnPlatform();
         }
 
-        // Shift platforms logic
+        // Shift power up logic
         if (currentTime - lastShiftTime >= getModel().getShiftCooldown()){
             lastShiftTime = currentTime;
             left_shift();
@@ -95,7 +95,6 @@ public class PowerUpController extends GameController {
                 powerUpIterator.remove();
                 Sound sound = Sound.getInstance();
                 sound.playSound(SoundsFx.PowerUP);
-                //SomAqui Sound.playSound(SoundsFx.PowerUP);
             }
         }
     }

@@ -223,4 +223,9 @@ public class Map {
     public void setCoinsCollected(int coinsCollected) {
         this.coinsCollected = coinsCollected;
     }
+
+    @VisibleForTesting
+    public void setBullets(List<Bullet> bullets) {
+        this.bullets = bullets;
+    }
 }

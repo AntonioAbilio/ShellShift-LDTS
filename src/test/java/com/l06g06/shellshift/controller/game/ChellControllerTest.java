@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,7 +44,7 @@ public class ChellControllerTest {
 
     @BeforeEach
     public void setup(){
-        Database.getInstance().setSound(false);  // ToDo: Turn off sound on every test class
+        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
         this.chell = new Chell(new Position(0, 0));
         this.mockedMap = mock(Map.class);
         when(mockedMap.getChell()).thenReturn(chell);
@@ -90,11 +91,14 @@ public class ChellControllerTest {
 
     @Property
     public void jumpTest(@ForAll int time){
+        Database.getInstance().setSound(true);  // ToDo: Turn off sound on every test class
         this.chell = new Chell(new Position(0, 0));
         this.mockedMap = mock(Map.class);
         when(mockedMap.getChell()).thenReturn(chell);
         this.chellController = new ChellController(mockedMap);
+        chellController.setCanJump(true);
 
+        assertTrue(chellController.isCanJump());
         chellController.jump(time);
         assertTrue(chellController.isJumping());
         assertEquals(time, chellController.getJumpStartTime());
@@ -243,19 +247,23 @@ public class ChellControllerTest {
     @Test
     void checkLandingTest(){
         Map map = new Map();
-        chell = new Chell(new Position(20, 20));
+        chell = new Chell(new Position(20, 300));
+        chell.setVelocity(9960);
+        chell.setGravity(8765);
+        map.setChell(chell);
+        map.setPlatforms(new ArrayList<>());
         chellController = new ChellController(map);
         chellController.setJumping(false);
         chellController.setCanJump(true);
+
         chellController.checkLanding();
+
         assertFalse(chellController.isCanJump());
-        map.setChell(chell);
-        ChellController chellControllerSpy = spy(chellController);
+        Assertions.assertEquals(new Position(20, 395), map.getChell().getPosition());
+
+        ChellController chellControllerSpy = spy(chellController);  // This is to kill a mutation that removes the call to lookForPlatformCollision()
         chellControllerSpy.checkLanding();
         verify(chellControllerSpy, times(1)).lookForPlatformCollision();
-        int y = (int) (map.getChell().getPosition().getY() + (map.getChell().getVelocity() * 0.01 - 0.5 * map.getChell().getGravity() * 0.001));
-        Assertions.assertEquals(y - 2, chell.getPosition().getY());  // - 2 due to call to lookForPlatformCollision
-        Assertions.assertFalse(chellController.isCanJump());
     }
 
 }
